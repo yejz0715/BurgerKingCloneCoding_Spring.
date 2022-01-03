@@ -10,7 +10,7 @@
 		<link href="css/burger.css" rel="stylesheet">
 		<script src="http://code.jquery.com/jquery-latest.js"></script>
 		<script src="script/burger.js" type="text/javascript"></script>
-		<script src="script/main.js" type="text/javascript"></script>
+		<script src="script/index.js" type="text/javascript"></script>
 		<link rel="icon" href="image/main/favicon.ico">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
