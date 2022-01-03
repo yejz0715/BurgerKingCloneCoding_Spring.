@@ -1,9 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp"%>
 
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/css/buger.css" >
 <script type="text/javascript" src="static/script/buger.js"></script>
@@ -18,9 +19,9 @@
       <div class="banner">
          <div class="slide" id="slide">
             <ul class="cnt" id="cnt">
-               <li><a href="burger.do?command=eventDetailForm&eseq=88"><img
+               <li><a href="eventDetailForm&eseq=88"><img
                      src="image/main/banner/banner_3.png"></a></li>
-               <li><a href="burger.do?command=eventDetailForm&eseq=86"><img
+               <li><a href="eventDetailForm&eseq=86"><img
                      src="image/main/banner/banner_1.png"></a></li>
                <li><a href="burger.do?command=eventDetailForm&eseq=87"><img
                      src="image/main/banner/banner_2.png"></a></li>

@@ -34,17 +34,22 @@
 				<c:choose>
 					<c:when test="${empty loginUser}">
 						<div class="WEB utilWrap">
-							<a href="burger.do?command=index"><span>브랜드홈</span></a>
+							<a href="/"><span>브랜드홈</span></a>
 							<a style="display: none;"><span>로그아웃</span></a>
 							<a style="display: none;"><span>MY킹</span></a>
-							<a href="burger.do?command=loginForm&non=1"><span>로그인</span></a>
-							<a href="burger.do?command=faqForm&fnum=1"><span>고객센터</span></a>
+							<a href="loginForm"><span>로그인</span></a>
+							<a href="faqList1"><span>고객센터</span></a>
 						</div>
+					</c:when>
+					<c:when test="${memberkind == 2}">
+						<a href="/"><span>브랜드홈</span></a>
+						<a href="logout"><span>비회원 로그아웃</span></a>
+						<a style="display: none;"><span>회원 로그인</span></a>
 					</c:when>
 					<c:otherwise>
 						<div class="WEB utilWrap">
-							<a href="burger.do?command=index"><span>브랜드홈</span></a>
-							<a href="burger.do?command=logout"><span>로그아웃</span></a>
+							<a href="/"><span>브랜드홈</span></a>
+							<a href="logout"><span>로그아웃</span></a>
 							<a href="burger.do?command=deliveryMypageForm"><span>MY킹</span></a>
 							<a style="display: none;"><span>로그인</span></a>
 							<a href="burger.do?command=faqForm&fnum=1"><span>고객센터</span></a>

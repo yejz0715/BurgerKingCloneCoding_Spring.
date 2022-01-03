@@ -27,6 +27,10 @@ public class OtherController {
 		return "admin/admin";
 	}
 	
+	@RequestMapping(value="/faqList1")
+	public String faqList1() {
+		return "ServiceCenter/faqList1";
+	}
 }
 
 
