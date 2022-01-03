@@ -17,8 +17,8 @@ function popup3() {
 		<div class="web_container1">	
 			<ul>
 				<li><a href="main">HOME</a>&nbsp;>&nbsp;</li>
-				<li><a href="main">메뉴소개</a>&nbsp;>&nbsp;</li>
-				<li><a href="main">${pvo.pname}</a></li>
+				<li><a href="menuListForm?kind1=${pvo.kind1}">메뉴소개</a>&nbsp;>&nbsp;</li>
+				<li><a>${pvo.pname}</a></li>
 			</ul>
 		</div>
 	</div>

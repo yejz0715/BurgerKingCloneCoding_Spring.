@@ -61,7 +61,7 @@ function check_input5(){
 	}
 }
 
-function inputidChk(){
+/*function inputidChk(){
 	if(document.frm.name.value==""){
 		alert("이름을 입력해주세요.");
 		document.frm.name.focus();
@@ -72,7 +72,7 @@ function inputidChk(){
 		return false;
 	}
 	return true;
-}
+}*/
 function inputpwdChk(){
 	if(document.frm.name.value==""){
 		alert("이름을 입력해주세요.");

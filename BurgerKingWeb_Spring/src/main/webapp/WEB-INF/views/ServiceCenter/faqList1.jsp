@@ -29,7 +29,7 @@
 		<div class="tab_cont">
 			<div class="faq_category">
 				<label class="switch01">
-					<input type="radio" name="faqcategory" checked="checked" onclick="location.href='faqList1'">
+					<input type="radio" name="faqcategory" checked="checked" onclick="location.href='faqForm&fnum=1'">
 					<span>전체</span>
 				</label>
 				<label class="switch01">
