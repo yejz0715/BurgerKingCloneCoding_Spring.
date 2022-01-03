@@ -4,5 +4,15 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="com.ezen.burger.dao.IEventDao">
-
+	<select id="getAllEvents" resultType="com.ezen.burger.dto.EventVO">
+		select * from event order by eseq asc 	
+	</select>
+	
+	<select id="getOngoingEvents" resultType="com.ezen.burger.dto.EventVO">
+		select * from event where state = ${param1} order by eseq asc 
+	</select>
+	
+	<select id="getPastEvents" resultType="com.ezen.burger.dto.EventVO">
+		select * from event where state = ${param2} order by eseq asc 	
+	</select>
 </mapper>

@@ -12,17 +12,21 @@ public class OtherController {
 	OtherService os;
 	
 	@RequestMapping(value="/")
-	   public String index() {
-	      return "redirect:/main";
-	   }
-	   
-	   @RequestMapping(value="/main")
-	   public String main() {
-	      return "main";
-	   }
-	   
-	   @RequestMapping(value="/admin")
-	   public String admin() {
-	      return "redirect:/main";
-	   }
+
+	public String index() {
+		return "redirect:/main";
+	}
+	
+	@RequestMapping(value="/main")
+	public String main() {
+		return "main/main";
+	}
+	
+	@RequestMapping(value="/admin")
+	public String admin() {
+		return "admin/admin";
+	}
+	
 }
+
+
