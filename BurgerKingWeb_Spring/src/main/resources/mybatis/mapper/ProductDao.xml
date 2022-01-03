@@ -4,5 +4,15 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="com.ezen.burger.dao.IProductDao">
-
+	<select id="getProduct" resultType="com.ezen.burger.dto.ProductVO">
+		select * from product where kind1=#{param1}
+	</select>
+	
+	<select id="getProductdetail" resultType="com.ezen.burger.dto.ProductVO">
+		select * from product where pseq = #{param1} and kind3=4
+	</select>
+	
+	<select id="getProductkind" resultType="com.ezen.burger.dto.ProductVO">
+		select * from product where kind1 = #{param1} and kind2 = #{param2} and kind3&lt;4
+	</select>
 </mapper>

@@ -9,10 +9,10 @@
 	</select>
 	
 	<select id="getOngoingEvents" resultType="com.ezen.burger.dto.EventVO">
-		select * from event where state = ${param1} order by eseq asc 
+		select * from event where state = 1 order by eseq asc 
 	</select>
 	
 	<select id="getPastEvents" resultType="com.ezen.burger.dto.EventVO">
-		select * from event where state = ${param2} order by eseq asc 	
+		select * from event where state = 0 order by eseq asc 	
 	</select>
 </mapper>

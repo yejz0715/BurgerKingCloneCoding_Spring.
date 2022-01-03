@@ -30,7 +30,14 @@ public class OtherController {
 	@RequestMapping(value="/faqList1")
 	public String faqList1() {
 		return "ServiceCenter/faqList1";
+
 	}
+	
+	@RequestMapping(value="/brandStroyForm")
+	public String brandStroyForm() {
+		return "brand/brandStory";
+	}
+
 }
 
 

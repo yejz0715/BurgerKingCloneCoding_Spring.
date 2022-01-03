@@ -16,7 +16,7 @@
 <div class="clear"></div>
 <div class="mainWrap" style="background-color: #f2ebe6;" id="top";>
    <div class="banner">
-      <div class="banner">
+
          <div class="slide" id="slide">
             <ul class="cnt" id="cnt">
                <li><a href="eventDetailForm&eseq=88"><img
@@ -107,9 +107,10 @@
                </div>
             </div>
       </div>
+
       </div>
       <a href="#top" class="btn_top" style="display: inline; opacity: 1;">Top</a>
-</div>
+
 
    <div class="clear"></div>
 
