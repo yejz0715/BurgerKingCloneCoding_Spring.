@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="BurgerKingWeb_Spring/src/main/java"/>
+	<classpathentry kind="src" path="BurgerKingWeb_Spring/src/test/java"/>
+	<classpathentry kind="lib" path="BurgerKingWeb_Spring/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="lib" path="BurgerKingWeb_Spring/libs/cos.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
