@@ -23,11 +23,11 @@
                      src="image/main/banner/banner_3.png"></a></li>
                <li><a href="eventDetailForm&eseq=86"><img
                      src="image/main/banner/banner_1.png"></a></li>
-               <li><a href="burger.do?command=eventDetailForm&eseq=87"><img
+               <li><a href="eventDetailForm&eseq=87"><img
                      src="image/main/banner/banner_2.png"></a></li>
-               <li><a href="burger.do?command=eventDetailForm&eseq=101"><img
+               <li><a href="eventDetailForm&eseq=101"><img
                      src="image/main/banner/banner_4.png"></a></li>
-               <li><a href="burger.do?command=eventDetailForm&eseq=102"><img
+               <li><a href="eventDetailForm&eseq=102"><img
                      src="image/main/banner/banner_5.png"></a></li>
             </ul>
       
@@ -83,11 +83,11 @@
                <div class="web_container2">
                   <div class="guide">
                      <div id="app">
-                        <a href="burger.do?command=appGuideForm"> <img
+                        <a href="appGuideForm"> <img
                            src="image/main/appimg.png"></a>
                      </div>
                      <div id="delivery77">
-                        <a href="burger.do?command=deliveryUseForm"> 
+                        <a href="deliveryUseForm"> 
                            <img src="image/main/deliveryimg.png">
                         </a>
                      </div>
