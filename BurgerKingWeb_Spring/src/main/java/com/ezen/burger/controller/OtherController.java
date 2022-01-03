@@ -15,12 +15,14 @@ public class OtherController {
 	public String index() {
 		return "redirect:/main";
 	}
+	
 	@RequestMapping(value="/main")
 	public String main() {
-		return "main";
+		return "main/main";
 	}
+	
 	@RequestMapping(value="/admin")
 	public String admin() {
-		return "admin";
+		return "admin/admin";
 	}
 }

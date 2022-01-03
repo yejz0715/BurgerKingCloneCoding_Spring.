@@ -11,4 +11,8 @@ public interface IProductDao {
 
 	ArrayList<ProductVO> getProduct(String kind1);
 
+	ArrayList<ProductVO> getProductdetail(int pseq);
+
+	ArrayList<ProductVO> getProductkind(String kind1, String kind2);
+
 }

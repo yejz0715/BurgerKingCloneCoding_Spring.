@@ -16,4 +16,12 @@ public class ProductService {
 	public ArrayList<ProductVO> getProduct(String kind1) {
 		return pdao.getProduct(kind1);
 	}
+
+	public ArrayList<ProductVO> getProductdetail(int pseq) {
+		return pdao.getProductdetail(pseq);
+	}
+
+	public ArrayList<ProductVO> getProductkind(String kind1, String kind2) {
+		return pdao.getProductkind(kind1, kind2);
+	}
 }

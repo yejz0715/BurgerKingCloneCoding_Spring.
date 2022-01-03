@@ -22,4 +22,14 @@ public class ProductController {
 		model.addAttribute("productList",list);
 		return "product/menuList";
 	}
+	
+	@RequestMapping(value="menudetailForm")
+	public String menudetailForm(Model model, @RequestParam("pseq") int pseq) {
+		ArrayList<ProductVO> list = ps.getProductdetail(pseq);
+		ProductVO pvo = list.get(0);		
+		ArrayList<ProductVO> list2 = ps.getProductkind(pvo.getKind1(), pvo.getKind2());
+		model.addAttribute("pvo",pvo);
+		model.addAttribute("list2",list2);
+		return "product/productDetail";
+	}
 }

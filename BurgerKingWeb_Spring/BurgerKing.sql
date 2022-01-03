@@ -29,7 +29,7 @@ DROP TABLE product CASCADE CONSTRAINTS;
 DROP TABLE shortproduct CASCADE CONSTRAINTS;
 DROP TABLE sub_product CASCADE CONSTRAINTS;
 
-select * from cart
+select * from 
 
 /* Drop Sequences */
 

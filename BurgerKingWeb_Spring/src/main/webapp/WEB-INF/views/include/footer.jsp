@@ -20,7 +20,7 @@
 				
 				<div id="bottom_img">
 					<a href="https://www.facebook.com/burgerkingkorea" target="_blank"><img src="image/main/bottom_image02.png"></a>
-					<a href="https://www.instagram.com/burgerkingkorea" target="_blank"><img src="image/main/bottom_image03.png"></a>
+					<a href="https://www.instagram.com/burgerkingkorea" target="_blank"><img src="image/main/bottom_image03.png" style="padding-top:4px"></a>
 				</div>
 			</div>
 		</footer>
