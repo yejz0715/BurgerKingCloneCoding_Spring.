@@ -12,13 +12,13 @@ function popup3() {
 
 <div class="clear"></div>
 <div class="contentsWrap">
-	<div class="web_container">
+	
 		<div class="location" style="margin-bottom: 0px;">
-		
+		<div class="web_container1">	
 			<ul>
-				<li><a href="index">HOME</a>&nbsp;>&nbsp;</li>
-				<li><a href="index">메뉴소개</a>&nbsp;>&nbsp;</li>
-				<li><a href="index">${pvo.pname}</a></li>
+				<li><a href="main">HOME</a>&nbsp;>&nbsp;</li>
+				<li><a href="main">메뉴소개</a>&nbsp;>&nbsp;</li>
+				<li><a href="main">${pvo.pname}</a></li>
 			</ul>
 		</div>
 	</div>

@@ -4,10 +4,11 @@
 <div class="clear"></div>
 
 <article>
-	<div class="web_container">
-		<div class="location">
+	
+	<div class="location">
+	<div class="web_container1">
 		<ul>
-			<li><a href="index">HOME</a>&nbsp;>&nbsp;</li>
+			<li><a href="main">HOME</a>&nbsp;>&nbsp;</li>
 			<li>메뉴소개</li>
 		</ul>
 		</div>

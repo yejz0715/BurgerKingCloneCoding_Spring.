@@ -25,4 +25,15 @@ public class OtherController {
 	public String admin() {
 		return "admin/admin";
 	}
+	
+	
+	@RequestMapping(value="/faqList1")
+	public String faqList1() {
+		return "ServiceCenter/faqList1";
+	}
+	
+	@RequestMapping(value="/brandStroyForm")
+	public String brandStroyForm() {
+		return "brand/brandStory";
+	}
 }
