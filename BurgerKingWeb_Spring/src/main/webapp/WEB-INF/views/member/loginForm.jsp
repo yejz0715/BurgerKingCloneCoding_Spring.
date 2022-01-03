@@ -36,7 +36,7 @@
 						<label> <span class="hide">Password</span> <input
 							placeholder="비밀번호" type="password" name="pwd">
 						</label>
-					</div>
+					</div><br>
 					${message}
 					<div class="c_btn item2">
 						<input type="submit" class="btn01 m red"
@@ -45,8 +45,8 @@
 							onclick="location.href='joinForm'" value="회원가입" />
 					</div>
 					<div class="login_menu">
-						<a href="findIdForm"><span>아이디 찾기</span></a> <a
-							href="findPwdForm"><span>비밀번호 찾기</span></a>
+						<a href="findIdForm"><span>아이디 찾기</span></a> 
+						<a href="findPwdForm"><span>비밀번호 찾기</span></a>
 					</div>
 				</div>
 			</form>
@@ -66,4 +66,4 @@
 	</div>
 </article>
 
-<%@ include file="../include/footer/footer.jsp"%>
+<%@ include file="../include/footer.jsp"%>
