@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ezen.burger.dto.EventVO;
@@ -39,7 +40,16 @@ public class EventController {
 		ModelAndView mav=new ModelAndView();
 		ArrayList<EventVO> list=es.getPastEvents();
 		mav.addObject("eventList", list);
-	    mav.setViewName("event/eventTab3");
+	    mav.setViewName("event/eventTab3"); 
+	    System.out.printf("mav2", mav);
+	      return mav;
+	   }
+	
+	@RequestMapping(value="/eventDetailForm")
+	 public ModelAndView eventDetailForm(@RequestParam("eseq")int eseq) {
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("EventVO", es.getDetailEvent(eseq));
+	    mav.setViewName("event/eventDetail");  
 	      return mav;
 	   }
 	

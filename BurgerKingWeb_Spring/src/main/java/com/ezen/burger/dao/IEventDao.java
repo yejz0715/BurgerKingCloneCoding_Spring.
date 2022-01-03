@@ -13,4 +13,6 @@ public interface IEventDao {
 	ArrayList<EventVO> getOngoingEvents();
 
 	ArrayList<EventVO> getPastEvents();
+
+	EventVO getDetailEvent(int eseq);
 }

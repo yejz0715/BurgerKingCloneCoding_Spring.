@@ -24,4 +24,8 @@ public class EventService {
 	public ArrayList<EventVO> getPastEvents() {
 		return edao.getPastEvents();
 	}
+
+	public EventVO getDetailEvent(int eseq) {
+		return edao.getDetailEvent(eseq);
+	}
 }
