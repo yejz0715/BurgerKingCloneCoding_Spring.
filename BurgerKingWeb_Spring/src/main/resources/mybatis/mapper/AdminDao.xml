@@ -11,4 +11,13 @@
 	<select id="getAllCount" resultType="String">
 		
 	</select>
+	
+	<select id="listEvent" resultType="com.ezen.burger.dto.IAdminVO">
+		 select * from ( 
+		select * from(
+			select rownum as rn, p.* from ( (select * from event where subject  like '%'||#{param2}||'%'   
+			order by pseq desc) p )
+		) where rn &gt;= #{param1.startNum} 
+		) where rn &lt;= #{param1.endNum}  
+	</select>
 </mapper>

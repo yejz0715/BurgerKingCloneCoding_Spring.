@@ -1,8 +1,12 @@
 package com.ezen.burger.dao;
 
+import java.util.ArrayList;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.ezen.burger.dto.AdminVO;
+import com.ezen.burger.dto.EventVO;
+import com.ezen.burger.dto.Paging;
 
 @Mapper
 public interface IAdminDao {
@@ -10,5 +14,7 @@ public interface IAdminDao {
 	AdminVO adminCheck(String id);
 
 	int getAllCount(String tableName, String fieldName, String key);
+
+	ArrayList<EventVO> listEvent(Paging paging, String key);
 	
 }
