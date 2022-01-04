@@ -54,7 +54,7 @@
 				</ul>
 			</div>
 			<div class="c_btn item2 findidalign">
-				<input type="submit" class="btn01 m" value="비밀번호 찾기" onclick="return inputpwdChk()"/>
+				<input type="submit" class="btn01 m" value="비밀번호 찾기"/>
 			</div>
 		</form>
 	</div>

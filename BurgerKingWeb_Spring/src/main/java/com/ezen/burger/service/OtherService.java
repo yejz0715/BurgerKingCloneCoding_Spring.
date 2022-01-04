@@ -13,7 +13,5 @@ public class OtherService {
 	@Autowired
 	IOtherDao odao;
 
-	public ArrayList<ProductVO> getFaq(Object fnum1) {
-		return getFaq(fnum1);
-	}
+
 }
