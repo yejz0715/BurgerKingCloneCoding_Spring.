@@ -39,10 +39,8 @@
 					</div><br>
 					${message}
 					<div class="c_btn item2">
-						<input type="submit" class="btn01 m red"
-							 value="로그인"></input> <input
-							type="button" class="btn01 m"
-							onclick="location.href='joinForm'" value="회원가입" />
+						<input type="submit" class="btn01 m red" value="로그인"/> 
+						<input type="button" class="btn01 m" onclick="location.href='joinForm'" value="회원가입" />
 					</div>
 					<div class="login_menu">
 						<a href="findIdForm"><span>아이디 찾기</span></a> 
@@ -51,16 +49,20 @@
 				</div>
 			</form>
 			<div id="base">
-				<div class="imgs" id="view1"><img src="image/menu/2/doublewhitegarlic.png">
-				<div class="loginimg_name"><span>더블화이트갈릭와퍼</span></div>				</div>
-        		<div class="imgs" id="view2"><img src="image/menu/2/guinnessquattrocheese.png">
-        		<div class="loginimg_name"><span style="color:black;text-align:center;font-weight:bold;">기네스콰트로치즈와퍼</span></div></div>
-        		<div class="imgs" id="view3"><img src="image/menu/4/shrimpwhopperjr.png">
-        		<div class="loginimg_name"><span style="color:black;text-align:center;font-weight:bold;">아기상어새우버거</span></div></div>
-        		<div class="imgs" id="view4"><img src="image/menu/5/longchicken.png">
-        		<div class="loginimg_name"><span style="color:black;text-align:center;font-weight:bold;">롱치킨버거</span></div></div>
-        		<div class="imgs" id="view5"><img src="image/menu/6/crispyking8sauce.png">
-        		<div class="loginimg_name"><span style="color:black;text-align:center;font-weight:bold;">바삭킹</span></div></div>
+				<div id="nonmember_MenuBar">
+					<ul id="terms_wrap_ul">
+						<li><button id="non_Btn1" onclick="shownonArea1">비회원 주문</button></li>
+						<li><button id="non_Btn2" onclick="shownonArea2">비회원 주문내역</button></li>
+					</ul>
+				</div>
+				<div class="nonmember_Textarea" id="nonArea1">
+					<div id="nonmember_Text">회원가입 없이 비회원으로 주문이 가능합니다.</div>
+					<br><br><br><br>
+					<input type="submit" class="btn01 m" value="비회원 주문"/>
+				</div>
+				<div class="nonmember_Textarea" id="nonArea2">
+					
+				</div>
 			</div>
 		</div>
 	</div>

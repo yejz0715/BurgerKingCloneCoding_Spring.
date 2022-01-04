@@ -9,7 +9,7 @@
 				<ul>
 					<li style="border-right:1px solid gray"><span><a class="footer_a" href="terms">이용약관</a></span></li>
 					<li style="border-right:1px solid gray"><span><a class="footer_a" href="privacy">개인정보취급방침</a></span></li>
-					<li><span><a class="footer_a" href="burger.do?command=legal">법적고지</a></span></li>
+					<li><span><a class="footer_a" href="legal">법적고지</a></span></li>
 				</ul>
 				
 				<div id="text_container">
