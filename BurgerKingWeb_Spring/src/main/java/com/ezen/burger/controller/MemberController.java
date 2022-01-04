@@ -152,4 +152,9 @@ public class MemberController {
 		mav.setViewName("redirect:/loginForm");
 		return mav;
 	}
+	
+	@RequestMapping(value="/guestLoginForm")
+	public String guestLoginForm() {
+		return "member/guestLoginForm";
+	}
 }	
