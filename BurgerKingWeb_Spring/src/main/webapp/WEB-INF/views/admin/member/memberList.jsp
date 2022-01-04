@@ -35,7 +35,7 @@
 					<td><fmt:formatDate value="${memberVO.lastdate}"/></td>
 					<td>${memberVO.memberkind}</td>
 					<td>
-						<input type="checkbox" name="delete" value="${memberVO.mseq}">
+						<input type="checkbox" name="mseq" value="${memberVO.mseq}">
 					</td>
 				</tr>
 			</c:forEach>
