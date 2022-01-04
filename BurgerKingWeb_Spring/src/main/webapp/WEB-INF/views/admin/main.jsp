@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="/admin/header.jsp" %>
-<%@ include file="/admin/sub_menu.jsp"%>
+<%@ include file="../admin/header.jsp" %>
+<%@ include file="../admin/sub_menu.jsp"%>
 
 <div class="clear"></div>
 <article style="color: gray; "> 
@@ -9,4 +9,4 @@
 	<img style="width: 100%;" src="image/main/about02.png">
 </article>
 
-<%@ include file="/admin/footer.jsp"%>
+<%@ include file="../admin/footer.jsp"%>

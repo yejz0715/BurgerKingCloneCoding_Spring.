@@ -10,7 +10,7 @@
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Nanum+Myeongjo:wght@800&family=Noto+Sans+KR&display=swap" rel="stylesheet">
-		<script type="text/javascript">
+		<!-- <script type="text/javascript">
 			function workerCheck(){
 				if(document.frm.adminId.value==""){
 					alert("아이디를 입력하세요.");
@@ -21,7 +21,7 @@
 				}
 				return true;
 			}
-		</script>
+		</script> -->
 	</head>
 	<body>
 		<div id="wrap">
@@ -43,17 +43,17 @@
 						<table>
 							<tr>
 								<td>아이디</td>
-								<td><input type="text" name="adminId" size="10"></td>
+								<td><input type="text" name="id" size="10" value="${dto.id }"></td>
 							</tr>
 							
 							<tr>
 								<td>비밀번호</td>
-								<td><input type="password" name="adminPwd" size="10"></td>
+								<td><input type="password" name="pwd" size="10"></td>
 							</tr>
 							
 							<tr align="center">
 								<td colspan="2">
-									<input type="submit" class="btn" value="로그인" onclick="return workerCheck();">
+									<input type="submit" class="btn" value="로그인" >
 									<br><br>
 									<h4 style="color: red">${message}</h4>
 								</td>

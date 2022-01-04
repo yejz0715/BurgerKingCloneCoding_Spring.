@@ -1,6 +1,7 @@
 package com.ezen.burger.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,28 @@ public class AdminController {
 		
 		AdminVO avo = as.adminCheck(adminvo.getId());
 		
-		return "admin/main";
+		if(avo == null) {
+			model.addAttribute("message", "id가 없습니다.");
+			return "admin/adminLogin";
+		}else if(avo.getPwd() == null) {
+			model.addAttribute("message", "관리자에게 문의하세요");
+			return "admin/adminLogin";
+		}else if(!avo.getPwd().equals(adminvo.getPwd())) {
+			model.addAttribute("message", "비밀번호가 맞지 않습니다.");
+			return "admin/adminLogin";
+		}else if(avo.getPwd().equals(adminvo.getPwd())) {
+			HttpSession session = request.getSession();
+			session.setAttribute("loginAdmin", avo);
+			return "admin/main";
+		}else {
+			model.addAttribute("message", "원인미상의 오류로 로그인 불가");
+			return "admin/adminLogin";
+		}
+	}
+	@RequestMapping("/adminLogout")
+	public String logout(HttpServletRequest request) {
+		HttpSession session= request.getSession();
+		session.removeAttribute("loginAdmin");
+		return "redirect:/admin";
 	}
 }

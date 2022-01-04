@@ -19,7 +19,7 @@
 				<div class="adminLogin_header">
 					<span>BurgerKing Manager Page</span><br>
 					<input type="button" class="btn" value="Logout" style="float: right;"
-					onclick="location.href='burger.do?command=adminLogout'">
+					onclick="location.href='adminLogout'">
 				</div>
 			</header>
 			<div class="clear"></div>
