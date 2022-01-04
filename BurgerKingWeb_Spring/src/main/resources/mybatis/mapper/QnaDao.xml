@@ -14,5 +14,9 @@
  		values(qna_seq.nextVal, #{subject}, #{content}, #{id}, #{pass})
  	</insert>
  	
+ 	<select id="getQna" resultType="com.ezen.burger.dto.QnaVO">
+ 		 select * from qna where qseq=#{param1}
+ 	</select>
+ 	
  	
 </mapper>

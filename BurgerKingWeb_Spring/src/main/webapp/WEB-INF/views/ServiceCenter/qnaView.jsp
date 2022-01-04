@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="/header.jsp"%>
+<%@ include file="../include/header.jsp"%>
 
 <article>
 	<div class="qna_webcon">
@@ -37,5 +37,5 @@
 	</div>
 </article>
 
-<%@ include file="/undermenu.jsp" %>
-<%@ include file="/footer/footer.jsp" %>
+<%@ include file="../include/undermenu.jsp" %>
+<%@ include file="../include/footer.jsp" %>

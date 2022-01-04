@@ -5,7 +5,11 @@ import java.util.ArrayList;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.ezen.burger.dto.AdminVO;
+
+import com.ezen.burger.dto.EventVO;
+
 import com.ezen.burger.dto.MemberVO;
+
 import com.ezen.burger.dto.Paging;
 
 @Mapper
@@ -15,8 +19,12 @@ public interface IAdminDao {
 
 	int getAllCount(String tableName, String fieldName, String key);
 
+
+	ArrayList<EventVO> listEvent(Paging paging, String key);
+
 	ArrayList<MemberVO> listMember(Paging paging, String key);
 
 	void adminMemberDelete(int mseq);
+
 	
 }

@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ezen.burger.dto.MemberVO;
@@ -99,6 +100,25 @@ public class OtherController {
 		    mav.setViewName("redirect:/qnaForm");
 			return mav;
 		}
+	
+	
+	// 고객센터 문의내용
+	@RequestMapping("/qnaView")
+	public ModelAndView qna_view(Model model, HttpServletRequest request,
+			@RequestParam("qseq") int qseq) {
+		ModelAndView mav = new ModelAndView();
+		
+		HttpSession session = request.getSession();
+	    MemberVO mvo = (MemberVO) session.getAttribute("loginUser");
+	    
+		if (mvo == null) mav.setViewName("member/loginform");
+		else {
+			mav.addObject("qnaVO", qs.getQna(qseq) );
+			mav.setViewName("ServiceCenter/qnaView");
+		}
+		return mav;
+	}
+	
 	
 	
 	

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ezen.burger.dto.AdminVO;
+import com.ezen.burger.dto.EventVO;
 import com.ezen.burger.dto.MemberVO;
 import com.ezen.burger.dto.Paging;
 import com.ezen.burger.service.AdminService;
@@ -119,5 +120,6 @@ public class AdminController {
 		for(int mseq:mseqArr)
 			ms.adminMemberDelete(mseq);
 		return "redirect:/memberList";
+
 	}
 }

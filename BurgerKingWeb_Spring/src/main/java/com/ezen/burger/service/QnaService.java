@@ -23,6 +23,10 @@ public class QnaService {
 		qdao.insertQna(qnavo);
 	}
 
+	public QnaVO  getQna(int qseq) {
+		return qdao.getQna(qseq);
+	}
+
 
 
 
