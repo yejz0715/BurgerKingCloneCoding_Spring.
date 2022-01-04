@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="../admin/header.jsp" %>
-<%@ include file="../admin/sub_menu.jsp"%>
+<%@ include file="../../admin/header.jsp" %>
+<%@ include file="../../admin/sub_menu.jsp"%>
 
 <article>
 	<h1>회원리스트</h1>
@@ -42,7 +42,7 @@
 		</table><br>
 		<input type="button" class="btn" style="float: right;" value="삭제" onclick="del_member();">
 	</form>
-	<jsp:include page="/admin/paging/paging.jsp">
+	<jsp:include page="../../admin/paging/paging.jsp">
 		<jsp:param name="page" value="${paging.page}"/>
 		<jsp:param name="beginPage" value="${paging.beginPage}"/>
 		<jsp:param name="endPage" value="${paging.endPage}"/>
@@ -53,4 +53,4 @@
 	
 </article>
 
-<%@ include file="../admin/footer.jsp"%>
+<%@ include file="../../admin/footer.jsp"%>
