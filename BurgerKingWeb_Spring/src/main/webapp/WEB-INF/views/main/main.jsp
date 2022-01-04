@@ -83,11 +83,11 @@
 	            <div class="web_container2">
 	               <div class="guide">
 	                  <div id="app">
-	                     <a href="burger.do?command=appGuideForm"> <img
+	                     <a href="appGuideForm"> <img
 	                        src="image/main/appimg.png"></a>
 	                  </div>
 	                  <div id="delivery77">
-	                     <a href="burger.do?command=deliveryUseForm"> 
+	                     <a href="deliveryUseForm"> 
 	                     	<img src="image/main/deliveryimg.png">
 	                     </a>
 	                  </div>
