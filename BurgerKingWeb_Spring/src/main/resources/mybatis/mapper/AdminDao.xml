@@ -7,4 +7,8 @@
 	<select id="adminCheck" resultType="com.ezen.burger.dto.AdminVO">
 		select * from admin where id=#{param1}
 	</select>
+	
+	<select id="getAllCount" resultType="String">
+		
+	</select>
 </mapper>

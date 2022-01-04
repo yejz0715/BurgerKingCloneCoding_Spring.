@@ -20,7 +20,7 @@ public class Paging {
 	private int startNum; // 현재 페이지에 표시될 게시물 번호의 시작 번호
 	private int endNum; // 현재 페이지에 표시될 게시물 번호의 끝 번호
 	
-	public void Paging() {
+	public void paging() {
 		// 각 멤버변수 값을 세팅합니다.
 		double temp = page / (double)displayPage; // 1 / 10.0 -> 0.1
 		temp = Math.ceil(temp); // 소수점 첫 자리 올림 연산

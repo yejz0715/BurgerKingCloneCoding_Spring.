@@ -8,5 +8,7 @@ import com.ezen.burger.dto.AdminVO;
 public interface IAdminDao {
 
 	AdminVO adminCheck(String id);
+
+	int getAllCount(String tableName, String fieldName, String key);
 	
 }

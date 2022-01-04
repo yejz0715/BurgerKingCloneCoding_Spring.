@@ -1,5 +1,7 @@
 package com.ezen.burger.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ezen.burger.dto.AdminVO;
+import com.ezen.burger.dto.MemberVO;
+import com.ezen.burger.dto.Paging;
 import com.ezen.burger.service.AdminService;
 
 @Controller
@@ -52,10 +56,56 @@ public class AdminController {
 			return "admin/adminLogin";
 		}
 	}
+
 	@RequestMapping("/adminLogout")
 	public String logout(HttpServletRequest request) {
 		HttpSession session= request.getSession();
 		session.removeAttribute("loginAdmin");
 		return "redirect:/admin";
 	}
+	
+	@RequestMapping("adminMemberList")
+	public String adminMemberList(HttpServletRequest request, Model model) {
+		HttpSession session= request.getSession();
+		if( session.getAttribute("loginAdmin") == null) {
+			return "admin/adminLogin";
+		}
+		else {						
+			int page = 1;
+			if(request.getParameter("page") != null){ 
+				page = Integer.parseInt(request.getParameter("page")); 
+				session.setAttribute("page", page); 
+			}else if(session.getAttribute("page") != null) { 
+				page = (int)session.getAttribute("page"); 
+			}else { 
+				page = 1;
+				session.removeAttribute("page"); 
+			}
+			
+			String key = "";
+			if(request.getParameter("key") != null) { 
+				key = request.getParameter("key"); session.setAttribute("key", key); 
+			}else if(session.getAttribute("key") != null) {
+				key = (String)session.getAttribute("key");
+			}else { 
+				session.removeAttribute("key");
+				key = "";
+			}
+			
+			
+			Paging paging = new Paging();
+			paging.setPage(page);
+			
+			int count = as.getAllCount("member", "name", key);
+			paging.setTotalCount(count);
+			
+			ArrayList<MemberVO> memberList = as.listMember(paging, key);
+			
+			model.addAttribute("memberList",memberList);
+			model.addAttribute("paging",paging);
+			model.addAttribute("key",key);
+		}
+		return "admin/member/memberList";
+	}
+	
 }
