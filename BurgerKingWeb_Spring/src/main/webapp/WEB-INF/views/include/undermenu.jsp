@@ -6,14 +6,14 @@
 			<li>
 				<a><span>메뉴</span></a>
 				<ul class="submenu">
-					<li><a href="menuListForm&kind1=1"><span>스페셜&amp;할인팩</span></a></li>
-					<li><a href="menuListForm&kind1=2"><span>프리미엄</span></a></li>
-					<li><a href="menuListForm&kind1=3"><span>와퍼</span></a></li>
-					<li><a href="menuListForm&kind1=4"><span>주니어&amp;버거</span></a></li>
-					<li><a href="menuListForm&kind1=5"><span>올데이킹&amp;치킨버거</span></a></li>
-					<li><a href="menuListForm&kind1=6"><span>사이드</span></a></li>
-					<li><a href="menuListForm&kind1=7"><span>음료&amp;디저트</span></a></li>
-					<li><a href="menuListForm&kind1=8"><span>독퍼</span></a></li>
+					<li><a href="menuListForm?kind1=1"><span>스페셜&amp;할인팩</span></a></li>
+					<li><a href="menuListForm?kind1=2"><span>프리미엄</span></a></li>
+					<li><a href="menuListForm?kind1=3"><span>와퍼</span></a></li>
+					<li><a href="menuListForm?kind1=4"><span>주니어&amp;버거</span></a></li>
+					<li><a href="menuListForm?kind1=5"><span>올데이킹&amp;치킨버거</span></a></li>
+					<li><a href="menuListForm?kind1=6"><span>사이드</span></a></li>
+					<li><a href="menuListForm?kind1=7"><span>음료&amp;디저트</span></a></li>
+					<li><a href="menuListForm?kind1=8"><span>독퍼</span></a></li>
 				</ul>
 			</li>
 			<li>
