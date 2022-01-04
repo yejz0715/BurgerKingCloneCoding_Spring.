@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="/header.jsp"%>
+<%@ include file="../include/header.jsp"%>
 
 <article>
 	<div class="location">
@@ -29,27 +29,27 @@
 		<div class="tab_cont">
 			<div class="faq_category">
 				<label class="switch01">
-					<input type="radio" name="faqcategory" onclick="location.href='burger.do?command=faqForm&fnum=1'">
+					<input type="radio" name="faqcategory" onclick="location.href='faqListForm?fnum=1'">
 					<span>전체</span>
 				</label>
 				<label class="switch01">
-					<input type="radio" name="faqcategory" onclick="location.href='burger.do?command=faqForm&fnum=2'">
+					<input type="radio" name="faqcategory" onclick="location.href='faqListForm?fnum=2'">
 					<span>제품/품질/서비스</span>
 				</label>
 				<label class="switch01">
-					<input type="radio" name="faqcategory" onclick="location.href='burger.do?command=faqForm&fnum=3'">
+					<input type="radio" name="faqcategory" onclick="location.href='faqListForm?fnum=3'">
 					<span>딜리버리 주문</span>
 				</label>
 				<label class="switch01">
-					<input type="radio"	 name="faqcategory" checked="checked" onclick="location.href='burger.do?command=faqForm&fnum=4'">
+					<input type="radio"	 name="faqcategory" checked="checked"onclick="location.href='faqListForm?fnum=4'">
 					<span>임대 / 가맹</span>
 				</label>
 				<label class="switch01">
-					<input type="radio" name="faqcategory" onclick="location.href='burger.do?command=faqForm&fnum=5'">
+					<input type="radio" name="faqcategory" onclick="location.href='faqListForm?fnum=5'">
 					<span>버거킹카드</span>
 				</label>
 				<label class="switch01">
-					<input type="radio" name="faqcategory" onclick="location.href='burger.do?command=faqForm&fnum=6'">
+					<input type="radio" name="faqcategory" onclick="location.href='faqListForm?fnum=6'">
 					<span>기타</span>
 				</label>
 			</div>
@@ -215,5 +215,5 @@
 
 </article>
 
-<%@ include file="/undermenu.jsp"%>
-<%@ include file="/footer/footer.jsp"%>
+<%@ include file="../include/undermenu.jsp" %>
+<%@ include file="../include/footer.jsp" %>

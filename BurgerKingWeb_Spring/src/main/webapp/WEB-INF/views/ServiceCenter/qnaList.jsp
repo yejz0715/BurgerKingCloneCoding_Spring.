@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="/header.jsp"%>
-
+<%@ include file="../include/header.jsp"%>
 <article>
 	<div class="location">
 	<div class="web_container1">
@@ -30,7 +29,7 @@
 			<c:when test="${empty loginUser}">
 				<img style="width: 100%;" src="image/main/qna.PNG">
 				<span style="color: #6a6a6a; font-size: 2rem; float: right;">
-					QnA 작성 및 확인은 <a style="text-decoration: none;" href="burger.do?command=loginForm&non=1">로그인</a> 후 이용해주세요.
+					QnA 작성 및 확인은 <a style="text-decoration: none;" href="loginForm">로그인</a> 후 이용해주세요.
 					</span>
 			</c:when>
 			<c:otherwise>
@@ -38,7 +37,7 @@
 					<div class="tab_cont">
 						<div class="faq_category">
 							<label class="switch01">
-								<input type="radio" name="faqcategory" checked="checked" onclick="location.href='burger.do?command=qnaWriteForm'">
+								<input type="radio" name="faqcategory" checked="checked" onclick="location.href='qnaWriteForm'">
 								<span>문의 작성</span>
 							</label>
 							<label class="switch01">
@@ -94,5 +93,5 @@
 	
 </article>
 
-<%@ include file="/undermenu.jsp" %>
-<%@ include file="/footer/footer.jsp" %>
+<%@ include file="../include/undermenu.jsp" %>
+<%@ include file="../include/footer.jsp" %>

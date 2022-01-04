@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="/header.jsp"%>
+<%@ include file="../include/header.jsp"%>
 
 <article>
 	<div class="location">
 	<div class="web_container1">
 		<ul>
-			<li><a href="burger.do?command=index">HOME</a>&nbsp;>&nbsp;</li>
+			<li><a href="mian">HOME</a>&nbsp;>&nbsp;</li>
 			<li>고객센터 &nbsp;>&nbsp;</li>
 			<li>버거킹앱 이용안내</li>
 		</ul>
@@ -17,11 +17,11 @@
 		<ul id="terms_wrap_ul" style="right: 0; top:0">
 			<li>
 				<span>
-					<a href="burger.do?command=faqForm&fnum=1">FAQ</a>
+					<a href="faqListForm?fnum=1">FAQ</a>
 				</span>
 			</li>
-			<li><span><a href="burger.do?command=qnaForm">문의</a></span></li>
-			<li><span><a href="burger.do?command=appGuideForm" style="color: red; text-decoration: underline;">버거킹앱 이용안내</a></span></li>
+			<li><span><a href="qnaForm">문의</a></span></li>
+			<li><span><a href="appGuideForm" style="color: red; text-decoration: underline;">버거킹앱 이용안내</a></span></li>
 		</ul>
 		
 		<h4 class="subtit"><span>버거킹 APP(앱) 다운로드</span></h4>
@@ -71,5 +71,5 @@
 	</div>
 </article>
 
-<%@ include file="/undermenu.jsp" %>
-<%@ include file="/footer/footer.jsp" %>
+<%@ include file="../include/undermenu.jsp" %>
+<%@ include file="../include/footer.jsp" %>

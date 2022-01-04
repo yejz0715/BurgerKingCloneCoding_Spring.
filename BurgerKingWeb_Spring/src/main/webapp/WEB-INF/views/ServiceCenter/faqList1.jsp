@@ -20,8 +20,8 @@
 					<a href="faqList1" style="color: red; text-decoration: underline;">FAQ</a>
 				</span>
 			</li>
-			<li><span><a href="burger.do?command=qnaForm">문의</a></span></li>
-			<li><span><a href="burger.do?command=appGuideForm">버거킹앱 이용안내</a></span></li>
+			<li><span><a href="qnaForm">문의</a></span></li>
+			<li><span><a href="appGuideForm">버거킹앱 이용안내</a></span></li>
 		</ul>
 	</div>
 
@@ -29,27 +29,27 @@
 		<div class="tab_cont">
 			<div class="faq_category">
 				<label class="switch01">
-					<input type="radio" name="faqcategory" checked="checked" onclick="location.href='faqForm&fnum=1'">
+					<input type="radio" name="faqcategory" checked="checked" onclick="location.href='faqListForm?fnum=1'">
 					<span>전체</span>
 				</label>
 				<label class="switch01">
-					<input type="radio" name="faqcategory" onclick="location.href='burger.do?command=faqForm&fnum=2'">
+					<input type="radio" name="faqcategory" onclick="location.href='faqListForm?fnum=2'">
 					<span>제품/품질/서비스</span>
 				</label>
 				<label class="switch01">
-					<input type="radio" name="faqcategory" onclick="location.href='burger.do?command=faqForm&fnum=3'">
+					<input type="radio" name="faqcategory" onclick="location.href='faqListForm&fnum=3'">
 					<span>딜리버리 주문</span>
 				</label>
 				<label class="switch01">
-					<input type="radio"	 name="faqcategory" onclick="location.href='burger.do?command=faqForm&fnum=4'">
+					<input type="radio"	 name="faqcategory" onclick="location.href='faqListForm&fnum=4'">
 					<span>임대 / 가맹</span>
 				</label>
 				<label class="switch01">
-					<input type="radio" name="faqcategory" onclick="location.href='burger.do?command=faqForm&fnum=5'">
+					<input type="radio" name="faqcategory" onclick="location.href='faqListForm&fnum=5'">
 					<span>버거킹카드</span>
 				</label>
 				<label class="switch01">
-					<input type="radio" name="faqcategory" onclick="location.href='burger.do?command=faqForm&fnum=6'">
+					<input type="radio" name="faqcategory" onclick="location.href='faqListForm&fnum=6'">
 					<span>기타</span>
 				</label>
 			</div>
