@@ -29,7 +29,7 @@ public class OtherController {
 
 	public String index() {
 		return "redirect:/main";
-	}
+	}  
 	
 	@RequestMapping(value="/main")
 	public String main() { 
