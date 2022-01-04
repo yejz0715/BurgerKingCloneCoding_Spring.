@@ -264,3 +264,11 @@ function post_zip(){
 	    if(x==5)x=0;
 	}, 3000);
 }*/
+
+function shownonArea1(){
+	
+}
+
+function shownonArea2(){
+	
+}
