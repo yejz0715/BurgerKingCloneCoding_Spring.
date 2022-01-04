@@ -24,7 +24,7 @@ public class OtherController {
 	
 	@RequestMapping(value="/admin")
 	public String admin() {
-		return "admin/admin";
+		return "admin/adminLogin";
 	}
 	
 	@RequestMapping(value="/faqList1")
