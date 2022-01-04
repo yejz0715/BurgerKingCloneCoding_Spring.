@@ -38,22 +38,22 @@ public class OtherController {
 		return "brand/brandStory";
 	}
 
-	@RequestMapping(value="terms")
+	@RequestMapping(value="/terms")
 	public String terms() {
 		return "footer/terms";
 	}
 	
-	@RequestMapping(value="privacy")
+	@RequestMapping(value="/privacy")
 	public String privacy() {
 		return "footer/privacy";
 	}
 	
-	@RequestMapping(value="videoPolicy")
+	@RequestMapping(value="/videoPolicy")
 	public String videoPolicy() {
 		return "footer/videoPolicy";
 	}
 	
-	@RequestMapping(value="legal")
+	@RequestMapping(value="/legal")
 	public String legal() {
 		return "footer/legal";
 	}

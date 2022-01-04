@@ -20,9 +20,9 @@
 		
 		<div class="btnarea">
 				<span><input class="btn_c1" type="button" style="background-color: #292929; width:185px;"
-				 onclick="location.href=privacy" value="개인정보처리방침"></span>
+				 onclick="location.href='privacy'" value="개인정보처리방침"></span>
 				<span><input class="btn_c1" type="button" style="width: 292px;"
-				onclick="location.href=videoPolicy" value="영상정보처리기기운영관리방침"></span>
+				onclick="location.href='videoPolicy'" value="영상정보처리기기운영관리방침"></span>
 		</div>
 		
 		<div class="textarea">
