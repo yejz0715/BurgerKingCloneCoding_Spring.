@@ -13,7 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ezen.burger.dto.AdminVO;
 import com.ezen.burger.dto.EventVO;
@@ -100,6 +100,7 @@ public class AdminController {
 			
 			int count = as.getAllCount("member", "name", key);
 			paging.setTotalCount(count);
+			paging.paging();
 			
 			ArrayList<MemberVO> memberList = as.listMember(paging, key);
 			
@@ -110,6 +111,7 @@ public class AdminController {
 		return "admin/member/memberList";
 	}
 	
+
 	
 	@RequestMapping("/adminEventList")
 	public String adminEventList(HttpServletRequest request, Model model) {
@@ -150,7 +152,14 @@ public class AdminController {
 		model.addAttribute("paging",paging);
 		model.addAttribute("key",key);
 	return "admin/event/eventList";
-	}
+	 }	
+}
 	
+	@RequestMapping("/adminMemberDelete")
+	public String adminMemberDelete(@RequestParam("mseq") int [] mseqArr) {
+		for(int mseq:mseqArr)
+			as.adminMemberDelete(mseq);
+		return "redirect:/memberList";
+
 	}
 }

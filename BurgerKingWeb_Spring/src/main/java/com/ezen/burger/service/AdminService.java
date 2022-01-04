@@ -7,7 +7,11 @@ import org.springframework.stereotype.Service;
 
 import com.ezen.burger.dao.IAdminDao;
 import com.ezen.burger.dto.AdminVO;
+
 import com.ezen.burger.dto.EventVO;
+
+import com.ezen.burger.dto.MemberVO;
+
 import com.ezen.burger.dto.Paging;
 
 @Service
@@ -23,7 +27,17 @@ public class AdminService {
 		return adao.getAllCount(tableName,fieldName,key);
 	}
 
+
 	public ArrayList<EventVO> listEvent(Paging paging, String key) {
 		return adao.listEvent(paging, key);
+	}
+	public ArrayList<MemberVO> listMember(Paging paging, String key) {
+		return adao.listMember(paging, key);
+	}
+
+	public void adminMemberDelete(int mseq) {
+		adao.adminMemberDelete(mseq);
+		
+
 	}
 }

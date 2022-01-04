@@ -217,21 +217,8 @@ function del_cart(){
 }
 
 function qna_write_chk(){
-	if(document.frm.subject.value==""){
-		alert("제목을 입력해주세요.");
-		document.frm.subject.focus();
-	}else if(document.frm.content.value==""){
-		alert("문의내용을 입력해주세요.");
-		document.frm.content.focus();
-	}else if(document.frm.pass.value==""){
-		alert("비밀번호를 입력해주세요.");
-		document.frm.pass.focus();
-	}else if(document.frm.pass.value.length != 4){
-		alert("비밀번호를 4자리로 입력해주세요.");
-		document.frm.pass.focus();
-	}else{
 		document.frm.submit();
-	}
+	
 }
 
 function input_pass(qseq){
@@ -271,8 +258,8 @@ function shownonArea1(){
 	document.getElementById("non_Btn2").style.color="#000";
 	document.getElementById("non_Btn2").style.textDecoration="none";
 	
-	document.getElementById("nonArea1").style.opacity=1;
-	document.getElementById("nonArea2").style.opacity=0; 
+	document.getElementById("nonArea1").style.visibility="visible";
+	document.getElementById("nonArea2").style.visibility="hidden"; 
 }
 
 function shownonArea2(){
@@ -280,6 +267,15 @@ function shownonArea2(){
 	document.getElementById("non_Btn1").style.textDecoration="none";
 	document.getElementById("non_Btn2").style.color="red";
 	document.getElementById("non_Btn2").style.textDecoration="underline";
-	document.getElementById("nonArea1").style.opacity=0;
-	document.getElementById("nonArea2").style.opacity=1;
+	
+	document.getElementById("nonArea1").style.visibility="hidden";
+	document.getElementById("nonArea2").style.visibility="visible";
+}
+
+function term_open(){
+	if(document.getElementById("acc_cont").style.height == "0px"){
+        document.getElementById("acc_cont").style.height = "300px";
+	}else{
+		document.getElementById("acc_cont").style.height = "0px";
+	}
 }

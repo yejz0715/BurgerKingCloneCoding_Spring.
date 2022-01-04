@@ -1697,7 +1697,6 @@ select * from event;
 
 insert into member(mseq, id, pwd, phone, name)
 values(mseq.nextVal, 'scott@naver.com', '1234', '010-2431-6247', '김우진')
-
 update product set kind1='8', useyn='1', pname='리얼 독퍼', price1=2900, content='반려견에게 Real Dogpper를 선물하세요!', image='realdogper.png', kind2='1', kind3='3', price2=0, price3=0 where pseq=234
 insert into event(eseq, subject, content, image, startdate, enddate, state)
 values(qseq.nextVal, 'Best WHOPPER 2개 구매시 7000원','1. 행사명 : Best WHOPPER 2개 구매시 7000원
