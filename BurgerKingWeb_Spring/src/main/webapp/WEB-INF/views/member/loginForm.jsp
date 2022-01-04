@@ -51,8 +51,8 @@
 			<div id="base">
 				<div id="nonmember_MenuBar">
 					<ul id="terms_wrap_ul">
-						<li><button id="non_Btn1" onclick="shownonArea1">비회원 주문</button></li>
-						<li><button id="non_Btn2" onclick="shownonArea2">비회원 주문내역</button></li>
+						<li><button id="non_Btn1" onclick="shownonArea1()">비회원 주문</button></li>
+						<li><button id="non_Btn2" onclick="shownonArea2()">비회원 주문내역</button></li>
 					</ul>
 				</div>
 				<div class="nonmember_Textarea" id="nonArea1">
