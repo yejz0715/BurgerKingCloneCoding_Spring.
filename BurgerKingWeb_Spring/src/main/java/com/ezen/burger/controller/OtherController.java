@@ -96,8 +96,6 @@ public class OtherController {
 	public String deliveryUseForm() {
 		return "ServiceCenter/deliveryuse";
 	} 
-	
-
 }
 
 
