@@ -102,7 +102,7 @@
 			
 			<br><br><br>
 			
-			<input type="button" class="btn01 m Btncenter" value="비회원 주문"
+			<input type="submit" class="btn01 m Btncenter" value="비회원 주문"
 			 onclick="return check_Term();">
 		 </form>
 	</div>
