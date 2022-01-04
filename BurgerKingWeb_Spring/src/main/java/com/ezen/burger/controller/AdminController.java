@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ezen.burger.dto.AdminVO;
+import com.ezen.burger.dto.EventVO;
 import com.ezen.burger.dto.MemberVO;
 import com.ezen.burger.dto.Paging;
 import com.ezen.burger.service.AdminService;
@@ -110,10 +111,55 @@ public class AdminController {
 		return "admin/member/memberList";
 	}
 	
+
+	
+	@RequestMapping("/adminEventList")
+	public String adminEventList(HttpServletRequest request, Model model) {
+		HttpSession session= request.getSession();
+		if( session.getAttribute("loginAdmin") == null) {
+			return "admin/adminLogin";
+		}
+		else {		
+			int page = 1;
+			if(request.getParameter("page") != null){ 
+				page = Integer.parseInt(request.getParameter("page")); 
+				session.setAttribute("page", page); 
+			}else if(session.getAttribute("page") != null) { 
+				page = (int)session.getAttribute("page"); 
+			}else { 
+				page = 1;
+				session.removeAttribute("page"); 
+			}
+			
+			String key = "";
+			if(request.getParameter("key") != null) { 
+				key = request.getParameter("key"); session.setAttribute("key", key); 
+			}else if(session.getAttribute("key") != null) {
+				key = (String)session.getAttribute("key");
+			}else { 
+				session.removeAttribute("key");
+				key = "";
+			}	
+			
+			Paging paging = new Paging();
+			paging.setPage(page);			
+			int count = as.getAllCount("event", "subject", key);
+			paging.setTotalCount(count);	
+		
+		ArrayList<EventVO> list = as.listEvent(paging, key);
+		
+		model.addAttribute("eventList",list);
+		model.addAttribute("paging",paging);
+		model.addAttribute("key",key);
+	return "admin/event/eventList";
+	 }	
+}
+	
 	@RequestMapping("/adminMemberDelete")
 	public String adminMemberDelete(@RequestParam("mseq") int [] mseqArr) {
 		for(int mseq:mseqArr)
 			as.adminMemberDelete(mseq);
 		return "redirect:/memberList";
+
 	}
 }

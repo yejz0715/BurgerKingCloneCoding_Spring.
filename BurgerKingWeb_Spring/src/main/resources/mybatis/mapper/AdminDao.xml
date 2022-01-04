@@ -12,6 +12,16 @@
 		select count(*) as count from ${param1} where ${param2} like '%'||#{param3}||'%' 
 	</select>
 	
+
+	<select id="listEvent" resultType="com.ezen.burger.dto.EventVO">
+		 select * from ( 
+		select * from(
+			select rownum as rn, p.* from ( (select * from event where subject  like '%'||#{param2}||'%'   
+			order by eseq desc) p )
+		) where rn &gt;= #{param1.startNum} 
+		) where rn &lt;= #{param1.endNum}  
+	</select>
+
 	<select id="listMember" resultType="com.ezen.burger.dto.MemberVO">
 		select * from(select * from (select rownum as rn, p. * from
 		((select * from member where name like '%'||#{param2}||'%' order by mseq desc) p))
@@ -21,4 +31,5 @@
 	<delete id="adminMemberDelete" parameterType="int">
 		delete from member where mseq=#{param1}
 	</delete>
+
 </mapper>
