@@ -96,7 +96,7 @@ public class OtherController {
 		    	qnavo.setId(mvo.getId());
 		    	qs.insertQna(qnavo);
 		    }   
-		    mav.setViewName("redirect:/qnaList");
+		    mav.setViewName("redirect:/qnaForm");
 			return mav;
 		}
 	
