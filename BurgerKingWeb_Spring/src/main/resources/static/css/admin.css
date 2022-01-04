@@ -1,0 +1,285 @@
+.clear{ clear:both;}
+
+header {
+ height: 151px;
+}
+
+body {
+ background-color: #f2ebe6;
+ margin: 0;
+ padding: 0;
+ font-size: 0.75em;
+ line-height: 1.2em;
+ color: #333;
+}
+
+a {
+ text-decoration: none;
+ color: #333;
+}
+
+a:hover {
+ text-decoration: underline;
+ color: #F90;
+ cursor: pointer;
+}
+
+#wrap {
+ width: 971px;
+ text-align: center;
+ margin: 0px auto;
+ min-height: 923px;
+ font-family: 'Noto Sans KR', sans-serif;
+}
+.adminLogin_header{
+   position: fixed;
+   top:0;
+   width: 971px;
+   height: 150px;
+   background-color: red;
+   color: #fff;
+   line-height: 150px;
+   font-size: 40px;
+   font-weight: bold;
+   text-align: center;
+}
+.adminlogo{
+   position: relative;
+   width: 485px;
+   float: left;
+}
+.adminlogo img{
+   width: 200px;
+}
+nav#top_menu {
+ float: right;
+ width: 600px;
+ margin: 50px 20px 0 0;
+}
+
+#logo {
+ width: 971px;
+ margin: 60px 0 40px 0;
+}
+
+nav#top_menu ul {
+ list-style: none;
+}
+
+nav#top_menu ul li {
+ float: left;
+ margin: 0 5px;
+}
+
+nav#top_menu ul li a {
+ display: block;
+ text-decoration: none;
+ color: #333;
+ padding: 10px;
+ font-style: normal;
+ font-size: 13px;
+}
+
+nav#top_menu ul li a:hover {
+ background-repeat: repeat-x;
+ background-position: bottom;
+ border-bottom: 2px solid gray;
+}
+
+nav#top_menu ul li a.logout {
+ margin-left: 238px;
+}
+
+nav#top_menu ul li a.logout1 {
+ margin-left: 210px;
+}
+
+footer {
+ background-image: url("../images/under_logo.png");
+ background-repeat: no-repeat;
+ background-position: 40px center;
+ float: left;
+ min-height: 145px;
+ width: 952px;
+ margin-left: 10px;
+ margin-bottom: -100px;
+}
+
+footer hr {
+ width: 950px;
+ border: 1px solid;
+}
+
+#login {
+ width: 200px;
+ float: right;
+ margin-top: 10px;
+}
+
+#login a {
+ text-decoration: none;
+ font-size: 10pt;
+}
+
+#login a:hover {
+ color: orange;
+}
+
+.btn {
+ width: 100px;
+ border-radius: 5px;
+ background-color: #FC3;
+ color: #333;
+ box-shadow: 3px 3px 3px #999999;
+ text-decoration: none;
+ text-align: center;
+ padding: 5px;
+ margin: 0 7px 7px 0px;
+}
+
+.btn:HOVER {
+ background-color: #FFF;
+}
+
+.btn:ACTIVE {
+ box-shadow: none;
+}
+
+article {
+ min-height: 300px;
+ margin-top: 30px;
+}
+
+th {
+ background-color: #E4E4E4;
+}
+
+#main_img {
+ margin-top: 40px;
+}
+
+#main_img img {
+ padding-left: 5px;
+}
+
+#main_img h1 {
+ text-align: center;
+ font-size: 20pt;
+ font-weight: bold;
+ font-family: sans-serif;
+}
+
+#imgId {
+ width: 30px;
+ height: 40px;
+}
+
+#loginform {
+ margin-top: 40px;
+}
+
+table#productList {
+ border-collapse: collapse; /* border 사이의 간격 없앰 */
+ border-top: 2px solid #333;
+ border-bottom: 1px solid #333;
+ width: 80%; /* 전체 테이블 길이 설정 */
+ margin-left: 100px;
+ margin-bottom: 20px;
+}
+table#list{
+   width: 80%;
+   margin: 0 auto;
+   background-color: #fff;
+   margin-bottom: 30px;
+}
+th, td{ 
+ padding: 8px 5px;
+}
+
+#productList td{ /* 테이블의 th 와 td 마진과 패딩 지정 */
+    text-align: center;
+}
+
+#list td{ 
+ padding: 8px 5px;
+ text-align: center;
+ font-size: 1.2em;
+}
+
+table#orderList {
+ border-collapse: collapse; /* border 사이의 간격 없앰 */
+ border-top: 2px solid #333;
+ border-bottom: 1px solid #333;
+ width: 85%; /* 전체 테이블 길이 설정 */
+ margin-left: 100px;
+ margin-bottom: 20px;
+}
+
+nav#sub_menu {
+ margin-right: 10px;
+}
+
+nav#sub_menu ul li {
+ list-style-type: none;
+ float:left;
+ margin-top: 10px;
+ margin-bottom: 10px;
+ background-color:gray;
+ width: 187px;
+ border-right: 1px solid #6a6a6a;
+}
+
+nav#sub_menu a {
+ text-decoration: none;
+ color: #fff;
+ font-weight: bold;
+ border-bottom: 1px solid #999;
+ display: block;
+ height: 25px;
+ padding: 5px;
+ line-height: 25px;
+}
+nav#sub_menu ul li:last-child {
+ border-right: 0px;
+}
+
+nav#sub_menu a:hover {
+   background-color: #000;
+}
+
+nav#sub_menu h1 {
+ padding: 5px;
+ border-bottom: double;
+}
+
+nav#sub_menu ul {
+ margin-left: -20px;
+}
+
+#check table {
+ border: 1px solid gray;
+ border-spacing: 5px;
+ margin-left: 300px;
+}
+
+#check td {
+ border: 1px solid gray;
+}
+
+#check h1 {
+ font-size: 10pt;
+ text-align: center;
+}
+#list td input, textarea{ 
+    width: 100%;
+    border: 0px;
+   text-align: center;
+    font-size: 1.2em;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+#list .kind1{
+   width: 80%;
+   text-align: center;
+   border: 0px;
+   font-size: 1.2em;
+}

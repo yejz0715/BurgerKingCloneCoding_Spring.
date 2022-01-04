@@ -4,5 +4,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="com.ezen.burger.dao.IAdminDao">
-
+	<select id="adminCheck" resultType="com.ezen.burger.dto.AdminVO">
+		select * from admin where id=#{param1}
+	</select>
 </mapper>
