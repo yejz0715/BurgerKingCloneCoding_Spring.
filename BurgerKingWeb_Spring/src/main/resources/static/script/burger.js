@@ -266,9 +266,11 @@ function post_zip(){
 }*/
 
 function shownonArea1(){
-	
+	document.getElementById("non_Btn1").style.color="red";
+	document.getElementById("non_Btn2").style.color="#fff";
 }
 
 function shownonArea2(){
-	
+	document.getElementById("non_Btn1").style.color="#fff";
+	document.getElementById("non_Btn2").style.color="red";
 }
