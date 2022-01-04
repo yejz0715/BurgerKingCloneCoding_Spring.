@@ -84,7 +84,7 @@ public class OtherController {
 			mav.addObject("message", "비밀번호를 입력하세요");
 			mav.setViewName("ServiceCenter/qnaWrite");
 			return mav;
-		}
+		}  
 		HttpSession session = request.getSession();
 		MemberVO mvo = (MemberVO) session.getAttribute("loginUser");
 		  if (mvo == null) mav.setViewName("member/loginform");
