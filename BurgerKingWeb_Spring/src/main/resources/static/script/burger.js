@@ -254,10 +254,19 @@ function post_zip(){
 
 function shownonArea1(){
 	document.getElementById("non_Btn1").style.color="red";
-	document.getElementById("non_Btn2").style.color="#fff";
+	document.getElementById("non_Btn1").style.textDecoration="underline";
+	document.getElementById("non_Btn2").style.color="#000";
+	document.getElementById("non_Btn2").style.textDecoration="none";
+	
+	document.getElementById("nonArea1").style.opacity=1;
+	document.getElementById("nonArea2").style.opacity=0; 
 }
 
 function shownonArea2(){
-	document.getElementById("non_Btn1").style.color="#fff";
+	document.getElementById("non_Btn1").style.color="#000";
+	document.getElementById("non_Btn1").style.textDecoration="none";
 	document.getElementById("non_Btn2").style.color="red";
+	document.getElementById("non_Btn2").style.textDecoration="underline";
+	document.getElementById("nonArea1").style.opacity=0;
+	document.getElementById("nonArea2").style.opacity=1;
 }

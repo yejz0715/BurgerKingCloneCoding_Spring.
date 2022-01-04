@@ -293,6 +293,7 @@ select * from order_view;
 select * from orders;
 select * from cart;
 select * from cart_view;
+select * from ADMIN
 
 delete from SUBPRODUCT_ORDER
 

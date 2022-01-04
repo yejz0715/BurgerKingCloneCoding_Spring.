@@ -2,7 +2,7 @@ function go_member_search(){
 	if(document.frm.key.value=="")
 		return;
 		
-	var url = "burger.do?command=adminMemberList&page=1";
+	var url = "adminMemberList&page=1";
 	// 보던 페이지가 어떤 페이지이던간에 검색 결과의 1페이지로 가기위해 파라미터 page를 1로 전송
 	document.frm.action = url;
 	document.frm.submit();
@@ -10,7 +10,7 @@ function go_member_search(){
 
 function go_member_total(){
 	document.frm.key.value="";
-	document.frm.action = "burger.do?command=adminMemberList&page=1";
+	document.frm.action = "adminMemberList&page=1";
 	document.frm.submit();
 }
 
@@ -29,13 +29,13 @@ function del_member(){
 	if( count == 0 ){
 		alert("삭제할 항목을 선택해주세요");
 	} else{
-		document.frm.action = "burger.do?command=adminMemberDelete";
+		document.frm.action = "adminMemberDelete";
 	    document.frm.submit();
 	}
 }
 
 function go_member_update(mseq){
-	var url = "burger.do?command=adminMemberUpdateForm&mseq=" + mseq;
+	var url = "adminMemberUpdateForm&mseq=" + mseq;
 	document.frm.action = url;
 	document.frm.submit();
 }

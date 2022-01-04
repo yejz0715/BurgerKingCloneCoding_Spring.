@@ -38,9 +38,13 @@ public class OtherController {
 	
 	@RequestMapping(value="/admin")
 	public String admin() {
-		return "admin/admin";
+		return "admin/adminLogin";
 	}
 	
+	@RequestMapping(value="/faqList1")
+	public String faqList1() {
+		return "ServiceCenter/faqList1";
+	}
 	// 고객센터 FAQ
 	@RequestMapping(value="faqListForm")
 	public ModelAndView  faqListForm(Model model, HttpServletRequest request) {
@@ -129,8 +133,12 @@ public class OtherController {
 	@RequestMapping(value="/legal")
 	public String legal() {
 		return "footer/legal";
-	}
-
+	} 
+	
+	@RequestMapping(value="/deliveryUseForm")
+	public String deliveryUseForm() {
+		return "ServiceCenter/deliveryuse";
+	} 
 }
 
 

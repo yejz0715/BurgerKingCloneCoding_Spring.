@@ -50,13 +50,13 @@
 						<div class="WEB utilWrap">
 							<a href="/"><span>브랜드홈</span></a>
 							<a href="logout"><span>로그아웃</span></a>
-							<a href="burger.do?command=deliveryMypageForm"><span>MY킹</span></a>
+							<a href="deliveryMypageForm"><span>MY킹</span></a>
 							<a style="display: none;"><span>로그인</span></a>
 							<a href="faqForm?fnum=1"><span>고객센터</span></a>
 						</div>
 						<div class="WEB user">
 							<p><span>${loginUser.name}</span>님 안녕하세요</p>
-							<a href="burger.do?command=deliveryMypageForm"><strong>MY킹 바로가기</strong></a>
+							<a href="deliveryMypageForm"><strong>MY킹 바로가기</strong></a>
 						</div>
 					</c:otherwise>
 				</c:choose>
