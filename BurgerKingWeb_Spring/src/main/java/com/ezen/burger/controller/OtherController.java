@@ -46,6 +46,26 @@ public class OtherController {
 		return "brand/brandStory";
 	}
 
+	@RequestMapping(value="/terms")
+	public String terms() {
+		return "footer/terms";
+	}
+	
+	@RequestMapping(value="/privacy")
+	public String privacy() {
+		return "footer/privacy";
+	}
+	
+	@RequestMapping(value="/videoPolicy")
+	public String videoPolicy() {
+		return "footer/videoPolicy";
+	}
+	
+	@RequestMapping(value="/legal")
+	public String legal() {
+		return "footer/legal";
+	}
+
 }
 
 
