@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ezen.burger.dto.MemberVO;
@@ -86,7 +87,6 @@ public class MemberController {
 		ModelAndView mav = new ModelAndView();
 		
 		if(result.hasErrors()) { 
-			// 해당 에러가 id와 pw 관련이라면 로그인 창으로 돌아간다.
 			if(result.getFieldError("name") != null) {
 				mav.addObject("message", result.getFieldError("name").getDefaultMessage());
 				mav.setViewName("member/findIdForm");
@@ -96,22 +96,60 @@ public class MemberController {
 			}
 		}	
 
-		
-		/* MemberVO mvo = mdao.findMember(name, phone); */
+		MemberVO mvo = ms.findMember(membervo.getName(), membervo.getPhone());
+		if(mvo == null) {
+			mav.addObject("message", "해당 정보를 가진 회원이 없습니다.");
+			mav.setViewName("member/findIdForm");
+		}else{
+			mav.addObject("memberVO", mvo);
+			mav.setViewName("member/showIdForm");
+		}
 		return mav;
 	}
 	
 	// 비밀번호 찾기 페이지로 이동
 	@RequestMapping(value="/findPwdForm")
-	public String findPwdForm() {
+	public String findPwdForm(@RequestParam(value="id", required = false) String id,
+			@RequestParam(value="name", required = false) String name,
+			HttpServletRequest request) {
+		request.setAttribute("name", name);
+		request.setAttribute("id", id);
 		return "member/findPwdForm";
 	}
 	
 	// 비밀번호 찾기
 	@RequestMapping(value="/findPwd")
-	public ModelAndView findPwd() {
+	public ModelAndView findPwd(@ModelAttribute("dto") @Valid MemberVO membervo, 
+			BindingResult result, Model model, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		
+		if(result.hasErrors()) { 
+			if(result.getFieldError("name") != null) {
+				mav.addObject("message", result.getFieldError("name").getDefaultMessage());
+				mav.setViewName("member/findPwdForm");
+			}else if(result.getFieldError("id") != null) {
+				mav.addObject("message", result.getFieldError("id").getDefaultMessage());
+				mav.setViewName("member/findPwdForm");
+			}
+		}	
+
+		MemberVO mvo = ms.findPwd(membervo.getName(), membervo.getId());
+		if(mvo == null) {
+			mav.addObject("message", "해당 정보를 가진 회원이 없습니다.");
+			mav.setViewName("member/findIdForm");
+		}else{
+			mav.addObject("memberVO", mvo);
+			mav.setViewName("member/sendPwdForm");
+		}
+		return mav;
+	}
+	
+	@RequestMapping(value="updatePwd")
+	public ModelAndView updatePwd(@RequestParam("pwd") String pwd,
+			@RequestParam("mseq") String mseq) {
+		ModelAndView mav = new ModelAndView();
+		ms.updatePwd(mseq, pwd);
+		mav.setViewName("redirect:/loginForm");
 		return mav;
 	}
 }	

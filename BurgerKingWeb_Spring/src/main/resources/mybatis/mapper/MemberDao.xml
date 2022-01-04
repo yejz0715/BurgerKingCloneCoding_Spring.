@@ -7,4 +7,16 @@
 	<select id="getMember" resultType="com.ezen.burger.dto.MemberVO">
 		select * from member where id = #{param1}
 	</select>
+	
+	<select id="findMember" resultType="com.ezen.burger.dto.MemberVO">
+		select * from member where name = #{param1} and phone = #{param2}
+	</select>
+	
+	<select id="findPwd" resultType="com.ezen.burger.dto.MemberVO">
+		select * from member where name = #{param1} and id = #{param2}
+	</select>
+	
+	<update id="updatePwd">
+		update member set pwd = #{param2} where mseq = #{param1}
+	</update>
 </mapper>

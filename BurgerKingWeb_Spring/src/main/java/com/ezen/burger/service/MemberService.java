@@ -14,4 +14,16 @@ public class MemberService {
 	public MemberVO getMember(String id) {
 		return mdao.getMember(id);
 	}
+
+	public MemberVO findMember(String name, String phone) {
+		return mdao.findMember(name, phone);
+	}
+
+	public MemberVO findPwd(String name, String id) {
+		return mdao.findPwd(name, id);
+	}
+
+	public void updatePwd(String mseq, String pwd) {
+		mdao.updatePwd(mseq, pwd);
+	}
 }
