@@ -50,18 +50,38 @@
 			</form>
 			<div id="base">
 				<div id="nonmember_MenuBar">
-					<ul id="terms_wrap_ul">
+					<ul id="nonmenuBar_ul">
 						<li><button id="non_Btn1" onclick="shownonArea1()">비회원 주문</button></li>
 						<li><button id="non_Btn2" onclick="shownonArea2()">비회원 주문내역</button></li>
 					</ul>
 				</div>
+				
+				<!-- non_Btn1 showing view -->
 				<div class="nonmember_Textarea" id="nonArea1">
 					<div id="nonmember_Text">회원가입 없이 비회원으로 주문이 가능합니다.</div>
 					<br><br><br><br>
-					<input type="submit" class="btn01 m" value="비회원 주문"/>
+					<input type="button" class="btn01 m" value="비회원 주문" onclick="location.href='nonloginForm'">
 				</div>
+				<!-- non_Btn2 showing view -->
 				<div class="nonmember_Textarea" id="nonArea2">
-					
+					<div id="nonmember_Text2">
+						<form action="nonOrderList" method="post" name="frm" style="padding-top: 20px;">
+							<div class="inpbox">
+								<label> 
+									<span>주문번호</span>
+									<input type="email" placeholder="주문번호" name="pass" style="width: 200px;">
+								</label>
+							</div>
+							<div class="inpbox">
+								<label> 
+									<span>비밀번호</span> 
+									<input placeholder="비밀번호" type="password" name="pwd" style="width: 200px;">
+								</label>
+							</div>
+							<br><br><br>
+							<input type="submit" class="btn01 m" value="주문 조회">
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
