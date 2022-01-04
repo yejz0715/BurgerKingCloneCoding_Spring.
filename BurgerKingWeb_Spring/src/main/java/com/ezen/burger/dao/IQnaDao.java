@@ -13,6 +13,8 @@ public interface IQnaDao {
 
 	ArrayList<QnaVO> listQna(String id);
 
+	QnaVO getQna(int qseq);
+
 
 	
 }

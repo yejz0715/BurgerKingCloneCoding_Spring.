@@ -33,7 +33,7 @@
 			<input type="hidden" name="id" value="${id}">
 			<fieldset style="border: 0px; background-color: #f2ebe6;">
 				<legend>QnA Write</legend>
-				<label>제목</label><br><label>${message}</label>
+				<label>제목</label><br>
 				<input type="text" name="subject" size="100"><br>
 				<label>질문내용</label>
 				<textarea rows="10" cols="120" name="content"></textarea>
@@ -45,6 +45,7 @@
 			<div class="qna_button_area">
 				<div class="tab_cont">
 					<div class="faq_category">
+					<label>${message}</label>
 						<label class="switch01">
 							<input type="radio" name="faqcategory" checked="checked" onclick="qna_write_chk()">
 							<span>작성</span>

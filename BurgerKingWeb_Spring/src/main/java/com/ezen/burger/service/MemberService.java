@@ -26,4 +26,9 @@ public class MemberService {
 	public void updatePwd(String mseq, String pwd) {
 		mdao.updatePwd(mseq, pwd);
 	}
+
+	public void adminMemberDelete(int mseq) {
+		mdao.adminMemberDelete(mseq);
+		
+	}
 }

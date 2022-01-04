@@ -16,12 +16,12 @@ function go_member_total(){
 
 function del_member(){
 	var count = 0;  //  체크된 체크박스의 갯수를 카운트 하기위한 변수
-	if(document.frm.delete.length==undefined){   // 체크박스가 하나일때
-		if( document.frm.delete.checked == true)   // 그 체크박스만 체크되어 있는지 확인
+	if(document.frm.mseq.length==undefined){   // 체크박스가 하나일때
+		if( document.frm.mseq.checked == true)   // 그 체크박스만 체크되어 있는지 확인
 			count++;	 
 	}else{
-		for( var i=0; i<document.frm.delete.length; i++){
-			if( document.frm.delete[i].checked==true)
+		for( var i=0; i<document.frm.mseq.length; i++){
+			if( document.frm.mseq[i].checked==true)
 				count++;
 		}
 	}

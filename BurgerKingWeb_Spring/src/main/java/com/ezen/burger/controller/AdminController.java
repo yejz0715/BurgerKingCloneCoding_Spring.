@@ -20,11 +20,15 @@ import com.ezen.burger.dto.EventVO;
 import com.ezen.burger.dto.MemberVO;
 import com.ezen.burger.dto.Paging;
 import com.ezen.burger.service.AdminService;
+import com.ezen.burger.service.MemberService;
 
 @Controller
 public class AdminController {
 	@Autowired
 	AdminService as;
+	
+	@Autowired
+	MemberService ms;
 	
 	@RequestMapping(value="/adminLogin", method=RequestMethod.POST)
 	public String adminLogin(@ModelAttribute("dto") @Valid AdminVO adminvo,
@@ -156,10 +160,13 @@ public class AdminController {
 	 }	
 }
 	
-	@RequestMapping("/adminMemberDelete")
+
+
+	@RequestMapping(value="/adminMemberDelete", method=RequestMethod.POST)
+
 	public String adminMemberDelete(@RequestParam("mseq") int [] mseqArr) {
 		for(int mseq:mseqArr)
-			as.adminMemberDelete(mseq);
+			ms.adminMemberDelete(mseq);
 		return "redirect:/memberList";
 
 	}

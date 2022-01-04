@@ -28,7 +28,7 @@
 		where rn&gt;=#{param1.startNum}) where rn&lt;=#{param1.endNum}
 	</select>
 	
-	<delete id="adminMemberDelete" parameterType="int">
+	<delete id="adminMemberDelete">
 		delete from member where mseq=#{param1}
 	</delete>
 
