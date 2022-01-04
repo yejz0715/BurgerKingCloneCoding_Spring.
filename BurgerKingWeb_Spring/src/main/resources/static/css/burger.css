@@ -1197,10 +1197,10 @@ input[type=color], input[type=date], input[type=datetime], input[type=email],
 	text-decoration: underline;
 }
 #nonArea1{
-	opacity: 1;
+	visibility: visible;
 }
 #nonArea2{
-	opacity: 0;
+	visibility: hidden;	
 }
 
 

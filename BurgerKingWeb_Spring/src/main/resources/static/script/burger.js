@@ -271,8 +271,8 @@ function shownonArea1(){
 	document.getElementById("non_Btn2").style.color="#000";
 	document.getElementById("non_Btn2").style.textDecoration="none";
 	
-	document.getElementById("nonArea1").style.opacity=1;
-	document.getElementById("nonArea2").style.opacity=0; 
+	document.getElementById("nonArea1").style.visibility="visible";
+	document.getElementById("nonArea2").style.visibility="hidden"; 
 }
 
 function shownonArea2(){
@@ -280,6 +280,7 @@ function shownonArea2(){
 	document.getElementById("non_Btn1").style.textDecoration="none";
 	document.getElementById("non_Btn2").style.color="red";
 	document.getElementById("non_Btn2").style.textDecoration="underline";
-	document.getElementById("nonArea1").style.opacity=0;
-	document.getElementById("nonArea2").style.opacity=1;
+	
+	document.getElementById("nonArea1").style.visibility="hidden";
+	document.getElementById("nonArea2").style.visibility="visible";
 }
