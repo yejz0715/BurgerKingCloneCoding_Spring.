@@ -10,7 +10,7 @@
 					<a href="findIdForm" style="color: red; text-decoration: underline; font-size: 1.45em;">아이디 찾기</a>
 				</span>
 			</li>
-			<li><span><a href="findPwdForm&id=${memberVO.id}&name=${memberVO.name}" style="font-size: 1.45em;">비밀번호 찾기</a></span></li>
+			<li><span><a href="findPwdForm?id=${memberVO.id}&name=${memberVO.name}" style="font-size: 1.45em;">비밀번호 찾기</a></span></li>
 		</ul>
 		<div class="btnarea" style="height:0px; margin-top: 80px;"></div>
 		<div class="textarea" style="height: 300px;">
@@ -30,8 +30,8 @@
 			</div>
 		</div>
 		<div class="c_btn item2 findidalign" style="margin-left: -220px;">
-			<input type="button" class="btn01 m" value="비밀번호 찾기" onclick="findPwdForm&id=${memberVO.id}&name=${memberVO.name}'"/>
-			<input type="button" class="btn01 m red" value="로그인" onclick="loginForm"/>
+			<input type="button" class="btn01 m" value="비밀번호 찾기" onclick="location.href='findPwdForm?id=${memberVO.id}&name=${memberVO.name}'"/>
+			<input type="button" class="btn01 m red" value="로그인" onclick="location.href='loginForm'"/>
 		</div>
 	</div>
 </article>

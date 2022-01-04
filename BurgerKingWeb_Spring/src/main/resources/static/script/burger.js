@@ -73,7 +73,7 @@ function check_input5(){
 	}
 	return true;
 }*/
-function inputpwdChk(){
+/*function inputpwdChk(){
 	if(document.frm.name.value==""){
 		alert("이름을 입력해주세요.");
 		document.frm.name.focus();
@@ -84,7 +84,7 @@ function inputpwdChk(){
 		return false;
 	}
 	return true;
-}
+}*/
 function updatepwdChk(){
 	if(document.frm.pwd.value==""){
 		alert("비밀번호를 입력해주세요.");
@@ -255,7 +255,7 @@ function post_zip(){
 	window.open( url, "우편번호 찾기", opt );
 }
 
-function play(){
+/*function play(){
 	var x=0;
 	setInterval(function(){
 	    for(var i=1;i<=5;i++)document.getElementById("view"+i).style.opacity = '0';
@@ -263,4 +263,4 @@ function play(){
 	    document.getElementById("view"+x).style.opacity = '1';
 	    if(x==5)x=0;
 	}, 3000);
-}
+}*/
