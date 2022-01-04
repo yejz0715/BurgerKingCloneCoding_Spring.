@@ -7,11 +7,11 @@
 		<meta charset="UTF-8">
 		<title>Main</title>
 		<link rel="stylesheet" href="admin/css/admin.css">
-		<script type="text/javascript" src="admin/product/product.js"></script>
-		<script type="text/javascript" src="admin/member/member.js"></script>
-		<script type="text/javascript" src="admin/event/event.js"></script>
-		<script type="text/javascript" src="admin/qna/qna.js"></script>
-		<script type="text/javascript" src="admin/order/order.js"></script>
+		<script type="text/javascript" src="admin/script/product.js"></script>
+		<script type="text/javascript" src="admin/script/member.js"></script>
+		<script type="text/javascript" src="admin/script/event.js"></script>
+		<script type="text/javascript" src="admin/script/qna.js"></script>
+		<script type="text/javascript" src="admin/script/order.js"></script>
 	</head>
 	<body>
 		<div id="wrap">

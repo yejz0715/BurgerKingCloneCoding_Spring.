@@ -14,4 +14,8 @@ public class AdminService {
 	public AdminVO adminCheck(String id) {
 		return adao.adminCheck(id);
 	}
+
+	public int getAllCount(String tableName, String fieldName, String key) {
+		return adao.getAllCount(tableName,fieldName,key);
+	}
 }

@@ -10,18 +10,6 @@
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Nanum+Myeongjo:wght@800&family=Noto+Sans+KR&display=swap" rel="stylesheet">
-		<!-- <script type="text/javascript">
-			function workerCheck(){
-				if(document.frm.adminId.value==""){
-					alert("아이디를 입력하세요.");
-					return false;
-				}else if(document.frm.adminPwd.value==""){
-					alert("비밀번호를 입력하세요");
-					return false;
-				}
-				return true;
-			}
-		</script> -->
 	</head>
 	<body>
 		<div id="wrap">
