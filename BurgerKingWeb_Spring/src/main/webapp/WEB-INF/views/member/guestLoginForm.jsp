@@ -19,7 +19,7 @@
 			<div class="container02 auth_list acc_list">
 				<div class="acc_tit">
 					<label>
-						<input type="checkbox" class="check02">
+						<input type="checkbox" name="guest_checkbox" class="check02">
 						<span>버거킹 이용약관</span>
 					</label>
 					<button type="button" class="btn_acc" style="width: 100px;" onclick="term_open()">
@@ -50,59 +50,61 @@
 			</div>
 		</div>
 		
-		<h2 class="tit01 tit_ico setting"><span>비회원 설정</span></h2>
-
-		<div class="container02">
-			<div class="dlist01">
-				<dl>
-					<dt class="nonmember_WEB">이름</dt>
-					<dd>
-						<div class="inpbox st02">
-							<input type="text" placeholder="받는 분의 이름을 입력해 주세요." class="st02" style="width: 80%">
-							<button type="button" class="btn_del01 " style="display: none;">
-								<span>입력 텍스트 삭제</span>
-							</button>
-						</div>
-					</dd>
-				</dl>
-				<dl>
-					<dt class="nonmember_WEB">휴대폰 번호</dt>
-					<dd>
-						<div class="inpbox st02">
-							<input type="text" placeholder="핸드폰 번호를 입력해 주세요" class="st02" style="width: 80%">
-						</div>
-					</dd>
-				</dl>
+		<form action="guestLogin" method="post" name="frm">
+			<h2 class="tit01 tit_ico setting"><span>비회원 설정</span></h2>
+	
+			<div class="container02">
+				<div class="dlist01">
+					<dl>
+						<dt class="nonmember_WEB">이름</dt>
+						<dd>
+							<div class="inpbox st02">
+								<input type="text" placeholder="받는 분의 이름을 입력해 주세요." name="name" class="st02" style="width: 80%">
+								<button type="button" class="btn_del01 " style="display: none;">
+									<span>입력 텍스트 삭제</span>
+								</button>
+							</div>
+						</dd>
+					</dl>
+					<dl>
+						<dt class="nonmember_WEB">휴대폰 번호</dt>
+						<dd>
+							<div class="inpbox st02">
+								<input type="text" placeholder="핸드폰 번호를 입력해 주세요" name="phone" class="st02" style="width: 80%">
+							</div>
+						</dd>
+					</dl>
+				</div>
 			</div>
-		</div>
-		
-		<h2 class="tit01 tit_ico key"><span>주문서 비밀번호</span></h2>
-
-		<div class="container02">
-			<div class="WEB nonmembertitbox">
-				<p>주문 내역 확인을 위한 비밀번호를 입력하세요.</p>
+			
+			<h2 class="tit01 tit_ico key"><span>주문서 비밀번호</span></h2>
+	
+			<div class="container02">
+				<div class="WEB nonmembertitbox">
+					<p>주문 내역 확인을 위한 비밀번호를 입력하세요.</p>
+				</div>
+				<div class="dlist01 nontitbox_margin20">
+					<dl>
+						<dt class="nonmember_WEB">비밀번호</dt>
+						<dd>
+							<div class="inpbox">
+								<input placeholder="4~6자리 이내의 숫자로만 입력하세요." maxlength="6"
+									type="password" class="st02" style="width: 80%" name="pwd">
+							</div>
+							<div class="inpbox">
+								<input placeholder="비밀번호를 다시 입력하세요." maxlength="6"
+									type="password" class="st02" style="width: 80%" name="pwd_chk">
+							</div>
+						</dd>
+					</dl>
+				</div>
 			</div>
-			<div class="dlist01 nontitbox_margin20">
-				<dl>
-					<dt class="nonmember_WEB">비밀번호</dt>
-					<dd>
-						<div class="inpbox">
-							<input placeholder="4~6자리 이내의 숫자로만 입력하세요." maxlength="6"
-								type="password" class="st02" style="width: 80%">
-						</div>
-						<div class="inpbox">
-							<input placeholder="비밀번호를 다시 입력하세요." maxlength="6"
-								type="password" class="st02" style="width: 80%">
-						</div>
-					</dd>
-				</dl>
-			</div>
-		</div>
-		
-		<br><br><br>
-		
-		<input type="button" class="btn01 m Btncenter" value="비회원 주문"
-		 onclick="return check_Term();">
+			
+			<br><br><br>
+			
+			<input type="button" class="btn01 m Btncenter" value="비회원 주문"
+			 onclick="return check_Term();">
+		 </form>
 	</div>
 </article>
 

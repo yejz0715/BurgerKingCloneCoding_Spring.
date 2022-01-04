@@ -279,3 +279,43 @@ function term_open(){
 		document.getElementById("acc_cont").style.height = "0px";
 	}
 }
+
+function check_Term(){
+	const query = 'input[name="guest_checkbox"]:checked';
+	const selectedEls = document.querySelector(query);
+					  
+	// 선택된 목록에서 value 찾기
+	let result = '';
+		selectedEls.forEach((el) => {
+		result += el.value + ' ';
+	});
+					  
+	if( result == "1 2 " || result=="1 2 3 4 " || result=="1 2 3 " || result=="1 2 4 " || result=="1 2 3 4 5 ")
+	{	
+		document.contractFrm.action ="burger.do?command=joinpage";
+		document.contractFrm.submit(); 
+	}
+	else
+	{
+		alert('필수 이용약관에 동의해 주세요.');
+	}
+	if(document.frm.name.value==""){
+		alert("이름을 작성해주세요.");
+		return false;
+	}else if(document.frm.phone.value==""){
+		alert("휴대폰 번호를 작성해주세요.");
+		return false;
+	}else if(document.frm.pwd.value==""){
+		alert("비밀번호를 작성해주세요.");
+		return false;
+	}else if(document.frm.pwd.value.length<4){
+		alert("비밀번호를 4자리 이상 작성해주세요.");
+		return false;
+	}else if(document.frm.pwd.value != document.frm.pwd_chk.value){
+		alert("비밀번호와 비밀번호 확인이 다릅니다.");
+		return false;
+	}else{
+		alert("해당 정보로 비회원 로그인 하시겠습니까?");
+		return true;	
+	}
+}
