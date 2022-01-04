@@ -6,7 +6,7 @@
 	<div class="web_container1">
 		<ul>
 			<li><a href="/">HOME</a>&nbsp;>&nbsp;</li>
-			<li><a href="oginForm">로그인</a>&nbsp;>&nbsp;</li>
+			<li><a href="loginForm">로그인</a>&nbsp;>&nbsp;</li>
 			<li><a href="findPwdForm">아이디/비밀번호 찾기</a></li>
 		</ul>
 	</div>
