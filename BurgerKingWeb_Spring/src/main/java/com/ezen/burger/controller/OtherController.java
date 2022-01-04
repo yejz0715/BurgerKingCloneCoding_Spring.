@@ -33,6 +33,7 @@ public class OtherController {
 		return "admin/admin";
 	}
 	
+	// 고객센터 FAQ
 	@RequestMapping(value="faqListForm")
 	public ModelAndView  faqListForm(Model model, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView ();
@@ -40,6 +41,27 @@ public class OtherController {
 		mav.setViewName("ServiceCenter/faqList" + fnum);
 		return mav;
 	}
+	
+	// 고객센터 문의
+	@RequestMapping(value="qnaForm")
+	public String qnaForm(Model model, HttpServletRequest request) {
+		return "ServiceCenter/qnaList";
+	}
+	
+	// 고객센터 문의작성
+	@RequestMapping(value="qnaWriteForm")
+	public String qnaWriteForm(Model model, HttpServletRequest request) {
+		return "ServiceCenter/qnaWriteForm";
+	}
+	
+	
+	// 고객센터 앱이용안내
+	@RequestMapping(value="appGuideForm")
+	public String appGuideForm(Model model, HttpServletRequest request) {
+		return "ServiceCenter/appGuide";
+	}
+	
+	
 	
 	@RequestMapping(value="/brandStroyForm")
 	public String brandStroyForm() {
