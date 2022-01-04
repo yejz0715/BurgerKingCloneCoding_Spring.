@@ -38,7 +38,7 @@
 							<a style="display: none;"><span>로그아웃</span></a>
 							<a style="display: none;"><span>MY킹</span></a>
 							<a href="loginForm"><span>로그인</span></a>
-							<a href="faqForm?fnum=1"><span>고객센터</span></a>
+							<a href="faqListForm?fnum=1"><span>고객센터</span></a>
 						</div>
 					</c:when>
 					<c:when test="${memberkind == 2}">

@@ -34,9 +34,9 @@ public class OtherController {
 	}
 	
 	@RequestMapping(value="faqListForm")
-	public ModelAndView  faqListForm(Model model, @RequestParam("fnum") String fnum , HttpServletRequest request) {
+	public ModelAndView  faqListForm(Model model, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView ();
-		HttpSession session = request.getSession();
+		String fnum = request.getParameter("fnum");
 		mav.setViewName("ServiceCenter/faqList" + fnum);
 		return mav;
 	}
