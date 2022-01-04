@@ -32,7 +32,7 @@ public class OtherController {
 	}
 	
 	@RequestMapping(value="/main")
-	public String main() {
+	public String main() { 
 		return "main/main";
 	}
 	
