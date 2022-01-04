@@ -90,8 +90,12 @@ public class OtherController {
 	@RequestMapping(value="/legal")
 	public String legal() {
 		return "footer/legal";
-	}
-
+	} 
+	
+	@RequestMapping(value="/deliveryUseForm")
+	public String deliveryUseForm() {
+		return "ServiceCenter/deliveryuse";
+	} 
 }
 
 
