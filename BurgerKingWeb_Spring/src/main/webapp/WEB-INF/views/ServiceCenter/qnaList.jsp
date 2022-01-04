@@ -64,7 +64,7 @@
 								</td>
 							</tr>
 						</c:when>
-						<c:otherwise>
+						<c:otherwise>  
 							<form name="frm" method="post"> 
 								<c:forEach items="${qnaList}" var="qnaVO">
 									<tr align="center">
