@@ -4036,6 +4036,7 @@ input[readonly=readonly] {
 	max-width: 776px;
 	margin: 0 auto;
 	padding: 0 8px;
+	background-color: #f2ebe6;
 }
 
 .tit02:first-child {
@@ -4207,8 +4208,26 @@ input[type=checkbox]+:before {
     background: #f8f8f8;
 }
 
+.nonmember_WEB{
+	text-align: center;
+}
 
+.container02>.nonmembertitbox:first-child {
+    /* margin: -20px -50px 20px; */
+    padding: 37px 50px;
+    font-size: 1.375rem;
+    background: #f8f8f8;
+}
 
+.Btncenter{
+	position:relative;
+	left: 50%;
+	transform: translate(-50%, 0%);
+}
+
+.nontitbox_margin20{
+	padding-bottom: 20px;
+}
 /*---pop3--------------알레르기 성분표-------------------------------------  */
 .m_FullpopWrap .popbox01 {
     background: #f2ebe6;

@@ -284,3 +284,11 @@ function shownonArea2(){
 	document.getElementById("nonArea1").style.visibility="hidden";
 	document.getElementById("nonArea2").style.visibility="visible";
 }
+
+function term_open(){
+	if(document.getElementById("acc_cont").style.height == "0px"){
+        document.getElementById("acc_cont").style.height = "300px";
+	}else{
+		document.getElementById("acc_cont").style.height = "0px";
+	}
+}
