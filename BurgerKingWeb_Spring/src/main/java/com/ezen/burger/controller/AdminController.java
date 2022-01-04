@@ -145,6 +145,7 @@ public class AdminController {
 			paging.setPage(page);			
 			int count = as.getAllCount("event", "subject", key);
 			paging.setTotalCount(count);	
+		paging.paging();
 		
 		ArrayList<EventVO> list = as.listEvent(paging, key);
 		
