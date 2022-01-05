@@ -19,8 +19,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ezen.burger.dto.CartVO;
 import com.ezen.burger.dto.GuestVO;
 import com.ezen.burger.dto.MemberVO;
+import com.ezen.burger.dto.MyAddressVO;
 import com.ezen.burger.dto.ProductVO;
 import com.ezen.burger.dto.orderVO;
+import com.ezen.burger.service.AddressService;
 import com.ezen.burger.service.CartService;
 import com.ezen.burger.service.MemberService;
 import com.ezen.burger.service.OrderService;
@@ -36,6 +38,8 @@ public class MemberController {
 	OrderService os;
 	@Autowired
 	CartService cs;
+	@Autowired
+	AddressService as;
 	
 	
 	// 로그인 페이지로 이동
@@ -202,25 +206,33 @@ public class MemberController {
 			if(mvo == null) {
 				mav.setViewName("redirect:/loginForm");
 			}else {
-				ArrayList<ProductVO> list = ps.getProductList(kind1);
-				ArrayList<orderVO> list1 = os.getOrderList(mvo.getId());
-				ArrayList<CartVO> list2 = cs.selectCart( mvo.getId() );	
-				
-				mav.addObject("ovo", list1);
-				mav.addObject("cvo", list2);
-				mav.addObject("productList", list);
-				mav.addObject("kind1", kind1);
-				mav.setViewName("delivery/delivery");
+				MyAddressVO avo = as.getMyAddress(mvo.getMseq());
+				if(avo == null) {
+					mav.setViewName("delivery/addressSet");
+				}else {
+					ArrayList<ProductVO> list = ps.getProductList(kind1);
+					ArrayList<orderVO> list1 = os.getOrderList(mvo.getId());
+					ArrayList<CartVO> list2 = cs.selectCart( mvo.getId() );	
+					
+					mav.addObject("ovo", list1);
+					mav.addObject("cvo", list2);
+					mav.addObject("productList", list);
+					mav.addObject("kind1", kind1);
+					mav.setViewName("delivery/delivery");
+				}
 			}
 		}else if(memberKind == 2){
 			GuestVO gvo = (GuestVO)session.getAttribute("loginUser");
 			if(gvo == null) {
 				mav.setViewName("redirect:/loginForm");
 			}else {
-				
+				ArrayList<ProductVO> list = ps.getProductList(kind1);
+				mav.addObject("productList", list);
 				mav.addObject("kind1", kind1);
 				mav.setViewName("delivery/delivery");
 			}
+		}else {
+			mav.setViewName("redirect:/loginForm");
 		}
 		return mav;
 	}
