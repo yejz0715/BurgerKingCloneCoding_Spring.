@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="/admin/header.jsp" %>
-<%@ include file="/admin/sub_menu.jsp"%>
+<%@ include file="../../admin/header.jsp" %>
+<%@ include file="../../admin/sub_menu.jsp"%>
 
 <article>
 	<h1>이벤트 수정</h1>
@@ -34,8 +34,8 @@
 		</table>
 		<input type="button" class="btn" value="수정" onclick="go_event_mod_save()">
 		<input type="button" class="btn" value="취소" onclick=
-		"location.href='burger.do?command=adminEventDetail&eseq=${eventVO.eseq}'">
+		"location.href='adminEventDetail?eseq=${eventVO.eseq}'">
 	</form>
 </article>
 
-<%@ include file="/admin/footer.jsp"%>
+<%@ include file="../../admin/footer.jsp"%>

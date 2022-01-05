@@ -28,17 +28,12 @@ public class AdminService {
 		return adao.getAllCount(tableName,fieldName,key);
 	}
 
-
-	public ArrayList<EventVO> listEvent(Paging paging, String key) {
-		return adao.listEvent(paging, key);
-	}
 	public ArrayList<MemberVO> listMember(Paging paging, String key) {
 		return adao.listMember(paging, key);
 	}
 
 	public void adminMemberDelete(int mseq) {
 		adao.adminMemberDelete(mseq);
-	
 	}
 
 	public ArrayList<QnaVO> listQna(Paging paging, String key) {
@@ -49,4 +44,14 @@ public class AdminService {
 		adao.adminQnaDelete(qseq);
 		
 	}
+
+	public ArrayList<EventVO> listEvent(Paging paging, String key) {
+		return adao.listEvent(paging, key);
+	}
+
+	public void deleteEvent(int eseq) {
+		adao.deleteEvent(eseq);
+		
+	}
+
 }
