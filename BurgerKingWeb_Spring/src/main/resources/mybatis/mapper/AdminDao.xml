@@ -40,7 +40,5 @@
 
 
 
-	<delete id="deleteEvent" >
-		delete from event where eseq=#{param1}
-	</delete>
+
 </mapper>

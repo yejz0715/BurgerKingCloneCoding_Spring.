@@ -2,25 +2,35 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-	
+
 <mapper namespace="com.ezen.burger.dao.IEventDao">
-	<select id="getAllEvents" resultType="com.ezen.burger.dto.EventVO">
-		select * from event order by eseq asc 	
+	<select id="getAllEvents"
+		resultType="com.ezen.burger.dto.EventVO">
+		select * from event order by eseq asc
 	</select>
-	
-	<select id="getOngoingEvents" resultType="com.ezen.burger.dto.EventVO">
-		select * from event where state = 1 order by eseq asc 
+
+	<select id="getOngoingEvents"
+		resultType="com.ezen.burger.dto.EventVO">
+		select * from event where state = 1 order by eseq asc
 	</select>
-	
-	<select id="getPastEvents" resultType="com.ezen.burger.dto.EventVO">
-		select * from event where state = 0 order by eseq asc 	
+
+	<select id="getPastEvents"
+		resultType="com.ezen.burger.dto.EventVO">
+		select * from event where state = 0 order by eseq asc
 	</select>
-	
-	<select id="getDetailEvent" resultType="com.ezen.burger.dto.EventVO">
-		select * from event where eseq = #{param1} 	
+
+	<select id="getDetailEvent"
+		resultType="com.ezen.burger.dto.EventVO">
+		select * from event where eseq = #{param1}
 	</select>
-	
+
 	<select id="getEvent" resultType="com.ezen.burger.dto.EventVO">
-		select * from event where eseq=#{parma1}
+		select * from event where
+		eseq=#{parma1}
 	</select>
+
+	<delete id="deleteEvent">
+		delete from event where
+		eseq=#{param1}
+	</delete>
 </mapper>

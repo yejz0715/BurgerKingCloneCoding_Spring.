@@ -34,7 +34,7 @@ public interface IAdminDao {
 
 	
 
-	void deleteEvent(int eseq);
+	
 
 	
 

@@ -40,10 +40,7 @@ public class AdminService {
 	}
 
 	
-	public void deleteEvent(int eseq) {
-		adao.deleteEvent(eseq);
-		
-	}
+	
 
 	
 }
