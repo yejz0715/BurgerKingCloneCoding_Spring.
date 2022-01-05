@@ -5,7 +5,7 @@
 	<div class="location">
 	<div class="web_container1">
 		<ul>
-			<li><a href="burger.do?command=index">HOME</a>&nbsp;>&nbsp;</li>
+			<li><a href="main">HOME</a>&nbsp;>&nbsp;</li>
 			<li>고객센터 &nbsp;>&nbsp;</li>
 			<li>FAQ</li>
 		</ul>
@@ -17,11 +17,11 @@
 		<ul id="terms_wrap_ul" style="right: 0; top:0">
 			<li>
 				<span>
-					<a href="burger.do?command=faqForm&fnum=1" style="color: red; text-decoration: underline;">FAQ</a>
+					<a href="faqForm&fnum=1" style="color: red; text-decoration: underline;">FAQ</a>
 				</span>
 			</li>
-			<li><span><a href="burger.do?command=qnaForm">문의</a></span></li>
-			<li><span><a href="burger.do?command=appGuideForm">버거킹앱 이용안내</a></span></li>
+			<li><span><a href="qnaForm">문의</a></span></li>
+			<li><span><a href="appGuideForm">버거킹앱 이용안내</a></span></li>
 		</ul>
 	</div>
 
