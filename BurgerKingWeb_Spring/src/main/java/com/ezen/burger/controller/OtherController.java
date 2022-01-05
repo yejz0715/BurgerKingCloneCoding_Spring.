@@ -121,8 +121,7 @@ public class OtherController {
 			@RequestParam("qseq")int qseq, @RequestParam("pass")int pass) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
-		
-		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
+
 		mav.addObject("QnaVO", qs.getpassChk(pass));
 		mav.addObject("QnaVO", qs.getpassChk(qseq));
 		mav.setViewName("ServiceCenter/qnaView");
