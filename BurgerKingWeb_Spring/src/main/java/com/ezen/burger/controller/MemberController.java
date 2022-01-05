@@ -208,6 +208,11 @@ public class MemberController {
 			}else {
 				MyAddressVO avo = as.getMyAddress(mvo.getMseq());
 				if(avo == null) {
+					ArrayList<orderVO> list1 = os.getOrderList(mvo.getId());
+					ArrayList<CartVO> list2 = cs.selectCart( mvo.getId() );	
+					
+					mav.addObject("ovo", list1);
+					mav.addObject("cvo", list2);
 					mav.setViewName("delivery/addressSet");
 				}else {
 					ArrayList<ProductVO> list = ps.getProductList(kind1);
@@ -226,10 +231,14 @@ public class MemberController {
 			if(gvo == null) {
 				mav.setViewName("redirect:/loginForm");
 			}else {
-				ArrayList<ProductVO> list = ps.getProductList(kind1);
-				mav.addObject("productList", list);
-				mav.addObject("kind1", kind1);
-				mav.setViewName("delivery/delivery");
+				if(gvo.getAddress() == null) {
+					mav.setViewName("delivery/addressSet");
+				}else {
+					ArrayList<ProductVO> list = ps.getProductList(kind1);
+					mav.addObject("productList", list);
+					mav.addObject("kind1", kind1);
+					mav.setViewName("delivery/delivery");
+				}
 			}
 		}else {
 			mav.setViewName("redirect:/loginForm");
