@@ -206,9 +206,9 @@ public class MemberController {
 				ArrayList<orderVO> list1 = os.getOrderList(mvo.getId());
 				ArrayList<CartVO> list2 = cs.selectCart( mvo.getId() );	
 				
-				request.setAttribute("ovo", list1);
-				request.setAttribute("cvo", list2);
-				request.setAttribute("productList", list);
+				mav.addObject("ovo", list1);
+				mav.addObject("cvo", list2);
+				mav.addObject("productList", list);
 				mav.addObject("kind1", kind1);
 				mav.setViewName("delivery/delivery");
 			}

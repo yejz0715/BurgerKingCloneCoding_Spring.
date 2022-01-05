@@ -235,7 +235,7 @@ function resign(){
 	return alert(`정말로 탈퇴하시겠습니까?`);
 }
 
-function post_zip(){
+function post_zip(){    
 	var url = "burger.do?command=findZipNum";
 	var opt = "toolbar=no, menubar=no, scrollbars=no, resizable=no, width=550,";
 	opt = opt + " height=300, top=300, left=300";

@@ -151,7 +151,7 @@ public class OtherController {
 	
 	// 고객센터 qna 삭제
 	@RequestMapping(value="qnaDelete" )
-	public String qnaDelete( @RequestParam("qseq") int [] qseqArr ) {
+	public String qnaDelete( @RequestParam("delete") int [] qseqArr ) {
 		for( int qseq : qseqArr)
 			qs.deleteQna(qseq);
 		return "redirect:/qnaForm";

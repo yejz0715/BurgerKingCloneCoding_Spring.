@@ -15,4 +15,8 @@
 	<select id="getProductkind" resultType="com.ezen.burger.dto.ProductVO">
 		select * from product where kind1 = #{param1} and kind2 = #{param2} and kind3&lt;4
 	</select>
+	
+	<select id="getProductList" resultType="com.ezen.burger.dto.ProductVO">
+		select * from product where kind1 = #{param1}
+	</select>
 </mapper>

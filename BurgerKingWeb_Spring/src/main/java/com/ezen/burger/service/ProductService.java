@@ -26,7 +26,6 @@ public class ProductService {
 	}
 
 	public ArrayList<ProductVO> getProductList(String kind1) {
-		// TODO Auto-generated method stub
-		return null;
+		return pdao.getProductList(kind1);
 	}
 }
