@@ -2,8 +2,6 @@ package com.ezen.burger.service;
 
 import java.util.ArrayList;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,10 +33,8 @@ public class QnaService {
 		return qdao.getpassChk(qseq);
 	}
 
-
-
-
-
-
+	public void updateQna(int qseq, String reply) {
+		qdao.updateQna(qseq, reply);		
+	}
 
 }

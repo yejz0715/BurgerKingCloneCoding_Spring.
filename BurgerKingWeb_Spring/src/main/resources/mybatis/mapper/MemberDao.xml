@@ -25,7 +25,7 @@
 	</select>
 	
 	<update id="updateMember">
-	update member set pwd=#{pwd}, name=#{name}, phone=#{phone} where id =#{id}
+		update member set pwd=#{pwd}, name=#{name}, phone=#{phone} where id =#{id}
 	</update>
 
 	<select id="selectGseq" resultType="_int">

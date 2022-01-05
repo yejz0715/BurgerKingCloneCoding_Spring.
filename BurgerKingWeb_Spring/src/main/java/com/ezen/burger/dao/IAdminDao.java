@@ -24,23 +24,13 @@ public interface IAdminDao {
 
 	void adminMemberDelete(int mseq);
 	
-
-	
-	
-	
-	
-	
-	
 	ArrayList<EventVO> listEvent(Paging paging, String key);
 
-	EventVO getEvent(int eseq);
-
 	void deleteEvent(int eseq);
-
-	
 
 	ArrayList<QnaVO> listQna(Paging paging, String key);
 
 	void adminQnaDelete(int qseq);
+
 	
 }

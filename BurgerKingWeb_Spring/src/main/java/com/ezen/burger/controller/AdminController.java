@@ -183,7 +183,7 @@ public class AdminController {
 			return "admin/adminLogin";
 		} else {
 			EventVO evo =es.getEvent(eseq);
-			model.addAttribute("EventVO", evo);			
+			model.addAttribute("eventVO", evo);			
 			return "admin/event/eventDetail";
 		}
    }
@@ -193,8 +193,7 @@ public class AdminController {
 		if (session.getAttribute("loginAdmin") == null) return "admin/adminLogin";
 	
 			return "admin/event/eventWrite";
-		
-}
+	}
 	
 	@RequestMapping(value="/adminEventWrite", method=RequestMethod.POST)
 	public String adminEventWrite(Model model, HttpServletRequest request ) {
@@ -315,6 +314,19 @@ public class AdminController {
 			model.addAttribute("qnaVO",qvo);
 			return "admin/qna/qnaDetail";
 		}
+		
+	}
+	
+	@RequestMapping("/adminQnaRepsave")
+	public String adminQnaRepsave(HttpServletRequest request, Model model,
+			@RequestParam("qseq") int qseq,  @RequestParam("reply") String reply) {
+		HttpSession session= request.getSession();
+		if( session.getAttribute("loginAdmin") == null) {
+			return "admin/adminLogin";
+		}else {
+			qs.updateQna(qseq, reply);
+			return "redirect:/adminQnaDetail";
+		}		
 		
 	}
 	

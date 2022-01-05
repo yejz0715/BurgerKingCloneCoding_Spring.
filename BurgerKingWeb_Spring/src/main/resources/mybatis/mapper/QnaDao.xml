@@ -22,11 +22,13 @@
  	<select id="getpassChk" resultType="com.ezen.burger.dto.QnaVO">
 		select * from qna where qseq = #{param1} 	
 	</select>
-	
-	
  	
  	<delete id="deleteQna">
  		delete from qna where qseq=#{param1}
  	</delete>
+ 	
+ 	<update id="updateQna" parameterType="com.ezen.burger.dto.QnaVO">
+		update qna set reply=#{param2}, rep='2' where qseq=#{param1}
+	</update>
  	
 </mapper>
