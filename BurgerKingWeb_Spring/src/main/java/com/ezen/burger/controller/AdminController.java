@@ -205,7 +205,7 @@ public class AdminController {
 	@RequestMapping(value="/adminEventWrite", method=RequestMethod.POST)
 	public String adminEventWrite(@ModelAttribute("dto") @Valid EventVO eventvo,
 			BindingResult result, Model model, HttpServletRequest request) {
-		
+			
 		System.out.println("subject : " + eventvo.getSubject() );
 		System.out.println("content : " + eventvo.getContent() );
 		System.out.println("enddate : " + eventvo.getEnddate() );
@@ -222,20 +222,26 @@ public class AdminController {
 		}else {
 			es.insertEvent(eventvo);
 			return "redirect:/adminEventList";
-		
+		}
 		}
 		
-}
+
 	@RequestMapping(value = "/adminEventDelete")
-	public String adminEventDelete(@RequestParam("delete") int[] eseqArr) {
+	public String adminEventDelete(@RequestParam("delete") int[] eseqArr,HttpServletRequest request ) {
+		HttpSession session = request.getSession();
+		if (session.getAttribute("loginAdmin") == null) {
+			return "admin/adminLogin";
+		} else {
 		for (int eseq : eseqArr)
 			es.deleteEvent(eseq);
 		return "redirect:/adminEventList";
-}
+      }
+	}
 	
 	@RequestMapping(value="/adminEventUpdateForm")
 	public String adminEventUpdateForm(@RequestParam("eseq") int eseq,
 			HttpServletRequest request, Model model) {
+		
 		HttpSession session= request.getSession();
 		if( session.getAttribute("loginAdmin") == null) {
 			return "admin/adminLogin";
@@ -246,10 +252,13 @@ public class AdminController {
 			return "admin/event/evnetUpdate";
 		}
 	}
-	@RequestMapping(value="/adminEventUpdate")
-	public String adminEventUpdate() {
-		
-	}
+	/*
+	 * @RequestMapping(value="/adminEventUpdate" , method=RequestMethod.POST) public
+	 * String adminEventUpdate(@ModelAttribute("EventVO") @Valid EventVO evo,
+	 * BindingResult result, HttpServletRequest request, Model model) {
+	 * 
+	 * }
+	 */
 	
 
 	@RequestMapping(value="/adminMemberUpdateForm")
