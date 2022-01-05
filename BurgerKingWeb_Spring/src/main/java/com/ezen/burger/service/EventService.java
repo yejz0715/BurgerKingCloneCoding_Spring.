@@ -45,4 +45,5 @@ public class EventService {
 		edao.insertEvent(eventvo);
 		
 	}
+
 }

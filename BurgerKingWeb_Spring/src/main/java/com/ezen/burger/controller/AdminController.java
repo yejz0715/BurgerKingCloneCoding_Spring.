@@ -231,9 +231,26 @@ public class AdminController {
 		for (int eseq : eseqArr)
 			es.deleteEvent(eseq);
 		return "redirect:/adminEventList";
-
 }
-
+	
+	@RequestMapping(value="/adminEventUpdateForm")
+	public String adminEventUpdateForm(@RequestParam("eseq") int eseq,
+			HttpServletRequest request, Model model) {
+		HttpSession session= request.getSession();
+		if( session.getAttribute("loginAdmin") == null) {
+			return "admin/adminLogin";
+		}else {
+			EventVO evo = es.getEvent(eseq);
+			model.addAttribute("eventVO", evo);
+			
+			return "admin/event/evnetUpdate";
+		}
+	}
+	@RequestMapping(value="/adminEventUpdate")
+	public String adminEventUpdate() {
+		
+	}
+	
 
 	@RequestMapping(value="/adminMemberUpdateForm")
 	public String adminMemberUpdateForm(@RequestParam("mseq") int mseq,
