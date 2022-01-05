@@ -1,5 +1,7 @@
 package com.ezen.burger.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -14,14 +16,27 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ezen.burger.dto.CartVO;
 import com.ezen.burger.dto.GuestVO;
 import com.ezen.burger.dto.MemberVO;
+import com.ezen.burger.dto.ProductVO;
+import com.ezen.burger.dto.orderVO;
+import com.ezen.burger.service.CartService;
 import com.ezen.burger.service.MemberService;
+import com.ezen.burger.service.OrderService;
+import com.ezen.burger.service.ProductService;
 
 @Controller
 public class MemberController {
 	@Autowired
 	MemberService ms;
+	@Autowired
+	ProductService ps;
+	@Autowired
+	OrderService os;
+	@Autowired
+	CartService cs;
+	
 	
 	// 로그인 페이지로 이동
 	@RequestMapping(value="/loginForm")
@@ -175,7 +190,8 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/deliveryForm")
-	public ModelAndView deliveryForm(HttpServletRequest request) {
+	public ModelAndView deliveryForm(HttpServletRequest request,
+			@RequestParam("kind1") String kind1) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		int memberKind = (int)session.getAttribute("memberkind");
@@ -186,7 +202,14 @@ public class MemberController {
 			if(mvo == null) {
 				mav.setViewName("redirect:/loginForm");
 			}else {
+				ArrayList<ProductVO> list = ps.getProductList(kind1);
+				ArrayList<orderVO> list1 = os.getOrderList(mvo.getId());
+				ArrayList<CartVO> list2 = cs.selectCart( mvo.getId() );	
 				
+				request.setAttribute("ovo", list1);
+				request.setAttribute("cvo", list2);
+				request.setAttribute("productList", list);
+				mav.addObject("kind1", kind1);
 				mav.setViewName("delivery/delivery");
 			}
 		}else if(memberKind == 2){
@@ -195,6 +218,7 @@ public class MemberController {
 				mav.setViewName("redirect:/loginForm");
 			}else {
 				
+				mav.addObject("kind1", kind1);
 				mav.setViewName("delivery/delivery");
 			}
 		}
