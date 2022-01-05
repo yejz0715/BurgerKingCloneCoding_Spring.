@@ -209,21 +209,17 @@ public class AdminController {
 	
 	@RequestMapping(value="/adminEventWrite", method=RequestMethod.POST)
 	public String adminEventWrite(Model model, HttpServletRequest request ) {
-		HttpSession session = request.getSession();
-		if (session.getAttribute("loginAdmin") == null) {
-			return "admin/adminLogin";
-		} else {
+		
+		
 	
 			return "admin/event/eventList";
-		}
+		
 }
 	@RequestMapping(value = "/adminEventDelete")
 	public String adminEventDelete(@RequestParam("delete") int[] eseqArr) {
 		for (int eseq : eseqArr)
 			es.deleteEvent(eseq);
 		return "redirect:/adminEventList";
-
-	
 }
 
 
