@@ -224,6 +224,7 @@ public class OtherController {
 				mav.addObject("MemberVO", mvo);
 				mav.setViewName("delivery/myPage");
 			}else if(memberKind == 2){
+				mav.addObject("kind1", 1);
 				mav.setViewName("redirect:/deliveryForm");
 			}else {
 				mav.setViewName("redirect:/loginForm");
