@@ -189,14 +189,14 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/adminEventDetail")
-	public String adminEventDetail(/* HttpServletRequest request, */Model model, @RequestParam("eseq")int eseq) {
-		/*HttpSession session = request.getSession();
+	public String adminEventDetail(HttpServletRequest request, Model model, @RequestParam("eseq")int eseq) {
+		HttpSession session = request.getSession();
 		if (session.getAttribute("loginAdmin") == null) {
 			return "admin/adminLogin";
-		} else {*/
+		} else {
 			model.addAttribute("EventVO",as.getEvent(eseq));			
 			return "admin/event/eventDetail";
-		
+		}
    }
 	@RequestMapping("/adminEventWriteForm")
 	public String adminEventWriteForm(HttpServletRequest request, Model model) {
@@ -218,7 +218,7 @@ public class AdminController {
 		}
 }
 	@RequestMapping(value = "/adminEventDelete")
-	public String adminEventDelete(@RequestParam("eseq") int[] eseqArr) {
+	public String adminEventDelete(@RequestParam("delete") int[] eseqArr) {
 		for (int eseq : eseqArr)
 			as.deleteEvent(eseq);
 		return "redirect:/eventList";
