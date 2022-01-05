@@ -59,7 +59,7 @@
 					<c:choose>
 						<c:when test="${empty qnaList}">
 							<tr align="center">
-								<td colspan="6">
+								<td colspan="6"> 
 									<span>작성하신 문의가 없습니다.</span>
 								</td>
 							</tr>

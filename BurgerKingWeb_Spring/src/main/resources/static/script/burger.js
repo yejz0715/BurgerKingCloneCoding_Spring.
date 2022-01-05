@@ -173,7 +173,7 @@ function del_qna(){
 	}else{
 		for( var i=0; i<document.frm.delete.length; i++){
 			if( document.frm.delete[i].checked==true)
-				count++;
+				count++; 
 		}
 	}
 	// 지금의 스크립트 명령은 체크박스가 하나도 체크되지 않았다면 원래로 되돌아 가기위한 코드들입니다
