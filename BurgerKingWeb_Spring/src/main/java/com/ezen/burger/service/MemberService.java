@@ -51,4 +51,9 @@ public class MemberService {
 		
 		return gvo;
 	}
+
+	public void deleteMember(int mseq) {
+		mdao.deleteMyaddress(mseq);
+		mdao.deleteMember(mseq);
+	}
 }
