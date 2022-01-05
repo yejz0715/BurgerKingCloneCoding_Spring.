@@ -194,7 +194,7 @@ public class AdminController {
 			return "admin/adminLogin";
 		} else {
 			EventVO evo =es.getEvent(eseq);
-			model.addAttribute("EventVO", evo);			
+			model.addAttribute("eventVO", evo);	
 			return "admin/event/eventDetail";
 		}
    }
@@ -220,8 +220,8 @@ public class AdminController {
 	@RequestMapping(value = "/adminEventDelete")
 	public String adminEventDelete(@RequestParam("delete") int[] eseqArr) {
 		for (int eseq : eseqArr)
-			as.deleteEvent(eseq);
-		return "redirect:/eventList";
+			es.deleteEvent(eseq);
+		return "redirect:/adminEventList";
 
 	
 }

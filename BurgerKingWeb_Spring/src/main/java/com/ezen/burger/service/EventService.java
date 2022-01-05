@@ -33,4 +33,9 @@ public class EventService {
 		
 		return edao.getEvent(eseq);
 	}
+
+	public void deleteEvent(int eseq) {
+		edao.deleteEvent(eseq);
+		
+	}
 }

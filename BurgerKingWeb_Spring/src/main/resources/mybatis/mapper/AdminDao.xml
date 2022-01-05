@@ -38,11 +38,7 @@
 		) where rn &lt;= #{param1.endNum}
 	</select>
 
-	<select id="getEvent" resultType="com.ezen.burger.dto.EventVO">
-		select * from event where eseq=#{parma1}
-	</select>
 
-	<delete id="deleteEvent" >
-		delete from event where eseq=#{param1}
-	</delete>
+
+
 </mapper>

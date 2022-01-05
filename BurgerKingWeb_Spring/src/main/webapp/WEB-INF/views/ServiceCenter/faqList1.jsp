@@ -128,7 +128,7 @@
 							<td colspan="3"><div class="text_area">A. 배달이 어려운 일부 디저트
 									메뉴를 제외하고, 버거킹 매장에서 판매하고 있는 대부분의 제품을 배달해 드리고 있습니다. 메뉴 창에서 주문이 가능한
 									제품을 확인하실 수 있습니다.</div></td>
-						</tr>
+						</tr> 
 					</tbody>
 					<tbody class="">
 						<tr class="acc_tit_tr">
