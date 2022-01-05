@@ -41,7 +41,7 @@
 				<input type="password" name="pass" size="4">
 			</fieldset>
 			<div class="clear"></div>
-			
+			 
 			<div class="qna_button_area">
 				<div class="tab_cont">
 					<div class="faq_category">

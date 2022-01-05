@@ -19,8 +19,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ezen.burger.dto.CartVO;
 import com.ezen.burger.dto.GuestVO;
 import com.ezen.burger.dto.MemberVO;
+import com.ezen.burger.dto.MyAddressVO;
 import com.ezen.burger.dto.ProductVO;
 import com.ezen.burger.dto.orderVO;
+import com.ezen.burger.service.AddressService;
 import com.ezen.burger.service.CartService;
 import com.ezen.burger.service.MemberService;
 import com.ezen.burger.service.OrderService;
@@ -36,6 +38,8 @@ public class MemberController {
 	OrderService os;
 	@Autowired
 	CartService cs;
+	@Autowired
+	AddressService as;
 	
 	
 	// 로그인 페이지로 이동
@@ -194,33 +198,53 @@ public class MemberController {
 			@RequestParam("kind1") String kind1) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
-		int memberKind = (int)session.getAttribute("memberkind");
-		
-		// 회원 종류 검사 (1:회원, 2:비회원)
-		if(memberKind == 1) {
-			MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
-			if(mvo == null) {
-				mav.setViewName("redirect:/loginForm");
+		if(session.getAttribute("memberkind") != null) {
+			int memberKind = (int)session.getAttribute("memberkind");
+			// 회원 종류 검사 (1:회원, 2:비회원)
+			if(memberKind == 1) {
+				MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
+				if(mvo == null) {
+					mav.setViewName("redirect:/loginForm");
+				}else {
+					MyAddressVO avo = as.getMyAddress(mvo.getMseq());
+					if(avo == null) {
+						ArrayList<orderVO> list1 = os.getOrderList(mvo.getId());
+						ArrayList<CartVO> list2 = cs.selectCart( mvo.getId() );	
+						
+						mav.addObject("ovo", list1);
+						mav.addObject("cvo", list2);
+						mav.setViewName("delivery/addressSet");
+					}else {
+						ArrayList<ProductVO> list = ps.getProductList(kind1);
+						ArrayList<orderVO> list1 = os.getOrderList(mvo.getId());
+						ArrayList<CartVO> list2 = cs.selectCart( mvo.getId() );	
+						
+						mav.addObject("ovo", list1);
+						mav.addObject("cvo", list2);
+						mav.addObject("productList", list);
+						mav.addObject("kind1", kind1);
+						mav.setViewName("delivery/delivery");
+					}
+				}
+			}else if(memberKind == 2){
+				GuestVO gvo = (GuestVO)session.getAttribute("loginUser");
+				if(gvo == null) {
+					mav.setViewName("redirect:/loginForm");
+				}else {
+					if(gvo.getAddress() == null) {
+						mav.setViewName("delivery/addressSet");
+					}else {
+						ArrayList<ProductVO> list = ps.getProductList(kind1);
+						mav.addObject("productList", list);
+						mav.addObject("kind1", kind1);
+						mav.setViewName("delivery/delivery");
+					}
+				}
 			}else {
-				ArrayList<ProductVO> list = ps.getProductList(kind1);
-				ArrayList<orderVO> list1 = os.getOrderList(mvo.getId());
-				ArrayList<CartVO> list2 = cs.selectCart( mvo.getId() );	
-				
-				mav.addObject("ovo", list1);
-				mav.addObject("cvo", list2);
-				mav.addObject("productList", list);
-				mav.addObject("kind1", kind1);
-				mav.setViewName("delivery/delivery");
-			}
-		}else if(memberKind == 2){
-			GuestVO gvo = (GuestVO)session.getAttribute("loginUser");
-			if(gvo == null) {
 				mav.setViewName("redirect:/loginForm");
-			}else {
-				
-				mav.addObject("kind1", kind1);
-				mav.setViewName("delivery/delivery");
 			}
+		}else {
+			mav.setViewName("redirect:/loginForm");
 		}
 		return mav;
 	}

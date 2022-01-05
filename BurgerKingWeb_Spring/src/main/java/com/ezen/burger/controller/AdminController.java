@@ -208,10 +208,9 @@ public class AdminController {
 	@RequestMapping(value = "/adminEventDelete")
 	public String adminEventDelete(@RequestParam("delete") int[] eseqArr) {
 		for (int eseq : eseqArr)
-			as.deleteEvent(eseq);
-		return "redirect:/eventList";
+			es.deleteEvent(eseq);
+		return "redirect:/adminEventList";
 
-	
 }
 
 
@@ -250,7 +249,6 @@ public class AdminController {
 			return "redirect:/adminMemberList";
 		}
 	}
-
 	
 	@RequestMapping(value="/adminQnaList")
 	public String adminQnaList(HttpServletRequest request, Model model) {
@@ -325,10 +323,9 @@ public class AdminController {
 			return "admin/adminLogin";
 		}else {
 			qs.updateQna(qseq, reply);
-			return "redirect:/adminQnaDetail";
+			return "redirect:/adminQnaDetail?qseq="+qseq;
 		}		
 		
 	}
-	
 	
 }

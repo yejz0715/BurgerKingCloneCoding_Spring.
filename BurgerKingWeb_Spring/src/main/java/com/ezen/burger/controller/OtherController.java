@@ -30,7 +30,7 @@ public class OtherController {
 	@RequestMapping(value="/")
 
 	public String index() {
-		return "redirect:/admin";
+		return "redirect:/main";
 	}  
 	
 	@RequestMapping(value="/main")
@@ -105,20 +105,23 @@ public class OtherController {
 			return mav;
 		}
 	
-	// 고객센터 qna pass검사
+	// 고객센터 qna passform
 	@RequestMapping(value="/passCheckForm" , method=RequestMethod.POST)
 	 public ModelAndView passCheckForm(@RequestParam("qseq")int qseq) {
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("QnaVO", qs.getpassChk(qseq));
-	    mav.setViewName("ServiceCenter/passChk");  
+	    mav.setViewName("ServiceCenter/passChk");   
 	      return mav;
 	   }
 	
 	
-	
-	@RequestMapping(value="/passChk")
-	public ModelAndView passChk (HttpServletRequest request ) {
+	// 고객센터 qna pass검사
+	@RequestMapping(value="/passChk" , method=RequestMethod.POST)
+	public ModelAndView passChk (HttpServletRequest request , @RequestParam("qseq")int qseq) {
 		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		mav.addObject("QnaVO", qs.getpassChk(qseq));
+	    mav.setViewName("ServiceCenter/qnaView");   
 		
 		return mav;
 	}
