@@ -15,5 +15,4 @@ public interface IMemberDao {
 	public MemberVO getMember_mseq(int mseq);
 	public void updateMember(@Valid MemberVO mvo);
 	public int selectGseq();
-
 }
