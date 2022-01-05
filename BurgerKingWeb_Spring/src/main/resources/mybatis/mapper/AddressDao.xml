@@ -7,4 +7,10 @@
 	<select id="getMyAddress" resultType="com.ezen.burger.dto.MyAddressVO">
 		select * from myaddress where mseq = #{param1}
 	</select>
+	<select id="selectAddressByDong" resultType="com.ezen.burger.dto.AddressVO">
+		select * from address where dong like '%'||#{param1}||'%'
+	</select>
+	<insert id="setUserAddress" parameterType="com.ezen.burger.dto.MyAddressVO">
+		insert into myaddress(mseq, zip_num, address) values(#{mseq}, #{zip_num}, #{address})
+	</insert>
 </mapper>

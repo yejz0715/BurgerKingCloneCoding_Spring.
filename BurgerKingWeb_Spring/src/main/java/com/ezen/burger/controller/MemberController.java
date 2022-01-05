@@ -198,47 +198,50 @@ public class MemberController {
 			@RequestParam("kind1") String kind1) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
-		int memberKind = (int)session.getAttribute("memberkind");
-		
-		// 회원 종류 검사 (1:회원, 2:비회원)
-		if(memberKind == 1) {
-			MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
-			if(mvo == null) {
-				mav.setViewName("redirect:/loginForm");
-			}else {
-				MyAddressVO avo = as.getMyAddress(mvo.getMseq());
-				if(avo == null) {
-					ArrayList<orderVO> list1 = os.getOrderList(mvo.getId());
-					ArrayList<CartVO> list2 = cs.selectCart( mvo.getId() );	
-					
-					mav.addObject("ovo", list1);
-					mav.addObject("cvo", list2);
-					mav.setViewName("delivery/addressSet");
+		if(session.getAttribute("memberkind") != null) {
+			int memberKind = (int)session.getAttribute("memberkind");
+			// 회원 종류 검사 (1:회원, 2:비회원)
+			if(memberKind == 1) {
+				MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
+				if(mvo == null) {
+					mav.setViewName("redirect:/loginForm");
 				}else {
-					ArrayList<ProductVO> list = ps.getProductList(kind1);
-					ArrayList<orderVO> list1 = os.getOrderList(mvo.getId());
-					ArrayList<CartVO> list2 = cs.selectCart( mvo.getId() );	
-					
-					mav.addObject("ovo", list1);
-					mav.addObject("cvo", list2);
-					mav.addObject("productList", list);
-					mav.addObject("kind1", kind1);
-					mav.setViewName("delivery/delivery");
+					MyAddressVO avo = as.getMyAddress(mvo.getMseq());
+					if(avo == null) {
+						ArrayList<orderVO> list1 = os.getOrderList(mvo.getId());
+						ArrayList<CartVO> list2 = cs.selectCart( mvo.getId() );	
+						
+						mav.addObject("ovo", list1);
+						mav.addObject("cvo", list2);
+						mav.setViewName("delivery/addressSet");
+					}else {
+						ArrayList<ProductVO> list = ps.getProductList(kind1);
+						ArrayList<orderVO> list1 = os.getOrderList(mvo.getId());
+						ArrayList<CartVO> list2 = cs.selectCart( mvo.getId() );	
+						
+						mav.addObject("ovo", list1);
+						mav.addObject("cvo", list2);
+						mav.addObject("productList", list);
+						mav.addObject("kind1", kind1);
+						mav.setViewName("delivery/delivery");
+					}
 				}
-			}
-		}else if(memberKind == 2){
-			GuestVO gvo = (GuestVO)session.getAttribute("loginUser");
-			if(gvo == null) {
-				mav.setViewName("redirect:/loginForm");
-			}else {
-				if(gvo.getAddress() == null) {
-					mav.setViewName("delivery/addressSet");
+			}else if(memberKind == 2){
+				GuestVO gvo = (GuestVO)session.getAttribute("loginUser");
+				if(gvo == null) {
+					mav.setViewName("redirect:/loginForm");
 				}else {
-					ArrayList<ProductVO> list = ps.getProductList(kind1);
-					mav.addObject("productList", list);
-					mav.addObject("kind1", kind1);
-					mav.setViewName("delivery/delivery");
+					if(gvo.getAddress() == null) {
+						mav.setViewName("delivery/addressSet");
+					}else {
+						ArrayList<ProductVO> list = ps.getProductList(kind1);
+						mav.addObject("productList", list);
+						mav.addObject("kind1", kind1);
+						mav.setViewName("delivery/delivery");
+					}
 				}
+			}else {
+				mav.setViewName("redirect:/loginForm");
 			}
 		}else {
 			mav.setViewName("redirect:/loginForm");
