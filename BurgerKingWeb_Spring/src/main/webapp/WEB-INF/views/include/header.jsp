@@ -77,7 +77,7 @@
 							</a>
 						</c:when>
 						<c:otherwise>
-							<a id="order_btn" href="deliveryForm&kind1=1"> 
+							<a id="order_btn" href="deliveryForm?kind1=1"> 
 								<img src="image/main/delivery1.png" width="160" height="50" />
 							</a>
 						</c:otherwise>
