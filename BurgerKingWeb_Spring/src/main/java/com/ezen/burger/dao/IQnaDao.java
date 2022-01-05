@@ -20,5 +20,7 @@ public interface IQnaDao {
 	QnaVO getpassChk(int qseq);
 
 	void updateQna(int qseq, String reply);
+
+
 	
 }

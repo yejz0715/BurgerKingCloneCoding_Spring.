@@ -37,4 +37,8 @@ public class QnaService {
 		qdao.updateQna(qseq, reply);		
 	}
 
+
+
+
+
 }
