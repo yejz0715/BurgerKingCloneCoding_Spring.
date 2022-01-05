@@ -11,4 +11,5 @@ public interface IMemberDao {
 	public MemberVO findPwd(String name, String id);
 	public void updatePwd(String mseq, String pwd);
 	public void adminMemberDelete(int mseq);
+	public int selectGseq();
 }

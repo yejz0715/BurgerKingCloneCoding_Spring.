@@ -19,4 +19,8 @@
 	<update id="updatePwd">
 		update member set pwd = #{param2} where mseq = #{param1}
 	</update>
+	
+	<select id="selectGseq" resultType="_int">
+		select gseq.nextVal from dual
+	</select>
 </mapper>

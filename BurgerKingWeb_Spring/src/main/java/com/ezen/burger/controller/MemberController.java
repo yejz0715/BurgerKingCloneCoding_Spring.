@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ezen.burger.dto.GuestVO;
 import com.ezen.burger.dto.MemberVO;
 import com.ezen.burger.service.MemberService;
 
@@ -59,6 +60,7 @@ public class MemberController {
 		}else if(mvo.getPwd().equals(membervo.getPwd())) { // 정상 로그인
 			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", mvo);
+			session.setAttribute("memberkind", mvo.getMemberkind());
 			return "redirect:/";
 		}else { // 기타 원인을 알 수 없는 오류
 			model.addAttribute("message", "알수없는 이유로 로그인 실패.");
@@ -156,5 +158,46 @@ public class MemberController {
 	@RequestMapping(value="/guestLoginForm")
 	public String guestLoginForm() {
 		return "member/guestLoginForm";
+	}
+	
+	@RequestMapping(value="/guestLogin")
+	public ModelAndView guestLogin(HttpServletRequest request,
+			@RequestParam("name") String name, @RequestParam("phone") String phone,
+			@RequestParam("pwd") String pwd) {
+		ModelAndView mav = new ModelAndView();
+		GuestVO gvo = ms.guestSessionLogin(name, phone, pwd);
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("loginUser", gvo);
+		session.setAttribute("memberkind", gvo.getMemberkind());
+		mav.setViewName("redirect:/");
+		return mav;
+	}
+	
+	@RequestMapping(value="/deliveryForm")
+	public ModelAndView deliveryForm(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		int memberKind = (int)session.getAttribute("memberkind");
+		
+		// 회원 종류 검사 (1:회원, 2:비회원)
+		if(memberKind == 1) {
+			MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
+			if(mvo == null) {
+				mav.setViewName("redirect:/loginForm");
+			}else {
+				
+				mav.setViewName("delivery/delivery");
+			}
+		}else if(memberKind == 2){
+			GuestVO gvo = (GuestVO)session.getAttribute("loginUser");
+			if(gvo == null) {
+				mav.setViewName("redirect:/loginForm");
+			}else {
+				
+				mav.setViewName("delivery/delivery");
+			}
+		}
+		return mav;
 	}
 }	
