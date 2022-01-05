@@ -1,7 +1,9 @@
 package com.ezen.burger.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartRequest;
 
 import com.ezen.burger.dto.AdminVO;
 import com.ezen.burger.dto.EventVO;
@@ -24,6 +27,7 @@ import com.ezen.burger.service.AdminService;
 import com.ezen.burger.service.EventService;
 import com.ezen.burger.service.MemberService;
 import com.ezen.burger.service.QnaService;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 @Controller
 public class AdminController {
@@ -38,6 +42,9 @@ public class AdminController {
 	
 	@Autowired
 	EventService es;
+	
+	@Autowired
+	ServletContext context; 
 
 	@RequestMapping(value = "/adminLogin", method = RequestMethod.POST)
 	public String adminLogin(@ModelAttribute("dto") @Valid AdminVO adminvo, BindingResult result,
@@ -196,11 +203,27 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/adminEventWrite", method=RequestMethod.POST)
-	public String adminEventWrite(Model model, HttpServletRequest request ) {
+	public String adminEventWrite(@ModelAttribute("dto") @Valid EventVO eventvo,
+			BindingResult result, Model model, HttpServletRequest request) {
 		
+		System.out.println("subject : " + eventvo.getSubject() );
+		System.out.println("content : " + eventvo.getContent() );
+		System.out.println("enddate : " + eventvo.getEnddate() );
+		System.out.println("image : " + eventvo.getImage() );
 		
-	
-			return "admin/event/eventList";
+		if( result.getFieldError("subject")!=null) {
+			return "evnet/evnetWriteForm";
+		}else  if(result.getFieldError("content")!=null) {
+			return "evnet/evnetWriteForm";
+		}else if(result.getFieldError("enddate")!=null) {
+			return "evnet/evnetWriteForm";
+		}else if(result.getFieldError("image")!=null) {
+			return "evnet/evnetWriteForm";
+		}else {
+			es.insertEvent(eventvo);
+			return "redirect:/adminEventList";
+		
+		}
 		
 }
 	@RequestMapping(value = "/adminEventDelete")

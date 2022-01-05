@@ -2,6 +2,8 @@ package com.ezen.burger.service;
 
 import java.util.ArrayList;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +38,11 @@ public class EventService {
 
 	public void deleteEvent(int eseq) {
 		edao.deleteEvent(eseq);
+		
+	}
+
+	public void insertEvent(EventVO eventvo) {
+		edao.insertEvent(eventvo);
 		
 	}
 }
