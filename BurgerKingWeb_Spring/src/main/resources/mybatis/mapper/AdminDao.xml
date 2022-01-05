@@ -28,18 +28,6 @@
 		delete from member where mseq=#{param1}
 	</delete>
 
-
-
-
-
-
-
-
-
-
-
-
-
 	<select id="listEvent" resultType="com.ezen.burger.dto.EventVO">
 		select * from (
 		select * from(

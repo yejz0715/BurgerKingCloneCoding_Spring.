@@ -34,14 +34,6 @@ public class AdminService {
 	public void adminMemberDelete(int mseq) {
 		adao.adminMemberDelete(mseq);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 
 	public ArrayList<EventVO> listEvent(Paging paging, String key) {
 		return adao.listEvent(paging, key);
