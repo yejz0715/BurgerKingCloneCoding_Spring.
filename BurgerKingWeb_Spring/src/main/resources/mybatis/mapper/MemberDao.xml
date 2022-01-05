@@ -32,4 +32,11 @@
 		select gseq.nextVal from dual
 	</select>
 
+	<delete id="deleteMember" parameterType="_int">
+		delete from member where mseq = #{param1}
+	</delete>
+	
+	<delete id="deleteMyaddress" parameterType="_int">
+		delete from myaddress where mseq = #{param1}
+	</delete>
 </mapper>

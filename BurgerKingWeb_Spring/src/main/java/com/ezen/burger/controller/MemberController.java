@@ -289,7 +289,33 @@ public class MemberController {
 				mvo.setName(request.getParameter("name"));
 				mvo.setPhone(request.getParameter("phone"));
 				ms.updateMember(mvo);
+				
+				session.setAttribute("loginUser", mvo);
+				session.setAttribute("memberkind", mvo.getMemberkind());
 				mav.setViewName("redirect:/deliveryMypageForm");
+			}else if(memberKind == 2){
+				mav.addObject("kind1", 1);
+				mav.setViewName("redirect:/deliveryForm");
+			}else {
+				mav.setViewName("redirect:/loginForm");
+			}
+		}else {
+			mav.setViewName("redirect:/loginForm");
+		}
+		return mav;
+	}
+	
+	@RequestMapping(value="/memberDelete")
+	public ModelAndView memberDelete(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		if(session.getAttribute("memberkind") != null) {
+			int memberKind = (int)session.getAttribute("memberkind");
+			if(memberKind == 1) {
+				int mseq = Integer.parseInt(request.getParameter("mseq"));
+				ms.deleteMember(mseq);
+				session.invalidate();
+				mav.setViewName("redirect:/loginForm");
 			}else if(memberKind == 2){
 				mav.addObject("kind1", 1);
 				mav.setViewName("redirect:/deliveryForm");
