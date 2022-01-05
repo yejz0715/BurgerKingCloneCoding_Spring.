@@ -19,12 +19,24 @@ public interface IAdminDao {
 
 	int getAllCount(String tableName, String fieldName, String key);
 
-
-	ArrayList<EventVO> listEvent(Paging paging, String key);
-
 	ArrayList<MemberVO> listMember(Paging paging, String key);
 
 	void adminMemberDelete(int mseq);
+	
+
+	
+	
+	
+	
+	
+	
+	ArrayList<EventVO> listEvent(Paging paging, String key);
+
+	EventVO getEvent(int eseq);
+
+	void deleteEvent(int eseq);
+
+	
 
 	
 }

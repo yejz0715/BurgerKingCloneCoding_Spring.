@@ -27,17 +27,34 @@ public class AdminService {
 		return adao.getAllCount(tableName,fieldName,key);
 	}
 
-
-	public ArrayList<EventVO> listEvent(Paging paging, String key) {
-		return adao.listEvent(paging, key);
-	}
 	public ArrayList<MemberVO> listMember(Paging paging, String key) {
 		return adao.listMember(paging, key);
 	}
 
 	public void adminMemberDelete(int mseq) {
 		adao.adminMemberDelete(mseq);
-		
-
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+
+	public ArrayList<EventVO> listEvent(Paging paging, String key) {
+		return adao.listEvent(paging, key);
+	}
+
+	public EventVO getEvent(int eseq) {
+		return adao.getEvent(eseq);
+	}
+
+	public void deleteEvent(int eseq) {
+		adao.deleteEvent(eseq);
+		
+	}
+
+	
 }
