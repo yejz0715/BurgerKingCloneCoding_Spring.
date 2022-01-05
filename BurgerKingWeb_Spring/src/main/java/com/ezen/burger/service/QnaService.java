@@ -27,6 +27,15 @@ public class QnaService {
 		return qdao.getQna(qseq);
 	}
 
+	public void deleteQna(int qseq) {
+		qdao.deleteQna(qseq);
+	}
+
+	public QnaVO getpassChk(int qseq) {
+		return qdao.getpassChk(qseq);
+	}
+
+
 
 
 

@@ -16,7 +16,7 @@
 		<ul id="terms_wrap_ul" style="right: 0; top:0">
 			<li>
 				<span>
-					<a href="faqForm&fnum=1">FAQ</a>
+					<a href="faqListForm?fnum=1">FAQ</a>
 				</span>
 			</li>
 			<li><span><a href="qnaForm" style="color: red; text-decoration: underline;">문의</a></span></li>
@@ -77,7 +77,7 @@
 												<c:when test="${qnaVO.rep==1}"> no </c:when>
 												<c:when test="${qnaVO.rep==2}"> yes </c:when>
 											</c:choose>
-										</td>
+										</td> 
 										<td>
 											<input type="checkbox" style="position:relative; opacity:1;" name="delete" value="${qnaVO.qseq}">
 										</td>
