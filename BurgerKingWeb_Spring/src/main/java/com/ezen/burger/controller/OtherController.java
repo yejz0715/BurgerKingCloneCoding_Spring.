@@ -199,6 +199,26 @@ public class OtherController {
 	public String deliveryUseForm() {
 		return "ServiceCenter/deliveryuse";
 	} 
+	
+	@RequestMapping(value="/deliveryMypageForm")
+	public ModelAndView deliveryMypageForm(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		if(session.getAttribute("memberkind") != null) {
+			int memberKind = (int)session.getAttribute("memberkind");
+			if(memberKind == 1) {
+				
+				mav.setViewName("delivery/myPage");
+			}else if(memberKind == 2){
+				mav.setViewName("redirect:/deliveryForm");
+			}else {
+				mav.setViewName("redirect:/loginForm");
+			}
+		}else {
+			mav.setViewName("redirect:/loginForm");
+		}
+		return mav;
+	}
 }
 
 
