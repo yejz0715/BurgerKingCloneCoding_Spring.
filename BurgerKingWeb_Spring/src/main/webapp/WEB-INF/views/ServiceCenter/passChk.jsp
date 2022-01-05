@@ -2,8 +2,7 @@
 <%@ include file="../include/header.jsp"%>
 		<div style="text-align: center">
 			<form name="frm" method="post" action="passChk">
-				<input type="hidden" name="command" value="passCheck">
-				<input type="hidden" name="qseq" value="${qvo.qseq}">
+				<input type="hidden" name="qseq" value="${qseq}">
 				<span>
 					<h2>작성 시 입력했던 비밀번호 4자리를 입력해주세요.</h2><br>
 					<label>${message}</label><br>

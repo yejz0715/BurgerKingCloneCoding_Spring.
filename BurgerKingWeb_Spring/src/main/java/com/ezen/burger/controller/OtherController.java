@@ -113,7 +113,7 @@ public class OtherController {
 		
 		
 		
-		mav.addObject("QnaVO", qs.getpassChk(qseq));
+		mav.addObject("qseq", qseq);
 	    mav.setViewName("ServiceCenter/passChk");   
 	      return mav;
 	   }
@@ -123,20 +123,19 @@ public class OtherController {
 
 	// 고객센터 qna pass검사
 		@RequestMapping(value="/passChk" , method=RequestMethod.POST)
-		public ModelAndView passChk (HttpServletRequest request , Model model, 
-				@RequestParam("qseq")int qseq, @RequestParam("pass")int pass) {
+		public ModelAndView passChk (HttpServletRequest request , Model model) {
 			ModelAndView mav = new ModelAndView();
 			HttpSession session = request.getSession();
-
-			/*
-			 * QnaVO qvo = qs.getpassChk(qvo.getPass()); if(
-			 * !qvo.getPass().equals(qvo.getPass())) { model.addAttribute("message",
-			 * "비밀번호가 일치하지 않습니다"); return mav; }
-			 */
-			mav.addObject("QnaVO", qs.getpassChk(pass));
-			mav.addObject("QnaVO", qs.getpassChk(qseq));
-			mav.setViewName("ServiceCenter/qnaView");
-	 
+			int pass = Integer.parseInt(request.getParameter("pass"));
+			int qseq = Integer.parseInt(request.getParameter("qseq"));
+			QnaVO qvo = qs.getpassChk(qseq); 
+			if(!qvo.getPass().equals(pass)) { 
+				mav.addObject("message", "비밀번호가 일치하지 않습니다"); 
+				mav.setViewName("ServiceCenter/passChk");
+			}else {
+				mav.addObject("QnaVO", qvo);
+				mav.setViewName("ServiceCenter/qnaView");
+			}
 			
 			return mav;
 		}
