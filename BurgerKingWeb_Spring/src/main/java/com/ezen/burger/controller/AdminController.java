@@ -194,7 +194,8 @@ public class AdminController {
 			return "admin/adminLogin";
 		} else {
 			EventVO evo =es.getEvent(eseq);
-			model.addAttribute("EventVO", evo);			
+			model.addAttribute("EventVO", evo);	
+			System.out.println(evo);
 			return "admin/event/eventDetail";
 		}
    }

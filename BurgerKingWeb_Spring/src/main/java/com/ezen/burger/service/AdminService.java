@@ -47,10 +47,7 @@ public class AdminService {
 		return adao.listEvent(paging, key);
 	}
 
-	public EventVO getEvent(int eseq) {
-		return adao.getEvent(eseq);
-	}
-
+	
 	public void deleteEvent(int eseq) {
 		adao.deleteEvent(eseq);
 		

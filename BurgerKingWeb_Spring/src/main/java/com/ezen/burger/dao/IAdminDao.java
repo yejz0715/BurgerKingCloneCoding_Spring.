@@ -32,7 +32,7 @@ public interface IAdminDao {
 	
 	ArrayList<EventVO> listEvent(Paging paging, String key);
 
-	EventVO getEvent(int eseq);
+	
 
 	void deleteEvent(int eseq);
 
