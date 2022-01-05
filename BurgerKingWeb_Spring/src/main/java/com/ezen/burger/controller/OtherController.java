@@ -30,7 +30,7 @@ public class OtherController {
 	@RequestMapping(value="/")
 
 	public String index() {
-		return "redirect:/admin";
+		return "redirect:/main";
 	}  
 	
 	@RequestMapping(value="/main")
@@ -117,11 +117,16 @@ public class OtherController {
 	
 	// 고객센터 qna pass검사
 	@RequestMapping(value="/passChk" , method=RequestMethod.POST)
-	public ModelAndView passChk (HttpServletRequest request , @RequestParam("qseq")int qseq) {
+	public ModelAndView passChk (HttpServletRequest request , Model model, 
+			@RequestParam("qseq")int qseq, @RequestParam("pass")int pass) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
+		
+		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
+		mav.addObject("QnaVO", qs.getpassChk(pass));
 		mav.addObject("QnaVO", qs.getpassChk(qseq));
-	    mav.setViewName("ServiceCenter/qnaView");   
+		mav.setViewName("ServiceCenter/qnaView");
+ 
 		
 		return mav;
 	}
@@ -134,16 +139,8 @@ public class OtherController {
 	public ModelAndView qna_view(Model model, HttpServletRequest request,
 			@RequestParam("qseq") int qseq) {
 		ModelAndView mav = new ModelAndView();
-		
-
-		HttpSession session = request.getSession();
-	    MemberVO mvo = (MemberVO) session.getAttribute("loginUser");
-	    
-		if (mvo == null) mav.setViewName("member/loginform");
-		else {
-			mav.addObject("QnaVO", qs.getQna(qseq) );
-			mav.setViewName("ServiceCenter/qnaView");
-		}
+		mav.addObject("QnaVO", qs.getQna(qseq) );
+		mav.setViewName("ServiceCenter/qnaView");
 		return mav;
 	}
 	
