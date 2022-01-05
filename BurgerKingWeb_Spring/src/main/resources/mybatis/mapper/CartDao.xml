@@ -4,5 +4,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="com.ezen.burger.dao.ICartDao">
-
+	<select id="selectCart" resultType="com.ezen.burger.dto.CartVO">
+		select * from cart_view where id=#{param1} and result='1'
+	</select>
 </mapper>

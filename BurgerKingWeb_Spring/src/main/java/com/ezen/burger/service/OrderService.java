@@ -14,7 +14,6 @@ public class OrderService {
 	IOrderDao odao;
 
 	public ArrayList<orderVO> getOrderList(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		return odao.getOrderList(id);
 	}
 }

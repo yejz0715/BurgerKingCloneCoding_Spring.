@@ -14,7 +14,6 @@ public class CartService {
 	ICartDao cdao;
 
 	public ArrayList<CartVO> selectCart(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		return cdao.selectCart(id);
 	}
 }
