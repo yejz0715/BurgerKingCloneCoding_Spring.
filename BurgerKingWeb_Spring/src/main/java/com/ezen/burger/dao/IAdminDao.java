@@ -11,6 +11,7 @@ import com.ezen.burger.dto.EventVO;
 import com.ezen.burger.dto.MemberVO;
 
 import com.ezen.burger.dto.Paging;
+import com.ezen.burger.dto.QnaVO;
 
 @Mapper
 public interface IAdminDao {
@@ -23,20 +24,13 @@ public interface IAdminDao {
 
 	void adminMemberDelete(int mseq);
 	
-
-	
-	
-	
-	
-	
-	
 	ArrayList<EventVO> listEvent(Paging paging, String key);
 
-	
+	void deleteEvent(int eseq);
 
-	
+	ArrayList<QnaVO> listQna(Paging paging, String key);
 
-	
+	void adminQnaDelete(int qseq);
 
 	
 }

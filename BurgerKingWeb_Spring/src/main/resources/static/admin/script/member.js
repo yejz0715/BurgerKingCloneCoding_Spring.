@@ -39,25 +39,3 @@ function go_member_update(mseq){
 	document.frm.action = url;
 	document.frm.submit();
 }
-
-function go_member_save(){
-	if(document.frm.name.value==""){
-		alert("이름을 입력해주세요.");
-		document.frm.name.focus();
-		return false;
-	}else if(document.frm.pwd.value==""){
-		alert("비밀번호를 입력해주세요.");
-		document.frm.pwd.focus();
-		return false;
-	}else if(document.frm.pwd.value!=document.frm.pwd_chk.value){
-		alert("비밀번호와 비밀번호 확인를 일치시켜주세요.");
-		document.frm.pwd_chk.focus();
-		return false;
-	}else if(document.frm.phone.value==""){
-		alert("전화번호를 입력해주세요.");
-		document.frm.phone.focus();
-		return false;
-	}
-	
-	return true;
-}
