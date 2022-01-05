@@ -42,9 +42,15 @@
 						</div>
 					</c:when>
 					<c:when test="${memberkind == 2}">
-						<a href="/"><span>브랜드홈</span></a>
-						<a href="logout"><span>비회원 로그아웃</span></a>
-						<a style="display: none;"><span>회원 로그인</span></a>
+						<div class="WEB utilWrap">
+							<a href="/"><span>브랜드홈</span></a>
+							<a href="logout"><span>비회원 로그아웃</span></a>
+							<a style="display: none;"><span>회원 로그인</span></a>
+						</div>
+						<div class="WEB user">
+							<p><span>${loginUser.name}</span>님 안녕하세요</p>
+							<a href=""><strong>주소 설정하기</strong></a>
+						</div>
 					</c:when>
 					<c:otherwise>
 						<div class="WEB utilWrap">

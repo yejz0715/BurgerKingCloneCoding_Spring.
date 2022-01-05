@@ -180,7 +180,7 @@ function del_qna(){
 	if( count == 0 ){
 		alert("삭제할 항목을 선택해주세요");
 	} else{
-		document.frm.action = "burger.do?command=QnaDelete";
+		document.frm.action = "qnaDelete";
 	    document.frm.submit();
 	}
 }
@@ -222,7 +222,7 @@ function qna_write_chk(){
 }
 
 function input_pass(qseq){
-	var url = "burger.do?command=passCheckForm&qseq=" + qseq;
+	var url = "passCheckForm?qseq=" + qseq;
 	document.frm.action = url;
 	document.frm.submit();
 }
@@ -282,24 +282,17 @@ function term_open(){
 
 function check_Term(){
 	const query = 'input[name="guest_checkbox"]:checked';
-	const selectedEls = document.querySelector(query);
-					  
-	// 선택된 목록에서 value 찾기
-	let result = '';
-		selectedEls.forEach((el) => {
-		result += el.value + ' ';
+	const selectedEls = document.querySelectorAll(query);
+	let result = "";
+	selectedEls.forEach((el) => { 
+		result = el.value;
 	});
-					  
-	if( result == "1 2 " || result=="1 2 3 4 " || result=="1 2 3 " || result=="1 2 4 " || result=="1 2 3 4 5 ")
-	{	
-		document.contractFrm.action ="burger.do?command=joinpage";
-		document.contractFrm.submit(); 
-	}
-	else
-	{
-		alert('필수 이용약관에 동의해 주세요.');
-	}
-	if(document.frm.name.value==""){
+	
+	if(result != "on"){
+		alert("이용약관에 동의해주세요.");
+		return false;
+	}			  
+	else if(document.frm.name.value==""){
 		alert("이름을 작성해주세요.");
 		return false;
 	}else if(document.frm.phone.value==""){

@@ -41,13 +41,14 @@ DROP SEQUENCE pseq;
 DROP SEQUENCE qseq;
 DROP SEQUENCE spseq;
 DROP SEQUENCE aseq;
-
+DROP SEQUENCE gseq;
 
 
 /* Create Sequences */
 
 create sequence mseq increment by 1 start with 1;
 create sequence qseq increment by 1 start with 1;
+create sequence gseq increment by 1 start with 1;
 create sequence cseq increment by 1 start with 1;
 create sequence oseq increment by 1 start with 1;
 create sequence pseq increment by 1 start with 1;
