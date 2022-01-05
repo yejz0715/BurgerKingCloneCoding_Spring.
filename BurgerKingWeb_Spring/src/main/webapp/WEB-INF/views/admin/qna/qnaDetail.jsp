@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="/admin/header.jsp" %>
-<%@ include file="/admin/sub_menu.jsp"%>
+<%@ include file="../../admin/header.jsp" %>
+<%@ include file="../../admin/sub_menu.jsp"%>
 
 <article>
 	<h1>Q&amp;A 게시판</h1>
@@ -48,8 +48,8 @@
 				</table>
 			</c:otherwise>
 		</c:choose>
-		<input type="button" class="btn" value="목록" onclick="location.href='burger.do?command=adminQnaList'">
+		<input type="button" class="btn" value="목록" onclick="location.href='adminQnaList'">
 	</form>
 </article>
 
-<%@ include file="/admin/footer.jsp"%>
+<%@ include file="../../admin/footer.jsp"%>

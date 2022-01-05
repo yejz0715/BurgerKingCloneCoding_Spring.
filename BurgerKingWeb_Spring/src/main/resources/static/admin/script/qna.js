@@ -2,7 +2,7 @@ function go_qna_search(){
 	if(document.frm.key.value=="")
 		return;
 		
-	var url = "burger.do?command=adminQnaList&page=1";
+	var url = "adminQnaList?page=1";
 	// 보던 페이지가 어떤 페이지이던간에 검색 결과의 1페이지로 가기위해 파라미터 page를 1로 전송
 	document.frm.action = url;
 	document.frm.submit();
@@ -10,7 +10,7 @@ function go_qna_search(){
 
 function go_qna_total(){
 	document.frm.key.value="";
-	document.frm.action = "burger.do?command=adminQnaList&page=1";
+	document.frm.action = "adminQnaList?page=1";
 	document.frm.submit();
 }
 
@@ -29,16 +29,16 @@ function del_qna(){
 	if( count == 0 ){
 		alert("삭제할 항목을 선택해주세요");
 	} else{
-		document.frm2.action = "burger.do?command=adminQnaDelete";
+		document.frm2.action = "adminQnaDelete";
 	    document.frm2.submit();
 	}
 }
 
 function go_qna_view(qseq){
-	location.href = "burger.do?command=adminQnaDetail&qseq=" + qseq;
+	location.href = "adminQnaDetail?qseq=" + qseq;
 }
 
 function go_qna_rep(){
-	document.frm.action="burger.do?command=adminQnaRepsave";
+	document.frm.action="adminQnaRepsave";
 	document.frm.submit();
 }

@@ -27,6 +27,16 @@
 
 		delete from member where mseq=#{param1}
 	</delete>
+	
+	<select id="listQna" resultType="com.ezen.burger.dto.QnaVO">
+		select * from(select * from (select rownum as rn, p. * from
+		((select * from qna where id like '%'||#{param2}||'%' order by qseq desc) p))
+		where rn&gt;=#{param1.startNum}) where rn&lt;=#{param1.endNum}
+	</select>
+	
+	<delete id="adminQnaDelete" parameterType="int">
+		delete from qna where qseq=#{param1}
+	</delete>
 
 	<select id="listEvent" resultType="com.ezen.burger.dto.EventVO">
 		select * from (
@@ -38,7 +48,8 @@
 		) where rn &lt;= #{param1.endNum}
 	</select>
 
-
-
+	<delete id="deleteEvent" >
+		delete from event where eseq=#{param1}
+	</delete>
 
 </mapper>
