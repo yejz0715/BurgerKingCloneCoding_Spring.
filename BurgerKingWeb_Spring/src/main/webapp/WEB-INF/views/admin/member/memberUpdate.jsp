@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="/admin/header.jsp" %>
-<%@ include file="/admin/sub_menu.jsp"%>
+<%@ include file="../../admin/header.jsp" %>
+<%@ include file="../../admin/sub_menu.jsp"%>
 
 <article>
 	<h1>회원 정보 수정</h1>
-	<form name="frm" method="post" action="burger.do">
-		<input type="hidden" name="command" value="adminMemberUpdate">
+	<form name="frm" method="post" action="adminMemberUpdate">
 		<input type="hidden" name="mseq" value="${memberVO.mseq}">
 		<input type="hidden" name="id" value="${memberVO.id}">
 		<table id="list" width="500" border="1">
@@ -40,10 +39,11 @@
 				</td>
 			</tr>
 		</table>
-		<input type="submit" class="btn" value="수정" onclick="return go_member_save();">
+		<input type="submit" class="btn" value="수정" >
 		<input type="button" class="btn" value="취소" onclick=
-		"location.href='burger.do?command=adminMemberList'">
+		"location.href='adminMemberList'">
+		<h4 style="color: red">${message}</h4>
 	</form>
 </article>
 
-<%@ include file="/admin/footer.jsp"%>
+<%@ include file="../../admin/footer.jsp"%>

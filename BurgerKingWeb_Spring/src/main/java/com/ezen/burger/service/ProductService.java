@@ -24,4 +24,9 @@ public class ProductService {
 	public ArrayList<ProductVO> getProductkind(String kind1, String kind2) {
 		return pdao.getProductkind(kind1, kind2);
 	}
+
+	public ArrayList<ProductVO> getProductList(String kind1) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

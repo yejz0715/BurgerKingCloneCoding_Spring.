@@ -74,6 +74,6 @@
 				</c:if>
 			</div>
 		</div>
-		<%-- <c:if test="${!empty loginUser}">
+		<c:if test="${!empty loginUser && memberkind == 1}">
 			<%@ include file="../Delivery/deli_orderCart.jsp"%>		
-		</c:if> --%>
+		</c:if>

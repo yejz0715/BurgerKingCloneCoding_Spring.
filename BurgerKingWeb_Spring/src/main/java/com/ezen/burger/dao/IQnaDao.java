@@ -15,6 +15,12 @@ public interface IQnaDao {
 
 	QnaVO getQna(int qseq);
 
+	void deleteQna(int qseq);
+
+	QnaVO getpassChk(int qseq);
+
+
+
 
 	
 }

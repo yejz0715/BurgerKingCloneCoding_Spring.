@@ -115,17 +115,13 @@ public class AdminController {
 		return "admin/member/memberList";
 	}
 	
-	@RequestMapping(value = "/adminMemberDelete", method = RequestMethod.POST)
 
-	public String adminMemberDelete(@RequestParam("mseq") int[] mseqArr) {
-		for (int mseq : mseqArr)
-			ms.adminMemberDelete(mseq);
-		return "redirect:/memberList";
-
+	@RequestMapping(value="/adminMemberDelete", method=RequestMethod.POST)
+	public String adminMemberDelete(@RequestParam("mseq") int [] mseqArr) {
+		for(int mseq:mseqArr)
+			as.adminMemberDelete(mseq);
+		return "redirect:/adminMemberList";
 	}
-	
-	
-	
 	
 	
 	
@@ -225,6 +221,43 @@ public class AdminController {
 
 	
 }
+
+
+	@RequestMapping(value="/adminMemberUpdateForm")
+	public String adminMemberUpdateForm(@RequestParam("mseq") int mseq,
+			HttpServletRequest request, Model model) {
+		HttpSession session= request.getSession();
+		if( session.getAttribute("loginAdmin") == null) {
+			return "admin/adminLogin";
+		}else {
+			MemberVO mvo = ms.getMember_mseq(mseq);
+			model.addAttribute("memberVO", mvo);
+			
+			return "admin/member/memberUpdate";
+		}
+	}
+	
+	@RequestMapping(value="/adminMemberUpdate", method=RequestMethod.POST)
+	public String adminMemberUpdateForm(@ModelAttribute("memberVO") @Valid MemberVO mvo,
+			BindingResult result, HttpServletRequest request, Model model,
+			@RequestParam(value="pwd_chk", required=false) String pwd_chk) {
+		if(result.getFieldError("pwd")!=null) {
+			model.addAttribute("message", "암호를 입력하세요");
+			return "admin/member/memberUpdate";
+		}else if(result.getFieldError("name")!=null) {
+			model.addAttribute("message", "이름을 입력하세요");
+			return "admin/member/memberUpdate";
+		}else if(pwd_chk == null || (pwd_chk!=null && !pwd_chk.equals(mvo.getPwd()))) {
+			model.addAttribute("message", "비밀번호 확인이 일치하지 않습니다.");
+			return "admin/member/memberUpdate";
+		}if(result.getFieldError("phone")!=null) {
+			model.addAttribute("message", "전화번호를 입력하세요");
+			return "admin/member/memberUpdate";
+		}else {
+			ms.updateMember(mvo);
+			return "redirect:/adminMemberList";
+		}
+	}
 
 	
 }

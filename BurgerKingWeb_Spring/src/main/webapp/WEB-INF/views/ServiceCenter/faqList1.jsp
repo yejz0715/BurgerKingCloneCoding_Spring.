@@ -37,19 +37,19 @@
 					<span>제품/품질/서비스</span>
 				</label>
 				<label class="switch01">
-					<input type="radio" name="faqcategory" onclick="location.href='faqListForm&fnum=3'">
+					<input type="radio" name="faqcategory" onclick="location.href='faqListForm?fnum=3'">
 					<span>딜리버리 주문</span>
 				</label>
 				<label class="switch01">
-					<input type="radio"	 name="faqcategory" onclick="location.href='faqListForm&fnum=4'">
+					<input type="radio"	 name="faqcategory" onclick="location.href='faqListForm?fnum=4'">
 					<span>임대 / 가맹</span>
 				</label>
 				<label class="switch01">
-					<input type="radio" name="faqcategory" onclick="location.href='faqListForm&fnum=5'">
+					<input type="radio" name="faqcategory" onclick="location.href='faqListForm?fnum=5'">
 					<span>버거킹카드</span>
 				</label>
 				<label class="switch01">
-					<input type="radio" name="faqcategory" onclick="location.href='faqListForm&fnum=6'">
+					<input type="radio" name="faqcategory" onclick="location.href='faqListForm?fnum=6'">
 					<span>기타</span>
 				</label>
 			</div>

@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -61,8 +62,11 @@ public class OtherController {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		MemberVO mvo = (MemberVO) session.getAttribute("loginUser");
+		if (mvo == null) mav.setViewName("ServiceCenter/qnaList");
+		else {
 		mav.addObject("qnaList", qs.listQna(mvo.getId()) );
 		mav.setViewName("ServiceCenter/qnaList");
+		}
 		return mav;
 	}
 	
@@ -73,12 +77,12 @@ public class OtherController {
 	}
 	
 	// 고객센터 문의내용전송
-	@RequestMapping("qnaWrite")
+	@RequestMapping(value="qnaWrite" , method=RequestMethod.POST)
 	public ModelAndView qna_write( @ModelAttribute("dto") @Valid QnaVO qnavo,
 			BindingResult result, Model model, HttpServletRequest request){
 		ModelAndView mav = new ModelAndView();
 		if(result.getFieldError("subject") !=null) {
-			mav.addObject("message", "제목을 입력하세요");
+			mav.addObject("message", "제목을 입력하세요"); 
 			mav.setViewName("ServiceCenter/qnaWrite");
 			return mav;
 		}else if(result.getFieldError("content") !=null) {
@@ -101,24 +105,57 @@ public class OtherController {
 			return mav;
 		}
 	
+	// 고객센터 qna pass검사
+	@RequestMapping(value="/passCheckForm" , method=RequestMethod.POST)
+	 public ModelAndView passCheckForm(@RequestParam("qseq")int qseq) {
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("QnaVO", qs.getpassChk(qseq));
+	    mav.setViewName("ServiceCenter/passChk");  
+	      return mav;
+	   }
+	
+	
+	
+	@RequestMapping(value="/passChk")
+	public ModelAndView passChk (HttpServletRequest request ) {
+		ModelAndView mav = new ModelAndView();
+		
+		return mav;
+	}
+	
+	
+	
 	
 	// 고객센터 문의내용
-	@RequestMapping("/qnaView")
+	@RequestMapping(value="/qnaView")
 	public ModelAndView qna_view(Model model, HttpServletRequest request,
 			@RequestParam("qseq") int qseq) {
 		ModelAndView mav = new ModelAndView();
 		
+
 		HttpSession session = request.getSession();
 	    MemberVO mvo = (MemberVO) session.getAttribute("loginUser");
 	    
 		if (mvo == null) mav.setViewName("member/loginform");
 		else {
-			mav.addObject("qnaVO", qs.getQna(qseq) );
+			mav.addObject("QnaVO", qs.getQna(qseq) );
 			mav.setViewName("ServiceCenter/qnaView");
 		}
 		return mav;
 	}
 	
+	
+
+
+	
+	
+	// 고객센터 qna 삭제
+	@RequestMapping(value="qnaDelete" )
+	public String qnaDelete( @RequestParam("qseq") int [] qseqArr ) {
+		for( int qseq : qseqArr)
+			qs.deleteQna(qseq);
+		return "redirect:/qnaForm";
+	}
 	
 	
 	
