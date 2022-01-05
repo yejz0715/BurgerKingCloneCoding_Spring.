@@ -28,4 +28,9 @@ public class EventService {
 	public EventVO getDetailEvent(int eseq) {
 		return edao.getDetailEvent(eseq);
 	}
+
+	public EventVO getEvent(int eseq) {
+		
+		return edao.getEvent(eseq);
+	}
 }

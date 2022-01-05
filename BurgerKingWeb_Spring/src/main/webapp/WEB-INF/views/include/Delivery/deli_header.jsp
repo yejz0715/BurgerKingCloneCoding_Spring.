@@ -26,7 +26,7 @@
 					</c:when>
 					<c:otherwise>
 						<h1 class="WEB_logo">
-							<a href="deliveryForm&kind1=1"><span>버거킹</span></a>
+							<a href="deliveryForm?kind1=1"><span>버거킹</span></a>
 						</h1>
 					</c:otherwise>
 				</c:choose>
