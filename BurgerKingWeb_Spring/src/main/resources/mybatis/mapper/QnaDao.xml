@@ -19,4 +19,14 @@
  	</select>
  	
  	
+ 	<select id="getpassChk" resultType="com.ezen.burger.dto.QnaVO">
+		select * from qna where qseq = #{param1} 	
+	</select>
+	
+	
+ 	
+ 	<delete id="deleteQna">
+ 		delete from qna where qseq=#{param1}
+ 	</delete>
+ 	
 </mapper>

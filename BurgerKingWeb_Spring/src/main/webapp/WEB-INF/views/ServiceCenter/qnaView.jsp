@@ -31,7 +31,7 @@
 			<div class="clear"></div>
 			<div id="buttons" style="float: right">
 				<input type="button" value="목록보기" class="btn01" style="height: 68px; margin-bottom: 30px;"
-					onclick="location.href='burger.do?command=qnaForm'">
+					onclick="qnaForm'">
 			</div>
 		</form>
 	</div>
