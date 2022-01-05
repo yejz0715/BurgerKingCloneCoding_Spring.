@@ -23,7 +23,7 @@
 			<li><span><a href="appGuideForm">버거킹앱 이용안내</a></span></li>
 		</ul>
 	</div>
-	
+	 
 	<div class="web_container1">
 		<c:choose>
 			<c:when test="${empty loginUser}">
