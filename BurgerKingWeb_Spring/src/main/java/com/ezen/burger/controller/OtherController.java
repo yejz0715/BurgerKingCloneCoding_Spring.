@@ -30,7 +30,7 @@ public class OtherController {
 	@RequestMapping(value="/")
 
 	public String index() {
-		return "redirect:/main";
+		return "redirect:/admin";
 	}  
 	
 	@RequestMapping(value="/main")

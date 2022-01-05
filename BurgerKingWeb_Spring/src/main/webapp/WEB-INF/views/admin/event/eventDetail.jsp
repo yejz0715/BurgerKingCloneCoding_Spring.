@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="/admin/header.jsp" %>
-<%@ include file="/admin/sub_menu.jsp"%>
+<%@ include file="../../admin/header.jsp" %>
+<%@ include file="../../admin/sub_menu.jsp"%>
 
 <article>
 	<h1>이벤트 상세 보기</h1>
@@ -40,4 +40,4 @@
 	<input type="button" class="btn" value="목록" onclick="go_event_mov()">
 </article>
 
-<%@ include file="/admin/footer.jsp"%>
+<%@ include file="../../admin/footer.jsp"%>

@@ -1,5 +1,5 @@
 function go_event_wrt(){
-	document.frm.action = "burger.do?command=adminEventWriteForm";
+	document.frm.action = "adminEventWriteForm";
 	document.frm.submit();
 }
 
@@ -7,7 +7,7 @@ function go_event_search(){
 	if(document.frm.key.value=="")
 		return;
 		
-	var url = "burger.do?command=adminEventList&page=1";
+	var url = "adminEventList?page=1";
 	// 보던 페이지가 어떤 페이지이던간에 검색 결과의 1페이지로 가기위해 파라미터 page를 1로 전송
 	document.frm.action = url;
 	document.frm.submit();
@@ -15,7 +15,7 @@ function go_event_search(){
 
 function go_event_total(){
 	document.frm.key.value="";
-	document.frm.action = "burger.do?command=adminEventList&page=1";
+	document.frm.action = "adminEventList?page=1";
 	document.frm.submit();
 }
 
@@ -34,23 +34,23 @@ function del_event(){
 	if( count == 0 ){
 		alert("삭제할 항목을 선택해주세요");
 	} else{
-		document.frm.action = "burger.do?command=adminEventDelete";
+		document.frm.action = "adminEventDelete";
 	    document.frm.submit();
 	}
 }
 
 function go_event_detail(eseq){
-	var url = "burger.do?command=adminEventDetail&eseq=" + eseq;
+	var url = "adminEventDetail?eseq=" + eseq;
 	document.frm.action = url;
 	document.frm.submit();
 }
 
 function go_event_mov(){
-	location.href="burger.do?command=adminEventList";
+	location.href="adminEventList";
 }
 
 function go_event_mod(eseq){
-	var url = "burger.do?command=adminEventUpdateForm&eseq=" + eseq;
+	var url = "adminEventUpdateForm?eseq=" + eseq;
 	location.href=url;
 }
 
@@ -66,7 +66,7 @@ function go_event_mod_save(){
 		document.frm.content.focus();
 	}else{
 		if(confirm('수정하시겠습니까?')){
-			document.frm.action = "burger.do?command=adminEventUpdate";
+			document.frm.action = "adminEventUpdate";
 			document.frm.submit();
 		}
 	}
@@ -87,7 +87,7 @@ function go_event_save(){
 		alert("이벤트 이미지를 입력하세요");
 		theForm.image.focus();
 	}else{
-		theForm.action = "burger.do?command=adminEventWrite";
+		theForm.action = "adminEventWrite";
 		theForm.submit();
 	}
 }

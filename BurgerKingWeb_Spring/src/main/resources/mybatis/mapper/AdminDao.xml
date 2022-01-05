@@ -2,34 +2,59 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-	
+
 <mapper namespace="com.ezen.burger.dao.IAdminDao">
 	<select id="adminCheck" resultType="com.ezen.burger.dto.AdminVO">
-		select * from admin where id=#{param1}
+		select * from admin where
+		id=#{param1}
 	</select>
-	
+
 	<select id="getAllCount" resultType="_int">
-		select count(*) as count from ${param1} where ${param2} like '%'||#{param3}||'%' 
-	</select>
-	
-
-	<select id="listEvent" resultType="com.ezen.burger.dto.EventVO">
-		 select * from ( 
-		select * from(
-			select rownum as rn, p.* from ( (select * from event where subject  like '%'||#{param2}||'%'   
-			order by eseq desc) p )
-		) where rn &gt;= #{param1.startNum} 
-		) where rn &lt;= #{param1.endNum}  
+		select count(*) as count
+		from ${param1} where ${param2} like '%'||#{param3}||'%'
 	</select>
 
-	<select id="listMember" resultType="com.ezen.burger.dto.MemberVO">
+	<select id="listMember"
+		resultType="com.ezen.burger.dto.MemberVO">
 		select * from(select * from (select rownum as rn, p. * from
-		((select * from member where name like '%'||#{param2}||'%' order by mseq desc) p))
-		where rn&gt;=#{param1.startNum}) where rn&lt;=#{param1.endNum}
+		((select * from member where name like '%'||#{param2}||'%' order by
+		mseq desc) p))
+		where rn&gt;=#{param1.startNum}) where
+		rn&lt;=#{param1.endNum}
 	</select>
 	
 	<delete id="adminMemberDelete" parameterType="int">
+
 		delete from member where mseq=#{param1}
 	</delete>
 
+
+
+
+
+
+
+
+
+
+
+
+
+	<select id="listEvent" resultType="com.ezen.burger.dto.EventVO">
+		select * from (
+		select * from(
+		select rownum as rn, p.* from ( (select * from event where subject like
+		'%'||#{param2}||'%'
+		order by eseq desc) p )
+		) where rn &gt;= #{param1.startNum}
+		) where rn &lt;= #{param1.endNum}
+	</select>
+
+	<select id="getEvent" resultType="com.ezen.burger.dto.EventVO">
+		select * from event where eseq=#{parma1}
+	</select>
+
+	<delete id="deleteEvent" >
+		delete from event where eseq=#{param1}
+	</delete>
 </mapper>
