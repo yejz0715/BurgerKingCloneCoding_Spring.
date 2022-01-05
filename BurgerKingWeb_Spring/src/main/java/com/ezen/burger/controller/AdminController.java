@@ -16,17 +16,19 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartRequest;
 
 import com.ezen.burger.dto.AdminVO;
 import com.ezen.burger.dto.EventVO;
 import com.ezen.burger.dto.MemberVO;
 import com.ezen.burger.dto.Paging;
+import com.ezen.burger.dto.ProductVO;
 import com.ezen.burger.dto.QnaVO;
 import com.ezen.burger.service.AdminService;
 import com.ezen.burger.service.EventService;
 import com.ezen.burger.service.MemberService;
 import com.ezen.burger.service.QnaService;
+import com.oreilly.servlet.MultipartRequest;
+//github.com/Ezen-MVC-TeamProject/BurgerKingWeb_Spring
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 @Controller
@@ -44,7 +46,7 @@ public class AdminController {
 	EventService es;
 	
 	@Autowired
-	ServletContext context; 
+	ServletContext context;
 
 	@RequestMapping(value = "/adminLogin", method = RequestMethod.POST)
 	public String adminLogin(@ModelAttribute("dto") @Valid AdminVO adminvo, BindingResult result,
@@ -133,7 +135,7 @@ public class AdminController {
 	@RequestMapping(value="/adminMemberDelete", method=RequestMethod.POST)
 	public String adminMemberDelete(@RequestParam("mseq") int [] mseqArr) {
 		for(int mseq:mseqArr)
-			as.adminMemberDelete(mseq);
+			as.deleteMember(mseq);
 		return "redirect:/adminMemberList";
 	}
 	
@@ -345,7 +347,7 @@ public class AdminController {
 	@RequestMapping(value="/adminQnaDelete", method=RequestMethod.POST)
 	public String adminQnaDelete(@RequestParam("delete") int [] qseqArr) {
 		for(int qseq:qseqArr)
-			as.adminQnaDelete(qseq);
+			as.deleteQna(qseq);
 		return "redirect:/adminQnaList";
 	}
 	
@@ -373,6 +375,157 @@ public class AdminController {
 			return "redirect:/adminQnaDetail?qseq="+qseq;
 		}		
 		
+	}
+
+	@RequestMapping("adminShortProductList")
+	public String adminShortProductList(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		if (session.getAttribute("loginAdmin") == null) {
+			return "admin/adminLogin";
+		} else {
+			int page = 1;
+			if (request.getParameter("page") != null) {
+				page = Integer.parseInt(request.getParameter("page"));
+				session.setAttribute("page", page);
+			} else if (session.getAttribute("page") != null) {
+				page = (int) session.getAttribute("page");
+			} else {
+				page = 1;
+				session.removeAttribute("page");
+			}
+
+			String key = "";
+			if (request.getParameter("key") != null) {
+				key = request.getParameter("key");
+				session.setAttribute("key", key);
+			} else if (session.getAttribute("key") != null) {
+				key = (String) session.getAttribute("key");
+			} else {
+				session.removeAttribute("key");
+				key = "";
+			}
+
+			Paging paging = new Paging();
+			paging.setPage(page);
+
+			int count = as.getAllCount("product", "pname", key);
+			paging.setTotalCount(count);
+			paging.paging();
+
+			ArrayList<ProductVO> shortproductList = as.listShortProduct(paging, key);
+
+			model.addAttribute("shortproductList", shortproductList);
+			model.addAttribute("paging", paging);
+			model.addAttribute("key", key);
+		}
+		return "admin/product/shortproductList";
+	}
+	
+	@RequestMapping("adminProductList")
+	public String adminProductList(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		if (session.getAttribute("loginAdmin") == null) {
+			return "admin/adminLogin";
+		} else {
+			int page = 1;
+			if (request.getParameter("page") != null) {
+				page = Integer.parseInt(request.getParameter("page"));
+				session.setAttribute("page", page);
+			} else if (session.getAttribute("page") != null) {
+				page = (int) session.getAttribute("page");
+			} else {
+				page = 1;
+				session.removeAttribute("page");
+			}
+
+			String key = "";
+			if (request.getParameter("key") != null) {
+				key = request.getParameter("key");
+				session.setAttribute("key", key);
+			} else if (session.getAttribute("key") != null) {
+				key = (String) session.getAttribute("key");
+			} else {
+				session.removeAttribute("key");
+				key = "";
+			}
+
+			Paging paging = new Paging();
+			paging.setPage(page);
+
+			int count = as.getAllCount("product", "pname", key);
+			paging.setTotalCount(count);
+			paging.paging();
+
+			ArrayList<ProductVO> productList = as.listProduct(paging, key);
+
+			model.addAttribute("productList", productList);
+			model.addAttribute("paging", paging);
+			model.addAttribute("key", key);
+		}
+		return "admin/product/productList";
+	}
+	
+	@RequestMapping(value="/adminProductDelete", method=RequestMethod.POST)
+	public String adminProductDelete(@RequestParam("delete") int [] pseqArr) {
+		for(int pseq:pseqArr)
+			as.deleteProduct(pseq);
+		return "redirect:/adminShortProductList";
+	}
+	
+	@RequestMapping("/adminProductWriteForm")
+	public String adminProductWriteForm(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		if (session.getAttribute("loginAdmin") == null) {
+			return "admin/adminLogin";
+		} else {
+			String kindList[] = {"스페셜&할인팩", "프리미엄", "와퍼", "주니어&버거", "올데이킹&치킨버거", "사이드", "음료&디저트", "독퍼"};
+			model.addAttribute("kindList", kindList);
+			return "admin/product/productWrite";
+		}
+	}
+	
+	@RequestMapping("/adminShortProductWriteForm")
+	public String adminShortProductWriteForm(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		if (session.getAttribute("loginAdmin") == null) {
+			return "admin/adminLogin";
+		} else {
+			String kindList[] = {"스페셜&할인팩", "프리미엄", "와퍼", "주니어&버거", "올데이킹&치킨버거", "사이드", "음료&디저트", "독퍼"};
+			model.addAttribute("kindList", kindList);
+			return "admin/product/shortproductWrite";
+		}
+	}
+	
+	@RequestMapping(value="adminProductWrite" , method = RequestMethod.POST)
+	public String adminProductWrite(Model model ,  HttpServletRequest request) {
+		String savePath = context.getRealPath("/product_images");
+		System.out.println(savePath);
+		
+		try {
+			MultipartRequest multi = new MultipartRequest(request, savePath, 
+					5*1024*1024 , "UTF-8", new DefaultFileRenamePolicy());
+			ProductVO pvo = new ProductVO();
+			
+			pvo.setKind1(multi.getParameter("kind1"));
+			pvo.setKind2(multi.getParameter("kind2"));
+			pvo.setKind3(multi.getParameter("kind3"));
+			
+		    pvo.setPname(multi.getParameter("pname"));
+		    pvo.setPrice1(Integer.parseInt(multi.getParameter("price1")));
+		    pvo.setPrice2(Integer.parseInt("0"));
+		    pvo.setPrice3(Integer.parseInt("0"));
+		    pvo.setContent(multi.getParameter("content"));
+		    pvo.setImage(multi.getFilesystemName("image"));
+		    pvo.setUseyn(multi.getParameter("useyn"));
+		    
+		    if( multi.getParameter("pname") == null ) {
+		    	System.out.println("이름을 입력하세요");
+		    	model.addAttribute("pvo", pvo);
+		    	return "admin/product/productWriteForm.jsp";
+		    }
+		    as.insertProduct(pvo);
+		} catch (IOException e) {		e.printStackTrace();	}
+		return "redirect:/adminProductList";
 	}
 	
 }

@@ -23,7 +23,7 @@
 		rn&lt;=#{param1.endNum}
 	</select>
 	
-	<delete id="adminMemberDelete" parameterType="int">
+	<delete id="deleteMember">
 
 		delete from member where mseq=#{param1}
 	</delete>
@@ -34,7 +34,7 @@
 		where rn&gt;=#{param1.startNum}) where rn&lt;=#{param1.endNum}
 	</select>
 	
-	<delete id="adminQnaDelete" parameterType="int">
+	<delete id="deleteQna">
 		delete from qna where qseq=#{param1}
 	</delete>
 
@@ -51,5 +51,24 @@
 	<delete id="deleteEvent" >
 		delete from event where eseq=#{param1}
 	</delete>
-
+	
+	<select id="listShortProduct" resultType="com.ezen.burger.dto.ProductVO">
+		select * from(select * from (select rownum as rn, p. * from
+		((select * from product where pname like '%'||#{param2}||'%' and kind3='4' order by pseq desc) p))
+		where rn&gt;=#{param1.startNum}) where rn&lt;=#{param1.endNum}
+	</select>
+	
+	<select id="listProduct" resultType="com.ezen.burger.dto.ProductVO">
+		select * from(select * from (select rownum as rn, p. * from
+		((select * from product where pname like '%'||#{param2}||'%' and kind3&lt;'4' order by pseq desc) p))
+		where rn&gt;=#{param1.startNum}) where rn&lt;=#{param1.endNum}
+	</select>
+	
+	<delete id="deleteProduct">
+		delete from product where pseq=#{param1}
+	</delete>
+	
+	<insert id="insertProduct" parameterType="com.ezen.burger.dto.ProductVO">
+	
+	</insert>
 </mapper>
