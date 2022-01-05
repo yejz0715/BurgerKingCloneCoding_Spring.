@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ezen.burger.dto.GuestVO;
 import com.ezen.burger.dto.MemberVO;
 import com.ezen.burger.service.MemberService;
 
@@ -156,5 +157,19 @@ public class MemberController {
 	@RequestMapping(value="/guestLoginForm")
 	public String guestLoginForm() {
 		return "member/guestLoginForm";
+	}
+	
+	@RequestMapping(value="/guestLogin")
+	public ModelAndView guestLogin(HttpServletRequest request,
+			@RequestParam("name") String name, @RequestParam("phone") String phone,
+			@RequestParam("pwd") String pwd) {
+		ModelAndView mav = new ModelAndView();
+		GuestVO gvo = ms.guestSessionLogin(name, phone, pwd);
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("loginUser", gvo);
+		
+		mav.setViewName("redirect:/");
+		return mav;
 	}
 }	
