@@ -34,9 +34,8 @@ public class MemberService {
 		return mdao.getMember_mseq(mseq);
 	}
 
-	public void updateMember(@Valid MemberVO mvo) {
+	public void updateMember(MemberVO mvo) {
 		mdao.updateMember(mvo);
-		
 	}
 
 	public GuestVO guestSessionLogin(String name, String phone, String pwd) {

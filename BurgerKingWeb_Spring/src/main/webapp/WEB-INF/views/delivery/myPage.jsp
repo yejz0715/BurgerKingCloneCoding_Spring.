@@ -19,8 +19,8 @@
 	<div class="contentBox">
 	<p class="user"><strong>${MemberVO.name}님!&nbsp;</strong>반갑습니다.</p>
 	<div class="pageMove">
-	<a href="memberUpdateForm&id=${MemberVO.id}" ><span>정보변경&nbsp;</span></a>
-	<a  href="myAddressForm&id=${MemberVO.id}"><span>MY배달지</span></a>
+	<a href="memberUpdateForm"><span>정보변경&nbsp;</span></a>
+	<a href="myAddressForm"><span>MY배달지</span></a>
 	</div>
 	</div>
 
