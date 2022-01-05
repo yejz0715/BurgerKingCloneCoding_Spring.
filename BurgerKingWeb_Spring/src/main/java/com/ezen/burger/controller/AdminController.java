@@ -28,6 +28,7 @@ import com.ezen.burger.service.EventService;
 import com.ezen.burger.service.MemberService;
 import com.ezen.burger.service.QnaService;
 import com.oreilly.servlet.MultipartRequest;
+//github.com/Ezen-MVC-TeamProject/BurgerKingWeb_Spring
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 @Controller
@@ -204,23 +205,63 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/adminEventWrite", method=RequestMethod.POST)
-	public String adminEventWrite(Model model, HttpServletRequest request ) {
+	public String adminEventWrite(@ModelAttribute("dto") @Valid EventVO eventvo,
+			BindingResult result, Model model, HttpServletRequest request) {
+			
+		System.out.println("subject : " + eventvo.getSubject() );
+		System.out.println("content : " + eventvo.getContent() );
+		System.out.println("enddate : " + eventvo.getEnddate() );
+		System.out.println("image : " + eventvo.getImage() );
+		
+		if( result.getFieldError("subject")!=null) {
+			return "evnet/evnetWriteForm";
+		}else  if(result.getFieldError("content")!=null) {
+			return "evnet/evnetWriteForm";
+		}else if(result.getFieldError("enddate")!=null) {
+			return "evnet/evnetWriteForm";
+		}else if(result.getFieldError("image")!=null) {
+			return "evnet/evnetWriteForm";
+		}else {
+			es.insertEvent(eventvo);
+			return "redirect:/adminEventList";
+		}
+		}
+		
+
+	@RequestMapping(value = "/adminEventDelete")
+	public String adminEventDelete(@RequestParam("delete") int[] eseqArr,HttpServletRequest request ) {
 		HttpSession session = request.getSession();
 		if (session.getAttribute("loginAdmin") == null) {
 			return "admin/adminLogin";
 		} else {
-	
-			return "admin/event/eventList";
-		}
-}
-	@RequestMapping(value = "/adminEventDelete")
-	public String adminEventDelete(@RequestParam("delete") int[] eseqArr) {
 		for (int eseq : eseqArr)
 			es.deleteEvent(eseq);
 		return "redirect:/adminEventList";
-
-}
-
+      }
+	}
+	
+	@RequestMapping(value="/adminEventUpdateForm")
+	public String adminEventUpdateForm(@RequestParam("eseq") int eseq,
+			HttpServletRequest request, Model model) {
+		
+		HttpSession session= request.getSession();
+		if( session.getAttribute("loginAdmin") == null) {
+			return "admin/adminLogin";
+		}else {
+			EventVO evo = es.getEvent(eseq);
+			model.addAttribute("eventVO", evo);
+			
+			return "admin/event/evnetUpdate";
+		}
+	}
+	/*
+	 * @RequestMapping(value="/adminEventUpdate" , method=RequestMethod.POST) public
+	 * String adminEventUpdate(@ModelAttribute("EventVO") @Valid EventVO evo,
+	 * BindingResult result, HttpServletRequest request, Model model) {
+	 * 
+	 * }
+	 */
+	
 
 	@RequestMapping(value="/adminMemberUpdateForm")
 	public String adminMemberUpdateForm(@RequestParam("mseq") int mseq,
@@ -472,7 +513,7 @@ public class AdminController {
 		    pvo.setPname(multi.getParameter("pname"));
 		    pvo.setPrice1(Integer.parseInt(multi.getParameter("price1")));
 		    pvo.setPrice2(Integer.parseInt("0"));
-		    pvo.setPrice3(Integer.parseInt("0")
+		    pvo.setPrice3(Integer.parseInt("0"));
 		    pvo.setContent(multi.getParameter("content"));
 		    pvo.setImage(multi.getFilesystemName("image"));
 		    pvo.setUseyn(multi.getParameter("useyn"));
