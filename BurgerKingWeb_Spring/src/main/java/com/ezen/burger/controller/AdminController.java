@@ -19,8 +19,10 @@ import com.ezen.burger.dto.AdminVO;
 import com.ezen.burger.dto.EventVO;
 import com.ezen.burger.dto.MemberVO;
 import com.ezen.burger.dto.Paging;
+import com.ezen.burger.dto.QnaVO;
 import com.ezen.burger.service.AdminService;
 import com.ezen.burger.service.MemberService;
+import com.ezen.burger.service.QnaService;
 
 @Controller
 public class AdminController {
@@ -29,6 +31,9 @@ public class AdminController {
 	
 	@Autowired
 	MemberService ms;
+	
+	@Autowired
+	QnaService qs;
 	
 	@RequestMapping(value="/adminLogin", method=RequestMethod.POST)
 	public String adminLogin(@ModelAttribute("dto") @Valid AdminVO adminvo,
@@ -167,7 +172,6 @@ public class AdminController {
 		for(int mseq:mseqArr)
 			as.adminMemberDelete(mseq);
 		return "redirect:/adminMemberList";
-
 	}
 	
 	
@@ -206,5 +210,71 @@ public class AdminController {
 			return "redirect:/adminMemberList";
 		}
 	}
+	
+	@RequestMapping(value="/adminQnaList")
+	public String adminQnaList(HttpServletRequest request, Model model) {
+		HttpSession session= request.getSession();
+		if( session.getAttribute("loginAdmin") == null) {
+			return "admin/adminLogin";
+		}
+		else {						
+			int page = 1;
+			if(request.getParameter("page") != null){ 
+				page = Integer.parseInt(request.getParameter("page")); 
+				session.setAttribute("page", page); 
+			}else if(session.getAttribute("page") != null) { 
+				page = (int)session.getAttribute("page"); 
+			}else { 
+				page = 1;
+				session.removeAttribute("page"); 
+			}
+			
+			String key = "";
+			if(request.getParameter("key") != null) { 
+				key = request.getParameter("key"); session.setAttribute("key", key); 
+			}else if(session.getAttribute("key") != null) {
+				key = (String)session.getAttribute("key");
+			}else { 
+				session.removeAttribute("key");
+				key = "";
+			}
+			
+			
+			Paging paging = new Paging();
+			paging.setPage(page);
+			
+			int count = as.getAllCount("qna", "id", key);
+			paging.setTotalCount(count);
+			paging.paging();
+			
+			ArrayList<QnaVO> qnaList = as.listQna(paging, key);
+			
+			model.addAttribute("qnaList", qnaList);
+			model.addAttribute("paging",paging);
+			model.addAttribute("key",key);
+		}
+		return "admin/qna/qnaList";
+	}
+	
+	@RequestMapping(value="/adminQnaDelete", method=RequestMethod.POST)
+	public String adminQnaDelete(@RequestParam("delete") int [] qseqArr) {
+		for(int qseq:qseqArr)
+			as.adminQnaDelete(qseq);
+		return "redirect:/adminQnaList";
+	}
+	
+	@RequestMapping("/adminQnaDetail")
+	public String adminQnaDetail(@RequestParam("qseq") int qseq, HttpServletRequest request, Model model) {
+		HttpSession session= request.getSession();
+		if( session.getAttribute("loginAdmin") == null) {
+			return "admin/adminLogin";
+		}else {
+			QnaVO qvo = qs.getQna(qseq);
+			model.addAttribute("qnaVO",qvo);
+			return "admin/qna/qnaDetail";
+		}
+		
+	}
+	
 	
 }

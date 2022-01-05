@@ -13,6 +13,7 @@ import com.ezen.burger.dto.EventVO;
 import com.ezen.burger.dto.MemberVO;
 
 import com.ezen.burger.dto.Paging;
+import com.ezen.burger.dto.QnaVO;
 
 @Service
 public class AdminService {
@@ -38,5 +39,14 @@ public class AdminService {
 	public void adminMemberDelete(int mseq) {
 		adao.adminMemberDelete(mseq);
 	
+	}
+
+	public ArrayList<QnaVO> listQna(Paging paging, String key) {
+		return adao.listQna(paging, key);
+	}
+
+	public void adminQnaDelete(int qseq) {
+		adao.adminQnaDelete(qseq);
+		
 	}
 }
