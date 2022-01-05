@@ -28,8 +28,8 @@
 				<br>
 			</fieldset>
 			<div class="c_btnItem2">
-				<input type="reset" class="btn01 red" value="취소" /> <input
-					type="submit" class="btn01 m" value="저장하기" />
+				<input type="reset" class="btn01 red" value="취소" /> 
+				<input type="submit" class="btn01 m" value="저장하기" />
 			</div>
 		</form>
 	</div>
