@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.ezen.burger.dto.AdminVO;
 import com.ezen.burger.dto.EventVO;
 import com.ezen.burger.dto.MemberVO;
 import com.ezen.burger.dto.Paging;
 import com.ezen.burger.service.AdminService;
+import com.ezen.burger.service.EventService;
 import com.ezen.burger.service.MemberService;
 
 @Controller
@@ -30,6 +30,9 @@ public class AdminController {
 
 	@Autowired
 	MemberService ms;
+	
+	@Autowired
+	EventService es;
 
 	@RequestMapping(value = "/adminLogin", method = RequestMethod.POST)
 	public String adminLogin(@ModelAttribute("dto") @Valid AdminVO adminvo, BindingResult result,
@@ -190,7 +193,8 @@ public class AdminController {
 		if (session.getAttribute("loginAdmin") == null) {
 			return "admin/adminLogin";
 		} else {
-			model.addAttribute("EventVO",as.getEvent(eseq));			
+			EventVO evo =es.getEvent(eseq);
+			model.addAttribute("EventVO", evo);			
 			return "admin/event/eventDetail";
 		}
    }

@@ -7,7 +7,7 @@ function go_event_search(){
 	if(document.frm.key.value=="")
 		return;
 		
-	var url = "adminEventList&page=1";
+	var url = "adminEventList?page=1";
 	// 보던 페이지가 어떤 페이지이던간에 검색 결과의 1페이지로 가기위해 파라미터 page를 1로 전송
 	document.frm.action = url;
 	document.frm.submit();
@@ -15,7 +15,7 @@ function go_event_search(){
 
 function go_event_total(){
 	document.frm.key.value="";
-	document.frm.action = "adminEventList&page=1";
+	document.frm.action = "adminEventList?page=1";
 	document.frm.submit();
 }
 
@@ -40,7 +40,7 @@ function del_event(){
 }
 
 function go_event_detail(eseq){
-	var url = "adminEventDetail&eseq=" + eseq;
+	var url = "adminEventDetail?eseq=" + eseq;
 	document.frm.action = url;
 	document.frm.submit();
 }
@@ -50,7 +50,7 @@ function go_event_mov(){
 }
 
 function go_event_mod(eseq){
-	var url = "adminEventUpdateForm&eseq=" + eseq;
+	var url = "adminEventUpdateForm?eseq=" + eseq;
 	location.href=url;
 }
 
