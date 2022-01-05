@@ -248,4 +248,57 @@ public class MemberController {
 		}
 		return mav;
 	}
+	
+	@RequestMapping(value="/memberUpdateForm")
+	public ModelAndView memberUpdateForm(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		if(session.getAttribute("memberkind") != null) {
+			int memberKind = (int)session.getAttribute("memberkind");
+			if(memberKind == 1) {
+				MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
+				ArrayList<orderVO> list1 = os.getOrderList(mvo.getId());
+				ArrayList<CartVO> list2 = cs.selectCart( mvo.getId() );	
+				
+				mav.addObject("ovo", list1);
+				mav.addObject("cvo", list2);
+				mav.addObject("MemberVO", mvo);
+				mav.setViewName("member/updateForm");
+			}else if(memberKind == 2){
+				mav.addObject("kind1", 1);
+				mav.setViewName("redirect:/deliveryForm");
+			}else {
+				mav.setViewName("redirect:/loginForm");
+			}
+		}else {
+			mav.setViewName("redirect:/loginForm");
+		}
+		return mav;
+	}
+	
+	@RequestMapping(value="/updateMember")
+	public ModelAndView updateMember(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		if(session.getAttribute("memberkind") != null) {
+			int memberKind = (int)session.getAttribute("memberkind");
+			if(memberKind == 1) {
+				MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
+				mvo.setId(request.getParameter("id"));
+				mvo.setPwd(request.getParameter("pwd"));
+				mvo.setName(request.getParameter("name"));
+				mvo.setPhone(request.getParameter("phone"));
+				ms.updateMember(mvo);
+				mav.setViewName("redirect:/deliveryMypageForm");
+			}else if(memberKind == 2){
+				mav.addObject("kind1", 1);
+				mav.setViewName("redirect:/deliveryForm");
+			}else {
+				mav.setViewName("redirect:/loginForm");
+			}
+		}else {
+			mav.setViewName("redirect:/loginForm");
+		}
+		return mav;
+	}
 }	
