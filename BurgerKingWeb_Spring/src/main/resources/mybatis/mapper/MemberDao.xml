@@ -19,4 +19,12 @@
 	<update id="updatePwd">
 		update member set pwd = #{param2} where mseq = #{param1}
 	</update>
+	
+	<select id="getMember_mseq" resultType="com.ezen.burger.dto.MemberVO">
+		select * from member where mseq = #{param1}
+	</select>
+	
+	<update id="updateMember">
+	update member set pwd=#{pwd}, name=#{name}, phone=#{phone} where id =#{id}
+	</update>
 </mapper>

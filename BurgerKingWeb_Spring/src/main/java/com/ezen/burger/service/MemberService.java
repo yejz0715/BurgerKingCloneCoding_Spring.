@@ -1,5 +1,7 @@
 package com.ezen.burger.service;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,8 +29,12 @@ public class MemberService {
 		mdao.updatePwd(mseq, pwd);
 	}
 
-	public void adminMemberDelete(int mseq) {
-		mdao.adminMemberDelete(mseq);
+	public MemberVO getMember_mseq(int mseq) {
+		return mdao.getMember_mseq(mseq);
+	}
+
+	public void updateMember(@Valid MemberVO mvo) {
+		mdao.updateMember(mvo);
 		
 	}
 }

@@ -1,5 +1,7 @@
 package com.ezen.burger.dao;
 
+import javax.validation.Valid;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.ezen.burger.dto.MemberVO;
@@ -10,5 +12,6 @@ public interface IMemberDao {
 	public MemberVO findMember(String name, String phone);
 	public MemberVO findPwd(String name, String id);
 	public void updatePwd(String mseq, String pwd);
-	public void adminMemberDelete(int mseq);
+	public MemberVO getMember_mseq(int mseq);
+	public void updateMember(@Valid MemberVO mvo);
 }
