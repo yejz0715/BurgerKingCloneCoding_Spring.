@@ -8,7 +8,6 @@ import com.ezen.burger.dto.CartVO;
 
 @Mapper
 public interface ICartDao {
-
-	ArrayList<CartVO> selectCart(String id);
-	
+	public ArrayList<CartVO> selectCart(String id);
+	public void insertCart(CartVO cvo);
 }

@@ -7,4 +7,8 @@
 	<select id="selectCart" resultType="com.ezen.burger.dto.CartVO">
 		select * from cart_view where id=#{param1} and result='1'
 	</select>
+	
+	<insert id="insertCart" parameterType="com.ezen.burger.dto.CartVO">
+		insert into cart( cseq , id, pseq) values( cseq.nextVal, #{id}, #{pseq})
+	</insert>
 </mapper>

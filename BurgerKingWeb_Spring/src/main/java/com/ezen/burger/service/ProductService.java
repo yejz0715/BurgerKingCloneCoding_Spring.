@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.ezen.burger.dao.IProductDao;
 import com.ezen.burger.dto.ProductVO;
+import com.ezen.burger.dto.subProductVO;
+import com.ezen.burger.dto.subproductOrderVO;
 
 @Service
 public class ProductService {
@@ -27,5 +29,21 @@ public class ProductService {
 
 	public ArrayList<ProductVO> getProductList(String kind1) {
 		return pdao.getProductList(kind1);
+	}
+
+	public ArrayList<subproductOrderVO> selectSubProductOrder(int mseq) {
+		return pdao.selectSubProductOrder(mseq);
+	}
+
+	public ProductVO getDeliverydetail(int pseq) {
+		return pdao.getDeliveryDetail(pseq);
+	}
+
+	public ProductVO getProducts(int pseq) {
+		return pdao.getProducts(pseq);
+	}
+
+	public ArrayList<subProductVO> getSubProduct() {
+		return pdao.getSubProduct();
 	}
 }
