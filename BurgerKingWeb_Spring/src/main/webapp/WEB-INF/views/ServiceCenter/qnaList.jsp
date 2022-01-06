@@ -16,7 +16,7 @@
 		<ul id="terms_wrap_ul" style="right: 0; top:0">
 			<li>
 				<span>
-					<a href="faqListForm?fnum=1">FAQ</a>
+					<a href="faqListForm?kind1=1">FAQ</a>
 				</span>
 			</li>
 			<li><span><a href="qnaForm" style="color: red; text-decoration: underline;">문의</a></span></li>
