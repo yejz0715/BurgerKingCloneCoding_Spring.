@@ -67,7 +67,27 @@ public class CartController {
 				mav.setViewName("delivery/cart");
 			}else if(memberKind == 2) {
 				GuestVO gvo = (GuestVO)session.getAttribute("loginUser");
+				//해당 접속 회원의 주문 목록과 카트 목록 가져오기
+				ArrayList<orderVO> list1 = os.getOrderList(gvo.getId());
+				ArrayList<CartVO> list2 = cs.selectCart( gvo.getId() );
 				
+				// 가져온 카트 목록에서 가격 총합 계산 
+				int totalPrice = 0; 
+				for(CartVO cvo : list2) totalPrice += cvo.getPrice1() * cvo.getQuantity();
+				
+				// 해당 접속 회원의 추가 재료의 목록을 가져오기
+				ArrayList<subproductOrderVO> spovo = ps.selectSubProductOrder2(gvo.getGseq());
+				
+				// 추가 재료의 가격까지 총 가격으로 계산
+				for(int i = 0; i < spovo.size(); i++) {
+					totalPrice += spovo.get(i).getAddprice();
+				}
+		
+				// 해당 값을 전송
+				mav.addObject("totalPrice", totalPrice);
+				mav.addObject("spseqAm", spovo);
+				mav.addObject("ovo", list1);
+				mav.addObject("cvo", list2);
 				mav.setViewName("delivery/cart");
 			}else {
 				mav.setViewName("redirect:/loginForm");
