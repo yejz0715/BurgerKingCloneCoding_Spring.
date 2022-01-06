@@ -113,5 +113,10 @@ public class AdminService {
 		return adao.productDetail(pseq);
 	}
 
+	public void updateProduct(ProductVO pvo) {
+		adao.updateProduct(pvo);
+		
+	}
+
 
 }

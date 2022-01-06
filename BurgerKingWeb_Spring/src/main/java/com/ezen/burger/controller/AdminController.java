@@ -2,7 +2,6 @@ package com.ezen.burger.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import javax.servlet.ServletContext;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ezen.burger.dto.AdminVO;
 import com.ezen.burger.dto.EventVO;
@@ -680,6 +678,35 @@ public class AdminController {
 		return "admin/product/shortproductUpdate";
 	}
 	
-	
-	
+	@RequestMapping("adminShortProductUpdate")
+	public String adminShortProductUpdate(ProductVO pvo, HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		if (session.getAttribute("loginAdmin") == null) {
+			return "admin/adminLogin";
+		} else {						
+			String savePath = context.getRealPath("/images");
+			try {
+				MultipartRequest multi = new MultipartRequest(request, savePath, 5 * 1024 * 1024, "UTF-8",
+						new DefaultFileRenamePolicy());
+			 
+				pvo.setPseq(Integer.parseInt(multi.getParameter("pseq")));
+				pvo.setKind1(multi.getParameter("kind1"));
+				pvo.setKind2(multi.getParameter("kind2"));
+				pvo.setKind3(multi.getParameter("kind3"));
+				pvo.setPname(multi.getParameter("pname"));
+				pvo.setPrice1(0);
+				pvo.setPrice2(0);
+				pvo.setPrice3(0);
+				pvo.setContent("");
+				pvo.setUseyn(multi.getParameter("useyn"));
+				if(multi.getFilesystemName("image") == null)
+					pvo.setImage(multi.getParameter("oldImage"));
+				else
+					pvo.setImage(multi.getFilesystemName("image"));
+			
+				as.updateProduct(pvo);
+			} catch (IOException e) {e.printStackTrace();	}
+		}
+		return "redirect:/adminShortProductDetail";
+	}
 }

@@ -51,5 +51,6 @@ public interface IAdminDao {
 
 	ProductVO productDetail(int pseq);
 
-	
+	void updateProduct(ProductVO pvo);
+
 }
