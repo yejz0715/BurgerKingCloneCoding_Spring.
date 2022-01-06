@@ -354,33 +354,37 @@ public class MemberController {
 	
 	@RequestMapping(value="/joinpage", method=RequestMethod.POST)
 	public ModelAndView joinpage( @ModelAttribute("dto") @Valid MemberVO membervo,
-			BindingResult result, @RequestParam(value="re_id" , required = false) String reid, 
-			@RequestParam(value="pw_check" , required = false) String pwdchk, Model model) {
+			BindingResult result, @RequestParam(value="reid" , required = false) String reid, 
+			@RequestParam(value="pwCheck" , required = false) String pwCheck, Model model) {
 		ModelAndView mav = new ModelAndView();
 		
 		if( result.getFieldError("id") != null ) {
-			mav.addObject("message", "아이디 입력하세요");
-			mav.addObject("re_id", reid);
+			mav.addObject("message", result.getFieldError("id").getDefaultMessage() );
+			mav.addObject("reid", reid);
 			mav.setViewName("member/joinpage");
-		} else if( result.getFieldError("pw") != null ) {
-			mav.addObject("message", "비밀번호 입력하세요");
-			mav.addObject("re_id", reid);
+		} else if( result.getFieldError("pwd") != null ) {
+			mav.addObject("message", result.getFieldError("pwd").getDefaultMessage() );
+			mav.addObject("reid", reid);
 			mav.setViewName("member/joinpage");
 		} else if( result.getFieldError("name") != null ) {
 			mav.addObject("message", result.getFieldError("name").getDefaultMessage() );
-			mav.addObject("re_id", reid);
+			mav.addObject("reid", reid);
+			mav.setViewName("member/joinpage");
+		} else if( result.getFieldError("phone") != null ) {
+			mav.addObject("message", result.getFieldError("phone").getDefaultMessage() );
+			mav.addObject("reid", reid);
 			mav.setViewName("member/joinpage");
 		} else if( !membervo.getId().equals(reid)){
 			mav.addObject("message","아이디 중복체크가 되지 않았습니다");
 			mav.setViewName("member/joinpage");
-		} else if( !membervo.getPwd().equals(pwdchk)) {
-			mav.addObject("message","비밀번호 확인이 일치하시 않습니다.");
-			mav.addObject("re_id", reid);
+		} else if( !membervo.getPwd().equals(pwCheck)) {
+			mav.addObject("message","비밀번호 확인이 일치하지 않습니다.");
+			mav.addObject("reid", reid);
 			mav.setViewName("member/joinpage");
 		}else { 
-			ms.insertMember( membervo );
+			ms.insertMember(membervo);
 			mav.addObject("message", "회원가입이 완료되었습니다. 로그인 하세요");
-			mav.setViewName("loginform");
+			mav.setViewName("redirect:/loginform");
 		}		
 		return mav;
 	}

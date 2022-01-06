@@ -42,7 +42,7 @@
 
 	
 	<insert id="insertMember" parameterType="com.ezen.burger.dto.MemberVO">
-		insert into member ( mseq, id, pwd, name, phone )
-		values( mseq.nextVal, #{id}, #{pwd}, #{name}, #{phone} )
+		insert into member (mseq, id, pwd, phone, name)
+		values(mseq.nextVal, #{id}, #{pwd}, #{phone}, #{name})
 	</insert>
 </mapper>

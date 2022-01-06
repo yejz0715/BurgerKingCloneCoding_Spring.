@@ -62,7 +62,7 @@
 
 	<form method="post" name="joinpageForm" >
 <input type="hidden" name="command"  value="joinpageForm">
-
+	<fieldset>
 		<div class="contentsBox01">
 			<div class="web_container">
 				<div class="subtitWrap m_bg_basic">
@@ -82,7 +82,8 @@
 								<dd>
 									<div class="inpbox">
                               <label><input type="email" placeholder="이메일 아이디"
-                                 class="st02" name="id"><input type="hidden" name="reid" class="reid">
+                                 class="st02" name="id" value="${dto.id}">
+                                 <input type="hidden" name="reid" class="reid" value="${reid}">
                                  <button type="button" class="btn_del01"
                                     style="display: none;">
                                  
@@ -98,7 +99,7 @@
 								<dd>
 									<div class="inpbox">
 										<label><input type="text" placeholder="이름"
-											class="st02" id="name" name="name">
+											class="st02" id="name" name="name" value="${dto.name}">
 											<button type="button" class="btn_del01"
 												style="display: none;">
 											</button></label>
@@ -111,7 +112,7 @@
 								<dd>
 									<div class="inpbox">
 										<label><input type="text" placeholder="휴대폰 번호"
-											class="st02" id="phone" name="phone">
+											class="st02" id="phone" name="phone" value="${dto.phone}">
 											<button type="button" class="btn_del01"
 												style="display: none;">
 											</button></label>
@@ -132,7 +133,7 @@
 									<div class="inpbox">
 										<label><span class="hide">비밀번호</span><input
 											placeholder="비밀번호, 영문, 숫자, 특수문자 조합(10~20자 사이)"
-											type="password" class="st02" name="pwd" size="10"> </label>
+											type="password" class="st02" name="pwd" size="10" value="${dto.pwd}"> </label>
 										<p class="txt77">
 											<span>사용할 비밀번호를 입력해 주세요 </span>
 										</p>
@@ -146,7 +147,8 @@
 								<dd>
 									<div class="inpbox">
 										<label><span class="hide">비밀번호 확인</span><input
-											placeholder="비밀번호 확인" type="password" class="st02" name="pwdCheck" size="10">
+											placeholder="비밀번호 확인" type="password" class="st02" 
+											name="pwdCheck" size="10" value="${pwCheck}">
 											</label>
 										<p class="txt77">
 											<span>비밀번호를 다시한번 입력해 주세요.</span>
@@ -157,10 +159,10 @@
 						</div>
 					</div>
 					<div class="c_btn">
-						<button type="button" id="btnJoin" value="submit"
-							class="btn77 btn01_m" onclick="go_save()">
-							<span>회원가입</span><label>${message}</label><br>
-						</button>
+						<button type="submit" id="btnJoin" value="submit"
+							class="btn77 btn01_m" >
+							<span>회원가입</span><br>
+						</button><label>${message}</label>
 					</div>
 				</div>
 			<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
@@ -171,7 +173,7 @@
 		</div>
 					<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 			<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
+	</fieldset>
 	</form>
 </article>
 
