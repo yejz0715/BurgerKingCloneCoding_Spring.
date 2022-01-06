@@ -32,7 +32,7 @@
 		<tr>
 			<th>이벤트이미지</th>
 			<td colspan="5" align="center">
-				<img src="image/main/event/eventDetail/${eventVO.image}" width="200px">
+				<img src="upload/main/event/eventDetail/${eventVO.image}" width="200px">
 			</td>
 		</tr>
 	</table>

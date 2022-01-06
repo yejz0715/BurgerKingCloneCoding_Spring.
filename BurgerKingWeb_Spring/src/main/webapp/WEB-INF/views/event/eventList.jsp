@@ -29,12 +29,12 @@
 						<li><a
 							href="eventDetailForm?eseq=${EventVO.eseq}">
 								<input type="hidden" name="eseq" value="${EventVO.eseq}" /> <img
-								class="eventImg" src="image/main/event/${EventVO.image}" />
+								class="eventImg" src="upload/main/event/${EventVO.image}" />
 						</a>
 							<p>
-								<fmt:formatDate value="${EventVO.startdate}" type="date" />
+								${EventVO.startdate}
 								~
-								<fmt:formatDate value="${EventVO.enddate}" type="date" />
+								${EventVO.enddate}
 							</p></li>
 					</c:forEach>
 				</ul>

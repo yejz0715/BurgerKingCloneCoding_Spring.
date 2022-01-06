@@ -22,12 +22,12 @@
 	<div class="detailTit">
 	<input type="hidden" name="eseq" value="${EventVO.eseq}" />
 	<h2>${EventVO.subject}</h2>
-	<p><fmt:formatDate value="${EventVO.startdate}" type="date"/> ~
-	<fmt:formatDate value="${EventVO.enddate}" type="date"/>
+	<p>${EventVO.startdate} ~
+	${EventVO.enddate}
 	</p>
 	</div>
 	<div class="dt_ImgCon">
-	<img class="detailImg" src="image/main/event/eventDetail/${EventVO.image} "  />
+	<img class="detailImg" src="upload/main/event/eventDetail/${EventVO.image} "  />
 	<p>${EventVO.content}</p></div>
 	</li>
 	</ul>
