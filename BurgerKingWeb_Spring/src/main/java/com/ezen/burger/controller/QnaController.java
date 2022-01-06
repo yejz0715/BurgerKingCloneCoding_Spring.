@@ -132,7 +132,7 @@ public class QnaController {
 			mav.setViewName("ServiceCenter/qnaView");
 			return mav;
 		}
-		
+		 
 		
 		// 고객센터 qna 삭제
 		@RequestMapping(value="qnaDelete" )
