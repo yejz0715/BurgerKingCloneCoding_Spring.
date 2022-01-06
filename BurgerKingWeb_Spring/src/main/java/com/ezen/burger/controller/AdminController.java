@@ -1,11 +1,13 @@
 package com.ezen.burger.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ezen.burger.dto.AdminVO;
 import com.ezen.burger.dto.EventVO;
@@ -27,6 +30,7 @@ import com.ezen.burger.dto.QnaVO;
 import com.ezen.burger.service.AdminService;
 import com.ezen.burger.service.EventService;
 import com.ezen.burger.service.MemberService;
+import com.ezen.burger.service.ProductService;
 import com.ezen.burger.service.QnaService;
 import com.oreilly.servlet.MultipartRequest;
 //github.com/Ezen-MVC-TeamProject/BurgerKingWeb_Spring
@@ -45,6 +49,9 @@ public class AdminController {
 
 	@Autowired
 	EventService es;
+	
+	@Autowired
+	ProductService ps;
 
 	@Autowired
 	ServletContext context;
@@ -518,35 +525,163 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "adminProductWrite", method = RequestMethod.POST)
-	public String adminProductWrite(Model model, HttpServletRequest request) {
+	public String adminProductWrite(Model model, HttpServletRequest request,
+			HttpServletResponse response) {
 		String savePath = context.getRealPath("/images");
 		System.out.println(savePath);
 
 		try {
 			MultipartRequest multi = new MultipartRequest(request, savePath, 5 * 1024 * 1024, "UTF-8",
 					new DefaultFileRenamePolicy());
-			ProductVO pvo = new ProductVO();
-
-			pvo.setKind1(multi.getParameter("kind1"));
-			pvo.setKind2(multi.getParameter("kind2"));
-			pvo.setKind3(multi.getParameter("kind3"));
 			
-		    pvo.setPname(multi.getParameter("pname"));
-		    pvo.setPrice1(Integer.parseInt(multi.getParameter("price1")));
-		    pvo.setPrice2(Integer.parseInt("0"));
-		    pvo.setPrice3(Integer.parseInt("0"));
-		    pvo.setContent(multi.getParameter("content"));
-		    pvo.setImage(multi.getFilesystemName("image"));
-		    pvo.setUseyn(multi.getParameter("useyn"));
-		    
-		    if( multi.getParameter("pname") == null ) {
-		    	System.out.println("이름을 입력하세요");
-		    	model.addAttribute("pvo", pvo);
-		    	return "admin/product/productWrite.jsp";
-		    }
-		    as.insertProduct(pvo);
+			String k1 = multi.getParameter("kind1");
+			String k2 = multi.getParameter("kind2");
+			String k3 = multi.getParameter("kind3");
+			
+			int result = as.checkShortProductYN(k1, k2, k3);
+			
+			if(result == 2) {
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter writer = response.getWriter();
+				writer.println("<script>alert('해당하는 종류분류 값이 없습니다.'); location.href='adminProductWriteForm';</script>");
+				writer.close();
+			}else if(result == 3) {
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter writer = response.getWriter();
+				writer.println("<script>alert('해당하는 분류번호 값이 이미 있습니다.'); location.href='adminProductWriteForm';</script>");
+				writer.close();
+			}else if(result == 4) {
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter writer = response.getWriter();
+				writer.println("<script>alert('입력할 수 없는 세부 값입니다.'); location.href='adminProductWriteForm';</script>");
+				writer.close();
+			}else {
+				ProductVO pvo = new ProductVO();
+				
+				pvo.setKind1(multi.getParameter("kind1"));
+				pvo.setKind2(multi.getParameter("kind2"));
+				pvo.setKind3(multi.getParameter("kind3"));
+						
+			    pvo.setPname(multi.getParameter("pname"));
+			    pvo.setPrice1(Integer.parseInt(multi.getParameter("price1")));
+			    pvo.setPrice2(Integer.parseInt("0"));
+			    pvo.setPrice3(Integer.parseInt("0"));
+			    pvo.setContent(multi.getParameter("content"));
+			    pvo.setImage(multi.getFilesystemName("image"));
+			    pvo.setUseyn(multi.getParameter("useyn"));
+			    
+			    as.insertProduct(pvo);
+			}
+			
 		} catch (IOException e) {e.printStackTrace();	}
 		return "redirect:/adminProductList";
 	}
+	@RequestMapping(value = "adminShortProductWrite", method = RequestMethod.POST)
+	public String adminShortProductWrite(Model model, HttpServletRequest request,
+			HttpServletResponse response) {
+		String savePath = context.getRealPath("/images");
+		System.out.println(savePath);
 
+		try {
+			MultipartRequest multi = new MultipartRequest(request, savePath, 5 * 1024 * 1024, "UTF-8",
+					new DefaultFileRenamePolicy());
+			
+			String k1 = multi.getParameter("kind1");
+			String k2 = multi.getParameter("kind2");
+			
+			int result = as.checkShortProductYN2(k1, k2);
+			
+			if(result == 2) {
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter writer = response.getWriter();
+				writer.println("<script>alert('해당하는 분류번호 값이 이미 있습니다.'); location.href='adminShortProductWriteForm';</script>");
+				writer.close();
+			}else {
+				ProductVO pvo = new ProductVO();
+				pvo.setKind1(multi.getParameter("kind1"));
+				pvo.setKind2(multi.getParameter("kind2"));
+				pvo.setKind3("4");
+			    pvo.setPname(multi.getParameter("pname"));
+			    pvo.setPrice1(Integer.parseInt(multi.getParameter("price1")));
+			    pvo.setPrice2(0);
+			    pvo.setPrice3(0);
+			    pvo.setContent("");
+			    pvo.setImage(multi.getFilesystemName("image"));
+			    pvo.setUseyn(multi.getParameter("useyn"));
+			    
+			    as.insertProduct(pvo);
+			}
+			
+		} catch (IOException e) {e.printStackTrace();	}
+		return "redirect:/adminShortProductList";
+	}
+	@RequestMapping("adminProductDetail")
+	public String productDetail(@RequestParam("pseq") int pseq, HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		if (session.getAttribute("loginAdmin") == null) {
+			return "admin/adminLogin";
+		} else {
+			ProductVO pvo = as.productDetail(pseq);
+
+			// 카테고리 별 타이틀을 배열에 저장 
+			String kindList1[] = {"0", "스페셜&할인팩", "프리미엄", "와퍼", "주니어&버거", "올데이킹&치킨버거", "사이드", "음료&디저트", "독퍼"};
+			int index = Integer.parseInt(pvo.getKind1());
+			String kindList3[] = {"0", "Single", "Set", "LargeSet", "Menu list"};
+			int index2 = Integer.parseInt(pvo.getKind3());
+			// 추출한 kind 번호로 배열에서 해당 타이틀 추출 & 리퀘스트에 저장 
+			request.setAttribute("kind1", kindList1[index]);
+			request.setAttribute("kind3", kindList3[index2]);
+			request.setAttribute("productVO", pvo); 
+			return "admin/product/productDetail";
+		}
+	}
+	
+	@RequestMapping("adminShortProductDetail")
+	public String shortProductDetail(@RequestParam("pseq") int pseq, HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		if (session.getAttribute("loginAdmin") == null) {
+			return "admin/adminLogin";
+		} else {
+			ProductVO pvo = as.productDetail(pseq);
+
+			// 카테고리 별 타이틀을 배열에 저장 
+			String kindList1[] = {"0", "스페셜&할인팩", "프리미엄", "와퍼", "주니어&버거", "올데이킹&치킨버거", "사이드", "음료&디저트", "독퍼"};
+			int index = Integer.parseInt(pvo.getKind1());
+			String kindList3[] = {"0", "Single", "Set", "LargeSet", "Menu list"};
+			int index2 = Integer.parseInt(pvo.getKind3());
+			String useynList[] = {"0", "사용", "미사용"};
+			int index3 = Integer.parseInt(pvo.getUseyn());
+			// 추출한 kind 번호로 배열에서 해당 타이틀 추출 & 리퀘스트에 저장 
+			request.setAttribute("kind1", kindList1[index]);
+			request.setAttribute("kind3", kindList3[index2]);
+			request.setAttribute("useyn", useynList[index3]);
+			request.setAttribute("productVO", pvo); 
+			return "admin/product/shortproductDetail";
+		}
+	}
+	
+	@RequestMapping("adminProductUpdateForm")
+	public String adminProductUpdateForm(@RequestParam("pseq") int pseq, HttpServletRequest request, Model model) {
+		ProductVO pvo = as.productDetail(pseq);
+		model.addAttribute("productVO",pvo);
+		String kindList1[] = {"스페셜&할인팩", "프리미엄", "와퍼", "주니어&버거", "올데이킹&치킨버거", "사이드", "음료&디저트", "독퍼"};
+		request.setAttribute("kindList1", kindList1);
+		int index = Integer.parseInt(pvo.getKind1());
+		request.setAttribute("kind", kindList1[index-1]);
+		return "admin/product/productUpdate";
+	}
+	
+	@RequestMapping("adminShortProductUpdateForm")
+	public String adminShortProductUpdateForm(@RequestParam("pseq") int pseq, HttpServletRequest request, Model model) {
+		ProductVO pvo = as.productDetail(pseq);
+		model.addAttribute("productVO",pvo);
+		String kindList1[] = {"스페셜&할인팩", "프리미엄", "와퍼", "주니어&버거", "올데이킹&치킨버거", "사이드", "음료&디저트", "독퍼"};
+		request.setAttribute("kindList1", kindList1);
+		int index = Integer.parseInt(pvo.getKind1());
+		request.setAttribute("kind", kindList1[index-1]);
+		return "admin/product/shortproductUpdate";
+	}
+	
+	
+	
 }

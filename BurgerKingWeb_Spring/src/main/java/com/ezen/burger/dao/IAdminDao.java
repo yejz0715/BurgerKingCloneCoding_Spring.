@@ -45,5 +45,11 @@ public interface IAdminDao {
 
 	void updateEvent(EventVO evo);
 
+	ArrayList<ProductVO> selectProduct1(String k1);
+
+	ArrayList<ProductVO> selectProduct2(String k1, String k2);
+
+	ProductVO productDetail(int pseq);
+
 	
 }

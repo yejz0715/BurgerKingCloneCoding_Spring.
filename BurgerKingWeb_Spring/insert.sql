@@ -2580,3 +2580,5 @@ insert into admin values('admin', 'admin1234', '김우진', '010-2431-6247');
 delete from MYADDRESS where mseq=8
 update myaddress set mseq=8
 select*from member
+
+select * from product where kind1='1' and kind2 ='5'

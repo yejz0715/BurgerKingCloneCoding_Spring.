@@ -83,5 +83,35 @@ public class AdminService {
 		
 	}
 
+	public int checkShortProductYN(String k1, String k2, String k3) {
+		int result = 1;
+		ArrayList<ProductVO> list1=adao.selectProduct1(k1);
+		if(list1.size()==0) {
+			result=2; return result;
+		}
+		
+		ArrayList<ProductVO> list2=adao.selectProduct2(k1,k2);
+		if(list2.size()!=0) {
+			result=3; return result;
+		}
+		if(k3.equals("4")) {
+			result=4; return result;
+		}
+		return result;
+	}
+
+	public int checkShortProductYN2(String k1, String k2) {
+		int result = 1;
+		ArrayList<ProductVO> list2=adao.selectProduct2(k1,k2);
+		if(list2.size()!=0) {
+			result=2; return result;
+		}
+		return result;
+	}
+
+	public ProductVO productDetail(int pseq) {
+		return adao.productDetail(pseq);
+	}
+
 
 }

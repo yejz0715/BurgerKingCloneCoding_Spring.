@@ -82,4 +82,16 @@
 		image, useyn) values(pseq.nextVal, #{kind1}, #{kind2}, #{kind3}, #{pname}, #{price1}, #{price2}, #{price3}, 
 		#{content}, #{image}, #{useyn})
 	</insert>
+	
+	<select id="selectProduct1" resultType="com.ezen.burger.dto.ProductVO">
+		select * from product where kind1 = #{param1}
+	</select>
+	
+	<select id="selectProduct2" resultType="com.ezen.burger.dto.ProductVO">
+		select * from product where kind1= #{param1} and kind2 = #{param2}
+	</select>
+	
+	<select id="productDetail" resultType="com.ezen.burger.dto.ProductVO">
+		select * from product where pseq=#{param1}
+	</select>
 </mapper>
