@@ -73,4 +73,15 @@ public class AdminService {
 		
 	}
 
+	public void insertEvent(EventVO evo) {
+		adao.insertEvent(evo);
+		
+	}
+
+	public void updateEvent(EventVO evo) {
+	adao.updateEvent(evo);
+		
+	}
+
+
 }

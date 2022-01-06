@@ -52,6 +52,15 @@
 		delete from event where eseq=#{param1}
 	</delete>
 	
+	<insert id="insertEvent" parameterType="com.ezen.burger.dto.EventVO">
+		insert into event(eseq, subject, content, startdate, enddate, image, state)
+		values(event_eseq.nextVal, #{subject}, #{content}, #{startdate}, #{enddate}, #{image}, #{state} )
+	</insert>
+	
+	<update id="UpdateEvent">
+	update event set subject=#{subject}, content=#{content}, image=#{image}, enddate=#{enddate}, state=#{state} where eseq=#{eseq} 
+	</update>
+	
 	<select id="listShortProduct" resultType="com.ezen.burger.dto.ProductVO">
 		select * from(select * from (select rownum as rn, p. * from
 		((select * from product where pname like '%'||#{param2}||'%' and kind3='4' order by pseq desc) p))
@@ -69,7 +78,7 @@
 	</delete>
 	
 	<insert id="insertProduct" parameterType="com.ezen.burger.dto.ProductVO">
-		insert into product (pseq, kind1, kind2, kind3, pname, price1, price2, price3, content
+		insert into product (pseq, kind1, kind2, kind3, pname, price1, price2, price3, content,
 		image, useyn) values(pseq.nextVal, #{kind1}, #{kind2}, #{kind3}, #{pname}, #{price1}, #{price2}, #{price3}, 
 		#{content}, #{image}, #{useyn})
 	</insert>

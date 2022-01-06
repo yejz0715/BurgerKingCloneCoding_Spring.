@@ -34,8 +34,8 @@
 		eseq=#{param1}
 	</delete>
 	
-	<insert id="insertEvent" parameterType="com.ezen.burger.dto.EventVO">
-		insert into event(eseq, subject, content, startdate, enddate, image, state)
-		values(event_eseq.nextVal, #{subject}, #{content}, #{startdate}, #{enddate}, #{image}, #{state} )
-	</insert>
+	
+	
+	
+	
 </mapper>

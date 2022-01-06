@@ -37,13 +37,13 @@ public class EventService {
 	}
 
 	public void deleteEvent(int eseq) {
-		edao.deleteEvent(eseq);
+		edao.deleteEvent(eseq);	
+	}
+
+	
 		
 	}
 
-	public void insertEvent(EventVO eventvo) {
-		edao.insertEvent(eventvo);
-		
-	}
+	
 
-}
+

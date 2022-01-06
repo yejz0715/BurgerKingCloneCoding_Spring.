@@ -1,6 +1,7 @@
 package com.ezen.burger.controller;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import javax.servlet.ServletContext;
@@ -38,13 +39,13 @@ public class AdminController {
 
 	@Autowired
 	MemberService ms;
-	
+
 	@Autowired
 	QnaService qs;
-	
+
 	@Autowired
 	EventService es;
-	
+
 	@Autowired
 	ServletContext context;
 
@@ -130,17 +131,14 @@ public class AdminController {
 		}
 		return "admin/member/memberList";
 	}
-	
 
-	@RequestMapping(value="/adminMemberDelete", method=RequestMethod.POST)
-	public String adminMemberDelete(@RequestParam("mseq") int [] mseqArr) {
-		for(int mseq:mseqArr)
+	@RequestMapping(value = "/adminMemberDelete", method = RequestMethod.POST)
+	public String adminMemberDelete(@RequestParam("mseq") int[] mseqArr) {
+		for (int mseq : mseqArr)
 			as.deleteMember(mseq);
 		return "redirect:/adminMemberList";
 	}
-	
-	
-	
+
 //event
 	@RequestMapping("/adminEventList")
 	public String adminEventList(HttpServletRequest request, Model model) {
@@ -184,197 +182,220 @@ public class AdminController {
 			return "admin/event/eventList";
 		}
 	}
-	
+
 	@RequestMapping("/adminEventDetail")
-	public String adminEventDetail(HttpServletRequest request, Model model, @RequestParam("eseq")int eseq) {
+	public String adminEventDetail(HttpServletRequest request, Model model, @RequestParam("eseq") int eseq) {
 		HttpSession session = request.getSession();
 		if (session.getAttribute("loginAdmin") == null) {
 			return "admin/adminLogin";
 		} else {
-			EventVO evo =es.getEvent(eseq);
-			model.addAttribute("eventVO", evo);			
+			EventVO evo = es.getEvent(eseq);
+			model.addAttribute("eventVO", evo);
 			return "admin/event/eventDetail";
 		}
-   }
+	}
+
 	@RequestMapping("/adminEventWriteForm")
 	public String adminEventWriteForm(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
-		if (session.getAttribute("loginAdmin") == null) return "admin/adminLogin";
-	
-			return "admin/event/eventWrite";
+		if (session.getAttribute("loginAdmin") == null)
+			return "admin/adminLogin";
+
+		return "admin/event/eventWrite";
 	}
-	
-	@RequestMapping(value="/adminEventWrite", method=RequestMethod.POST)
-	public String adminEventWrite(@ModelAttribute("dto") @Valid EventVO eventvo,
-			BindingResult result, Model model, HttpServletRequest request) {
-			
-		System.out.println("subject : " + eventvo.getSubject() );
-		System.out.println("content : " + eventvo.getContent() );
-		System.out.println("enddate : " + eventvo.getEnddate() );
-		System.out.println("image : " + eventvo.getImage() );
-		
-		if( result.getFieldError("subject")!=null) {
-			return "evnet/evnetWriteForm";
-		}else  if(result.getFieldError("content")!=null) {
-			return "evnet/evnetWriteForm";
-		}else if(result.getFieldError("enddate")!=null) {
-			return "evnet/evnetWriteForm";
-		}else if(result.getFieldError("image")!=null) {
-			return "evnet/evnetWriteForm";
-		}else {
-			es.insertEvent(eventvo);
-			return "redirect:/adminEventList";
+
+	@RequestMapping(value = "/adminEventWrite", method = RequestMethod.POST) //// 질문1
+	public String adminEventWrite(Model model, HttpServletRequest request) {
+		String savePath = context.getRealPath("image/main/event/eventDetail");
+		System.out.println(savePath);
+
+		try {
+			MultipartRequest multi = new MultipartRequest(request, savePath, 5 * 1024 * 1024, "UTF-8",
+					new DefaultFileRenamePolicy());
+			EventVO evo = new EventVO();
+
+			evo.setSubject(multi.getParameter("subject"));
+			evo.setContent(multi.getParameter("content"));
+			evo.setEnddate(Timestamp.valueOf(multi.getParameter("enddate")));
+			evo.setImage(multi.getFilesystemName("image"));
+
+			if (multi.getParameter("subject") == null) {
+				System.out.println("이벤트명을 입력하세요");
+				model.addAttribute("evo", evo);
+				return "admin/event/eventWrite.jsp";
+			}
+			as.insertEvent(evo);
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		}
-		
+		return "redirect:/adminEventList";
+
+	}
 
 	@RequestMapping(value = "/adminEventDelete")
-	public String adminEventDelete(@RequestParam("delete") int[] eseqArr,HttpServletRequest request ) {
+	public String adminEventDelete(@RequestParam("delete") int[] eseqArr, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		if (session.getAttribute("loginAdmin") == null) {
 			return "admin/adminLogin";
 		} else {
-		for (int eseq : eseqArr)
-			es.deleteEvent(eseq);
-		return "redirect:/adminEventList";
-      }
+			for (int eseq : eseqArr)
+				es.deleteEvent(eseq);
+			return "redirect:/adminEventList";
+		}
 	}
-	
-	@RequestMapping(value="/adminEventUpdateForm")
-	public String adminEventUpdateForm(@RequestParam("eseq") int eseq,
-			HttpServletRequest request, Model model) {
-		
-		HttpSession session= request.getSession();
-		if( session.getAttribute("loginAdmin") == null) {
+
+	@RequestMapping(value = "/adminEventUpdateForm", method = RequestMethod.POST) /// 2
+	public String adminEventUpdateForm(@RequestParam("eseq") int eseq, HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		if (session.getAttribute("loginAdmin") == null) {
 			return "admin/adminLogin";
-		}else {
+		} else {
 			EventVO evo = es.getEvent(eseq);
 			model.addAttribute("eventVO", evo);
-			
+
 			return "admin/event/evnetUpdate";
 		}
 	}
-	/*
-	 * @RequestMapping(value="/adminEventUpdate" , method=RequestMethod.POST) public
-	 * String adminEventUpdate(@ModelAttribute("EventVO") @Valid EventVO evo,
-	 * BindingResult result, HttpServletRequest request, Model model) {
-	 * 
-	 * }
-	 */
-	
 
-	@RequestMapping(value="/adminMemberUpdateForm")
-	public String adminMemberUpdateForm(@RequestParam("mseq") int mseq,
-			HttpServletRequest request, Model model) {
-		HttpSession session= request.getSession();
-		if( session.getAttribute("loginAdmin") == null) {
+//	  public String adminEventUpdate(@ModelAttribute("EventVO") @Valid EventVO evo,
+//	  BindingResult result, HttpServletRequest request, Model model) {
+	@RequestMapping(value="/adminEventUpdate" , method=RequestMethod.POST) //3
+	  public String adminEventUpdate( Model model, HttpServletRequest request) { 
+	  String savePath=context.getRealPath("image/main/event/eventDetail");
+		System.out.println(savePath);
+		
+		try {
+			MultipartRequest multi=new MultipartRequest(request, savePath,
+					5*1024*1024, "UTF-8", new DefaultFileRenamePolicy());
+			EventVO evo=new EventVO();
+			evo.setEseq(Integer.parseInt(multi.getParameter("eseq")));
+			evo.setSubject(multi.getParameter("subject"));
+			evo.setContent(multi.getParameter("content"));
+			evo.setEnddate(Timestamp.valueOf(multi.getParameter("enddate")));
+			evo.setImage(multi.getFilesystemName("image"));
+		
+			if(multi.getFilesystemName("image") == null)
+				evo.setImage(multi.getParameter("oldImage"));
+			else
+				evo.setImage(multi.getFilesystemName("image"));
+			
+			as.updateEvent(evo);
+		} catch (IOException e) {		e.printStackTrace();	}
+		return "redirect:/adminEventList";
+	  
+	  }
+
+	@RequestMapping(value = "/adminMemberUpdateForm")
+	public String adminMemberUpdateForm(@RequestParam("mseq") int mseq, HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		if (session.getAttribute("loginAdmin") == null) {
 			return "admin/adminLogin";
-		}else {
+		} else {
 			MemberVO mvo = ms.getMember_mseq(mseq);
 			model.addAttribute("memberVO", mvo);
-			
+
 			return "admin/member/memberUpdate";
 		}
 	}
-	
-	@RequestMapping(value="/adminMemberUpdate", method=RequestMethod.POST)
-	public String adminMemberUpdateForm(@ModelAttribute("memberVO") @Valid MemberVO mvo,
-			BindingResult result, HttpServletRequest request, Model model,
-			@RequestParam(value="pwd_chk", required=false) String pwd_chk) {
-		if(result.getFieldError("pwd")!=null) {
+
+	@RequestMapping(value = "/adminMemberUpdate", method = RequestMethod.POST)
+	public String adminMemberUpdateForm(@ModelAttribute("memberVO") @Valid MemberVO mvo, BindingResult result,
+			HttpServletRequest request, Model model,
+			@RequestParam(value = "pwd_chk", required = false) String pwd_chk) {
+		if (result.getFieldError("pwd") != null) {
 			model.addAttribute("message", "암호를 입력하세요");
 			return "admin/member/memberUpdate";
-		}else if(result.getFieldError("name")!=null) {
+		} else if (result.getFieldError("name") != null) {
 			model.addAttribute("message", "이름을 입력하세요");
 			return "admin/member/memberUpdate";
-		}else if(pwd_chk == null || (pwd_chk!=null && !pwd_chk.equals(mvo.getPwd()))) {
+		} else if (pwd_chk == null || (pwd_chk != null && !pwd_chk.equals(mvo.getPwd()))) {
 			model.addAttribute("message", "비밀번호 확인이 일치하지 않습니다.");
 			return "admin/member/memberUpdate";
-		}if(result.getFieldError("phone")!=null) {
+		}
+		if (result.getFieldError("phone") != null) {
 			model.addAttribute("message", "전화번호를 입력하세요");
 			return "admin/member/memberUpdate";
-		}else {
+		} else {
 			ms.updateMember(mvo);
 			return "redirect:/adminMemberList";
 		}
 	}
-	
-	@RequestMapping(value="/adminQnaList")
+
+	@RequestMapping(value = "/adminQnaList")
 	public String adminQnaList(HttpServletRequest request, Model model) {
-		HttpSession session= request.getSession();
-		if( session.getAttribute("loginAdmin") == null) {
+		HttpSession session = request.getSession();
+		if (session.getAttribute("loginAdmin") == null) {
 			return "admin/adminLogin";
-		}
-		else {						
+		} else {
 			int page = 1;
-			if(request.getParameter("page") != null){ 
-				page = Integer.parseInt(request.getParameter("page")); 
-				session.setAttribute("page", page); 
-			}else if(session.getAttribute("page") != null) { 
-				page = (int)session.getAttribute("page"); 
-			}else { 
+			if (request.getParameter("page") != null) {
+				page = Integer.parseInt(request.getParameter("page"));
+				session.setAttribute("page", page);
+			} else if (session.getAttribute("page") != null) {
+				page = (int) session.getAttribute("page");
+			} else {
 				page = 1;
-				session.removeAttribute("page"); 
+				session.removeAttribute("page");
 			}
-			
+
 			String key = "";
-			if(request.getParameter("key") != null) { 
-				key = request.getParameter("key"); session.setAttribute("key", key); 
-			}else if(session.getAttribute("key") != null) {
-				key = (String)session.getAttribute("key");
-			}else { 
+			if (request.getParameter("key") != null) {
+				key = request.getParameter("key");
+				session.setAttribute("key", key);
+			} else if (session.getAttribute("key") != null) {
+				key = (String) session.getAttribute("key");
+			} else {
 				session.removeAttribute("key");
 				key = "";
 			}
-			
-			
+
 			Paging paging = new Paging();
 			paging.setPage(page);
-			
+
 			int count = as.getAllCount("qna", "id", key);
 			paging.setTotalCount(count);
 			paging.paging();
-			
+
 			ArrayList<QnaVO> qnaList = as.listQna(paging, key);
-			
+
 			model.addAttribute("qnaList", qnaList);
-			model.addAttribute("paging",paging);
-			model.addAttribute("key",key);
+			model.addAttribute("paging", paging);
+			model.addAttribute("key", key);
 		}
 		return "admin/qna/qnaList";
 	}
-	
-	@RequestMapping(value="/adminQnaDelete", method=RequestMethod.POST)
-	public String adminQnaDelete(@RequestParam("delete") int [] qseqArr) {
-		for(int qseq:qseqArr)
+
+	@RequestMapping(value = "/adminQnaDelete", method = RequestMethod.POST)
+	public String adminQnaDelete(@RequestParam("delete") int[] qseqArr) {
+		for (int qseq : qseqArr)
 			as.deleteQna(qseq);
 		return "redirect:/adminQnaList";
 	}
-	
+
 	@RequestMapping("/adminQnaDetail")
 	public String adminQnaDetail(@RequestParam("qseq") int qseq, HttpServletRequest request, Model model) {
-		HttpSession session= request.getSession();
-		if( session.getAttribute("loginAdmin") == null) {
+		HttpSession session = request.getSession();
+		if (session.getAttribute("loginAdmin") == null) {
 			return "admin/adminLogin";
-		}else {
+		} else {
 			QnaVO qvo = qs.getQna(qseq);
-			model.addAttribute("qnaVO",qvo);
+			model.addAttribute("qnaVO", qvo);
 			return "admin/qna/qnaDetail";
 		}
-		
+
 	}
-	
+
 	@RequestMapping("/adminQnaRepsave")
-	public String adminQnaRepsave(HttpServletRequest request, Model model,
-			@RequestParam("qseq") int qseq,  @RequestParam("reply") String reply) {
-		HttpSession session= request.getSession();
-		if( session.getAttribute("loginAdmin") == null) {
+	public String adminQnaRepsave(HttpServletRequest request, Model model, @RequestParam("qseq") int qseq,
+			@RequestParam("reply") String reply) {
+		HttpSession session = request.getSession();
+		if (session.getAttribute("loginAdmin") == null) {
 			return "admin/adminLogin";
-		}else {
+		} else {
 			qs.updateQna(qseq, reply);
-			return "redirect:/adminQnaDetail?qseq="+qseq;
-		}		
-		
+			return "redirect:/adminQnaDetail?qseq=" + qseq;
+		}
+
 	}
 
 	@RequestMapping("adminShortProductList")
@@ -420,7 +441,7 @@ public class AdminController {
 		}
 		return "admin/product/shortproductList";
 	}
-	
+
 	@RequestMapping("adminProductList")
 	public String adminProductList(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
@@ -464,48 +485,48 @@ public class AdminController {
 		}
 		return "admin/product/productList";
 	}
-	
-	@RequestMapping(value="/adminProductDelete", method=RequestMethod.POST)
-	public String adminProductDelete(@RequestParam("delete") int [] pseqArr) {
-		for(int pseq:pseqArr)
+
+	@RequestMapping(value = "/adminProductDelete", method = RequestMethod.POST)
+	public String adminProductDelete(@RequestParam("delete") int[] pseqArr) {
+		for (int pseq : pseqArr)
 			as.deleteProduct(pseq);
 		return "redirect:/adminShortProductList";
 	}
-	
+
 	@RequestMapping("/adminProductWriteForm")
 	public String adminProductWriteForm(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		if (session.getAttribute("loginAdmin") == null) {
 			return "admin/adminLogin";
 		} else {
-			String kindList[] = {"스페셜&할인팩", "프리미엄", "와퍼", "주니어&버거", "올데이킹&치킨버거", "사이드", "음료&디저트", "독퍼"};
+			String kindList[] = { "스페셜&할인팩", "프리미엄", "와퍼", "주니어&버거", "올데이킹&치킨버거", "사이드", "음료&디저트", "독퍼" };
 			model.addAttribute("kindList", kindList);
 			return "admin/product/productWrite";
 		}
 	}
-	
+
 	@RequestMapping("/adminShortProductWriteForm")
 	public String adminShortProductWriteForm(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		if (session.getAttribute("loginAdmin") == null) {
 			return "admin/adminLogin";
 		} else {
-			String kindList[] = {"스페셜&할인팩", "프리미엄", "와퍼", "주니어&버거", "올데이킹&치킨버거", "사이드", "음료&디저트", "독퍼"};
+			String kindList[] = { "스페셜&할인팩", "프리미엄", "와퍼", "주니어&버거", "올데이킹&치킨버거", "사이드", "음료&디저트", "독퍼" };
 			model.addAttribute("kindList", kindList);
 			return "admin/product/shortproductWrite";
 		}
 	}
-	
-	@RequestMapping(value="adminProductWrite" , method = RequestMethod.POST)
-	public String adminProductWrite(Model model ,  HttpServletRequest request) {
-		String savePath = context.getRealPath("images");
+
+	@RequestMapping(value = "adminProductWrite", method = RequestMethod.POST)
+	public String adminProductWrite(Model model, HttpServletRequest request) {
+		String savePath = context.getRealPath("/images");
 		System.out.println(savePath);
-		
+
 		try {
-			MultipartRequest multi = new MultipartRequest(request, savePath, 
-					5*1024*1024 , "UTF-8", new DefaultFileRenamePolicy());
+			MultipartRequest multi = new MultipartRequest(request, savePath, 5 * 1024 * 1024, "UTF-8",
+					new DefaultFileRenamePolicy());
 			ProductVO pvo = new ProductVO();
-			
+
 			pvo.setKind1(multi.getParameter("kind1"));
 			pvo.setKind2(multi.getParameter("kind2"));
 			pvo.setKind3(multi.getParameter("kind3"));
@@ -527,5 +548,5 @@ public class AdminController {
 		} catch (IOException e) {e.printStackTrace();	}
 		return "redirect:/adminProductList";
 	}
-	
+
 }

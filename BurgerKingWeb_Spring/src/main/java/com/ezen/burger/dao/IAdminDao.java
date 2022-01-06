@@ -41,5 +41,9 @@ public interface IAdminDao {
 
 	void insertProduct(ProductVO pvo);
 
+	void insertEvent(EventVO evo);
+
+	void updateEvent(EventVO evo);
+
 	
 }

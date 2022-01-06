@@ -20,5 +20,7 @@ public interface IEventDao {
 
 	void deleteEvent(int eseq);
 
-	void insertEvent(EventVO eventvo);
+
+
+	
 }
