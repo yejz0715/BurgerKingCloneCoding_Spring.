@@ -19,4 +19,20 @@
 	<select id="getProductList" resultType="com.ezen.burger.dto.ProductVO">
 		select * from product where kind1 = #{param1}
 	</select>
+	
+	<select id="selectSubProductOrder" resultType="com.ezen.burger.dto.subproductOrderVO">
+		select * from subproduct_order where mseq = #{param1} and oseq = 0 order by cseq
+	</select>
+	
+	<select id="getDeliveryDetail" resultType="com.ezen.burger.dto.ProductVO">
+		select * from product where pseq = #{param1} and kind3=4
+	</select>
+	
+	<select id="getProducts" resultType="com.ezen.burger.dto.ProductVO">
+		select * from product where pseq = #{param1}
+	</select>
+	
+	<select id="getSubProduct" resultType="com.ezen.burger.dto.subProductVO">
+		select * from sub_product order by kind2 desc
+	</select>
 </mapper>

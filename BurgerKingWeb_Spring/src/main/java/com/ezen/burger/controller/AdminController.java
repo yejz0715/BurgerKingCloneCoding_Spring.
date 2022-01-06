@@ -211,9 +211,9 @@ public class AdminController {
 		return "admin/event/eventWrite";
 	}
 
-	@RequestMapping(value = "/adminEventWrite", method = RequestMethod.POST) //// 질문1
+	@RequestMapping(value = "/adminEventWrite", method = RequestMethod.POST) 
 	public String adminEventWrite(Model model, HttpServletRequest request) {
-		String savePath = context.getRealPath("image/main/event/eventDetail");
+		String savePath = context.getRealPath("upload/main/event/eventDetail");
 		System.out.println(savePath);
 
 		try {
@@ -223,9 +223,9 @@ public class AdminController {
 
 			evo.setSubject(multi.getParameter("subject"));
 			evo.setContent(multi.getParameter("content"));
-			evo.setEnddate(Timestamp.valueOf(multi.getParameter("enddate")));
+			evo.setEnddate(multi.getParameter("enddate"));
 			evo.setImage(multi.getFilesystemName("image"));
-
+			evo.setState(1);
 			if (multi.getParameter("subject") == null) {
 				System.out.println("이벤트명을 입력하세요");
 				model.addAttribute("evo", evo);
@@ -236,7 +236,6 @@ public class AdminController {
 			e.printStackTrace();
 		}
 		return "redirect:/adminEventList";
-
 	}
 
 	@RequestMapping(value = "/adminEventDelete")
@@ -251,8 +250,8 @@ public class AdminController {
 		}
 	}
 
-	@RequestMapping(value = "/adminEventUpdateForm", method = RequestMethod.POST) /// 2
-	public String adminEventUpdateForm(@RequestParam("eseq") int eseq, HttpServletRequest request, Model model) {
+	@RequestMapping(value = "/adminEventUpdateForm")
+	public String adminEventUpdateForm(HttpServletRequest request, Model model, @RequestParam("eseq")int eseq) {
 		HttpSession session = request.getSession();
 		if (session.getAttribute("loginAdmin") == null) {
 			return "admin/adminLogin";
@@ -260,25 +259,25 @@ public class AdminController {
 			EventVO evo = es.getEvent(eseq);
 			model.addAttribute("eventVO", evo);
 
-			return "admin/event/evnetUpdate";
+			return "admin/event/eventUpdate";
 		}
 	}
-
-//	  public String adminEventUpdate(@ModelAttribute("EventVO") @Valid EventVO evo,
-//	  BindingResult result, HttpServletRequest request, Model model) {
-	@RequestMapping(value="/adminEventUpdate" , method=RequestMethod.POST) //3
+	
+	@RequestMapping(value="/adminEventUpdate" , method=RequestMethod.POST) 
 	  public String adminEventUpdate( Model model, HttpServletRequest request) { 
-	  String savePath=context.getRealPath("image/main/event/eventDetail");
+	  String savePath=context.getRealPath("upload/main/event/eventDetail");
 		System.out.println(savePath);
-		
 		try {
 			MultipartRequest multi=new MultipartRequest(request, savePath,
 					5*1024*1024, "UTF-8", new DefaultFileRenamePolicy());
 			EventVO evo=new EventVO();
+			String enddate = multi.getParameter("enddate");
+			enddate = enddate.substring(0, 10);
 			evo.setEseq(Integer.parseInt(multi.getParameter("eseq")));
 			evo.setSubject(multi.getParameter("subject"));
 			evo.setContent(multi.getParameter("content"));
-			evo.setEnddate(Timestamp.valueOf(multi.getParameter("enddate")));
+		    evo.setEnddate(enddate);
+		    evo.setState(1);
 			evo.setImage(multi.getFilesystemName("image"));
 		
 			if(multi.getFilesystemName("image") == null)
@@ -289,9 +288,8 @@ public class AdminController {
 			as.updateEvent(evo);
 		} catch (IOException e) {		e.printStackTrace();	}
 		return "redirect:/adminEventList";
-	  
 	  }
-
+	
 	@RequestMapping(value = "/adminMemberUpdateForm")
 	public String adminMemberUpdateForm(@RequestParam("mseq") int mseq, HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
@@ -327,7 +325,7 @@ public class AdminController {
 			return "redirect:/adminMemberList";
 		}
 	}
-
+//qna
 	@RequestMapping(value = "/adminQnaList")
 	public String adminQnaList(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();

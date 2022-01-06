@@ -1,6 +1,6 @@
 package com.ezen.burger.dto;
 
-import java.sql.Timestamp;
+
 
 import lombok.Data;
 
@@ -10,7 +10,7 @@ public class EventVO {
 	private String subject;
 	private String content;
 	private String image;
-	private Timestamp startdate;
-	private Timestamp enddate;
+	private String startdate;
+	private String enddate;
 	private int state;
 }

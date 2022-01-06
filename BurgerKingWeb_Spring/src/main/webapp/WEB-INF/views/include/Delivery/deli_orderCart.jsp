@@ -30,13 +30,12 @@
 				 </div>
 				 
 				 
-				 <div class="deliveryCart" onclick="go_cart02('${loginUser}')">
+				 <div class="deliveryCart" onclick="go_cart02()">
 				 <img class= "deliveryIcon" src="image/main/my_cart.png" />
-				 <form name="cartForm" action="burger.do">
+				 <form name="cartForm" action="deliveryCartForm">
 				<input type="hidden" name="pseq" value="">
-				<input type="hidden" name="id" value="">
+				<input type="hidden" name="id" value="${loginUser.id}">
 				<input type="hidden" name="id2" value="">
-				<input type="hidden" name="command" value="deliveryCartForm">
 				 <c:choose>
 					 <c:when test="${cvo.size() == 0}"> 
 						 <dl>
