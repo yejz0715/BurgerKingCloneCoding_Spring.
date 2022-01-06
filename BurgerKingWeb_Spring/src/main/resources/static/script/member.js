@@ -1,4 +1,4 @@
-function go_pop1() {
+/*function go_pop1() {
 	window.open("burger.do?command=popup1", "a",
 			"width=500, height=700, left=50, top=50");}
 function go_pop2() {
@@ -27,7 +27,7 @@ function agree()  {
 	{
 		alert('약관에 동의하셔야 회원 가입이 가능합니다.');
 	}
-}	
+}*/	
 
 	
 
