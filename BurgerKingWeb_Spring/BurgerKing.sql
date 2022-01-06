@@ -11,7 +11,7 @@ DROP TRIGGER TRI_product_pseq;
 DROP TRIGGER TRI_qna_qseq;
 DROP TRIGGER TRI_sub_product_spseq;
 
-
+select * from EVENT;
 
 /* Drop Tables */
 

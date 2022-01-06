@@ -32,7 +32,6 @@ public class EventService {
 	}
 
 	public EventVO getEvent(int eseq) {
-		
 		return edao.getEvent(eseq);
 	}
 
