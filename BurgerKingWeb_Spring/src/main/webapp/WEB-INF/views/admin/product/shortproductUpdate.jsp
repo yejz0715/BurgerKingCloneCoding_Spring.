@@ -4,7 +4,7 @@
 
 <article>
 	<h1>상품 수정</h1>
-	<form name="frm" method="post" enctype="multipart/form-data">
+	<form name="frm" method="post" action="adminShortProductUpdate" enctype="multipart/form-data">
 		<input type="hidden" name="pseq" value="${productVO.pseq}">
 		<input type="hidden" name="oldImage" value="${productVO.image}">
 		<table id="list" width="500" border="1">
@@ -55,7 +55,10 @@
 				<th>상품이미지</th>
 				<td colspan="9">
 					<img src="image/menu/${productVO.kind1}/${productVO.image}" width="200px"><br>
-					<input type="file" name="image">
+					<div id="imageName" style="float:left; font-size:120%;margin-right:20px;font-weight:bold"></div>
+					<input type="button" class="btn" value="이미지선택" onClick="selectFile();"
+					style="width:30%">
+      				<input type="hidden" name="imgfilename" >* 주의 : 이미지를 수정할때에만 선택해주세요
 				</td>
 			</tr>
 		</table>

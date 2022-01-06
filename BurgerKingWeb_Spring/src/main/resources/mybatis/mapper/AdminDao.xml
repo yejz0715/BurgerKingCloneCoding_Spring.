@@ -95,8 +95,10 @@
 		select * from product where pseq=#{param1}
 	</select>
 	
-	<update id="updateProduct">
+	<update id="updateProduct" parameterType="com.ezen.burger.dto.ProductVO">
 		update product set kind1=#{kind1}, useyn=#{useyn}, pname=#{pname}, price1=#{price1}, 
 		content=#{content}, image=#{image}, kind2=#{kind2}, kind3=#{kind3} where pseq=#{pseq}
 	</update>
+	
+	
 </mapper>

@@ -237,3 +237,8 @@ function go_rep(){
 	document.frm.action="adminQnaRepsave";
 	document.frm.submit();
 }
+
+function selectFile(){
+	var opt = "toolbar=no,menubar=no,resizable=no,width=450,height=200";
+	window.open( 'selectimg' , 'selectimg',  opt);
+}

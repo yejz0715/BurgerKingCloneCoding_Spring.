@@ -31,8 +31,9 @@ import com.ezen.burger.service.MemberService;
 import com.ezen.burger.service.ProductService;
 import com.ezen.burger.service.QnaService;
 import com.oreilly.servlet.MultipartRequest;
-//github.com/Ezen-MVC-TeamProject/BurgerKingWeb_Spring
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
+
 
 @Controller
 public class AdminController {
@@ -678,35 +679,85 @@ public class AdminController {
 		return "admin/product/shortproductUpdate";
 	}
 	
-	@RequestMapping("adminShortProductUpdate")
-	public String adminShortProductUpdate(ProductVO pvo, HttpServletRequest request, Model model) {
-		HttpSession session = request.getSession();
-		if (session.getAttribute("loginAdmin") == null) {
-			return "admin/adminLogin";
-		} else {						
-			String savePath = context.getRealPath("/images");
-			try {
-				MultipartRequest multi = new MultipartRequest(request, savePath, 5 * 1024 * 1024, "UTF-8",
-						new DefaultFileRenamePolicy());
-			 
-				pvo.setPseq(Integer.parseInt(multi.getParameter("pseq")));
-				pvo.setKind1(multi.getParameter("kind1"));
-				pvo.setKind2(multi.getParameter("kind2"));
-				pvo.setKind3(multi.getParameter("kind3"));
-				pvo.setPname(multi.getParameter("pname"));
-				pvo.setPrice1(0);
-				pvo.setPrice2(0);
-				pvo.setPrice3(0);
-				pvo.setContent("");
-				pvo.setUseyn(multi.getParameter("useyn"));
-				if(multi.getFilesystemName("image") == null)
-					pvo.setImage(multi.getParameter("oldImage"));
-				else
-					pvo.setImage(multi.getFilesystemName("image"));
+	@RequestMapping("/selectimg")
+	public String selectimg() {
+		return "admin/product/selectimg";
+	}
+	
+	@RequestMapping(value="/fileupload", method = RequestMethod.POST)
+	public String fileupload(Model model, HttpServletRequest request) {
+		String path = context.getRealPath("images");
+		
+		try {
+			MultipartRequest multi = new MultipartRequest(
+					request, path, 5*1024*1024, "UTF-8", new DefaultFileRenamePolicy()
+			);
 			
-				as.updateProduct(pvo);
-			} catch (IOException e) {e.printStackTrace();	}
+			// 전송된 파일은 업로드 되고, 파일 이름은 모델에 저장합니다.
+			model.addAttribute("image", multi.getFilesystemName("image"));
+			model.addAttribute("originalFilename", multi.getFilesystemName("image"));
+		} catch (IOException e) {e.printStackTrace();
 		}
-		return "redirect:/adminShortProductDetail";
+		return "admin/product/completupload";
+	}
+	
+	@RequestMapping(value="/adminShortProductUpdate", method = RequestMethod.POST)
+	public String adminShortProductUpdate(HttpServletRequest request, @ModelAttribute("ProductVO")
+			ProductVO p, Model model) {				
+		ProductVO pvo = new ProductVO();
+		int pseq=0;
+		String savePath = context.getRealPath("/images");
+		MultipartRequest multi;
+		try {
+			multi = new MultipartRequest(
+					request, savePath , 5*1024*1024,  "UTF-8", new DefaultFileRenamePolicy() );
+			pvo.setPseq(Integer.parseInt(multi.getParameter("pseq")));
+			pseq=Integer.parseInt(multi.getParameter("pseq"));
+			pvo.setKind1(multi.getParameter("kind1"));
+			pvo.setKind2(multi.getParameter("kind2"));
+			pvo.setKind3(multi.getParameter("kind3"));
+			pvo.setPname(multi.getParameter("pname"));
+			pvo.setPrice1(0);
+			pvo.setPrice2(0);
+			pvo.setPrice3(0);
+			pvo.setContent("");
+			pvo.setUseyn(multi.getParameter("useyn"));
+			if(multi.getFilesystemName("image") == null)
+				pvo.setImage(multi.getParameter("oldImage"));
+			else
+				pvo.setImage(multi.getFilesystemName("image"));
+		} catch (IOException e) {e.printStackTrace();	}
+		as.updateProduct(pvo);
+		return "redirect:/adminShortProductDetail?pseq="+pseq;
+	}	
+	
+	@RequestMapping(value="/adminProductUpdate", method = RequestMethod.POST)
+	public String adminProductUpdate(HttpServletRequest request, @ModelAttribute("ProductVO")
+			ProductVO p, Model model) {				
+		ProductVO pvo = new ProductVO();
+		int pseq=0;
+		String savePath = context.getRealPath("/images");
+		MultipartRequest multi;
+		try {
+			multi = new MultipartRequest(
+					request, savePath , 5*1024*1024,  "UTF-8", new DefaultFileRenamePolicy() );
+			pvo.setPseq(Integer.parseInt(multi.getParameter("pseq")));
+			pseq=Integer.parseInt(multi.getParameter("pseq"));
+			pvo.setKind1(multi.getParameter("kind1"));
+			pvo.setKind2(multi.getParameter("kind2"));
+			pvo.setKind3(multi.getParameter("kind3"));
+			pvo.setPname(multi.getParameter("pname"));
+			pvo.setPrice1(Integer.parseInt(multi.getParameter("price1")));
+			pvo.setPrice2(Integer.parseInt(multi.getParameter("price2")));
+			pvo.setPrice3(Integer.parseInt(multi.getParameter("price3")));
+			pvo.setContent(multi.getParameter("content"));
+			pvo.setUseyn(multi.getParameter("useyn"));
+			if(multi.getFilesystemName("image") == null)
+				pvo.setImage(multi.getParameter("oldImage"));
+			else
+				pvo.setImage(multi.getFilesystemName("image"));
+		} catch (IOException e) {e.printStackTrace();	}
+		as.updateProduct(pvo);
+		return "redirect:/adminProductDetail?pseq="+pseq;
 	}
 }
