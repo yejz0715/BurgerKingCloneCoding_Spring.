@@ -108,11 +108,11 @@ function deliveryDetail(pseq){
 function add_or_cart(kind1, pseq){
 	var url="";
 	if(kind1 == "1" || kind1 == "6" || kind1 == "7" || kind1 == "8"){
-		url="addCart&pseq="+pseq;
+		url="addCart?pseq="+pseq;
 		opener.location.href = url;
 		self.close();
 	}else{
-		url="deliveryAddMaterial&pseq="+pseq;
+		url="deliveryAddMaterial?pseq="+pseq;
 		window.location.href = url;
 	}
 }

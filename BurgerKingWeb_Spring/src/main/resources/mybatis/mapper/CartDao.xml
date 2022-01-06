@@ -9,6 +9,6 @@
 	</select>
 	
 	<insert id="insertCart" parameterType="com.ezen.burger.dto.CartVO">
-		
+		insert into cart( cseq , id, pseq) values( cseq.nextVal, #{id}, #{pseq})
 	</insert>
 </mapper>

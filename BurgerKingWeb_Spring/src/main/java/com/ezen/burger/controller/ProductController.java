@@ -81,7 +81,6 @@ public class ProductController {
 			return mav;
 		}
 		ProductVO pvo = ps.getProducts(pseq);
-		mav.setViewName("delivery/addMeterial");
 		
 		//로그인이 되어 있다면 로그인 정보에스 id 를 추출하고  상품번호와 아이디를  CartVO 에 담아서
 		if((int)session.getAttribute("memberkind") == 1) {
@@ -93,14 +92,14 @@ public class ProductController {
 		}
 		
 		cvo.setPseq(pseq);  // 상품번호저장
-
+		
+		// 추가할 재료 목록
 		ArrayList<subProductVO> list = ps.getSubProduct();
 		
-		cs.insertCart(cvo);   // 레코드 추가
-		mav.setViewName("delivery/addMeterial.jsp");
-		request.setAttribute("subProductVO", list);
-		request.setAttribute("pvo", pvo);
-		request.setAttribute("cvo", cvo);
+		mav.addObject("subProductVO", list);
+		mav.addObject("pvo", pvo);
+		mav.addObject("cvo", cvo);
+		mav.setViewName("delivery/addMeterial");
 		return mav;
 	}
 }

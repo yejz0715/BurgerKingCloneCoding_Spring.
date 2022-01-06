@@ -20,7 +20,7 @@
 	</div>
 	<div class="container01 cartWrap">
 		<c:choose>
-		<c:when test="${empty cartList}">
+		<c:when test="${empty cvo}">
 			<div class="tab_cont">
 				<div class="nodata"><p>주문내역이 없습니다.</p></div>
 			</div>
