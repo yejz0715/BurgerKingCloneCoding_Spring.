@@ -68,4 +68,9 @@ public class AdminService {
 		
 	}
 
+	public void insertProduct(ProductVO pvo) {
+		adao.insertProduct(pvo);
+		
+	}
+
 }

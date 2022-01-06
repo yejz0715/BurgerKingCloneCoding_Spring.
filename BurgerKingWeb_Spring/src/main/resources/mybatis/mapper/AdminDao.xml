@@ -69,6 +69,8 @@
 	</delete>
 	
 	<insert id="insertProduct" parameterType="com.ezen.burger.dto.ProductVO">
-	
+		insert into product (pseq, kind1, kind2, kind3, pname, price1, price2, price3, content
+		image, useyn) values(pseq.nextVal, #{kind1}, #{kind2}, #{kind3}, #{pname}, #{price1}, #{price2}, #{price3}, 
+		#{content}, #{image}, #{useyn})
 	</insert>
 </mapper>

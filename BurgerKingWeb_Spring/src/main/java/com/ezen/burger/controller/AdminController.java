@@ -498,7 +498,7 @@ public class AdminController {
 	
 	@RequestMapping(value="adminProductWrite" , method = RequestMethod.POST)
 	public String adminProductWrite(Model model ,  HttpServletRequest request) {
-		String savePath = context.getRealPath("/product_images");
+		String savePath = context.getRealPath("images");
 		System.out.println(savePath);
 		
 		try {
@@ -521,10 +521,10 @@ public class AdminController {
 		    if( multi.getParameter("pname") == null ) {
 		    	System.out.println("이름을 입력하세요");
 		    	model.addAttribute("pvo", pvo);
-		    	return "admin/product/productWriteForm.jsp";
+		    	return "admin/product/productWrite.jsp";
 		    }
 		    as.insertProduct(pvo);
-		} catch (IOException e) {		e.printStackTrace();	}
+		} catch (IOException e) {e.printStackTrace();	}
 		return "redirect:/adminProductList";
 	}
 	
