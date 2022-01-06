@@ -206,7 +206,7 @@ public class AdminController {
 
 	@RequestMapping(value = "/adminEventWrite", method = RequestMethod.POST) //// 질문1
 	public String adminEventWrite(Model model, HttpServletRequest request) {
-		String savePath = context.getRealPath("image/main/event/eventDetail");
+		String savePath = context.getRealPath("upload");
 		System.out.println(savePath);
 
 		try {
@@ -216,7 +216,7 @@ public class AdminController {
 
 			evo.setSubject(multi.getParameter("subject"));
 			evo.setContent(multi.getParameter("content"));
-			evo.setEnddate(Timestamp.valueOf(multi.getParameter("enddate")));
+			//evo.setEnddate(Timestamp.valueOf(multi.getParameter("enddate")));
 			evo.setImage(multi.getFilesystemName("image"));
 
 			if (multi.getParameter("subject") == null) {
@@ -271,7 +271,7 @@ public class AdminController {
 			evo.setEseq(Integer.parseInt(multi.getParameter("eseq")));
 			evo.setSubject(multi.getParameter("subject"));
 			evo.setContent(multi.getParameter("content"));
-			evo.setEnddate(Timestamp.valueOf(multi.getParameter("enddate")));
+			//evo.setEnddate(Timestamp.valueOf(multi.getParameter("enddate")));
 			evo.setImage(multi.getFilesystemName("image"));
 		
 			if(multi.getFilesystemName("image") == null)
@@ -544,7 +544,7 @@ public class AdminController {
 				model.addAttribute("pvo", pvo);
 				return "admin/product/productWriteForm.jsp";
 			}
-			as.insertProduct(pvo);
+			//as.insertProduct(pvo);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
