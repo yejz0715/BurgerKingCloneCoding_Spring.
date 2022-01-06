@@ -16,4 +16,8 @@ public class CartService {
 	public ArrayList<CartVO> selectCart(String id) {
 		return cdao.selectCart(id);
 	}
+
+	public void insertCart(CartVO cvo) {
+		cdao.insertCart(cvo);
+	}
 }

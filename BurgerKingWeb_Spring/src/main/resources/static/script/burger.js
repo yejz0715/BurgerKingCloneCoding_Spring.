@@ -99,7 +99,7 @@ function updatepwdChk(){
 }
 
 function deliveryDetail(pseq){
-	var url = "burger.do?command=deliveryDetail&pseq="+pseq;
+	var url = "deliveryDetail?pseq="+pseq;
 	var opt = "toolbar=no,menubar=no,scrollbars=yes,resizable=no,height=800,width=580,top=300, left=300";
 	window.open(url, "delivery", opt);
 }
@@ -108,11 +108,11 @@ function deliveryDetail(pseq){
 function add_or_cart(kind1, pseq){
 	var url="";
 	if(kind1 == "1" || kind1 == "6" || kind1 == "7" || kind1 == "8"){
-		url="burger.do?command=addCart&pseq="+pseq;
+		url="addCart&pseq="+pseq;
 		opener.location.href = url;
 		self.close();
 	}else{
-		url="burger.do?command=deliveryAddMaterial&pseq="+pseq;
+		url="deliveryAddMaterial&pseq="+pseq;
 		window.location.href = url;
 	}
 }
@@ -139,9 +139,8 @@ function go_add_Meterial(pseq){
 	self.close();
 }
 
-function go_cart02(id){
-	document.cartForm.id.value=id;
-	document.cartForm.action="burger.do?command=deliveryCartForm";
+function go_cart02(){
+	document.cartForm.action="deliveryCartForm";
 	document.cartForm.submit();
 }
 
