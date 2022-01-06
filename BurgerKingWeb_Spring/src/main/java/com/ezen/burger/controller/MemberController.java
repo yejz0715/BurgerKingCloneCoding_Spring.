@@ -327,4 +327,76 @@ public class MemberController {
 		}
 		return mav;
 	}
+	
+	
+	
+	@RequestMapping(value="/joinForm")
+	public String join_form(Model model, HttpServletRequest request) {
+		return "member/join";
+	}
+	
+	
+	@RequestMapping(value="/contract")
+	public String contractform(Model model, HttpServletRequest request) {
+		return "member/contract";
+	}
+	
+	@RequestMapping(value="/popup1")
+	public String popup1(Model model, HttpServletRequest request) {
+		return "member/popup1";
+	}
+	
+	@RequestMapping(value="/popup2")
+	public String popup2(Model model, HttpServletRequest request) {
+		return "member/popup2";
+	}
+	
+	
+	@RequestMapping(value="/joinpage", method=RequestMethod.POST)
+	public ModelAndView joinpage( @ModelAttribute("dto") @Valid MemberVO membervo,
+			BindingResult result, @RequestParam(value="re_id" , required = false) String reid, 
+			@RequestParam(value="pw_check" , required = false) String pwdchk, Model model) {
+		ModelAndView mav = new ModelAndView();
+		
+		if( result.getFieldError("id") != null ) {
+			mav.addObject("message", "아이디 입력하세요");
+			mav.addObject("re_id", reid);
+			mav.setViewName("member/joinpage");
+		} else if( result.getFieldError("pw") != null ) {
+			mav.addObject("message", "비밀번호 입력하세요");
+			mav.addObject("re_id", reid);
+			mav.setViewName("member/joinpage");
+		} else if( result.getFieldError("name") != null ) {
+			mav.addObject("message", result.getFieldError("name").getDefaultMessage() );
+			mav.addObject("re_id", reid);
+			mav.setViewName("member/joinpage");
+		} else if( !membervo.getId().equals(reid)){
+			mav.addObject("message","아이디 중복체크가 되지 않았습니다");
+			mav.setViewName("member/joinpage");
+		} else if( !membervo.getPwd().equals(pwdchk)) {
+			mav.addObject("message","비밀번호 확인이 일치하시 않습니다.");
+			mav.addObject("re_id", reid);
+			mav.setViewName("member/joinpage");
+		}else { 
+			ms.insertMember( membervo );
+			mav.addObject("message", "회원가입이 완료되었습니다. 로그인 하세요");
+			mav.setViewName("loginform");
+		}		
+		return mav;
+	}
+	
+	
+	@RequestMapping("/idCheckForm")
+	public ModelAndView idcheck( @RequestParam("id") String id ) {
+		ModelAndView mav = new ModelAndView();
+		
+		MemberVO mvo = ms.getMember(id);
+		if( mvo==null ) mav.addObject("result" , -1);
+		else mav.addObject("result" , 1);
+		
+		mav.addObject("id" , id);
+		mav.setViewName("member/idcheck");		
+		return mav;
+	}
+	
 }	

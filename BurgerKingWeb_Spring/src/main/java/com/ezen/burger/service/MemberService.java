@@ -56,4 +56,8 @@ public class MemberService {
 		mdao.deleteMyaddress(mseq);
 		mdao.deleteMember(mseq);
 	}
+
+	public void insertMember( MemberVO membervo) {
+		mdao.MemberVO(membervo);
+	}
 }
