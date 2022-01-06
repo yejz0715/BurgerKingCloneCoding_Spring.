@@ -216,7 +216,7 @@ public class AdminController {
 
 			evo.setSubject(multi.getParameter("subject"));
 			evo.setContent(multi.getParameter("content"));
-			//evo.setEnddate(Timestamp.valueOf(multi.getParameter("enddate")));
+			evo.setEnddate(multi.getParameter("enddate"));
 			evo.setImage(multi.getFilesystemName("image"));
 
 			if (multi.getParameter("subject") == null) {
@@ -271,7 +271,7 @@ public class AdminController {
 			evo.setEseq(Integer.parseInt(multi.getParameter("eseq")));
 			evo.setSubject(multi.getParameter("subject"));
 			evo.setContent(multi.getParameter("content"));
-			//evo.setEnddate(Timestamp.valueOf(multi.getParameter("enddate")));
+		    evo.setEnddate(multi.getParameter("enddate"));
 			evo.setImage(multi.getFilesystemName("image"));
 		
 			if(multi.getFilesystemName("image") == null)
