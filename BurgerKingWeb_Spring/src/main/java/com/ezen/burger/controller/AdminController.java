@@ -544,7 +544,7 @@ public class AdminController {
 				model.addAttribute("pvo", pvo);
 				return "admin/product/productWriteForm.jsp";
 			}
-			as.insertProduct(pvo);
+			//as.insertProduct(pvo);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
