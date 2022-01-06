@@ -39,4 +39,10 @@
 	<delete id="deleteMyaddress" parameterType="_int">
 		delete from myaddress where mseq = #{param1}
 	</delete>
+
+	
+	<insert id="insertMember" parameterType="com.ezen.burger.dto.MemberVO">
+		insert into member ( mseq, id, pwd, name, phone )
+		values( mseq.nextVal, #{id}, #{pwd}, #{name}, #{phone} )
+	</insert>
 </mapper>
