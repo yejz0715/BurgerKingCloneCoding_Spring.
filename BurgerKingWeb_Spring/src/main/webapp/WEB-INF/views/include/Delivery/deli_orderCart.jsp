@@ -33,9 +33,6 @@
 				 <div class="deliveryCart" onclick="go_cart02()">
 				 <img class= "deliveryIcon" src="image/main/my_cart.png" />
 				 <form name="cartForm" action="deliveryCartForm">
-				<input type="hidden" name="pseq" value="">
-				<input type="hidden" name="id" value="${loginUser.id}">
-				<input type="hidden" name="id2" value="">
 				 <c:choose>
 					 <c:when test="${cvo.size() == 0}"> 
 						 <dl>

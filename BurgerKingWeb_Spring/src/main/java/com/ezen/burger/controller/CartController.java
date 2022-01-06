@@ -8,11 +8,13 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ezen.burger.dto.CartVO;
 import com.ezen.burger.dto.GuestVO;
 import com.ezen.burger.dto.MemberVO;
+import com.ezen.burger.dto.ProductVO;
 import com.ezen.burger.dto.orderVO;
 import com.ezen.burger.dto.subproductOrderVO;
 import com.ezen.burger.service.CartService;
@@ -76,5 +78,27 @@ public class CartController {
 		
 		
 		return mav;
+	}
+	
+	@RequestMapping(value="noMeterialCart")
+	public String noMeterialCart(@RequestParam("pseq") int pseq, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		MemberVO mvo;
+		GuestVO gvo;
+		CartVO cvo = new CartVO();
+		ProductVO pvo = ps.getProducts(pseq);
+		
+		//로그인이 되어 있다면 로그인 정보에스 id 를 추출하고  상품번호와 아이디를  CartVO 에 담아서
+		if((int)session.getAttribute("memberkind") == 1) {
+			mvo = (MemberVO)session.getAttribute("loginUser");
+			cvo.setId( mvo.getId() );   // 아이디 저장
+		}else if((int)session.getAttribute("memberkind") == 2) {
+			gvo = (GuestVO)session.getAttribute("loginUser");
+			cvo.setId( gvo.getId() );   // 아이디 저장
+		}
+		cvo.setPseq(pseq);  // 상품번호저장
+		cs.insertCart(cvo);
+		
+		return "redirect:/deliveryCartForm";
 	}
 }

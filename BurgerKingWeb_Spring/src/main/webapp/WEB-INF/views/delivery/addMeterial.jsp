@@ -40,10 +40,10 @@
 			</ul>
 		</div>
 		<div class="pop_btn c_btn item2">
-			<button type="button" class="btn02 dark m_btn01_s"
-			onclick="go_cart('${pvo.pseq}','${loginUser}','${NonloginUser}')"><span>추가안함</span></button>
-			<button type="button" class="btn02 red m_btn01_s"
-			onclick="go_add_Meterial('${pvo.pseq}','${loginUser}','${NonloginUser}')">
+			<button type="button" class="btn02 dark m_btn01_s" onclick="go_cart('${pseq}')">
+				<span>추가안함</span>
+			</button>
+			<button type="button" class="btn02 red m_btn01_s" onclick="go_add_Meterial('${pseq}')">
 			<span>추가함</span></button>
 		</div>
 	</div>

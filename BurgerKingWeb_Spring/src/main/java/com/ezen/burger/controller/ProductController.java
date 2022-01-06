@@ -70,9 +70,6 @@ public class ProductController {
 	@RequestMapping(value="/deliveryAddMaterial")
 	public ModelAndView deliveryAddMaterial(HttpServletRequest request,
 			@RequestParam("pseq") int pseq) {
-		MemberVO mvo;
-		GuestVO gvo;
-		CartVO cvo = new CartVO();
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		
@@ -80,25 +77,12 @@ public class ProductController {
 			mav.setViewName("redirect:/loginForm");
 			return mav;
 		}
-		ProductVO pvo = ps.getProducts(pseq);
-		
-		//로그인이 되어 있다면 로그인 정보에스 id 를 추출하고  상품번호와 아이디를  CartVO 에 담아서
-		if((int)session.getAttribute("memberkind") == 1) {
-			mvo = (MemberVO)session.getAttribute("loginUser");
-			cvo.setId( mvo.getId() );   // 아이디 저장
-		}else if((int)session.getAttribute("memberkind") == 2) {
-			gvo = (GuestVO)session.getAttribute("loginUser");
-			cvo.setId( gvo.getId() );   // 아이디 저장
-		}
-		
-		cvo.setPseq(pseq);  // 상품번호저장
 		
 		// 추가할 재료 목록
 		ArrayList<subProductVO> list = ps.getSubProduct();
 		
 		mav.addObject("subProductVO", list);
-		mav.addObject("pvo", pvo);
-		mav.addObject("cvo", cvo);
+		mav.addObject("pseq", pseq);
 		mav.setViewName("delivery/addMeterial");
 		return mav;
 	}

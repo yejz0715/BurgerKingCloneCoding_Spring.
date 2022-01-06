@@ -117,11 +117,8 @@ function add_or_cart(kind1, pseq){
 	}
 }
 
-function go_cart(pseq, id, id2){
-	opener.document.cartForm.pseq.value=pseq;
-	opener.document.cartForm.id.value=id;
-	opener.document.cartForm.id2.value=id2;
-	opener.cartForm.submit();
+function go_cart(pseq){
+	opener.window.location.href="noMeterialCart?pseq=" + pseq;
 	self.close();
 }
 
