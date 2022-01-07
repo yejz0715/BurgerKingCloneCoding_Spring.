@@ -58,36 +58,33 @@
 				</div>
 				<button type="button" name="submit" class="btn_del02" onclick="go_cart_delete('${cartList.cseq}')"><span>Delete menu</span></button>
 			</div>
+			<c:choose>
+				<c:when test="${empty spseqAm}">
+					
+				</c:when>
+				<c:otherwise>
+					<ul class="cart_list01">
+					<li>
+					<div class="cont" style="padding: 32px 64px; font-size:2rem;font-weight: bold;">
+						<c:forEach items="${spseqAm}" var="spseqAm">
+							<c:if test="${spseqAm.cseq == cartList.cseq}">
+								<div style="width:100%;">
+									${spseqAm.cseq}번 : ${spseqAm.sname}
+									<div style="color:red; float:right;">${spseqAm.addprice}원</div>
+								</div>
+							</c:if>
+						</c:forEach>
+					</div>
+					</li>
+					</ul>
+				</c:otherwise>
+			</c:choose>
 		</li> 
 		</c:forEach>
 		</ul>
 		<div class="allchk01">
 			<label style="color:#000"><strong>추가메뉴</strong></label>
 		</div>
-		<c:choose>
-			<c:when test="${empty spseqAm}">
-				<ul class="cart_list01">
-				<li>
-				<div class="cont">
-					<div class="menu_titWrap"><span class="tit">추가메뉴가 없습니다</span></div>
-				</div>
-				</li>
-				</ul>
-			</c:when>
-			<c:otherwise>
-				<ul class="cart_list01">
-				<li>
-				<div class="cont" style="padding: 32px 64px; font-size:2rem;font-weight: bold;">
-					<c:forEach items="${spseqAm}" var="spseqAm">
-					<div style="width:100%;">${spseqAm.cseq}번 : ${spseqAm.sname}
-					<div style="color:red; float:right;">${spseqAm.addprice}원</div>
-					</div>
-					</c:forEach>
-				</div>
-				</li>
-				</ul>
-			</c:otherwise>
-		</c:choose>
 		<div class="sumWrap">
 			<dl>
 				<dt>총 주문금액</dt>
