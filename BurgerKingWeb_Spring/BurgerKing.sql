@@ -216,6 +216,7 @@ create table subproduct_order(
 	odseq number(10) default 0 not null,
 	sname varchar2(30) not null,
 	addprice number(5) not null,
+	indate date default sysdate,
 	primary key(sposeq)
 );
 
