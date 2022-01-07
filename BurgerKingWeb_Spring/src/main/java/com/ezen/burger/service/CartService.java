@@ -41,7 +41,7 @@ public class CartService {
 		cdao.plusQuantity(cseq);
 	}
 
-	public CartVO getPseqCart(int pseq) {
+	public ArrayList<CartVO> getPseqCart(int pseq) {
 		return cdao.getPseqCart(pseq);
 	}
 }

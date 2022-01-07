@@ -295,10 +295,12 @@ public class CartController {
 						cs.insertCart(cvo);
 						
 						// 방금 들어간 pseq값을 가진 카트 중 젤 최근에 들어온것을 가져온다.
-						CartVO Am_cvo = cs.getPseqCart(m[0]);
-						
+						ArrayList<CartVO> Am_cvo = cs.getPseqCart(m[0]);
+						CartVO cvo1 = Am_cvo.get(0);
 						// 해당 카트 번호와 추가 메뉴vo, 회원의 mseq값을 가지고 추가재료 order를 생성
-						ps.insertSubProductOrder(Am_cvo.getCseq(), sublist, mvo.getMseq());
+						for(int i = 0; i < sublist.size(); i++) {
+							ps.insertSubProductOrder(cvo1.getCseq(), sublist.get(i), mvo.getMseq());
+						}
 						
 						mav.setViewName("redirect:/deliveryCartForm");
 					}

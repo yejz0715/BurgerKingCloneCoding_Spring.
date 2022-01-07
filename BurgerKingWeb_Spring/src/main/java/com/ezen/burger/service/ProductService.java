@@ -55,7 +55,7 @@ public class ProductService {
 		return pdao.getSubProduct2(spseq);
 	}
 
-	public void insertSubProductOrder(int cseq, ArrayList<subProductVO> sublist, int mseq) {
-		pdao.insertSubProductOrder(cseq, mseq, sublist);
+	public void insertSubProductOrder(int cseq, subProductVO subProductVO, int mseq) {
+		pdao.insertSubProductOrder(cseq, mseq, subProductVO);
 	}
 }

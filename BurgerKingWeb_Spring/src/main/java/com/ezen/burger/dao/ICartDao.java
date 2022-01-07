@@ -15,5 +15,5 @@ public interface ICartDao {
 	public void minusQuantity(int cseq);
 	public int getQuantity(int cseq);
 	public void plusQuantity(int cseq);
-	public CartVO getPseqCart(int pseq);
+	public ArrayList<CartVO> getPseqCart(int pseq);
 }

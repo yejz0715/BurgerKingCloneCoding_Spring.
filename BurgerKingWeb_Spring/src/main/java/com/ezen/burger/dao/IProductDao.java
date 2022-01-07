@@ -31,6 +31,6 @@ public interface IProductDao {
 
 	public subProductVO getSubProduct2(int spseq);
 
-	public void insertSubProductOrder(int cseq, int mseq, ArrayList<subProductVO> sublist);
+	public void insertSubProductOrder(int cseq, int mseq, subProductVO subProductVO);
 
 }
