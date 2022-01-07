@@ -27,7 +27,7 @@
 			<tr>
 				<th>상품이미지</th>
 				<td colspan="9">
-					<img src="upload/main/event/eventDetail/${eventVO.image}" width="200px"><br>
+					<img src="upload/main/event/${eventVO.image}" width="200px"><br>
 					<input type="file" name="image">
 				</td>
 			</tr>

@@ -211,7 +211,7 @@ public class AdminController {
 
 	@RequestMapping(value = "/adminEventWrite", method = RequestMethod.POST) 
 	public String adminEventWrite(Model model, HttpServletRequest request) {
-		String savePath = context.getRealPath("upload/main/event/eventDetail");
+		String savePath = context.getRealPath("upload/main/event");
 		System.out.println(savePath);
 
 		try {
@@ -263,7 +263,7 @@ public class AdminController {
 	
 	@RequestMapping(value="/adminEventUpdate" , method=RequestMethod.POST) 
 	  public String adminEventUpdate( Model model, HttpServletRequest request) { 
-	  String savePath=context.getRealPath("upload/main/event/eventDetail");
+	  String savePath=context.getRealPath("upload/main/event");
 		System.out.println(savePath);
 		try {
 			MultipartRequest multi=new MultipartRequest(request, savePath,
