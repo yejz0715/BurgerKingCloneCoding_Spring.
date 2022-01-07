@@ -346,7 +346,9 @@ public class CartController {
 						// 해당 카트 번호와 추가 메뉴vo, 비회원의 gseq값을 가지고 추가재료 order를 생성
 						for(int i = 0; i < sublist.size(); i++) {
 							ps.insertSubProductOrderByGseq(cvo.getCseq(), sublist.get(i), gvo.getGseq());
-						}
+						}// 비회원은 주문을 하지않고 나갈경우 추가재료에 대한 주문 데이터가 남는 상황이 발생한다.
+						// 이후 관리자가 주문리스트에서 검색을 할 때 indate가 1시간~2시간이 지난데이터는 삭제하고 공개하는
+						// 코드를 작성할 필요가 있다.
 						
 						mav.setViewName("redirect:/deliveryCartForm");
 					}

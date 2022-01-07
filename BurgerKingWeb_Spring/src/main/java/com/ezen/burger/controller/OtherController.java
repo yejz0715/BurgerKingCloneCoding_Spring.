@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ezen.burger.dto.CartVO;
+import com.ezen.burger.dto.GuestVO;
 import com.ezen.burger.dto.MemberVO;
+import com.ezen.burger.dto.MyAddressVO;
 import com.ezen.burger.dto.orderVO;
+import com.ezen.burger.service.AddressService;
 import com.ezen.burger.service.CartService;
 import com.ezen.burger.service.OrderService;
 import com.ezen.burger.service.OtherService;
@@ -32,6 +35,9 @@ public class OtherController {
 	
 	@Autowired
 	CartService cs;
+	
+	@Autowired
+	AddressService as;
 	
 	@RequestMapping(value="/")
 
@@ -123,6 +129,41 @@ public class OtherController {
 				mav.setViewName("redirect:/deliveryForm");
 			}else {
 				mav.setViewName("redirect:/loginForm");
+			}
+		}else {
+			mav.setViewName("redirect:/loginForm");
+		}
+		return mav;
+	}
+	
+	@RequestMapping(value="/myAddressForm")
+	public ModelAndView myAddressForm(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		if(session.getAttribute("memberkind") != null && session.getAttribute("loginUser") != null) {
+			if((int)session.getAttribute("memberkind") == 1) {
+				MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
+				MyAddressVO mavo = as.getMyAddress(mvo.getMseq());
+				ArrayList<orderVO> list1 = os2.getOrderList(mvo.getId());
+				ArrayList<CartVO> list2 = cs.selectCart( mvo.getId() );
+				String addr = mavo.getAddress();
+				String[] addrs= addr.split(" ");
+				String addr1="";
+				for(int i=0; i<3; i++) {
+					addr1 += addrs[i] + " ";
+				}
+				String addr2="";
+				for(int i=3; i<addrs.length; i++) {
+					addr2 += addrs[i] + " ";
+				}			 
+				mav.addObject("addr1", addr1);
+				mav.addObject("addr2", addr2);
+				mav.addObject("zip_num", mavo.getZip_num());
+				request.setAttribute("ovo", list1);
+				request.setAttribute("cvo", list2);
+				mav.setViewName("delivery/myaddress");
+			}else if((int)session.getAttribute("memberkind") == 2) {
+				GuestVO gvo = (GuestVO)session.getAttribute("loginUser");
 			}
 		}else {
 			mav.setViewName("redirect:/loginForm");

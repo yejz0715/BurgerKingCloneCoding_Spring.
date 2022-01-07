@@ -13,4 +13,8 @@
 	<insert id="setUserAddress" parameterType="com.ezen.burger.dto.MyAddressVO">
 		insert into myaddress(mseq, zip_num, address) values(#{mseq}, #{zip_num}, #{address})
 	</insert>
+	
+	<update id="updateUserAddress" parameterType="com.ezen.burger.dto.MyAddressVO">
+		update myaddress set zip_num = #{zip_num}, address= #{address} where mseq = #{mseq}
+	</update>
 </mapper>

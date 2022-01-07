@@ -26,4 +26,8 @@ public class AddressService {
 	public void setUserAddress(MyAddressVO mavo) {
 		adao.setUserAddress(mavo);
 	}
+
+	public void updateUserAddress(MyAddressVO mavo) {
+		adao.updateUserAddress(mavo);
+	}
 }

@@ -94,4 +94,30 @@ public class AddressController {
 		}
 		return mav;
 	}
+	
+	@RequestMapping(value="/updateAddress")
+	public ModelAndView updateAddress(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		if(session.getAttribute("memberkind") != null && session.getAttribute("loginUser") != null) {
+			int memberKind = (int)session.getAttribute("memberkind");
+			String address = request.getParameter("addr1") + " " + request.getParameter("addr2");
+			String zip_num = request.getParameter("zip_num");
+			// 회원 종류 검사 (1:회원, 2:비회원)
+			if(memberKind == 1) {
+				MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
+				if(mvo == null) {
+					mav.setViewName("redirect:/loginForm");
+				}else {
+					MyAddressVO mavo = new MyAddressVO();
+					mavo.setZip_num(zip_num);
+					mavo.setAddress(address);
+					mavo.setMseq(mvo.getMseq());
+					as.updateUserAddress(mavo);
+					mav.setViewName("redirect:/deliveryMypageForm");
+				}
+			}
+		}
+		return mav;
+	}
 }

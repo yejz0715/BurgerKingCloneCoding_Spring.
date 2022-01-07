@@ -16,5 +16,7 @@ public interface IAddressDao {
 	public ArrayList<AddressVO> selectAddressByDong(String dong);
 
 	public void setUserAddress(MyAddressVO mavo);
+
+	public void updateUserAddress(MyAddressVO mavo);
 	
 }
