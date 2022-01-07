@@ -20,4 +20,8 @@ public class CartService {
 	public void insertCart(CartVO cvo) {
 		cdao.insertCart(cvo);
 	}
+
+	public void deleteguestCart(String id) {
+		cdao.deleteguestCart(id);
+	}
 }

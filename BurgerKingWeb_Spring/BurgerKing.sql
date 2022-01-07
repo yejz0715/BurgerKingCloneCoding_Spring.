@@ -29,7 +29,7 @@ DROP TABLE product CASCADE CONSTRAINTS;
 DROP TABLE shortproduct CASCADE CONSTRAINTS;
 DROP TABLE sub_product CASCADE CONSTRAINTS;
 
-select * from 
+select * from cart_view;
 
 /* Drop Sequences */
 
@@ -228,7 +228,7 @@ create or replace view cart_view
 as
 select  c.cseq, c.id, m.name as mname, c.pseq, p.pname as pname, p.image, p.kind1, p.kind3,
 	c.quantity, p.price1, c.result,  c.indate 
-from cart c, product p, member m   
+from cart c, product p, member m
 where  c.pseq = p.pseq and m.id = c.id;
 
 drop view order_view

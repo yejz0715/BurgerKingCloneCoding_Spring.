@@ -11,4 +11,8 @@
 	<insert id="insertCart" parameterType="com.ezen.burger.dto.CartVO">
 		insert into cart( cseq , id, pseq) values( cseq.nextVal, #{id}, #{pseq})
 	</insert>
+	
+	<delete id="deleteguestCart">
+		delete from cart where id = #{param1}
+	</delete>
 </mapper>

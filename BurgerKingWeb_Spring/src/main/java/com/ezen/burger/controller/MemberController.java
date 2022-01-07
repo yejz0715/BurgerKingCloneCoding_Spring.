@@ -91,6 +91,10 @@ public class MemberController {
 	@RequestMapping(value="/logout")
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
+		if((int)session.getAttribute("memberkind") == 2) {
+			GuestVO gvo = (GuestVO)session.getAttribute("loginUser");
+			cs.deleteguestCart(gvo.getId());
+		}
 		session.invalidate();
 		return "redirect:/";
 	}

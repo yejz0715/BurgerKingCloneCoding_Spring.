@@ -39,7 +39,6 @@ public class CartController {
 		
 		if(session.getAttribute("memberkind") != null) {
 			int memberKind = (int)session.getAttribute("memberkind");
-			System.out.println("memberkind" + memberKind);
 			if(memberKind == 1) {
 				MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
 				
@@ -69,7 +68,7 @@ public class CartController {
 				GuestVO gvo = (GuestVO)session.getAttribute("loginUser");
 				//해당 접속 회원의 주문 목록과 카트 목록 가져오기
 				ArrayList<orderVO> list1 = os.getOrderList(gvo.getId());
-				ArrayList<CartVO> list2 = cs.selectCart( gvo.getId() );
+				ArrayList<CartVO> list2 = cs.selectCart(gvo.getId());
 				
 				// 가져온 카트 목록에서 가격 총합 계산 
 				int totalPrice = 0; 

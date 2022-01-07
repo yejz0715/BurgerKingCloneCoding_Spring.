@@ -108,7 +108,7 @@ function deliveryDetail(pseq){
 function add_or_cart(kind1, pseq){
 	var url="";
 	if(kind1 == "1" || kind1 == "6" || kind1 == "7" || kind1 == "8"){
-		url="addCart?pseq="+pseq;
+		url="noMeterialCart?pseq="+pseq;
 		opener.location.href = url;
 		self.close();
 	}else{
