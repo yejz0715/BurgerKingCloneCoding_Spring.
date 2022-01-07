@@ -7,6 +7,7 @@
 	<form name="frm" method="post" action="adminShortProductUpdate" enctype="multipart/form-data">
 		<input type="hidden" name="pseq" value="${productVO.pseq}">
 		<input type="hidden" name="oldImage" value="${productVO.image}">
+		<input type="hidden" name="k1" value="${k1}">
 		<table id="list" width="500" border="1">
 			<tr>
 				<th>상품분류</th>
@@ -56,13 +57,13 @@
 				<td colspan="9">
 					<img src="image/menu/${productVO.kind1}/${productVO.image}" width="200px"><br>
 					<div id="imageName" style="float:left; font-size:120%;margin-right:20px;font-weight:bold"></div>
-					<input type="button" class="btn" value="이미지선택" onClick="selectFile();"
+					<input type="button" class="btn" value="이미지선택" onClick="selectFile(${k1});"
 					style="width:30%">
-      				<input type="hidden" name="imgfilename" >* 주의 : 이미지를 수정할때에만 선택해주세요
+      				<input type="hidden" name="image" value="">* 주의 : 이미지를 수정할때에만 선택해주세요
 				</td>
 			</tr>
 		</table>
-		<input type="button" class="btn" value="수정" onclick="go_mod_save2()">
+		<input type="button" class="btn" value="수정" onclick="go_mod_save2(${k1})">
 		<input type="button" class="btn" value="취소" onclick=
 		"location.href='adminProductDetail?pseq=${productVO.pseq}'">
 	</form>

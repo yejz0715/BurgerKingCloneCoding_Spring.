@@ -33,7 +33,18 @@
 				</td>
 				<th>세부</th>
 				<td>
-					<input type="text" name="kind3" size="3" maxlength="10-" value="${productVO.kind3}">
+					<select name="kind3">
+						<c:forEach items="${kindList3}" var="kind3" varStatus="status">
+							<c:choose>
+								<c:when test="${productVO.kind3==status.count}">
+									<option value="${status.count}" selected="selected">${kind3}</option>
+								</c:when>
+								<c:otherwise>
+									<option value="${status.count}">${kind3}</option>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+					</select>
 				</td>
 				<th>가격</th>
 				<td>

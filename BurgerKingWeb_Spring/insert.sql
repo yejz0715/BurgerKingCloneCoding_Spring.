@@ -855,8 +855,6 @@ values(pseq.nextVal, '치즈 1장', '9', '6', 'cheese1.png','600');
 insert into sub_product(spseq, sname, kind1, kind2, image, addprice)
 values(pseq.nextVal, '올엑스트라', '9', '7', 'allextra.png','300');
 
-delete from sub_product where sname = '올엑스트라'
-
 insert into event(eseq, subject, content, image, startdate, enddate, state)
 values(qseq.nextVal, 'Best WHOPPER 2개 구매시 7000원','1. 행사명 : Best WHOPPER 2개 구매시 7000원
 
@@ -1694,9 +1692,6 @@ values(qseq.nextVal, '2 for 5000원', '1. 행사명 : 2 for 5000원
 대명비발디점, 삼성라이온즈파크점, 서울역점, 오션월드점, 인천공항1점, 인천공항교통센터1점, 경기양평점, 경남대점, 경남사천점, 경북도청점, 경북상주점, 경북영주가흥점, 경주보문점, 광양LF스퀘어점, 광양중동점, 광주경안점, 광주봉선점, 광주상무점, 광주수완점, 광주월계점, 광주일곡점, 광주첨단2지구점, 광주터미널점, 구미인의점, 군산나운FS점, 김천교동DT점, 김포현대아울렛점, 나주빛가람점, 당진읍내점, 대구대명FS점, 대구대점, 대구율하점, 대구죽전네거리DT점, 대구지산점, 대구칠곡3지구점, 대구테크노폴리스점, 대전관평점, 대전도안점, 대전시청점, 대전현대아울렛점, 목포하당점, 보령동대점, 부산오시리아점, 서산호수공원점, 세종반곡점, 세종행복새롬점, 수원정자점, 안동옥동점, 안동중앙점, 안산고잔점, 여수웅천점, 연희점, 오산궐동점, 오창호수공원점, 용인동백점, 원주무실점, 의정부HP점, 익산영등점, 인제대점, 인천송도센트럴파크점, 인천연수점, 전남도청점, 정읍중앙점, 진주경상대점, 진주혁신도시점, 천안성성점, 천안쌍용대로DT점, 청주복대점, 청주오송점, 청주율량점, 충남대병원DT점, 충남도청점, 충북진천점, 평택청북점, 한동대점, 해운대비치점, 호남대점','event_16.png', '2021-09-06', '2021-09-12', '0');
 select * from event;
 
-
-insert into member(mseq, id, pwd, phone, name)
-values(mseq.nextVal, 'scott@naver.com', '1234', '010-2431-6247', '김우진')
 update product set kind1='8', useyn='1', pname='리얼 독퍼', price1=2900, content='반려견에게 Real Dogpper를 선물하세요!', image='realdogper.png', kind2='1', kind3='3', price2=0, price3=0 where pseq=234
 insert into event(eseq, subject, content, image, startdate, enddate, state)
 values(qseq.nextVal, 'Best WHOPPER 2개 구매시 7000원','1. 행사명 : Best WHOPPER 2개 구매시 7000원
@@ -2573,9 +2568,10 @@ values(qseq.nextVal, '앵그리너겟킹', '1. 행사명 : 앵그리너겟킹 8�
 대명비발디점, 삼성라이온즈파크점, 서울역점, 오션월드점, 인천공항1점, 인천공항교통센터1점, 경기양평점, 경남대점, 경남사천점, 경남삼천포점, 경북도청점, 경북상주점, 경북영주가흥점, 경주보문점, 광양LF스퀘어점, 광주일곡점, 광주첨단2지구점, 구미인의점, 군산나운FS점, 김포현대아울렛점, 당진읍내점, 대구죽전네거리DT점, 대구지산점, 대전관평점, 대전시청점, 대전현대아울렛점, 목포하당점, 서산호수공원점, 수원정자점, 안동옥동점, 안동중앙점, 오산궐동점, 원주기업도시점, 익산영등점, 전남도청점, 전주중앙점, 진주경상대점, 진주혁신도시점, 천안두정점, 천안쌍용대로DT점, 충남대병원DT점, 충남도청점, 충북진천점, 충주연수점',
 'event_18.png', '2021-11-10', '2021-11-30', '1'); 
 
-insert into MYADDRESS(mseq, address, zip_num) values(8, '경기도 파주시 야당동44', '12345')
-
-insert into admin values('admin', 'admin1234', '김우진', '010-2431-6247');
+insert into MYADDRESS(mseq, address, zip_num) values(8, '경기도 파주시 야당동44', '12345');
+insert into member(mseq, id, pwd, phone, name)
+values(mseq.nextVal, 'scott@naver.com', '1234', '010-2431-6247', '김우진')
+insert into admin values('scott@naver.com', '1234', '유창대', '010-9799-0349');
 
 delete from MYADDRESS where mseq=8
 update myaddress set mseq=8

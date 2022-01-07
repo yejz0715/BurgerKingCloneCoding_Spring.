@@ -118,7 +118,6 @@ CREATE TABLE member
    PRIMARY KEY (mseq)
 );
 
-select * from Myaddress
 CREATE TABLE Myaddress
 (
    mseq number(10) NOT NULL,
@@ -138,8 +137,6 @@ CREATE TABLE non_member
    memberkind number(1) DEFAULT 2,
    PRIMARY KEY (id, password)
 );
-
-select * from member
 
 
 CREATE TABLE orders

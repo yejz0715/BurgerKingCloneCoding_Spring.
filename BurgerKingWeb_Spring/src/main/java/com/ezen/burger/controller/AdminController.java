@@ -524,7 +524,7 @@ public class AdminController {
 	@RequestMapping(value = "adminProductWrite", method = RequestMethod.POST)
 	public String adminProductWrite(Model model, HttpServletRequest request,
 			HttpServletResponse response) {
-		String savePath = context.getRealPath("/images");
+		String savePath = context.getRealPath("/upload/main/product");
 		System.out.println(savePath);
 
 		try {
@@ -545,7 +545,7 @@ public class AdminController {
 			}else if(result == 3) {
 				response.setContentType("text/html; charset=UTF-8");
 				PrintWriter writer = response.getWriter();
-				writer.println("<script>alert('해당하는 분류번호 값이 이미 있습니다.'); location.href='adminProductWriteForm';</script>");
+				writer.println("<script>alert('해당하는 분류번호의 상품 썸네일이 없습니다.'); location.href='adminProductWriteForm';</script>");
 				writer.close();
 			}else if(result == 4) {
 				response.setContentType("text/html; charset=UTF-8");
@@ -576,7 +576,7 @@ public class AdminController {
 	@RequestMapping(value = "adminShortProductWrite", method = RequestMethod.POST)
 	public String adminShortProductWrite(Model model, HttpServletRequest request,
 			HttpServletResponse response) {
-		String savePath = context.getRealPath("/images");
+		String savePath = context.getRealPath("/upload/main/product");
 		System.out.println(savePath);
 
 		try {
@@ -653,6 +653,8 @@ public class AdminController {
 			request.setAttribute("kind3", kindList3[index2]);
 			request.setAttribute("useyn", useynList[index3]);
 			request.setAttribute("productVO", pvo); 
+			request.setAttribute("k1", pvo.getKind1());
+			model.addAttribute("pseq", pseq);
 			return "admin/product/shortproductDetail";
 		}
 	}
@@ -662,31 +664,42 @@ public class AdminController {
 		ProductVO pvo = as.productDetail(pseq);
 		model.addAttribute("productVO",pvo);
 		String kindList1[] = {"스페셜&할인팩", "프리미엄", "와퍼", "주니어&버거", "올데이킹&치킨버거", "사이드", "음료&디저트", "독퍼"};
+		String kindList3[] = {"Single", "Set", "LargeSet"};
+		
 		request.setAttribute("kindList1", kindList1);
+		request.setAttribute("kindList3", kindList3);
 		int index = Integer.parseInt(pvo.getKind1());
+		int index2 = Integer.parseInt(pvo.getKind3());
 		request.setAttribute("kind", kindList1[index-1]);
+		request.setAttribute("kind3", kindList3[index2-1]);
 		return "admin/product/productUpdate";
 	}
 	
-	@RequestMapping("adminShortProductUpdateForm")
-	public String adminShortProductUpdateForm(@RequestParam("pseq") int pseq, HttpServletRequest request, Model model) {
+	@RequestMapping(value="adminShortProductUpdateForm", method = RequestMethod.POST)
+	public String adminShortProductUpdateForm(@RequestParam("pseq") int pseq,
+			HttpServletRequest request, Model model) {
 		ProductVO pvo = as.productDetail(pseq);
 		model.addAttribute("productVO",pvo);
+		String k1 = request.getParameter("k1");
 		String kindList1[] = {"스페셜&할인팩", "프리미엄", "와퍼", "주니어&버거", "올데이킹&치킨버거", "사이드", "음료&디저트", "독퍼"};
-		request.setAttribute("kindList1", kindList1);
 		int index = Integer.parseInt(pvo.getKind1());
+		request.setAttribute("kindList1", kindList1);
 		request.setAttribute("kind", kindList1[index-1]);
+		request.setAttribute("k1", k1);
 		return "admin/product/shortproductUpdate";
 	}
 	
 	@RequestMapping("/selectimg")
-	public String selectimg() {
+	public String selectimg(HttpServletRequest request) {
+		String k1 = request.getParameter("k1");
+		request.setAttribute("k1", k1);
 		return "admin/product/selectimg";
 	}
 	
 	@RequestMapping(value="/fileupload", method = RequestMethod.POST)
-	public String fileupload(Model model, HttpServletRequest request) {
-		String path = context.getRealPath("images");
+	public String fileupload(Model model, HttpServletRequest request, @ModelAttribute("ProductVO")
+		ProductVO p ,@RequestParam("k1") String k1) {
+		String path = context.getRealPath("/image/menu/"+k1);
 		
 		try {
 			MultipartRequest multi = new MultipartRequest(
@@ -698,15 +711,16 @@ public class AdminController {
 			model.addAttribute("originalFilename", multi.getFilesystemName("image"));
 		} catch (IOException e) {e.printStackTrace();
 		}
+		model.addAttribute("k1", k1);
 		return "admin/product/completupload";
 	}
 	
 	@RequestMapping(value="/adminShortProductUpdate", method = RequestMethod.POST)
 	public String adminShortProductUpdate(HttpServletRequest request, @ModelAttribute("ProductVO")
-			ProductVO p, Model model) {				
+			ProductVO p, Model model, @RequestParam("k1") String k1) {				
 		ProductVO pvo = new ProductVO();
 		int pseq=0;
-		String savePath = context.getRealPath("/images");
+		String savePath = context.getRealPath("/image/menu/"+k1);
 		MultipartRequest multi;
 		try {
 			multi = new MultipartRequest(
@@ -726,7 +740,7 @@ public class AdminController {
 				pvo.setImage(multi.getParameter("oldImage"));
 			else
 				pvo.setImage(multi.getFilesystemName("image"));
-		} catch (IOException e) {e.printStackTrace();	}
+		} catch (IOException e) {e.printStackTrace();}
 		as.updateProduct(pvo);
 		return "redirect:/adminShortProductDetail?pseq="+pseq;
 	}	
@@ -736,7 +750,7 @@ public class AdminController {
 			ProductVO p, Model model) {				
 		ProductVO pvo = new ProductVO();
 		int pseq=0;
-		String savePath = context.getRealPath("/images");
+		String savePath = context.getRealPath("/upload/main/product");
 		MultipartRequest multi;
 		try {
 			multi = new MultipartRequest(

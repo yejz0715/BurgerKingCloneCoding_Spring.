@@ -3,6 +3,9 @@
 <%@ include file="../../admin/sub_menu.jsp"%>
 
 <article>
+	<form method="post" name="frm" action ="adminShortProductUpdateForm">
+	<input type="hidden" name="k1" value="${k1}">
+	<input type="hidden" name="pseq" value="${pseq}">
 	<h1>상품 상세 보기</h1>
 	<table id="list" border="1">
 		<tr>
@@ -24,8 +27,9 @@
 			</td>
 		</tr>
 	</table>
-	<input type="button" class="btn" value="수정" onclick="go_mod2('${productVO.pseq}')">
+	<input type="submit" class="btn" value="수정" >
 	<input type="button" class="btn" value="목록" onclick="go_mov2()">
+	</form>
 </article>
 
 <%@ include file="../../admin/footer.jsp"%>

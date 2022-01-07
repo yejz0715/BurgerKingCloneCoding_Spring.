@@ -91,7 +91,7 @@ public class AdminService {
 		}
 		
 		ArrayList<ProductVO> list2=adao.selectProduct2(k1,k2);
-		if(list2.size()!=0) {
+		if(list2.size()==0) {
 			result=3; return result;
 		}
 		if(k3.equals("4")) {

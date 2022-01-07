@@ -44,7 +44,7 @@ function go_save(){
 		alert("상품명을 입력하세요.");
 		theForm.pname.focus();
 	}else if(theForm.price1.value==""){
-		alert("가격를 입력하세요");
+		alert("가격을 입력하세요");
 		theForm.price1.focus();
 	}else if(theForm.kind2.value==""){
 		alert("분류번호를 입력하세요");
@@ -59,7 +59,7 @@ function go_save(){
 		alert("상품이미지를 입력하세요");
 		theForm.image.focus();
 	}else{
-		theForm.action = "adminProductWrite";
+		theForm.action = "adminProductWrite?";
 		theForm.submit();
 	}
 }
@@ -99,10 +99,6 @@ function go_mod(pseq){
 	var url = "adminProductUpdateForm?pseq=" + pseq;
 	location.href=url;
 }
-function go_mod2(pseq){
-	var url = "adminShortProductUpdateForm?pseq=" + pseq;
-	location.href=url;
-}
 
 function go_mod_save(){
 	if(document.frm.kind1.value==""){
@@ -130,7 +126,7 @@ function go_mod_save(){
 		}
 	}
 }
-function go_mod_save2(){
+function go_mod_save2(k1){
 	if(document.frm.kind1.value==""){
 		alert("상품분류를 선택하세요.");
 		document.frm.kind1.focus();
@@ -142,7 +138,7 @@ function go_mod_save2(){
 		document.frm.kind2.focus();
 	}else{
 		if(confirm('수정하시겠습니까?')){
-			document.frm.action = "adminShortProductUpdate";
+			document.frm.action = "adminShortProductUpdate?k1="+k1;
 			document.frm.submit();
 		}
 	}
@@ -238,7 +234,8 @@ function go_rep(){
 	document.frm.submit();
 }
 
-function selectFile(){
+function selectFile(k1){
+	var url = "selectimg?k1="+k1;
 	var opt = "toolbar=no,menubar=no,resizable=no,width=450,height=200";
-	window.open( 'selectimg' , 'selectimg',  opt);
+	window.open( url,'selectimg' ,  opt);
 }

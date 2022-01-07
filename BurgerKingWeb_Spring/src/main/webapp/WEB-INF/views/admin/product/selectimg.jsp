@@ -14,10 +14,9 @@ function selectedimage(){
 </head>
 <body>
 <div id="wrap" align="center" >
-<form name="frm" action="fileupload"  method="post" enctype="multipart/form-data">
+<form name="frm" action="fileupload?k1=${k1}"  method="post" enctype="multipart/form-data">
 	<h1>파일 선택</h1>
 	<input type="file" name="image" onchange="selectedimage();">
-	<!-- <input type="submit"  vlaue="파일 적용"> -->
 </form> 
 </div>
 </body>
