@@ -24,4 +24,8 @@ public class CartService {
 	public int getCseq() {
 		return cdao.getCseq();
 	}
+
+	public void deleteCart(int cseq) {
+		cdao.deleteCart(cseq);
+	}
 }

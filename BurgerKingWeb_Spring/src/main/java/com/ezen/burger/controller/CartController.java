@@ -139,7 +139,57 @@ public class CartController {
 			guestCartList.add(cvo);
 			session.setAttribute("guestCartList", guestCartList);
 		}
-		
 		return "redirect:/deliveryCartForm";
+	}
+	
+	@RequestMapping(value="/cartDelete")
+	public ModelAndView cartDelete(HttpServletRequest request,
+			@RequestParam("cseq") int cseq) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		if((int)session.getAttribute("memberkind") == 1) {
+			cs.deleteCart(cseq);
+			mav.setViewName("redirect:/deliveryCartForm");
+		}else if((int)session.getAttribute("memberkind") == 2) {
+			ArrayList<CartVO> guestCartList = (ArrayList<CartVO>)session.getAttribute("guestCartList");
+			int index = 0;
+			for(CartVO cvo : guestCartList) {
+				if(cvo.getCseq() == cseq) {
+					guestCartList.remove(index++);
+					break;
+				}
+			}
+			session.setAttribute("guestCartList", guestCartList);
+			mav.setViewName("redirect:/deliveryCartForm");
+		}
+		return mav;
+	}
+	
+	@RequestMapping(value="/deliveryCartDelete")
+	public ModelAndView deliveryCartDelete(HttpServletRequest request,
+			@RequestParam("menu") int[] cseq) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		if((int)session.getAttribute("memberkind") == 1) {
+			for(int cq : cseq) {
+				cs.deleteCart(cq);
+			}
+			mav.setViewName("redirect:/deliveryCartForm");
+		}else if((int)session.getAttribute("memberkind") == 2) {
+			ArrayList<CartVO> guestCartList = (ArrayList<CartVO>)session.getAttribute("guestCartList");
+			for(int cq : cseq) {
+				int index = 0;
+				for(CartVO cvo : guestCartList) {
+					if(cvo.getCseq() == cq) {
+						guestCartList.remove(index);
+						break;
+					}
+					index++;
+				}
+			}
+			session.setAttribute("guestCartList", guestCartList);
+			mav.setViewName("redirect:/deliveryCartForm");
+		}
+		return mav;
 	}
 }

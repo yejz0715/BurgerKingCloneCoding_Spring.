@@ -15,4 +15,8 @@
 	<select id="getCseq" resultType="_int">
 		select cseq.nextVal from dual
 	</select>
+	
+	<delete id="deleteCart">
+		delete from cart where cseq = #{param1}
+	</delete>
 </mapper>

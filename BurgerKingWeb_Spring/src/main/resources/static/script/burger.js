@@ -143,7 +143,7 @@ function go_cart02(){
 
 
 function go_cart_delete(cseq){
-	var url="burger.do?command=cartDelete&cseq="+cseq;
+	var url="cartDelete?cseq="+cseq;
 	window.location.replace(url);
 }
 
@@ -191,7 +191,7 @@ function del_cart(){
 	var count = 0;  //  체크된 체크박스의 갯수를 카운트 하기위한 변수
 	var checkboxes = document.getElementsByName('menu');
 	var cb = [];
-	
+	var index = 0;
 	if(checkboxes.length==undefined){   // 장바구니에 물건이 하나일때, 체크박스가 하나일때
 		if(checkboxes.checked == true)   // 그 체크박스만 체크되어 있는지 확인
 			count++;
@@ -200,7 +200,7 @@ function del_cart(){
 		for( var i=0; i<checkboxes.length; i++){
 			if( checkboxes[i].checked==true){
 				count++;
-				cb[i] = checkboxes[i].value;
+				cb[index++] = checkboxes[i].value;
 			}
 		}
 	}
@@ -208,7 +208,7 @@ function del_cart(){
 	if( count == 0 ){
 		alert("삭제할 항목을 선택해주세요");
 	} else{
-	    window.location.href = "burger.do?command=deliveryCartDelete&menu=" + cb;
+	    window.location.href = "deliveryCartDelete?menu=" + cb;
 	}
 }
 
