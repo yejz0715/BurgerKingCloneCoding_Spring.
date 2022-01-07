@@ -1,5 +1,7 @@
 package com.ezen.burger.controller;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +22,8 @@ import com.ezen.burger.dto.subproductOrderVO;
 import com.ezen.burger.service.CartService;
 import com.ezen.burger.service.OrderService;
 import com.ezen.burger.service.ProductService;
+
+import oracle.sql.DATE;
 
 @Controller
 public class CartController {
@@ -68,7 +72,7 @@ public class CartController {
 				GuestVO gvo = (GuestVO)session.getAttribute("loginUser");
 				//해당 접속 회원의 주문 목록과 카트 목록 가져오기
 				ArrayList<orderVO> list1 = os.getOrderList(gvo.getId());
-				ArrayList<CartVO> list2 = cs.selectCart(gvo.getId());
+				ArrayList<CartVO> list2 = (ArrayList<CartVO>)session.getAttribute("guestCartList");
 				
 				// 가져온 카트 목록에서 가격 총합 계산 
 				int totalPrice = 0; 
@@ -111,12 +115,32 @@ public class CartController {
 		if((int)session.getAttribute("memberkind") == 1) {
 			mvo = (MemberVO)session.getAttribute("loginUser");
 			cvo.setId( mvo.getId() );   // 아이디 저장
+			cvo.setPseq(pseq);  // 상품번호저장
+			cs.insertCart(cvo);
 		}else if((int)session.getAttribute("memberkind") == 2) {
 			gvo = (GuestVO)session.getAttribute("loginUser");
+			// 비회원 카트 리스트 호출
+			ArrayList<CartVO> guestCartList = (ArrayList<CartVO>) session.getAttribute("guestCartList");
 			cvo.setId( gvo.getId() );   // 아이디 저장
+			cvo.setCseq(cs.getCseq());
+			cvo.setPseq(pseq);
+			cvo.setQuantity(1);
+			cvo.setResult("1");
+			Timestamp ts = new Timestamp(System.currentTimeMillis());
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			String d = sdf.format(ts);
+			cvo.setDate();
+			cvo.setPname(pvo.getPname());
+			cvo.setMname(gvo.getName());
+			cvo.setImage(pvo.getImage());
+			cvo.setPrice1(pvo.getPrice1());
+			cvo.setKind1(pvo.getKind1());
+			cvo.setKind3(pvo.getKind3());
+			cvo.setPhone(gvo.getPhone());
+			cvo.setMemberkind(gvo.getMemberkind());
+			guestCartList.add(cvo);
+			session.setAttribute("guestCartList", guestCartList);
 		}
-		cvo.setPseq(pseq);  // 상품번호저장
-		cs.insertCart(cvo);
 		
 		return "redirect:/deliveryCartForm";
 	}

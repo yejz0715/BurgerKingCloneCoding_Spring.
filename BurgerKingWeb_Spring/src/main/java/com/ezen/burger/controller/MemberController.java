@@ -189,10 +189,12 @@ public class MemberController {
 			@RequestParam("pwd") String pwd) {
 		ModelAndView mav = new ModelAndView();
 		GuestVO gvo = ms.guestSessionLogin(name, phone, pwd);
+		ArrayList<CartVO> guestCartList = new ArrayList<CartVO>(); 
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("loginUser", gvo);
 		session.setAttribute("memberkind", gvo.getMemberkind());
+		session.setAttribute("guestCartList", guestCartList);
 		mav.setViewName("redirect:/");
 		return mav;
 	}

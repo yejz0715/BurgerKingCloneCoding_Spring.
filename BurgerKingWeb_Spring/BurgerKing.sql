@@ -28,6 +28,7 @@ DROP TABLE orders CASCADE CONSTRAINTS;
 DROP TABLE product CASCADE CONSTRAINTS;
 DROP TABLE shortproduct CASCADE CONSTRAINTS;
 DROP TABLE sub_product CASCADE CONSTRAINTS;
+DROP TABLE guest CASCADE CONSTRAINTS;
 
 select * from cart_view;
 
@@ -299,3 +300,14 @@ select * from address
 
 delete from SUBPRODUCT_ORDER
 
+create table guest(
+	gseq number(10) not null,
+	id varchar2(50) NOT NULL UNIQUE,
+	pwd varchar2(20) not null,
+	phone varchar2(13) NOT NULL,
+	name varchar2(15) NOT NULL,
+	memberkind number(1) DEFAULT 2,
+	address varchar2(100),
+	zip_num varchar2(7),
+	PRIMARY KEY (id)
+);
