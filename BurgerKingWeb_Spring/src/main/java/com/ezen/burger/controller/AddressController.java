@@ -151,6 +151,8 @@ public class AddressController {
 					as.updateUserAddress(mavo);
 					mav.setViewName("redirect:/deliveryMypageForm");
 				}
+			} else{
+				mav.setViewName("redirect:/loginForm");
 			}
 		}
 		return mav;
