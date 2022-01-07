@@ -14,8 +14,8 @@
 			<td colspan="5">${eventVO.subject}</td>
 		</tr>
 		<tr>
-			<th>시작일</th><td>${eventVO.startdate}</td>
-			<th>종료일</th><td>${eventVO.enddate}</td>
+			<th>시작일</th><td>${eventVO.startdate.substring(0,10)}</td>
+			<th>종료일</th><td>${eventVO.enddate.substring(0,10)}</td>
 			<c:choose>
 				<c:when test="${eventVO.state == 0}">
 					<th>상태</th><td>종료</td>
@@ -32,7 +32,7 @@
 		<tr>
 			<th>이벤트이미지</th>
 			<td colspan="5" align="center">
-				<img src="upload/main/event/eventDetail/${eventVO.image}" width="200px">
+				<img src="upload/main/event/${eventVO.image}" width="200px">
 			</td>
 		</tr>
 	</table>

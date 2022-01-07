@@ -28,8 +28,8 @@
 					<td style="text-align: left; padding-left: 50px;">
 						<a href="#" onClick="go_event_detail('${eventVO.eseq}')">${eventVO.subject}</a>
 					</td>
-					<td>${eventVO.startdate}</td>
-					<td>${eventVO.enddate}</td>
+					<td>${eventVO.startdate.substring(0,10)}</td>
+					<td>${eventVO.enddate.substring(0,10)}</td>
 					<td>
 						<c:choose>
 							<c:when test='${eventVO.state=="0" }'>종료</c:when>
