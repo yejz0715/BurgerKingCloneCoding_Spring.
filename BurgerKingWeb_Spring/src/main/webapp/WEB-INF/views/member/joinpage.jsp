@@ -73,7 +73,8 @@
 					</h3>
 					<div class="container02">
 						<div class="titbox">
-							<p>회원정보를 입력해 주세요</p>
+							<p>회원정보를 입력해 주세요</p><br>
+							<label style="color: red;">${message}</label>
 						</div>
 						<div class="dlist01">
 							<dl>
@@ -160,7 +161,7 @@
 					<div class="c_btn">
 						<button type="submit" id="btnJoin" value="submit" class="btn77 btn01_m">
 							<span>회원가입</span><br>
-						</button><label>${message}</label>
+						</button>
 					</div>
 				</div>
 			<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>

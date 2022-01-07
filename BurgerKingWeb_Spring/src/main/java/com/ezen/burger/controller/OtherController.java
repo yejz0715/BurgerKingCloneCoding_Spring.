@@ -1,6 +1,9 @@
 package com.ezen.burger.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +11,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ezen.burger.dto.CartVO;
+import com.ezen.burger.dto.MemberVO;
+import com.ezen.burger.dto.orderVO;
+import com.ezen.burger.service.CartService;
+import com.ezen.burger.service.OrderService;
 import com.ezen.burger.service.OtherService;
 import com.ezen.burger.service.QnaService;
 
@@ -18,6 +26,12 @@ public class OtherController {
 	
 	@Autowired
 	QnaService qs;	
+	
+	@Autowired
+	OrderService os2;
+	
+	@Autowired
+	CartService cs;
 	
 	@RequestMapping(value="/")
 
@@ -87,7 +101,34 @@ public class OtherController {
 	@RequestMapping(value="/deliveryUseForm")
 	public String deliveryUseForm() {
 		return "ServiceCenter/deliveryuse";
-	} 
+	}
+	
+	@RequestMapping(value="/deliveryMypageForm")
+	public ModelAndView deliveryMypageForm(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		if(session.getAttribute("memberkind") != null) {
+			int memberKind = (int)session.getAttribute("memberkind");
+			if(memberKind == 1) {
+				MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
+				ArrayList<orderVO> list1 = os2.getOrderList(mvo.getId());
+				ArrayList<CartVO> list2 = cs.selectCart( mvo.getId() );	
+
+				mav.addObject("ovo", list1);
+				mav.addObject("cvo", list2);
+				mav.addObject("MemberVO", mvo);
+				mav.setViewName("delivery/myPage");
+			}else if(memberKind == 2){
+				mav.addObject("kind1", 1);
+				mav.setViewName("redirect:/deliveryForm");
+			}else {
+				mav.setViewName("redirect:/loginForm");
+			}
+		}else {
+			mav.setViewName("redirect:/loginForm");
+		}
+		return mav;
+	}
 }
 
 

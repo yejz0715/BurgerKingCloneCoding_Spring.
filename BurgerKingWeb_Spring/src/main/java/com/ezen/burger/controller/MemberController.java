@@ -416,7 +416,6 @@ public class MemberController {
 		return mav;
 	}
 	
-	
 	@RequestMapping(value="/complet")
 	public String complet(Model model, HttpServletRequest request) {
 		return "member/complet";
