@@ -45,7 +45,7 @@
 
 
 			<div class="c_btnItem2">
-				<input type="reset" class="btn01 red" value="취소" /> 
+				<input type="reset" class="btn01 red" value="취소" onclick="history.go(-1)"/> 
 				<input type="submit" class="btn01 m" value="변경" />
 			</div>
 		</form>

@@ -58,7 +58,7 @@
 							<a href="logout"><span>로그아웃</span></a>
 							<a href="deliveryMypageForm"><span>MY킹</span></a>
 							<a style="display: none;"><span>로그인</span></a>
-							<a href="faqForm?fnum=1"><span>고객센터</span></a>
+							<a href="faqListForm?fnum=1"><span>고객센터</span></a>
 						</div>
 						<div class="WEB user">
 							<p><span>${loginUser.name}</span>님 안녕하세요</p>

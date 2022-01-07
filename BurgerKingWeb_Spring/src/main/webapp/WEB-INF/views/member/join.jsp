@@ -35,7 +35,7 @@
 					<a href="contract" class="btn02 st03" ><span>버거킹 회원가입</span></a>
 				</div>
 			</div>
-			<div id="base">
+			<div id="base" style="background-color: white;">
 				<div class="imgs" id="view1"><img src="image/menu/2/doublewhitegarlic.png">
 				<div class="loginimg_name"><span>더블화이트갈릭와퍼</span></div>				</div>
         		<div class="imgs" id="view2"><img src="image/menu/2/guinnessquattrocheese.png">
