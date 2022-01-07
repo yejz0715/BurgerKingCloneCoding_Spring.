@@ -45,4 +45,9 @@
 		insert into member (mseq, id, pwd, phone, name)
 		values(mseq.nextVal, #{id}, #{pwd}, #{phone}, #{name})
 	</insert>
+	
+	
+	<select id="joinMember" resultType="com.ezen.burger.dto.MemberVO">
+		select * from member where id = #{param1} and name = #{param2} and phone = #{param3} and pwd = #{param4}
+	</select>
 </mapper>

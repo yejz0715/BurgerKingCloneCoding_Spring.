@@ -185,12 +185,10 @@ public class MemberController {
 			@RequestParam("pwd") String pwd) {
 		ModelAndView mav = new ModelAndView();
 		GuestVO gvo = ms.guestSessionLogin(name, phone, pwd);
-		ArrayList<CartVO> guestCartList = new ArrayList<CartVO>(); 
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("loginUser", gvo);
 		session.setAttribute("memberkind", gvo.getMemberkind());
-		session.setAttribute("guestCartList", guestCartList);
 		mav.setViewName("redirect:/");
 		return mav;
 	}
@@ -352,6 +350,23 @@ public class MemberController {
 	public String popup2(Model model, HttpServletRequest request) {
 		return "member/popup2";
 	}
+	
+	
+	@RequestMapping(value="/firstjoinpage")
+	public ModelAndView firstjoinpage(Model model, HttpServletRequest request,
+			@RequestParam("id") String id, @RequestParam("name") String name,
+			@RequestParam("phone") String phone,@RequestParam("pwd") String pwd) {
+		ModelAndView mav = new ModelAndView();
+		MemberVO mvo = ms.joinMember(id, name, phone, pwd);
+		mav.addObject("id" , id);
+		mav.addObject("name" , name);
+		mav.addObject("phone" , phone);
+		mav.addObject("pwd" , pwd);
+		mav.setViewName("member/firstjoinpage");
+		return mav;
+	}
+	
+	
 	
 	
 	@RequestMapping(value="/joinpage", method=RequestMethod.POST)

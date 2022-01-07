@@ -18,4 +18,5 @@ public interface IMemberDao {
 	public void deleteMember(int mseq);
 	public void deleteMyaddress(int mseq);
 	public void insertMember(MemberVO membervo);
+	public MemberVO joinMember(String id, String name, String phone, String pwd);
 }

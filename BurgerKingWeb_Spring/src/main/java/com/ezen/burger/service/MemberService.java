@@ -60,4 +60,8 @@ public class MemberService {
 	public void insertMember( MemberVO membervo) {
 		mdao.insertMember(membervo);
 	}
+
+	public MemberVO joinMember(String id, String name, String phone, String pwd) {
+		return mdao.joinMember(id, name, phone, pwd);
+	}
 }

@@ -30,7 +30,7 @@
 			</div>
 			<div class="c_btn m_item2">
 				<a href="main" class="btn01"><span>홈으로</span></a><a
-					href="loginForm&non=1" class="btn01"><span>주문하기</span></a>
+					href="loginForm?non=1" class="btn01"><span>주문하기</span></a>
 			</div>
 		</div>
 	</div>
