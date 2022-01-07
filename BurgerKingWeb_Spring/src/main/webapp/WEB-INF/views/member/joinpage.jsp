@@ -31,7 +31,7 @@
 		window.open(url, "idCheck", opt);
 	}
 		
-	function go_save(){
+	 function go_save(){
 		
 		if (document.joinpageForm.id.value == "") {
 			alert("아이디를 입력하여 주세요."); 	    
@@ -53,7 +53,7 @@
 			document.joinpageForm.submit(); 
 		}
 	}
-	
+	 
 	
 	
 	</script>
@@ -133,7 +133,7 @@
 									<div class="inpbox">
 										<label><span class="hide">비밀번호</span><input
 											placeholder="비밀번호, 영문, 숫자, 특수문자 조합(10~20자 사이)"
-											type="password" class="st02" name="pwd" size="10" value="${dto.pwd}"> </label>
+											type="password" class="st02" name="pwd" size="10" > </label>
 										<p class="txt77">
 											<span>사용할 비밀번호를 입력해 주세요 </span>
 										</p>
@@ -148,7 +148,7 @@
 									<div class="inpbox">
 										<label><span class="hide">비밀번호 확인</span><input
 											placeholder="비밀번호 확인" type="password" class="st02" 
-											name="pwdCheck" size="10" value="${pwCheck}">
+											name="pwdCheck" size="10" >
 											</label>
 										<p class="txt77">
 											<span>비밀번호를 다시한번 입력해 주세요.</span>

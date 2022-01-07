@@ -58,6 +58,6 @@ public class MemberService {
 	}
 
 	public void insertMember( MemberVO membervo) {
-		mdao.MemberVO(membervo);
+		mdao.insertMember(membervo);
 	}
 }
