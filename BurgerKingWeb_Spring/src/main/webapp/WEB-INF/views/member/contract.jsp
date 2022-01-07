@@ -75,7 +75,7 @@
 					  
 						if( result == "1 2 " || result=="1 2 3 4 " || result=="1 2 3 " || result=="1 2 4 " || result=="1 2 3 4 5 ")
 						{	
-							document.contractFrm.action ="firstjoinpage";
+							document.contractFrm.action ="joinpageForm";
 							document.contractFrm.submit(); 
 						}
 						else

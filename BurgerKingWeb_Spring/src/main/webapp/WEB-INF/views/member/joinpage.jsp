@@ -60,8 +60,7 @@
 
 
 
-	<form method="post" name="joinpageForm" >
-<input type="hidden" name="command"  value="joinpageForm">
+	<form method="post" name="joinpageForm" action="joinpage">
 	<fieldset>
 		<div class="contentsBox01">
 			<div class="web_container">
@@ -159,8 +158,7 @@
 						</div>
 					</div>
 					<div class="c_btn">
-						<button type="submit" id="btnJoin" value="submit"
-							class="btn77 btn01_m">
+						<button type="submit" id="btnJoin" value="submit" class="btn77 btn01_m">
 							<span>회원가입</span><br>
 						</button><label>${message}</label>
 					</div>

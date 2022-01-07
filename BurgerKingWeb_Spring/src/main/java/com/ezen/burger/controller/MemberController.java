@@ -352,17 +352,10 @@ public class MemberController {
 	}
 	
 	
-	@RequestMapping(value="/firstjoinpage")
-	public ModelAndView firstjoinpage(Model model, HttpServletRequest request,
-			@RequestParam("id") String id, @RequestParam("name") String name,
-			@RequestParam("phone") String phone,@RequestParam("pwd") String pwd) {
+	@RequestMapping(value="/joinpageForm")
+	public ModelAndView firstjoinpage(Model model, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
-		MemberVO mvo = ms.joinMember(id, name, phone, pwd);
-		mav.addObject("id" , id);
-		mav.addObject("name" , name);
-		mav.addObject("phone" , phone);
-		mav.addObject("pwd" , pwd);
-		mav.setViewName("member/firstjoinpage");
+		mav.setViewName("member/joinpage");
 		return mav;
 	}
 	
