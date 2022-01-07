@@ -103,7 +103,7 @@
 		<div class="cartinfo">
 			<div class="c_btn item2">
 				<c:if test="${!empty loginUser}">
-					<button type="button" class="btn01 m ico add" onclick="deliveryForm&kind1=1'">
+					<button type="button" class="btn01 m ico add" onclick="location.href='deliveryForm?kind1=1'">
 						<span>메뉴 추가</span>
 					</button>
 				</c:if>
