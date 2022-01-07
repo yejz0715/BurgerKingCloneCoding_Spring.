@@ -404,7 +404,7 @@ public class MemberController {
 	}
 	
 	
-	@RequestMapping("/idCheckForm")
+	@RequestMapping("/idcheck")
 	public ModelAndView idcheck( @RequestParam("id") String id ) {
 		ModelAndView mav = new ModelAndView();
 		
