@@ -22,8 +22,8 @@
 	<div class="detailTit">
 	<input type="hidden" name="eseq" value="${EventVO.eseq}" />
 	<h2>${EventVO.subject}</h2>
-	<p>${EventVO.startdate} ~
-	${EventVO.enddate}
+	<p>${EventVO.startdate.substring(0,10)} ~
+	${EventVO.enddate.substring(0,10)}
 	</p>
 	</div>
 	<div class="dt_ImgCon">
