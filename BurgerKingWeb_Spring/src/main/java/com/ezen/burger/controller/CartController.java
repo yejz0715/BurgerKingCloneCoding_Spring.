@@ -127,9 +127,7 @@ public class CartController {
 			cvo.setQuantity(1);
 			cvo.setResult("1");
 			Timestamp ts = new Timestamp(System.currentTimeMillis());
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			String d = sdf.format(ts);
-			cvo.setDate();
+			cvo.setDate(ts);
 			cvo.setPname(pvo.getPname());
 			cvo.setMname(gvo.getName());
 			cvo.setImage(pvo.getImage());

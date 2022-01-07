@@ -10,6 +10,5 @@ import com.ezen.burger.dto.CartVO;
 public interface ICartDao {
 	public ArrayList<CartVO> selectCart(String id);
 	public void insertCart(CartVO cvo);
-	public void deleteguestCart(String id);
 	public int getCseq();
 }

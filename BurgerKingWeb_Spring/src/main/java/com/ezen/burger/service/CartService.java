@@ -21,10 +21,6 @@ public class CartService {
 		cdao.insertCart(cvo);
 	}
 
-	public void deleteguestCart(String id) {
-		cdao.deleteguestCart(id);
-	}
-
 	public int getCseq() {
 		return cdao.getCseq();
 	}
