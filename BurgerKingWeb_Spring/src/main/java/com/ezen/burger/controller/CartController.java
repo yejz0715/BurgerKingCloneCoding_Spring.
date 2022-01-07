@@ -1,7 +1,6 @@
 package com.ezen.burger.controller;
 
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,12 +17,11 @@ import com.ezen.burger.dto.GuestVO;
 import com.ezen.burger.dto.MemberVO;
 import com.ezen.burger.dto.ProductVO;
 import com.ezen.burger.dto.orderVO;
+import com.ezen.burger.dto.subProductVO;
 import com.ezen.burger.dto.subproductOrderVO;
 import com.ezen.burger.service.CartService;
 import com.ezen.burger.service.OrderService;
 import com.ezen.burger.service.ProductService;
-
-import oracle.sql.DATE;
 
 @Controller
 public class CartController {
@@ -189,6 +187,125 @@ public class CartController {
 			}
 			session.setAttribute("guestCartList", guestCartList);
 			mav.setViewName("redirect:/deliveryCartForm");
+		}
+		return mav;
+	}
+	
+	@RequestMapping(value="/minusQuantity")
+	public ModelAndView minusQuantity(HttpServletRequest request,
+			@RequestParam("cseq") int cseq) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		if(session.getAttribute("memberkind")!=null && session.getAttribute("loginUser")!=null) {
+			if((int)session.getAttribute("memberkind") == 1) {
+				// 수량이 1개보다 작으면 더이상 감소가 되지않음
+				int quantity = cs.getQuantity(cseq);
+				if(quantity <= 1) {
+					mav.setViewName("redirect:/deliveryCartForm");
+				}else {
+					cs.minusQuantity(cseq);
+					mav.setViewName("redirect:/deliveryCartForm");
+				}
+			}else if((int)session.getAttribute("memberkind") == 2) {
+				ArrayList<CartVO> guestCartList = (ArrayList<CartVO>)session.getAttribute("guestCartList");
+				int index = 0;
+				for(CartVO cvo : guestCartList) {
+					if(cvo.getCseq() == cseq) {
+						if(cvo.getQuantity() <= 1) {
+							break;
+						}else {
+							guestCartList.remove(index);
+							cvo.setQuantity(cvo.getQuantity() - 1);
+							guestCartList.add(index, cvo);
+							break;
+						}
+					}
+					index++;
+				}
+				session.setAttribute("guestCartList", guestCartList);
+				mav.setViewName("redirect:/deliveryCartForm");
+			}
+		}
+		return mav;
+	}
+	
+	@RequestMapping(value="/plusQuantity")
+	public ModelAndView plusQuantity(HttpServletRequest request,
+			@RequestParam("cseq") int cseq) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		if(session.getAttribute("memberkind")!=null && session.getAttribute("loginUser")!=null) {
+			if((int)session.getAttribute("memberkind") == 1) {
+				// 수량이 99개보다 크면 더이상 증가가 되지않음
+				int quantity = cs.getQuantity(cseq);
+				if(quantity >= 99) {
+					mav.setViewName("redirect:/deliveryCartForm");
+				}else {
+					cs.plusQuantity(cseq);
+					mav.setViewName("redirect:/deliveryCartForm");
+				}
+			}else if((int)session.getAttribute("memberkind") == 2) {
+				ArrayList<CartVO> guestCartList = (ArrayList<CartVO>)session.getAttribute("guestCartList");
+				int index = 0;
+				for(CartVO cvo : guestCartList) {
+					if(cvo.getCseq() == cseq) {
+						if(cvo.getQuantity() >= 99) {
+							break;
+						}else {
+							guestCartList.remove(index);
+							cvo.setQuantity(cvo.getQuantity() + 1);
+							guestCartList.add(index, cvo);
+							break;
+						}
+					}
+					index++;
+				}
+				session.setAttribute("guestCartList", guestCartList);
+				mav.setViewName("redirect:/deliveryCartForm");
+			}
+		}
+		return mav;
+	}
+	
+	@RequestMapping(value="/insertAddMeterial")
+	public ModelAndView insertAddMeterial(HttpServletRequest request,
+			@RequestParam("addM") int[] m) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		if(session.getAttribute("memberkind")!=null && session.getAttribute("loginUser")!=null) {
+			if((int)session.getAttribute("memberkind") == 1) {
+				MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
+				ArrayList<subProductVO> sublist = null;
+				if(m.length != 0) { // meterial값이 있다면
+					if(m.length == 1) { // am 배열의 길이가 1이라면 pseq값만 온 것이므로 선택한 메뉴가 없다. 즉 그냥 pass
+						mav.addObject("spseqAm", null);
+						mav.setViewName("redirect:/deliveryCartForm");
+					}else {
+						// 넘어온 spseq 값이 있다면 해당 sub_productVO 정보를 list로 저장한다.
+						sublist = new ArrayList<subProductVO>();
+						for(int i = 1; i < m.length; i++)
+						{
+							sublist.add(ps.getSubProduct2(m[i]));
+						}
+						
+						// 이후 해당 주문의 cart를 생성
+						CartVO cvo = new CartVO();
+						cvo.setId( mvo.getId() );   // 아이디 저장
+						cvo.setPseq(m[0]);  // 상품번호저장
+						cs.insertCart(cvo);
+						
+						// 방금 들어간 pseq값을 가진 카트 중 젤 최근에 들어온것을 가져온다.
+						CartVO Am_cvo = cs.getPseqCart(m[0]);
+						
+						// 해당 카트 번호와 추가 메뉴vo, 회원의 mseq값을 가지고 추가재료 order를 생성
+						ps.insertSubProductOrder(Am_cvo.getCseq(), sublist, mvo.getMseq());
+						
+						mav.setViewName("redirect:/deliveryCartForm");
+					}
+				}
+			}
+		}else {
+			mav.setViewName("redirect:/loginForm");
 		}
 		return mav;
 	}

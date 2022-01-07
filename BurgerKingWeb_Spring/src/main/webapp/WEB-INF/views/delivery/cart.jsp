@@ -50,10 +50,10 @@
 				<div class="quantity"><strong class="tit">수량</strong>
 					<div class="num_set">
 						<button type="button" class="btn_minus"
-						 onclick="minusQuantity&cseq=${cartList.cseq}'"><span>-</span></button>
+						 onclick="location.href='minusQuantity?cseq=${cartList.cseq}'"><span>-</span></button>
 						<div class="result">${cartList.quantity}</div>
 						<button type="button" class="btn_plus"
-						 onclick="plusQuantity&cseq=${cartList.cseq}'"><span>+</span></button>
+						 onclick="location.href='plusQuantity?cseq=${cartList.cseq}'"><span>+</span></button>
 					</div>
 				</div>
 				<button type="button" name="submit" class="btn_del02" onclick="go_cart_delete('${cartList.cseq}')"><span>Delete menu</span></button>

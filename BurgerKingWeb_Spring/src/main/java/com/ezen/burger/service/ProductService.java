@@ -50,4 +50,12 @@ public class ProductService {
 	public ArrayList<subproductOrderVO> selectSubProductOrder2(int gseq) {
 		return pdao.selectSubProductOrder2(gseq);
 	}
+
+	public subProductVO getSubProduct2(int spseq) {
+		return pdao.getSubProduct2(spseq);
+	}
+
+	public void insertSubProductOrder(int cseq, ArrayList<subProductVO> sublist, int mseq) {
+		pdao.insertSubProductOrder(cseq, mseq, sublist);
+	}
 }

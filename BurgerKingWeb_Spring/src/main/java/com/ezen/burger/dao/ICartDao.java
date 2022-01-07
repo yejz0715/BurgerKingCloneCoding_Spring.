@@ -12,4 +12,8 @@ public interface ICartDao {
 	public void insertCart(CartVO cvo);
 	public int getCseq();
 	public void deleteCart(int cseq);
+	public void minusQuantity(int cseq);
+	public int getQuantity(int cseq);
+	public void plusQuantity(int cseq);
+	public CartVO getPseqCart(int pseq);
 }

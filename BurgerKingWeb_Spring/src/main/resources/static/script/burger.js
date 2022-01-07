@@ -132,7 +132,7 @@ function go_add_Meterial(pseq){
 			cb[j++] = checkboxes[i].value;
 		}
 	}
-	opener.location.href="burger.do?command=insertAddMeterial&addM=" + cb;
+	opener.location.href="insertAddMeterial?addM=" + cb;
 	self.close();
 }
 

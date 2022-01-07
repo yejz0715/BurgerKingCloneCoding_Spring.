@@ -28,4 +28,20 @@ public class CartService {
 	public void deleteCart(int cseq) {
 		cdao.deleteCart(cseq);
 	}
+
+	public void minusQuantity(int cseq) {
+		cdao.minusQuantity(cseq);
+	}
+
+	public int getQuantity(int cseq) {
+		return cdao.getQuantity(cseq);
+	}
+
+	public void plusQuantity(int cseq) {
+		cdao.plusQuantity(cseq);
+	}
+
+	public CartVO getPseqCart(int pseq) {
+		return cdao.getPseqCart(pseq);
+	}
 }

@@ -19,4 +19,20 @@
 	<delete id="deleteCart">
 		delete from cart where cseq = #{param1}
 	</delete>
+	
+	<select id="getQuantity" resultType="int">
+		select quantity from cart where cseq = #{param1}
+	</select>
+	
+	<update id="minusQuantity">
+		update cart set quantity=quantity-1 where cseq = #{param1}
+	</update>
+	
+	<update id="plusQuantity">
+		update cart set quantity=quantity+1 where cseq = #{param1}
+	</update>
+	
+	<select id="getPseqCart" resultType="com.ezen.burger.dto.CartVO">
+		select * from cart_view where pseq = ${param1} order by indate desc
+	</select>
 </mapper>
