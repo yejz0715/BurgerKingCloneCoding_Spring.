@@ -18,7 +18,6 @@ public class CartVO {
 	private int price1;
 	private String kind1;
 	private String kind3;
-	private String nid;
 	private String phone;
-	private String memberkind;
+	private int memberkind;
 }
