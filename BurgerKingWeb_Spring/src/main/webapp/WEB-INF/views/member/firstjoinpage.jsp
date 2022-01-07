@@ -21,12 +21,12 @@
 		
 	
 	function idcheck(){
-		if( document.joinpageForm.id.value=="" ){
+		if( document.firstjoinpageForm.id.value=="" ){
 			alert("아이디를 입력하세요" );
-			documnet.joinpageForm.id.focus();
+			documnet.firstjoinpageForm.id.focus();
 			return;
 		}
-		var url = "idCheckForm?id=" + document.joinpageForm.id.value;
+		var url = "idCheckForm?id=" + document.firstjoinpageForm.id.value;
 		var opt = "toolbar=no, menubar=no, resizable=no, width=400, height=350";
 		window.open(url, "idCheck", opt);
 	}
@@ -60,7 +60,8 @@
 
 
 
-	<form method="post" name="joinpageForm" action="joinpage">
+	<form method="post" name="firstjoinpageForm" >
+<input type="hidden" name="command"  value="firstjoinpageForm">
 	<fieldset>
 		<div class="contentsBox01">
 			<div class="web_container">
@@ -140,7 +141,7 @@
 								</dd>
 							</dl>
 							<dl>
-								<dt class="WEB vtop77">비밀번호 확인
+								<dt class="WEB vtop77">
 									<span class="hide">비밀번호 확인</span>
 								</dt>
 								<dd>
@@ -158,7 +159,8 @@
 						</div>
 					</div>
 					<div class="c_btn">
-						<button type="submit" id="btnJoin" value="submit" class="btn77 btn01_m">
+						<button type="submit" id="btnJoin" value="submit"
+							class="btn77 btn01_m" >
 							<span>회원가입</span><br>
 						</button><label>${message}</label>
 					</div>

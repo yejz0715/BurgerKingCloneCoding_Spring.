@@ -33,9 +33,9 @@
 								class="eventImg" src="upload/main/event/${EventVO.image}" />
 						</a>
 							<p>
-								${EventVO.startdate}
+								${EventVO.startdate.substring(0,10)}
 								~
-								${EventVO.enddate}
+								${EventVO.enddate.substring(0,10)}
 							</p></li>
 					</c:forEach>
 				</ul>

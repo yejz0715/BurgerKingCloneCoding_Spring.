@@ -1,4 +1,4 @@
-select * from cart
+select * from member
 /* Drop Triggers */
 
 DROP TRIGGER TRI_cart_cseq;
@@ -28,8 +28,9 @@ DROP TABLE orders CASCADE CONSTRAINTS;
 DROP TABLE product CASCADE CONSTRAINTS;
 DROP TABLE shortproduct CASCADE CONSTRAINTS;
 DROP TABLE sub_product CASCADE CONSTRAINTS;
+DROP TABLE guest CASCADE CONSTRAINTS;
 
-select * from 
+select * from cart_view;
 
 /* Drop Sequences */
 
@@ -225,7 +226,7 @@ create or replace view cart_view
 as
 select  c.cseq, c.id, m.name as mname, c.pseq, p.pname as pname, p.image, p.kind1, p.kind3,
 	c.quantity, p.price1, c.result,  c.indate 
-from cart c, product p, member m   
+from cart c, product p, member m
 where  c.pseq = p.pseq and m.id = c.id;
 
 drop view order_view
@@ -296,3 +297,14 @@ select * from address
 
 delete from SUBPRODUCT_ORDER
 
+create table guest(
+	gseq number(10) not null,
+	id varchar2(50) NOT NULL UNIQUE,
+	pwd varchar2(20) not null,
+	phone varchar2(13) NOT NULL,
+	name varchar2(15) NOT NULL,
+	memberkind number(1) DEFAULT 2,
+	address varchar2(100),
+	zip_num varchar2(7),
+	PRIMARY KEY (id)
+);

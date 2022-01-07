@@ -352,39 +352,52 @@ public class MemberController {
 	}
 	
 	
+	@RequestMapping(value="/joinpageForm")
+	public ModelAndView firstjoinpage(Model model, HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("member/joinpage");
+		return mav;
+	}
+	
+	
+	
+	
 	@RequestMapping(value="/joinpage", method=RequestMethod.POST)
 	public ModelAndView joinpage( @ModelAttribute("dto") @Valid MemberVO membervo,
 			BindingResult result, @RequestParam(value="reid" , required = false) String reid, 
-			@RequestParam(value="pwCheck" , required = false) String pwCheck, Model model) {
+			@RequestParam(value="pwdCheck" , required = false) String pwdCheck, Model model) {
 		ModelAndView mav = new ModelAndView();
 		
-		if( result.getFieldError("id") != null ) {
-			mav.addObject("message", result.getFieldError("id").getDefaultMessage() );
-			mav.addObject("reid", reid);
-			mav.setViewName("member/joinpage");
-		} else if( result.getFieldError("pwd") != null ) {
+		
+		if( result.getFieldError("id") != null ) { 
+				mav.addObject("message", result.getFieldError("id").getDefaultMessage() ); 
+				mav.addObject("reid",reid); 
+				mav.setViewName("member/joinpage"); 
+		 } else if( !membervo.getId().equals(reid)){
+				mav.addObject("message","아이디 중복체크가 되지 않았습니다");
+				mav.setViewName("member/joinpage");
+		
+		 } else if( result.getFieldError("name") != null ) {
+				mav.addObject("message", result.getFieldError("name").getDefaultMessage() );
+				mav.addObject("reid", reid);
+				mav.setViewName("member/joinpage");		
+		 } else if( result.getFieldError("phone") != null ) {
+				mav.addObject("message", result.getFieldError("phone").getDefaultMessage() );
+				mav.addObject("reid", reid);
+				mav.setViewName("member/joinpage");
+		 } else	if( result.getFieldError("pwd") != null ) {
 			mav.addObject("message", result.getFieldError("pwd").getDefaultMessage() );
 			mav.addObject("reid", reid);
 			mav.setViewName("member/joinpage");
-		} else if( result.getFieldError("name") != null ) {
-			mav.addObject("message", result.getFieldError("name").getDefaultMessage() );
-			mav.addObject("reid", reid);
-			mav.setViewName("member/joinpage");
-		} else if( result.getFieldError("phone") != null ) {
-			mav.addObject("message", result.getFieldError("phone").getDefaultMessage() );
-			mav.addObject("reid", reid);
-			mav.setViewName("member/joinpage");
-		} else if( !membervo.getId().equals(reid)){
-			mav.addObject("message","아이디 중복체크가 되지 않았습니다");
-			mav.setViewName("member/joinpage");
-		} else if( !membervo.getPwd().equals(pwCheck)) {
+		
+		} else if( !membervo.getPwd().equals(pwdCheck)) {
 			mav.addObject("message","비밀번호 확인이 일치하지 않습니다.");
 			mav.addObject("reid", reid);
 			mav.setViewName("member/joinpage");
 		}else { 
 			ms.insertMember(membervo);
 			mav.addObject("message", "회원가입이 완료되었습니다. 로그인 하세요");
-			mav.setViewName("redirect:/loginform");
+			mav.setViewName("member/complet");
 		}		
 		return mav;
 	}
@@ -401,6 +414,12 @@ public class MemberController {
 		mav.addObject("id" , id);
 		mav.setViewName("member/idcheck");		
 		return mav;
+	}
+	
+	
+	@RequestMapping(value="/complet")
+	public String complet(Model model, HttpServletRequest request) {
+		return "member/complet";
 	}
 	
 }	

@@ -11,4 +11,28 @@
 	<insert id="insertCart" parameterType="com.ezen.burger.dto.CartVO">
 		insert into cart( cseq , id, pseq) values( cseq.nextVal, #{id}, #{pseq})
 	</insert>
+	
+	<select id="getCseq" resultType="_int">
+		select cseq.nextVal from dual
+	</select>
+	
+	<delete id="deleteCart">
+		delete from cart where cseq = #{param1}
+	</delete>
+	
+	<select id="getQuantity" resultType="int">
+		select quantity from cart where cseq = #{param1}
+	</select>
+	
+	<update id="minusQuantity">
+		update cart set quantity=quantity-1 where cseq = #{param1}
+	</update>
+	
+	<update id="plusQuantity">
+		update cart set quantity=quantity+1 where cseq = #{param1}
+	</update>
+	
+	<select id="getPseqCart" resultType="com.ezen.burger.dto.CartVO">
+		select * from cart_view where pseq = ${param1} order by indate desc
+	</select>
 </mapper>

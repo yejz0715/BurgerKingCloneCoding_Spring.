@@ -29,4 +29,8 @@ public interface IProductDao {
 
 	public ArrayList<subproductOrderVO> selectSubProductOrder2(int gseq);
 
+	public subProductVO getSubProduct2(int spseq);
+
+	public void insertSubProductOrder(int cseq, int mseq, ArrayList<subProductVO> sublist);
+
 }

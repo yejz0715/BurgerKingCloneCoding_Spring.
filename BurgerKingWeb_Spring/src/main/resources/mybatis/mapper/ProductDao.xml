@@ -39,4 +39,14 @@
 	<select id="getSubProduct" resultType="com.ezen.burger.dto.subProductVO">
 		select * from sub_product order by kind2 desc
 	</select>
+	
+	<select id="getSubProduct2" resultType="com.ezen.burger.dto.subProductVO">
+		select * from sub_product where spseq = #{param1}
+	</select>
+	
+	<insert id="insertSubProductOrder">
+		insert into subproduct_order(sposeq, cseq, spseq, sname, addprice, mseq)
+		values(sposeq.nextVal,#{param1}, #{param3.spseq}, #{param3.sname},
+		 #{param3.addprice}, #{param2})
+	</insert>
 </mapper>
