@@ -20,15 +20,8 @@ function idok(userid){
 <div id="wrap" style="margin:20px 0">
 <h1>ID 중복확인</h1>
 	<form method="post" name="idCheckForm" >
-		<% 
-		String n = request.getParameter("id");
-		if(n.split(",").length == 2){
-			String[] n2 = n.split(",");
-			n = n2[1];
-		}
-		%>
-		<input type="hidden" name="command" value="idCheckForm">
-		User ID <input type="email" name="id" value="<%=n%>">
+		<input type="hidden" name="first" value="n">
+		User ID <input type="email" name="id" value="${id}">
 		<input type="submit" value="검색" class="submit"><br>
 	
 		<div style="margin-top: 20px">
