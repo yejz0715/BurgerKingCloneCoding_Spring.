@@ -17,5 +17,5 @@ public interface IMemberDao {
 	public int selectGseq();
 	public void deleteMember(int mseq);
 	public void deleteMyaddress(int mseq);
-	public void MemberVO(MemberVO membervo);
+	public void insertMember(MemberVO membervo);
 }

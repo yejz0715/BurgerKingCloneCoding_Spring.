@@ -1,4 +1,4 @@
-select * from cart
+select * from member
 /* Drop Triggers */
 
 DROP TRIGGER TRI_cart_cseq;

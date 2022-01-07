@@ -7,6 +7,8 @@ import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 
+
+
 @Data
 public class MemberVO {
 	private int mseq;
