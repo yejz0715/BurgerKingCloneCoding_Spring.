@@ -205,15 +205,15 @@ CREATE TABLE sub_product
    PRIMARY KEY (spseq)
 );
 
-
+DROP TABLE subproduct_order CASCADE CONSTRAINTS;
 create table subproduct_order(
 	sposeq number(10) not null,
 	cseq number(10) not null,
 	spseq number(10) not null,
 	mseq number(10) default 0 not null,
 	gseq number(10) default 0 not null,
-	oseq number(10) not null,
-	odseq number(10) not null,
+	oseq number(10) default 0 not null,
+	odseq number(10) default 0 not null,
 	sname varchar2(30) not null,
 	addprice number(5) not null,
 	primary key(sposeq)
