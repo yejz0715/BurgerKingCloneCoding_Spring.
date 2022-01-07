@@ -1149,7 +1149,6 @@ input[type=color], input[type=date], input[type=datetime], input[type=email],
     min-width: 530px;
     border: 0px;
     float: left;
-    background-color: #f2ebe6;
 }
 
 #nonmember_MenuBar{

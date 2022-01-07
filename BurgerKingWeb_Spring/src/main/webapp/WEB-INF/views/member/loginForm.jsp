@@ -48,7 +48,7 @@
 					</div>
 				</div>
 			</form>
-			<div id="base">
+			<div id="base" style="background-color: #f2ebe6;">
 				<div id="nonmember_MenuBar">
 					<ul id="nonmenuBar_ul">
 						<li><button id="non_Btn1" onclick="shownonArea1()">비회원 주문</button></li>
