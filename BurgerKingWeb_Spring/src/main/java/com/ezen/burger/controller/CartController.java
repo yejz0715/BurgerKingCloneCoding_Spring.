@@ -305,6 +305,52 @@ public class CartController {
 						mav.setViewName("redirect:/deliveryCartForm");
 					}
 				}
+			}else if((int)session.getAttribute("memberkind") == 2) {
+				GuestVO gvo = (GuestVO)session.getAttribute("loginUser");
+				ArrayList<subProductVO> sublist = null;
+				if(m.length != 0) { // meterial값이 있다면
+					if(m.length == 1) { // am 배열의 길이가 1이라면 pseq값만 온 것이므로 선택한 메뉴가 없다. 즉 그냥 pass
+						mav.addObject("spseqAm", null);
+						mav.setViewName("redirect:/deliveryCartForm");
+					}else {
+						// 넘어온 spseq 값이 있다면 해당 sub_productVO 정보를 list로 저장한다.
+						sublist = new ArrayList<subProductVO>();
+						for(int i = 1; i < m.length; i++)
+						{
+							sublist.add(ps.getSubProduct2(m[i]));
+						}
+						
+						ProductVO pvo = ps.getProducts(m[0]);
+						ArrayList<CartVO> guestCartList = (ArrayList<CartVO>) session.getAttribute("guestCartList");
+						
+						// 이후 해당 주문의 cart를 생성
+						CartVO cvo = new CartVO();
+						cvo.setCseq(cs.getCseq());
+						cvo.setId(gvo.getId());   // 아이디 저장
+						cvo.setPseq(m[0]);  // 상품번호저장
+						cvo.setQuantity(1);
+						cvo.setResult("1");
+						Timestamp ts = new Timestamp(System.currentTimeMillis());
+						cvo.setDate(ts);
+						cvo.setPname(pvo.getPname());
+						cvo.setMname(gvo.getName());
+						cvo.setImage(pvo.getImage());
+						cvo.setPrice1(pvo.getPrice1());
+						cvo.setKind1(pvo.getKind1());
+						cvo.setKind3(pvo.getKind3());
+						cvo.setPhone(gvo.getPhone());
+						cvo.setMemberkind(gvo.getMemberkind());
+						guestCartList.add(cvo);
+						session.setAttribute("guestCartList", guestCartList);
+						
+						// 해당 카트 번호와 추가 메뉴vo, 비회원의 gseq값을 가지고 추가재료 order를 생성
+						for(int i = 0; i < sublist.size(); i++) {
+							ps.insertSubProductOrderByGseq(cvo.getCseq(), sublist.get(i), gvo.getGseq());
+						}
+						
+						mav.setViewName("redirect:/deliveryCartForm");
+					}
+				}
 			}
 		}else {
 			mav.setViewName("redirect:/loginForm");

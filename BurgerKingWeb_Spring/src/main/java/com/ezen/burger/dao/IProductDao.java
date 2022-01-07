@@ -33,4 +33,6 @@ public interface IProductDao {
 
 	public void insertSubProductOrder(int cseq, int mseq, subProductVO subProductVO);
 
+	public void insertSubProductOrderByGseq(int cseq, int gseq, subProductVO subProductVO);
+
 }

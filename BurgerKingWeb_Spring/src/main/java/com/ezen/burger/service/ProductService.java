@@ -58,4 +58,8 @@ public class ProductService {
 	public void insertSubProductOrder(int cseq, subProductVO subProductVO, int mseq) {
 		pdao.insertSubProductOrder(cseq, mseq, subProductVO);
 	}
+
+	public void insertSubProductOrderByGseq(int cseq, subProductVO subProductVO, int gseq) {
+		pdao.insertSubProductOrderByGseq(cseq, gseq, subProductVO);
+	}
 }
