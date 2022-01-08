@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../include/Delivery/deli_header.jsp"%>
-
+<form name="order" method="post" action="burger.do" style="background: #f2ebe6;">
+<input type="hidden" name="order" value="">
 <article>
 	<div class="location">
 <div class="web_container1">
@@ -144,5 +145,5 @@
 	</div>
 </div>
 </article>
-
+</form>
 <%@ include file="../include/footer.jsp"%>
