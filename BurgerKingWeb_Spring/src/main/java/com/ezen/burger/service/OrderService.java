@@ -72,4 +72,8 @@ public class OrderService {
 	public ArrayList<orderVO> getOrderListByGuest(String id) {
 		return odao.getOrderListByGuest(id);
 	}
+
+	public ArrayList<orderVO> getOrderByOseq(int oseq) {
+		return odao.getOrderByOseq(oseq);
+	}
 }

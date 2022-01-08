@@ -55,7 +55,7 @@
 						<li><button id="non_Btn2" onclick="shownonArea2()">비회원 주문내역</button></li>
 					</ul>
 				</div>
-				
+				${message2}
 				<!-- non_Btn1 showing view -->
 				<div class="nonmember_Textarea" id="nonArea1">
 					<div id="nonmember_Text">회원가입 없이 비회원으로 주문이 가능합니다.</div>
@@ -69,7 +69,7 @@
 							<div class="inpbox">
 								<label> 
 									<span>주문번호</span>
-									<input type="email" placeholder="주문번호" name="pass" style="width: 200px;">
+									<input type="text" placeholder="주문번호" name="oseq" style="width: 200px;">
 								</label>
 							</div>
 							<div class="inpbox">

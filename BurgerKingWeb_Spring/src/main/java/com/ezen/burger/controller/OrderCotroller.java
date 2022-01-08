@@ -157,4 +157,44 @@ public class OrderCotroller {
 		}
 		return mav;
 	}
+	
+	@RequestMapping(value="/nonOrderList")
+	public ModelAndView nonOrderList(HttpServletRequest request){
+		ModelAndView mav = new ModelAndView();
+		int oseq = Integer.parseInt(request.getParameter("oseq"));
+		int pwd = Integer.parseInt(request.getParameter("pwd"));
+		
+		ArrayList<orderVO> ovo = os.getOrderByOseq(oseq);
+		
+		if(ovo.size() == 0) {
+			mav.addObject("message2", "해당 주문이 없습니다.");
+			mav.setViewName("member/loginForm");
+		}else if(Integer.parseInt(ovo.get(0).getPwd()) != pwd) {
+			mav.addObject("message2", "비밀번호가 다릅니다.");
+			mav.setViewName("member/loginForm");
+		}else if(Integer.parseInt(ovo.get(0).getPwd()) == pwd) {
+			int totalPrice = 0; 
+			for(orderVO order : ovo) totalPrice += order.getPrice1() * order.getQuantity();
+			
+			// 해당 접속 회원의 추가 재료의 목록을 가져오기
+			ArrayList<subproductOrderVO> spovo = ps.selectSubProductOrder5(oseq);
+			
+			// 추가 재료의 가격까지 총 가격으로 계산
+			for(int i = 0; i < spovo.size(); i++) {
+					totalPrice += spovo.get(i).getAddprice();
+			}
+			
+			mav.addObject("totalPrice", totalPrice);
+			mav.addObject("spseqAm", spovo);
+			mav.addObject("address", ovo.get(0).getAddress());
+			mav.addObject("userPhone", ovo.get(0).getPhone());
+			mav.addObject("result", ovo.get(0).getResult());
+			mav.addObject("ovo", ovo);
+			mav.setViewName("delivery/guestOrderList");
+		}else {
+			mav.addObject("message2", "기타 오류로 조회가 불가능합니다. 관리자에게 문의하세요.");
+			mav.setViewName("member/loginForm");
+		}
+		return mav;
+	}
 }

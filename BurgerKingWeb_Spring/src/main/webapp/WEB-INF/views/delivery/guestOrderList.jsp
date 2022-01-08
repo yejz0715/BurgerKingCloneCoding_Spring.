@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../include/Delivery/deli_header.jsp"%>
-<div class="clear"></div>
- 
+
 <article>
-<div class="location">
+	<div class="location">
 <div class="web_container1">
 	<ul>
 		<li><a href="deliveryForm?kind1=1">딜리버리</a>&nbsp;>&nbsp;</li>
@@ -32,12 +31,29 @@
 					<c:if test="${!empty mkind}">
 						<div style="color: red;">화면의 주문번호는 비회원 주문내역 확인에 필요합니다.(주문번호-주문세부번호)</div>
 					</c:if>
-					<span>${Myaddress.address}</span>	
+					<span>${address}</span>	
 				</p>
 				<!-- <button type="button" class="btn04 h02 rbtn"><span>변경</span></button> -->
 			</div>
 			<div class="info_list">
 				<dl><dt>연락처</dt><dd>${userPhone}</dd></dl>
+				<dl>
+					<dt>진행상황</dt>
+					<c:choose>
+						<c:when test="${result == 1}">
+							<dd>주문 확인 전</dd>
+						</c:when>
+						<c:when test="${result == 2}">
+							<dd>주문 처리 중</dd>
+						</c:when>
+						<c:when test="${result == 3}">
+							<dd>배달 중</dd>
+						</c:when>
+						<c:when test="${result == 4}">
+							<dd>배달 완료</dd>
+						</c:when>
+					</c:choose>
+				</dl>
 			</div>
 		</div>
 		<div class="tit01 tit_ico burger tit_ordermenu">
@@ -51,7 +67,6 @@
 					<div class="menu_titWrap">
 						<div class="menu_name">
 							<p class="tit"><strong><span>${orderList.oseq}-${orderList.odseq} : ${orderList.pname}</span></strong></p>
-							<p class="price"><strong><span>${orderList.price1}</span></strong></p>
 						</div>
 					</div>
 					<div class="quantity"><strong class="tit">수량</strong>
@@ -124,19 +139,10 @@
 				</dl>
 			</div>
 		</div>
-		<div class="totamountWrap">
-			<div class="c_btn m_item2">
-				<c:if test="${!empty loginUser}">
-					<button type="button" class="btn01 m red" onclick="location.href='deliveryForm?kind1=1'">
-					<span>추가주문하기</span></button>
-				</c:if>
-			</div>
-		</div>
 		</c:otherwise>
 		</c:choose>
 	</div>
 </div>
 </article>
 
-<div class="clear"></div>
-<%@ include file="../include/footer.jsp" %>
+<%@ include file="../include/footer.jsp"%>

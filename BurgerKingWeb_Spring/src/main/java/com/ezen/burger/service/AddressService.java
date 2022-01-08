@@ -30,4 +30,8 @@ public class AddressService {
 	public void updateUserAddress(MyAddressVO mavo) {
 		adao.updateUserAddress(mavo);
 	}
+
+	public void setGuestAddress(String address, int gseq) {
+		adao.setGuestAddress(address, gseq);
+	}
 }

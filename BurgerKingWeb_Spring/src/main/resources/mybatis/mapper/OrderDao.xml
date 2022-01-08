@@ -32,4 +32,8 @@
 	<update id="insertseq">
 		update subproduct_order set oseq = #{param2}, odseq = #{param3} where cseq = #{param1}
 	</update>
+	
+	<select id="getOrderByOseq" resultType="com.ezen.burger.dto.orderVO">
+		select * from order_view2 where oseq = #{param1}
+	</select>
 </mapper>

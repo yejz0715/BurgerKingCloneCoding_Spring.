@@ -81,6 +81,7 @@ public class AddressController {
 				}else {
 					gvo.setZip_num(zip_num);
 					gvo.setAddress(address);
+					as.setGuestAddress(address, gvo.getGseq());
 					session.setAttribute("loginUser", gvo);
 					session.setAttribute("memberkind", gvo.getMemberkind());
 					mav.addObject("kind1", 1);
