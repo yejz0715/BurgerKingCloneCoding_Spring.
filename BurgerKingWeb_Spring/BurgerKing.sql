@@ -234,9 +234,9 @@ drop view order_view
 create or replace view order_view
 as
 select d.odseq, o.oseq, o.id, o.indate, d.pseq, d.quantity,  d.result, 
-m.name as mname, m.phone, p.pname as pname, p.price1
-from orders o, order_detail d, member m, product p
-where o.oseq = d.oseq and o.id = m.id and d.pseq = p.pseq;
+m.name as mname, m.phone, p.pname as pname, p.price1, g.name as gname
+from orders o, order_detail d, member m, product p, guest g
+where o.oseq = d.oseq and o.id = m.id and d.pseq = p.pseq and o.id = g.id;
 
 
 select*from sub_product
@@ -292,7 +292,7 @@ select * from member;
 
 select * from order_view;
 select * from orders;
-select * from cart;
+select * from guest;
 select * from cart_view;
 select * from address
 
@@ -307,5 +307,5 @@ create table guest(
 	memberkind number(1) DEFAULT 2,
 	address varchar2(100),
 	zip_num varchar2(7),
-	PRIMARY KEY (id)
+	PRIMARY KEY (gseq)
 );

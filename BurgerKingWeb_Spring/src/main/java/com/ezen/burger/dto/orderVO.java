@@ -11,6 +11,7 @@ public class orderVO {
 	private String id;
 	private Timestamp indate;
 	private String mname;
+	private String gname;
 	private String zip_num;
 	private String address;
 	private String phone;
@@ -19,6 +20,5 @@ public class orderVO {
 	private int quantity;
 	private int price1;
 	private String result;
-	private String nid;
 	private String memberkind;
 }
