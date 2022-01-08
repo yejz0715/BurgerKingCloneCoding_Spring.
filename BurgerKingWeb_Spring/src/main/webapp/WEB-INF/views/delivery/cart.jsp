@@ -82,9 +82,6 @@
 		</li> 
 		</c:forEach>
 		</ul>
-		<div class="allchk01">
-			<label style="color:#000"><strong>추가메뉴</strong></label>
-		</div>
 		<div class="sumWrap">
 			<dl>
 				<dt>총 주문금액</dt>
