@@ -317,6 +317,5 @@ create table guest(
 	name varchar2(15) NOT NULL,
 	memberkind number(1) DEFAULT 2,
 	address varchar2(100),
-	zip_num varchar2(7),
 	PRIMARY KEY (gseq)
 );
