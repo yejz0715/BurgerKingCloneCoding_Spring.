@@ -94,6 +94,7 @@ public class OrderCotroller {
 				mav.addObject("userPhone", gvo.getPhone());
 				mav.addObject("Myaddress", mavo);
 				mav.addObject("ovo", list1);
+				mav.addObject("mkind", session.getAttribute("memberkind"));
 				mav.setViewName("delivery/orderList");
 			}else {
 				mav.setViewName("redirect:/loginForm");

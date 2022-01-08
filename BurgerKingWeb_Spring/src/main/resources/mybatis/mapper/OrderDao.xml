@@ -22,7 +22,7 @@
 	</insert>
 	
 	<select id="selectOseq" resultType="int">
-		select oseq from orders where id = #{param1} and rownum &lt;=1 order by indate desc
+		select oseq from orders where id = #{param1} and rownum &lt;=1 order by oseq desc
 	</select>
 	
 	<select id="selectOdseq" resultType="int">

@@ -33,7 +33,12 @@
 		</div>
 		<div class="container02 deli_info01">
 			<div class="addrWrap01">
-				<p class="txt_addr"><span>${Myaddress.address}</span></p>
+				<p class="txt_addr">
+					<c:if test="${!empty mkind}">
+						<div style="color: red;">화면의 주문번호는 비회원 주문내역 확인에 필요합니다.(주문번호-주문세부번호)</div>
+					</c:if>
+					<span>${Myaddress.address}</span>	
+				</p>
 				<!-- <button type="button" class="btn04 h02 rbtn"><span>변경</span></button> -->
 			</div>
 			<div class="info_list">
@@ -43,14 +48,14 @@
 		<div class="tit01 tit_ico burger tit_ordermenu">
 			<h2><span>주문정보</span></h2>
 		</div>
-		<div class="container02 order_accWrap open">
+		<div class="container02 order_accWrap open">		
 		<ul class="cart_list01">
 			<c:forEach var="orderList"  items="${ovo}">
 			<li>
 				<div class="cont">
 					<div class="menu_titWrap">
 						<div class="menu_name">
-							<p class="tit"><strong><span>${orderList.odseq}번:${orderList.pname}</span></strong></p>
+							<p class="tit"><strong><span>${orderList.oseq}-${orderList.odseq} : ${orderList.pname}</span></strong></p>
 							<p class="price"><strong><span>${orderList.price1}</span></strong></p>
 						</div>
 					</div>
@@ -82,7 +87,7 @@
 						<c:forEach items="${spseqAm}" var="spseqAm">
 							<c:if test="${spseqAm.odseq == orderList.odseq}">
 								<div style="width:100%;">
-									${spseqAm.odseq}번 : ${spseqAm.sname}
+									${spseqAm.odseq} : ${spseqAm.sname}
 									<div style="color:red; float:right;">${spseqAm.addprice}원</div>
 								</div>
 							</c:if>
