@@ -9,6 +9,7 @@ public class orderVO {
 	private int odseq;
 	private int oseq;
 	private String id;
+	private String pwd;
 	private Timestamp indate;
 	private String mname;
 	private String gname;
