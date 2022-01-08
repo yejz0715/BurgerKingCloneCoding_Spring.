@@ -241,7 +241,7 @@ where o.oseq = d.oseq and o.id = m.id and d.pseq = p.pseq;
 create or replace view order_view2
 as
 select d.odseq, o.oseq, o.id, o.indate, d.pseq, d.quantity,  d.result, 
-g.name as mname, g.phone, p.pname as pname, p.price1
+g.name as mname, g.phone, g.pwd, p.pname as pname, p.price1
 from orders o, order_detail d, guest g, product p
 where o.oseq = d.oseq and o.id = g.id and d.pseq = p.pseq;
 
