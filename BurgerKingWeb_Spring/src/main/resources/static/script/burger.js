@@ -149,16 +149,16 @@ function go_cart_delete(cseq){
 
 
 function menu_plus(){
-	var url="burger.do?command=deliveryForm&kind1=1";
+	var url="deliveryForm&kind1=1";
 	window.location.replace(url);
 }
 
 function go_order_insert(){
-	location.href="burger.do?command=deliveryCartOrder";
+	location.href="deliveryCartOrder";
 }
 
 function go_order_select(){
-	location.href="burger.do?command=deliveryOrderList";	
+	location.href="deliveryOrderList";	
 }
 
 function del_qna(){
