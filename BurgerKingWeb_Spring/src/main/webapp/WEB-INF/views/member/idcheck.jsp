@@ -19,8 +19,7 @@ function idok(userid){
 <body>
 <div id="wrap" style="margin:20px 0">
 <h1>ID 중복확인</h1>
-	<form method="post" name="idCheckForm" >
-		<input type="hidden" name="first" value="n">
+	<form name="idcheck" action="idcheck">
 		User ID <input type="email" name="id" value="${id}">
 		<input type="submit" value="검색" class="submit"><br>
 	
