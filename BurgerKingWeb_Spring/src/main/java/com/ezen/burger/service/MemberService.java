@@ -64,4 +64,8 @@ public class MemberService {
 	public MemberVO joinMember(String id, String name, String phone, String pwd) {
 		return mdao.joinMember(id, name, phone, pwd);
 	}
+
+	public void insertGuest(GuestVO gvo) {
+		mdao.insertGuest(gvo);
+	}
 }

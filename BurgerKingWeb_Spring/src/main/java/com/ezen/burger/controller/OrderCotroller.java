@@ -72,7 +72,29 @@ public class OrderCotroller {
 				mav.setViewName("delivery/orderList");
 			}else if(memberKind == 2) {
 				GuestVO gvo = (GuestVO)session.getAttribute("loginUser");
+				ArrayList<orderVO> list1 = os.getOrderListByGuest(gvo.getId());
+				// 가져온 카트 목록에서 가격 총합 계산 
+				int totalPrice = 0; 
+				for(orderVO ovo : list1) totalPrice += ovo.getPrice1() * ovo.getQuantity();
 				
+				// 해당 접속 회원의 추가 재료의 목록을 가져오기
+				ArrayList<subproductOrderVO> spovo = ps.selectSubProductOrder4(gvo.getGseq());
+				
+				// 추가 재료의 가격까지 총 가격으로 계산
+				for(int i = 0; i < spovo.size(); i++) {
+						totalPrice += spovo.get(i).getAddprice();
+				}
+				
+				MyAddressVO mavo = new MyAddressVO();
+				mavo.setAddress(gvo.getAddress());
+				
+				// 해당 값을 전송
+				mav.addObject("totalPrice", totalPrice);
+				mav.addObject("spseqAm", spovo);
+				mav.addObject("userPhone", gvo.getPhone());
+				mav.addObject("Myaddress", mavo);
+				mav.addObject("ovo", list1);
+				mav.setViewName("delivery/orderList");
 			}else {
 				mav.setViewName("redirect:/loginForm");
 			}
@@ -111,7 +133,21 @@ public class OrderCotroller {
 				}
 			}else if(memberKind == 2) {
 				GuestVO gvo = (GuestVO)session.getAttribute("loginUser");
-				
+				// 주소가 없으면 주소 설정 창으로 이동
+				if(gvo.getAddress() == null || gvo.getAddress().equals("")) {
+					mav.setViewName("delivery/addressSet");
+				}else {
+					// 주문자 아이디로 검색한 카트 목록(지금 주문 처리할) 목록을 먼저 조회합니다
+					ArrayList<CartVO> list = (ArrayList<CartVO>)session.getAttribute("guestCartList");
+					
+					// 추출한 list 와 주문자의 아디를 갖고 OrderDao 에 가서 오더 와 오더 디테일에 데이터를 추가합니다.
+					os.insertOrderByGuest(list, gvo.getId());
+					
+					// 비회원의 카트세션을 초기화한다.
+					list.clear();
+					session.setAttribute("guestCartList", list);
+					mav.setViewName("redirect:/deliveryOrderList");
+				}
 			}else {
 				mav.setViewName("redirect:/loginForm");
 			}

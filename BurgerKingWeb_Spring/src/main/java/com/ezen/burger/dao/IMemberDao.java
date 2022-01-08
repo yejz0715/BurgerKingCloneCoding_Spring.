@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.ezen.burger.dto.GuestVO;
 import com.ezen.burger.dto.MemberVO;
 
 @Mapper
@@ -19,4 +20,5 @@ public interface IMemberDao {
 	public void deleteMyaddress(int mseq);
 	public void insertMember(MemberVO membervo);
 	public MemberVO joinMember(String id, String name, String phone, String pwd);
+	public void insertGuest(GuestVO gvo);
 }

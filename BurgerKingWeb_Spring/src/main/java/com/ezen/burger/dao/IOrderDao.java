@@ -20,5 +20,7 @@ public interface IOrderDao {
 	public int selectOdseq(int oseq);
 
 	public void insertseq(int cseq, int oseq, int odseq);
+
+	public ArrayList<orderVO> getOrderListByGuest(String id);
 	
 }

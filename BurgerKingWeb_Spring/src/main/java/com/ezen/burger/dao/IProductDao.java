@@ -37,4 +37,6 @@ public interface IProductDao {
 
 	public ArrayList<subproductOrderVO> selectSubProductOrder3(int mseq);
 
+	public ArrayList<subproductOrderVO> selectSubProductOrder4(int gseq);
+
 }

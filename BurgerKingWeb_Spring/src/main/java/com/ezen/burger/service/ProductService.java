@@ -66,4 +66,8 @@ public class ProductService {
 	public ArrayList<subproductOrderVO> selectSubProductOrder3(int mseq) {
 		return pdao.selectSubProductOrder3(mseq);
 	}
+
+	public ArrayList<subproductOrderVO> selectSubProductOrder4(int gseq) {
+		return pdao.selectSubProductOrder4(gseq);
+	}
 }

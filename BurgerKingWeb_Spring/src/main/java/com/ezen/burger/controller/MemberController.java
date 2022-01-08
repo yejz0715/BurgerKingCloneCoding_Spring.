@@ -185,6 +185,7 @@ public class MemberController {
 			@RequestParam("pwd") String pwd) {
 		ModelAndView mav = new ModelAndView(); 
 		GuestVO gvo = ms.guestSessionLogin(name, phone, pwd);
+		ms.insertGuest(gvo);
 		ArrayList<CartVO> guestCartList = new ArrayList<CartVO>();
 		HttpSession session = request.getSession();
 		session.setAttribute("loginUser", gvo);

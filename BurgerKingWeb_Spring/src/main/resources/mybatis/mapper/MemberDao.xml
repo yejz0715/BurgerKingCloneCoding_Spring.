@@ -50,4 +50,9 @@
 	<select id="joinMember" resultType="com.ezen.burger.dto.MemberVO">
 		select * from member where id = #{param1} and name = #{param2} and phone = #{param3} and pwd = #{param4}
 	</select>
+	
+	<insert id="insertGuest" parameterType="com.ezen.burger.dto.GuestVO">
+		insert into guest(gseq, id, pwd, name, phone)
+		values(#{gseq}, #{id}, #{pwd}, #{name}, #{phone}) 
+	</insert>
 </mapper>
