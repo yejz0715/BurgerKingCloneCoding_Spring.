@@ -237,6 +237,14 @@ select d.odseq, o.oseq, o.id, o.indate, d.pseq, d.quantity,  d.result,
 m.name as mname, m.phone, p.pname as pname, p.price1
 from orders o, order_detail d, member m, product p
 where o.oseq = d.oseq and o.id = m.id and d.pseq = p.pseq;
+
+create or replace view order_view2
+as
+select d.odseq, o.oseq, o.id, o.indate, d.pseq, d.quantity,  d.result, 
+g.name as mname, g.phone, p.pname as pname, p.price1
+from orders o, order_detail d, guest g, product p
+where o.oseq = d.oseq and o.id = g.id and d.pseq = p.pseq;
+
 select * from subproduct_order;
 
 select*from sub_product
@@ -250,6 +258,7 @@ select*from orders
 select*from order_detail
 select * from cart_view;
 select * from order_view;
+select * from order_view2;
 select * from member
 select * from myaddress
 
