@@ -234,14 +234,16 @@ drop view order_view
 create or replace view order_view
 as
 select d.odseq, o.oseq, o.id, o.indate, d.pseq, d.quantity,  d.result, 
-m.name as mname, m.phone, p.pname as pname, p.price1, g.name as gname
-from orders o, order_detail d, member m, product p, guest g
-where o.oseq = d.oseq and o.id = m.id and d.pseq = p.pseq and o.id = g.id;
-
+m.name as mname, m.phone, p.pname as pname, p.price1
+from orders o, order_detail d, member m, product p
+where o.oseq = d.oseq and o.id = m.id and d.pseq = p.pseq;
+select * from subproduct_order;
 
 select*from sub_product
 drop table sub_product
-delete from SUBPRODUCT_order
+delete from SUBPRODUCT_order;
+delete from orders;
+delete from order_detail;
 select*from cart
 select*from sub_product
 select*from orders

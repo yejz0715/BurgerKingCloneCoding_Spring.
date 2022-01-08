@@ -7,4 +7,25 @@
 	<select id="getOrderList" resultType="com.ezen.burger.dto.orderVO">
 		select * from order_view  where id=#{param1} and result ='1'
 	</select>
+	
+	<insert id="insertOrder">
+		insert into orders(oseq, id, memberkind) values(oseq.nextVal, #{param1}, 1)
+	</insert>
+	
+	<insert id="insertOrderDetail" parameterType="com.ezen.burger.dto.CartVO">
+		insert into order_detail(odseq, oseq, pseq, quantity, result)
+		values(odseq.nextVal, #{param2}, #{param1.pseq}, #{param1.quantity}, 1)
+	</insert>
+	
+	<select id="selectOseq" resultType="int">
+		select oseq from orders where id = #{param1} and rownum &lt;=1 order by indate desc
+	</select>
+	
+	<select id="selectOdseq" resultType="int">
+		select odseq from order_detail where oseq = #{param1} and rownum &lt;= 1 order by odseq desc
+	</select>
+	
+	<update id="insertseq">
+		update subproduct_order set oseq = #{param2}, odseq = #{param3} where cseq = #{param1}
+	</update>
 </mapper>

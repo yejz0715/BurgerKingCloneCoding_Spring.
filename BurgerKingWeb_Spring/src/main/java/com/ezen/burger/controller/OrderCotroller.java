@@ -49,16 +49,16 @@ public class OrderCotroller {
 				
 				// 가져온 카트 목록에서 가격 총합 계산 
 				int totalPrice = 0; 
-				for(CartVO cvo : list2) totalPrice += cvo.getPrice1() * cvo.getQuantity();
+				for(orderVO ovo : list1) totalPrice += ovo.getPrice1() * ovo.getQuantity();
 				
 				// 해당 접속 회원의 추가 재료의 목록을 가져오기
-				ArrayList<subproductOrderVO> spovo = ps.selectSubProductOrder(mvo.getMseq());
+				ArrayList<subproductOrderVO> spovo = ps.selectSubProductOrder3(mvo.getMseq());
 				
 				// 추가 재료의 가격까지 총 가격으로 계산
 				for(int i = 0; i < spovo.size(); i++) {
-					totalPrice += spovo.get(i).getAddprice();
+						totalPrice += spovo.get(i).getAddprice();
 				}
-				
+
 				// 로그인 회원의 주소 정보 호출
 				MyAddressVO mavo = as.getMyAddress(mvo.getMseq());
 		
@@ -70,6 +70,45 @@ public class OrderCotroller {
 				mav.addObject("ovo", list1);
 				mav.addObject("cvo", list2);
 				mav.setViewName("delivery/orderList");
+			}else if(memberKind == 2) {
+				GuestVO gvo = (GuestVO)session.getAttribute("loginUser");
+				
+			}else {
+				mav.setViewName("redirect:/loginForm");
+			}
+		}else {
+			mav.setViewName("redirect:/loginForm");
+		}
+		return mav;
+	}
+	
+	@RequestMapping(value="/deliveryCartOrder")
+	public ModelAndView deliveryCartOrder(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		if(session.getAttribute("memberkind") != null && session.getAttribute("loginUser") != null) {
+			int memberKind = (int)session.getAttribute("memberkind");
+			if(memberKind == 1) {
+				MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
+				MyAddressVO mavo = as.getMyAddress(mvo.getMseq());
+				
+				// 주소가 없으면 주소 설정 창으로 이동
+				if(mavo.getAddress() == null || mavo.getAddress().equals("")) {
+					ArrayList<orderVO> list1 = os.getOrderList(mvo.getId());
+					ArrayList<CartVO> list2 = cs.selectCart( mvo.getId() );	
+					
+					mav.addObject("ovo", list1);
+					mav.addObject("cvo", list2);
+					mav.setViewName("delivery/addressSet");
+				}else {
+					// 주문자 아이디로 검색한 카트 목록(지금 주문 처리할) 목록을 먼저 조회합니다
+					ArrayList<CartVO> list = cs.selectCart(mvo.getId());
+								
+					// 추출한 list 와 주문자의 아디를 갖고 OrderDao 에 가서 오더 와 오더 디테일에 데이터를 추가합니다.
+					os.insertOrder(list, mvo.getId());
+					
+					mav.setViewName("redirect:/deliveryOrderList");
+				}
 			}else if(memberKind == 2) {
 				GuestVO gvo = (GuestVO)session.getAttribute("loginUser");
 				

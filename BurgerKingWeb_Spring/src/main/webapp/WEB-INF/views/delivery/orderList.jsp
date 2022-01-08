@@ -50,7 +50,7 @@
 				<div class="cont">
 					<div class="menu_titWrap">
 						<div class="menu_name">
-							<p class="tit"><strong><span>${orderList.oseq}번:${orderList.pname}</span></strong></p>
+							<p class="tit"><strong><span>${orderList.odseq}번:${orderList.pname}</span></strong></p>
 							<p class="price"><strong><span>${orderList.price1}</span></strong></p>
 						</div>
 					</div>
@@ -80,9 +80,9 @@
 					<li>
 					<div class="cont" style="padding: 32px 64px; font-size:2rem;font-weight: bold;">
 						<c:forEach items="${spseqAm}" var="spseqAm">
-							<c:if test="${spseqAm.oseq == orderList.oseq}">
+							<c:if test="${spseqAm.odseq == orderList.odseq}">
 								<div style="width:100%;">
-									${spseqAm.oseq}번 : ${spseqAm.sname}
+									${spseqAm.odseq}번 : ${spseqAm.sname}
 									<div style="color:red; float:right;">${spseqAm.addprice}원</div>
 								</div>
 							</c:if>

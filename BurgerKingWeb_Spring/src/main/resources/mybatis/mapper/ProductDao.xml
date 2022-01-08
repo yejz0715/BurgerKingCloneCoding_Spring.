@@ -28,6 +28,10 @@
 		select * from subproduct_order where gseq = #{param1} and oseq = 0 order by cseq
 	</select>
 	
+	<select id="selectSubProductOrder3" resultType="com.ezen.burger.dto.subproductOrderVO">
+		select * from subproduct_order where mseq = #{param1} and oseq != 0 order by oseq
+	</select>
+	
 	<select id="getDeliveryDetail" resultType="com.ezen.burger.dto.ProductVO">
 		select * from product where pseq = #{param1} and kind3=4
 	</select>

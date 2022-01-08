@@ -62,4 +62,8 @@ public class ProductService {
 	public void insertSubProductOrderByGseq(int cseq, subProductVO subProductVO, int gseq) {
 		pdao.insertSubProductOrderByGseq(cseq, gseq, subProductVO);
 	}
+
+	public ArrayList<subproductOrderVO> selectSubProductOrder3(int mseq) {
+		return pdao.selectSubProductOrder3(mseq);
+	}
 }
