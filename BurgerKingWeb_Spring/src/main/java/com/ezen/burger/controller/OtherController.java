@@ -135,6 +135,14 @@ public class OtherController {
 		}
 		return mav;
 	}
+	
+	
+	@RequestMapping(value="/popup3")
+	public String popup3() {
+		return "product/popup3";
+	}
+	
+	
 }
 
 

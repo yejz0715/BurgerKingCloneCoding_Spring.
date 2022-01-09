@@ -9,7 +9,15 @@ $(function(){
 		  $('#pk${kind1}').css("text-decoration", "underline");
 	});
 });
+
+
+function popup3() {
+	window.open("popup3", "a",
+			"width=620, height=900, resizable=no");}
+ 
 </script>
+
+
 
 
 <article>
@@ -74,7 +82,7 @@ $(function(){
 		<div class="order_caution">
 			<div class="tit03">
 				<h4>유의사항</h4>
-				<button type="button" class="btn_infoingredient"><strong>원산지, 영양분석, 알레르기 유발성분</strong></button>
+				<button type="button" class="btn_infoingredient" onClick="popup3();"><strong>원산지, 영양분석, 알레르기 유발성분</strong></button>
 			</div>
 			<ul class="WEB txtlist01">
 				<li>매장별 주문금액이 상이하니, 반드시 최소금액을 확인하기 바랍니다.</li>
