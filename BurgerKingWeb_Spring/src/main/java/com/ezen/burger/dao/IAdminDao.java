@@ -13,6 +13,7 @@ import com.ezen.burger.dto.MemberVO;
 import com.ezen.burger.dto.Paging;
 import com.ezen.burger.dto.ProductVO;
 import com.ezen.burger.dto.QnaVO;
+import com.ezen.burger.dto.orderVO;
 
 @Mapper
 public interface IAdminDao {
@@ -52,5 +53,9 @@ public interface IAdminDao {
 	ProductVO productDetail(int pseq);
 
 	void updateProduct(ProductVO pvo);
+
+	public ArrayList<orderVO> listOrder(Paging paging, String key);
+
+	public ArrayList<orderVO> listOrder2(Paging paging, String key);
 
 }

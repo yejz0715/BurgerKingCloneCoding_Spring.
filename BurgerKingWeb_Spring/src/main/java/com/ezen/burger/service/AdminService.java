@@ -15,6 +15,7 @@ import com.ezen.burger.dto.MemberVO;
 import com.ezen.burger.dto.Paging;
 import com.ezen.burger.dto.ProductVO;
 import com.ezen.burger.dto.QnaVO;
+import com.ezen.burger.dto.orderVO;
 
 @Service
 public class AdminService {
@@ -116,6 +117,15 @@ public class AdminService {
 	public void updateProduct(ProductVO pvo) {
 		adao.updateProduct(pvo);
 		
+	}
+
+	public ArrayList<orderVO> listOrder(Paging paging, String key) {
+		ArrayList<orderVO> list1 = adao.listOrder(paging, key);
+		ArrayList<orderVO> list2 = adao.listOrder2(paging, key);
+		ArrayList<orderVO> ovo = new ArrayList<orderVO>();
+		ovo.addAll(list1);
+		ovo.addAll(list2);
+		return ovo;
 	}
 
 

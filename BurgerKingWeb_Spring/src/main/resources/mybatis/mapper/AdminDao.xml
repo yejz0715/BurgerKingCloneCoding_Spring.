@@ -100,5 +100,21 @@
 		content=#{content}, image=#{image}, kind2=#{kind2}, kind3=#{kind3} where pseq=#{pseq}
 	</update>
 	
+	<select id="listOrder" resultType="com.ezen.burger.dto.orderVO">
+		select * from (
+			select * from (
+				select rownum as rn, o.* from(
+					(select * from order_view where mname like '%'||#{param2}||'%' order by result, odseq desc) o)) 
+			where rn &gt;= #{param1.startNum})
+		where rn &lt;= #{param1.endNum}
+	</select>
 	
+	<select id="listOrder2" resultType="com.ezen.burger.dto.orderVO">
+		select * from (
+			select * from (
+				select rownum as rn, o.* from(
+					(select * from order_view2 where mname like '%'||#{param2}||'%' order by result, odseq desc) o)) 
+			where rn &gt;= #{param1.startNum})
+		where rn &lt;= #{param1.endNum}
+	</select>
 </mapper>
