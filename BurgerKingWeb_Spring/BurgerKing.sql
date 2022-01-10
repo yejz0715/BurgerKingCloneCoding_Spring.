@@ -221,14 +221,17 @@ drop view order_view
 create or replace view order_view
 as
 select d.odseq, o.oseq, o.id, o.indate, d.pseq, d.quantity,  d.result, 
-m.name as mname, m.phone, p.pname as pname, p.price1
-from orders o, order_detail d, member m, product p
-where o.oseq = d.oseq and o.id = m.id and d.pseq = p.pseq;
+m.name as mname, m.phone, m.memberkind, 
+p.pname as pname, p.price1, a.zip_num, a.address
+from orders o, order_detail d, member m, product p, myaddress a
+where o.oseq = d.oseq and o.id = m.id and d.pseq = p.pseq and m.mseq = a.mseq;
 
+drop view order_view2;
 create or replace view order_view2
 as
 select d.odseq, o.oseq, o.id, o.indate, d.pseq, d.quantity,  d.result, 
-g.name as mname, g.phone, g.address, g.pwd, p.pname as pname, p.price1
+g.name as mname, g.phone, g.zip_num, g.address, g.pwd, g.memberkind,
+p.pname as pname, p.price1
 from orders o, order_detail d, guest g, product p
 where o.oseq = d.oseq and o.id = g.id and d.pseq = p.pseq;
 
@@ -296,6 +299,7 @@ select * from address
 
 delete from SUBPRODUCT_ORDER
 
+delete form guest;
 create table guest(
 	gseq number(10) not null,
 	id varchar2(50) NOT NULL UNIQUE,

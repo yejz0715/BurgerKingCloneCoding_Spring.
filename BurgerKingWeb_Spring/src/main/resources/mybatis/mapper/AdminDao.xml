@@ -117,4 +117,12 @@
 			where rn &gt;= #{param1.startNum})
 		where rn &lt;= #{param1.endNum}
 	</select>
+	
+	<update id="updateOrderResult">
+		update order_detail set result = #{param2} where odseq = #{param1}
+	</update>
+	
+	<select id="getResult" resultType="string">
+		select result from order_detail where odseq = #{param1}
+	</select>
 </mapper>

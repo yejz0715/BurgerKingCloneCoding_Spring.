@@ -19,6 +19,6 @@
 	</update>
 	
 	<update id="setGuestAddress">
-		update guest set address = #{param1} where gseq = #{param2}
+		update guest set address = #{param1}, zip_num = #{param3} where gseq = #{param2}
 	</update>
 </mapper>

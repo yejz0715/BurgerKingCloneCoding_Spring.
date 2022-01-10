@@ -31,7 +31,7 @@ public class AddressService {
 		adao.updateUserAddress(mavo);
 	}
 
-	public void setGuestAddress(String address, int gseq) {
-		adao.setGuestAddress(address, gseq);
+	public void setGuestAddress(String address, int gseq, String zip_num) {
+		adao.setGuestAddress(address, gseq, zip_num);
 	}
 }
