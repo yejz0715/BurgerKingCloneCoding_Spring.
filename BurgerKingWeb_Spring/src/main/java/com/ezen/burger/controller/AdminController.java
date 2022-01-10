@@ -30,6 +30,7 @@ import com.ezen.burger.dto.orderVO;
 import com.ezen.burger.service.AdminService;
 import com.ezen.burger.service.EventService;
 import com.ezen.burger.service.MemberService;
+import com.ezen.burger.service.OrderService;
 import com.ezen.burger.service.ProductService;
 import com.ezen.burger.service.QnaService;
 import com.oreilly.servlet.MultipartRequest;
@@ -53,6 +54,9 @@ public class AdminController {
 	
 	@Autowired
 	ProductService ps;
+	
+	@Autowired
+	OrderService os;
 
 	@Autowired
 	ServletContext context;
@@ -778,7 +782,8 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/adminOrderList")
-	public ModelAndView adminOrderList(HttpServletRequest request) {
+	public ModelAndView adminOrderList(HttpServletRequest request,
+			@RequestParam("kind")String kind) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		
@@ -809,14 +814,19 @@ public class AdminController {
 
 			Paging paging = new Paging();
 			paging.setPage(page);
-
-			int count = as.getAllCount("order_view", "mname", key);
-			count = count + as.getAllCount("order_view2", "mname", key);
+			int count = 0;
+			
+			if(kind.equals("1")) {
+				count = as.getAllCount("order_view", "mname", key);
+			}else {
+				count = count + as.getAllCount("order_view2", "mname", key);
+			}
 			paging.setTotalCount(count);
 			paging.paging();
 
-			ArrayList<orderVO> orderList = as.listOrder(paging, key);
-
+			ArrayList<orderVO> orderList = as.listOrder(paging, key, kind);
+			
+			mav.addObject("kind", kind);
 			mav.addObject("orderList", orderList);
 			mav.addObject("paging", paging);
 			mav.addObject("key", key);
@@ -827,7 +837,8 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/adminOrderSave")
-	public ModelAndView adminOrderSave(HttpServletRequest request) {
+	public ModelAndView adminOrderSave(HttpServletRequest request,
+			@RequestParam("kind")String kind) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		if (session.getAttribute("loginAdmin") == null) {
@@ -838,8 +849,31 @@ public class AdminController {
 				String step = as.getResult(result[i]);
 				as.updateOrderResult(result[i], step); 
 			}
+			mav.setViewName("redirect:/adminOrderList?kind="+kind);
+		}
+		return mav;
+	}
+	
+	@RequestMapping(value="/adminOrderDelete")
+	public ModelAndView adminOrderDelete(HttpServletRequest request,
+			@RequestParam("kind")String kind) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		if (session.getAttribute("loginAdmin") == null) {
+			mav.setViewName("redirect:/admin");
+		}else {
+			String[] oseqArr = request.getParameterValues("delete");
 			
-			mav.setViewName("redirect:/adminOrderList");
+			for(String odseq : oseqArr) { 
+				// odseq 값으로 해당 번호 값을 가진 주문의 oseq 값 추출
+				int oseq = os.getOseq(odseq);
+				
+				// 제거하려했던 odseq 값과 추출한 oseq 값을 이용해 orders와 order_detail에서 데이터 제거
+				// 자세한 설명은 해당 메소드 참조.
+				os.deleteOrder(odseq, oseq);
+			}
+			
+			mav.setViewName("redirect:/adminOrderList?kind="+kind);
 		}
 		return mav;
 	}

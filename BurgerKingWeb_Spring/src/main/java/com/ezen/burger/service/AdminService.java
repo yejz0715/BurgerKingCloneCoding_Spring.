@@ -119,12 +119,13 @@ public class AdminService {
 		
 	}
 
-	public ArrayList<orderVO> listOrder(Paging paging, String key) {
-		ArrayList<orderVO> list1 = adao.listOrder(paging, key);
-		ArrayList<orderVO> list2 = adao.listOrder2(paging, key);
+	public ArrayList<orderVO> listOrder(Paging paging, String key, String kind) {
 		ArrayList<orderVO> ovo = new ArrayList<orderVO>();
-		ovo.addAll(list1);
-		ovo.addAll(list2);
+		if(kind.equals("1")) {
+			ovo = adao.listOrder(paging, key);
+		}else {
+			ovo = adao.listOrder2(paging, key);
+		}
 		return ovo;
 	}
 

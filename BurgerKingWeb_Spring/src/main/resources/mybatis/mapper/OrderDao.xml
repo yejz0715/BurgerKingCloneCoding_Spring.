@@ -36,4 +36,20 @@
 	<select id="getOrderByOseq" resultType="com.ezen.burger.dto.orderVO">
 		select * from order_view2 where oseq = #{param1}
 	</select>
+	
+	<select id="getOseq" resultType="int">
+		select oseq from order_detail where odseq = #{param1}
+	</select>
+	
+	<delete id="deleteOrderDetail">
+		delete from order_detail where odseq = #{param1}
+	</delete>
+	
+	<select id="getOrderDetailByOseq" resultType="com.ezen.burger.dto.orderVO">
+		select * from order_detail where oseq = #{param1}
+	</select>
+	
+	<delete id="deleteOrders">
+		delete from orders where oseq = #{param1}
+	</delete>
 </mapper>
