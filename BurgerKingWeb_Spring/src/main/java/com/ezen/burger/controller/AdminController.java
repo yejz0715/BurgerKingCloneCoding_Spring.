@@ -784,6 +784,7 @@ public class AdminController {
 	@RequestMapping(value="/adminOrderList")
 	public ModelAndView adminOrderList(HttpServletRequest request,
 			@RequestParam("kind")String kind) {
+		// 위의 param kind는 회원:1, 비회원:2의 값을 가지고 들어온다.
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		
@@ -816,6 +817,7 @@ public class AdminController {
 			paging.setPage(page);
 			int count = 0;
 			
+			// kind값으로 회원 혹은 비회원의 count값을 구하여 paging을 설정한다.
 			if(kind.equals("1")) {
 				count = as.getAllCount("order_view", "mname", key);
 			}else {
@@ -824,6 +826,7 @@ public class AdminController {
 			paging.setTotalCount(count);
 			paging.paging();
 
+			// kind값의 해당하는 order_view의 리스트를 불러온다.
 			ArrayList<orderVO> orderList = as.listOrder(paging, key, kind);
 			
 			mav.addObject("kind", kind);
@@ -844,9 +847,12 @@ public class AdminController {
 		if (session.getAttribute("loginAdmin") == null) {
 			mav.setViewName("redirect:/admin");
 		}else {
+			// 체크된 데이터들의 odseq값을 가져온다.
 			String[] result = request.getParameterValues("result");
 			for(int i = 0; i < result.length; i++) {
+				// odseq값을 이용해 해당 주문상세의 result+1값을 가져온다.
 				String step = as.getResult(result[i]);
+				// result값을 변경한다.
 				as.updateOrderResult(result[i], step); 
 			}
 			mav.setViewName("redirect:/adminOrderList?kind="+kind);
