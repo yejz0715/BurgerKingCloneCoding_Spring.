@@ -40,6 +40,10 @@
 		select * from subproduct_order where oseq = #{param1} order by odseq
 	</select>
 	
+	<select id="selectSubProductOrder6" resultType="com.ezen.burger.dto.subproductOrderVO">
+		select * from subproduct_order where odseq = #{param1} order by odseq
+	</select>
+	
 	<select id="getDeliveryDetail" resultType="com.ezen.burger.dto.ProductVO">
 		select * from product where pseq = #{param1} and kind3=4
 	</select>
@@ -67,4 +71,8 @@
 		values(sposeq.nextVal, #{param1}, #{param3.spseq}, #{param3.sname},
 		 #{param3.addprice}, #{param2})
 	</insert>
+	
+	<delete id="deleteSpo">
+		delete from subproduct_order where sposeq = #{param1}
+	</delete>
 </mapper>

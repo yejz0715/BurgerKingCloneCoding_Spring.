@@ -62,3 +62,12 @@ function memberKindChange(kind){
 		document.frm.submit();
 	}
 }
+
+function deleteSpo(sposeq, result, kind, odseq){
+	if(result == 3 || result == 4){
+		alert("주문이 배달 중이거나 배달완료해 취소처리 할 수 없습니다.");
+	}else{
+		document.location.href = "adminOrderMDelete?sposeq=" + sposeq + "&kind=" + kind
+		 + "&odseq=" + odseq;
+	}
+}

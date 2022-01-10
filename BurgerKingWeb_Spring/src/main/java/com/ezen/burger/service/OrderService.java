@@ -91,4 +91,12 @@ public class OrderService {
 			odao.deleteOrders(oseq);
 		}
 	}
+
+	public orderVO getOrder_view(String odseq) {
+		return odao.getOrder_view(odseq);
+	}
+	
+	public orderVO getOrder_view2(String odseq) {
+		return odao.getOrder_view2(odseq);
+	}
 }
