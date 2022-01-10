@@ -71,3 +71,7 @@ function deleteSpo(sposeq, result, kind, odseq){
 		 + "&odseq=" + odseq;
 	}
 }
+
+function go_order_mov(){
+	document.location.href = "adminOrderList?kind="+1;
+}
