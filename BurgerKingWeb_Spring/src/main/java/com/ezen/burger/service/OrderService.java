@@ -76,4 +76,17 @@ public class OrderService {
 	public ArrayList<orderVO> getOrderByOseq(int oseq) {
 		return odao.getOrderByOseq(oseq);
 	}
+
+	public int getOseq(String odseq) {
+		return odao.getOseq(odseq);
+	}
+
+	public void deleteOrder(String odseq, int oseq) {
+		odao.deleteOrderDetail(odseq);
+		ArrayList<orderVO> list = odao.getOrderDetailByOseq(oseq);
+		
+		if(list.size() == 0) {
+			odao.deleteOrders(oseq);
+		}
+	}
 }

@@ -6,12 +6,12 @@
 	<h1>주문리스트</h1>
 	<form name="frm" method="post">
 		<table style="margin: 0 auto;">
-
 			<tr>
 				<td>
 					주문자 이름 <input type="text" name="key" value="${key}">
-					<input type="button" class="btn" value="검색" onClick="go_search_order();">
-					<input type="button" class="btn" name="btn_total" value="전체보기" onClick="go_total_order();">
+					<input type="button" class="btn" value="검색" onClick="go_search_order('${kind}');">
+					<input type="button" class="btn" value="회원 구분 변경" onClick="memberKindChange('${kind}');">
+					<input type="button" class="btn" name="btn_total" value="전체보기" onClick="go_total_order('${kind}');">
 				</td>
 			</tr>
 		</table>
@@ -68,8 +68,8 @@
 			</c:forEach>
 		</table>
 		<div class="clear"></div>
-		<input type="button" class="btn" style="width: 200px" value="다음단계 진행" onclick="go_order_save()">
-		<input type="button" class="btn" style="float: right;" value="삭제" onclick="del_order();">
+		<input type="button" class="btn" style="width: 200px" value="다음단계 진행" onclick="go_order_save('${kind}')">
+		<input type="button" class="btn" style="float: right;" value="삭제" onclick="del_order('${kind}');">
 	</form>
 	
 	<br><br>

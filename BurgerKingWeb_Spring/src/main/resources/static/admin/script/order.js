@@ -1,20 +1,20 @@
-function go_search_order(){
+function go_search_order(kind){
 	if(document.frm.key.value=="")
 		return;
 		
-	var url = "burger.do?command=adminOrderList&page=1";
+	var url = "adminOrderList?page=1&kind=" + kind;
 	// 보던 페이지가 어떤 페이지이던간에 검색 결과의 1페이지로 가기위해 파라미터 page를 1로 전송
 	document.frm.action = url;
 	document.frm.submit();
 }
 
-function go_total_order(){
+function go_total_order(kind){
 	document.frm.key.value="";
-	document.frm.action = "burger.do?command=adminOrderList&page=1";
+	document.frm.action = "adminOrderList?page=1&kind=" + kind;
 	document.frm.submit();
 }
 
-function go_order_save(){
+function go_order_save(kind){
 	var count = 0;
 	if(document.frm.result.length == undefined){
 		if(document.frm.result.checked == true)
@@ -29,11 +29,11 @@ function go_order_save(){
 	if(count == 0){
 		alert("주문처리할 항목을 선택해 주세요.")
 	}else{
-		document.frm.action = "adminOrderSave";
+		document.frm.action = "adminOrderSave?kind="+kind;
 		document.frm.submit();
 	}
 }
-function del_order(){
+function del_order(kind){
 	var count = 0;  //  체크된 체크박스의 갯수를 카운트 하기위한 변수
 	if(document.frm.delete.length==undefined){   // 장바구니에 물건이 하나일때, 체크박스가 하나일때
 		if( document.frm.delete.checked == true)   // 그 체크박스만 체크되어 있는지 확인
@@ -48,7 +48,17 @@ function del_order(){
 	if( count == 0 ){
 		alert("삭제할 항목을 선택해주세요");
 	} else{
-		document.frm.action = "burger.do?command=adminOrderDelete";
+		document.frm.action = "adminOrderDelete?kind="+kind;
 	    document.frm.submit();
+	}
+}
+
+function memberKindChange(kind){
+	if(kind=="1"){
+		document.frm.action = "adminOrderList?kind="+2;
+		document.frm.submit();
+	}else if(kind=="2"){
+		document.frm.action = "adminOrderList?kind="+1;
+		document.frm.submit();
 	}
 }

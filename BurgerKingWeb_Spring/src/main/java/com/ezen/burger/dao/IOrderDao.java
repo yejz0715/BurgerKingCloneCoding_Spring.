@@ -24,5 +24,13 @@ public interface IOrderDao {
 	public ArrayList<orderVO> getOrderListByGuest(String id);
 
 	public ArrayList<orderVO> getOrderByOseq(int oseq);
+
+	public int getOseq(String odseq);
+
+	public void deleteOrderDetail(String odseq);
+
+	public ArrayList<orderVO> getOrderDetailByOseq(int oseq);
+
+	public void deleteOrders(int oseq);
 	
 }
