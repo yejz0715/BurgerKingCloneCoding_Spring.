@@ -127,19 +127,6 @@ CREATE TABLE Myaddress
    PRIMARY KEY (mseq)
 );
 
-
-
-CREATE TABLE non_member
-(
-	mseq number(10) NOT NULL,
-   id varchar2(50) NOT NULL,
-   password varchar2(20) NOT NULL,
-   phone varchar2(13) NOT NULL,
-   memberkind number(1) DEFAULT 2,
-   PRIMARY KEY (id, password)
-);
-
-
 CREATE TABLE orders
 (
    oseq number(10) NOT NULL,
@@ -316,6 +303,7 @@ create table guest(
 	phone varchar2(13) NOT NULL,
 	name varchar2(15) NOT NULL,
 	memberkind number(1) DEFAULT 2,
+	zip_num varchar2(7),
 	address varchar2(100),
 	PRIMARY KEY (gseq)
 );
