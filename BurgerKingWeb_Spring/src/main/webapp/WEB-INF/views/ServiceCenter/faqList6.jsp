@@ -17,7 +17,7 @@
 		<ul id="terms_wrap_ul" style="right: 0; top:0">
 			<li>
 				<span>
-					<a href="faqForm&fnum=1" style="color: red; text-decoration: underline;">FAQ</a>
+					<a href=faqList1 style="color: red; text-decoration: underline;">FAQ</a>
 				</span>
 			</li>
 			<li><span><a href="qnaForm">문의</a></span></li>
