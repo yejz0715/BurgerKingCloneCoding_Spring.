@@ -64,6 +64,7 @@
 							<div class="result">${orderList.quantity}</div>
 						</div>
 					</div>
+					<button type="button" name="submit" class="btn_del02" onclick="go_order_delete('${orderList.odseq}')"><span>Delete menu</span></button>
 				</div>
 				<div class="sumWrap">
 				<dl>
@@ -78,7 +79,7 @@
 			</li>
 			<c:choose>
 				<c:when test="${empty spseqAm}">
-					
+					<hr><br>
 				</c:when>
 				<c:otherwise>
 					<ul class="cart_list01">
@@ -97,6 +98,7 @@
 					</ul>
 				</c:otherwise>
 			</c:choose>
+			<hr><br>
 			</c:forEach>
 		</ul>
 		</div>

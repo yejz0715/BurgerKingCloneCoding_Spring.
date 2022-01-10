@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ezen.burger.dto.CartVO;
@@ -194,6 +195,20 @@ public class OrderCotroller {
 		}else {
 			mav.addObject("message2", "기타 오류로 조회가 불가능합니다. 관리자에게 문의하세요.");
 			mav.setViewName("member/loginForm");
+		}
+		return mav;
+	}
+	
+	@RequestMapping(value="/orderDelete")
+	public ModelAndView orderDelete(HttpServletRequest request,
+			@RequestParam("odseq") String odseq) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		if(session.getAttribute("memberkind") != null && session.getAttribute("loginUser") != null) {
+			os.deleteOrder2(odseq);
+			mav.setViewName("redirect:/deliveryOrderList");
+		}else {
+			mav.setViewName("redirect:/loginForm");
 		}
 		return mav;
 	}

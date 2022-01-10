@@ -91,6 +91,18 @@ public class OrderService {
 			odao.deleteOrders(oseq);
 		}
 	}
+	
+	public void deleteOrder2(String odseq) {
+		int oseq = odao.getOseq(odseq);
+		odao.deleteOrderDetail(odseq);
+		// oseq 값을 기반으로 남은 odseq 즉 주문상세가 남아있는지 확인을 한다.
+		ArrayList<orderVO> list = odao.getOrderDetailByOseq(oseq);
+		odao.deleteSpo(odseq);
+		// 해당 oseq값에 해당하는 detail이 없으면 orders 테이블의 데이터도 삭제
+		if(list.size() == 0) {
+			odao.deleteOrders(oseq);
+		}
+	}
 
 	public orderVO getOrder_view(String odseq) {
 		return odao.getOrder_view(odseq);
