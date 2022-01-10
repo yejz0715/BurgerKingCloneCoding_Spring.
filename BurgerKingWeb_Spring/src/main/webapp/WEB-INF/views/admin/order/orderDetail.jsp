@@ -80,7 +80,7 @@
 							<th>추가 가격</th>
 							<td colspan="4">${spseqAm.addprice}원</td>
 							<td>
-								<button onclick="deleteSpo('${spseqAm.sposeq}', '${ovo.result}}',
+								<button onclick="deleteSpo('${spseqAm.sposeq}', '${ovo.result}',
 								 '${kind}', '${spseqAm.odseq}');">
 									재료 취소
 								</button>
@@ -94,7 +94,6 @@
 			</c:otherwise>
 		</c:choose>
 	</table>
-	<input type="button" class="btn" value="수정" onclick="go_order_mod('${ovo.odseq}')">
 	<input type="button" class="btn" value="목록" onclick="go_order_mov()">
 </article>
 
