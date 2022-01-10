@@ -49,7 +49,7 @@
 						</c:choose>
 					</td>
 					<td>${orderVO.mname}</td>
-					<td>${orderVO.pname}</td>
+					<td><a href="adminOrderDetailForm?kind=${kind}&seq=${orderVO.odseq}">${orderVO.pname}</a></td>
 					<td>${orderVO.quantity}</td>
 					<td>${orderVO.phone}</td>
 					<td><fmt:formatDate value="${orderVO.indate}"/></td>

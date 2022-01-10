@@ -41,4 +41,8 @@ public interface IProductDao {
 
 	public ArrayList<subproductOrderVO> selectSubProductOrder5(int oseq);
 
+	public ArrayList<subproductOrderVO> selectSubProductOrder6(String odseq);
+
+	public void deleteSpo(String sposeq);
+
 }

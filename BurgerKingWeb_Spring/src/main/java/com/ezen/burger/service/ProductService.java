@@ -74,4 +74,12 @@ public class ProductService {
 	public ArrayList<subproductOrderVO> selectSubProductOrder5(int oseq) {
 		return pdao.selectSubProductOrder5(oseq);
 	}
+
+	public ArrayList<subproductOrderVO> selectSubProductOrder6(String odseq) {
+		return pdao.selectSubProductOrder6(odseq);
+	}
+
+	public void deleteSpo(String sposeq) {
+		pdao.deleteSpo(sposeq);
+	}
 }

@@ -32,5 +32,10 @@ public interface IOrderDao {
 	public ArrayList<orderVO> getOrderDetailByOseq(int oseq);
 
 	public void deleteOrders(int oseq);
+
+	public orderVO getOrder_view(String odseq);
 	
+	public orderVO getOrder_view2(String odseq);
+
+	public void deleteSpo(String odseq);
 }

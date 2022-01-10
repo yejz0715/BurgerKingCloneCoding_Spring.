@@ -27,6 +27,7 @@ import com.ezen.burger.dto.Paging;
 import com.ezen.burger.dto.ProductVO;
 import com.ezen.burger.dto.QnaVO;
 import com.ezen.burger.dto.orderVO;
+import com.ezen.burger.dto.subproductOrderVO;
 import com.ezen.burger.service.AdminService;
 import com.ezen.burger.service.EventService;
 import com.ezen.burger.service.MemberService;
@@ -880,6 +881,68 @@ public class AdminController {
 			}
 			
 			mav.setViewName("redirect:/adminOrderList?kind="+kind);
+		}
+		return mav;
+	}
+	
+	@RequestMapping(value="/adminOrderDetailForm")
+	public ModelAndView adminOrderDetailForm(HttpServletRequest request,
+			@RequestParam("kind")String kind, @RequestParam("seq")String odseq) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		if (session.getAttribute("loginAdmin") == null) {
+			mav.setViewName("redirect:/admin");
+		}else {
+			// kind 값에 따라 order_view1,2에서 odseq값을 가진 orderVO를 조회한다.
+			if(kind.equals("1")) {
+				orderVO ovo = os.getOrder_view(odseq);
+				int totalPrice = ovo.getPrice1() * ovo.getQuantity();
+				
+				// odseq값을 가진 추가메뉴를 조회한다.
+				ArrayList<subproductOrderVO> list = ps.selectSubProductOrder6(odseq);
+				
+				for(subproductOrderVO sovo : list) {
+					totalPrice += sovo.getAddprice();
+				}
+				
+				// 조회한 값들을 전송한다.
+				mav.addObject("totalPrice", totalPrice);
+				mav.addObject("ovo", ovo);
+				mav.addObject("spseqAm", list);
+			}else if(kind.equals("2")) {
+				orderVO ovo = os.getOrder_view2(odseq);
+				int totalPrice = ovo.getPrice1() * ovo.getQuantity();
+				
+				// odseq값을 가진 추가메뉴를 조회한다.
+				ArrayList<subproductOrderVO> list = ps.selectSubProductOrder6(odseq);
+				
+				for(subproductOrderVO sovo : list) {
+					totalPrice += sovo.getAddprice();
+				}
+				
+				// 조회한 값들을 전송한다.
+				mav.addObject("totalPrice", totalPrice);
+				mav.addObject("ovo", ovo);
+				mav.addObject("kind", kind);
+				mav.addObject("spseqAm", list);
+			}
+			
+			mav.setViewName("admin/order/orderDetail");
+		}
+		return mav;
+	}
+	
+	@RequestMapping(value="/adminOrderMDelete")
+	public ModelAndView adminOrderMDelete(HttpServletRequest request,
+			@RequestParam("kind")String kind, @RequestParam("sposeq")String sposeq,
+			@RequestParam("odseq")String odseq) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		if (session.getAttribute("loginAdmin") == null) {
+			mav.setViewName("redirect:/admin");
+		}else {
+			ps.deleteSpo(sposeq);
+			mav.setViewName("redirect:/adminOrderDetailForm?kind="+kind+"&seq="+odseq);
 		}
 		return mav;
 	}

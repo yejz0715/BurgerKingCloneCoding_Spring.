@@ -308,3 +308,8 @@ function check_Term(){
 		return true;	
 	}
 }
+
+function go_order_delete(odseq){
+	var url="orderDelete?odseq="+odseq;
+	window.location.replace(url);
+}

@@ -52,4 +52,16 @@
 	<delete id="deleteOrders">
 		delete from orders where oseq = #{param1}
 	</delete>
+	
+	<select id="getOrder_view" resultType="com.ezen.burger.dto.orderVO">
+		select * from order_view where odseq = #{param1}
+	</select>
+	
+	<select id="getOrder_view2" resultType="com.ezen.burger.dto.orderVO">
+		select * from order_view2 where odseq = #{param1}
+	</select>
+	
+	<delete id="deleteSpo">
+		delete from subproduct_order where odseq = #{param1}
+	</delete>
 </mapper>
