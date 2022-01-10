@@ -64,6 +64,9 @@
 				<tr>
 					<th>추가 재료 없음</th>
 				</tr>
+				<tr>
+					<th colspan="6">총가격 : ${totalPrice}</th>
+				</tr>
 			</c:when>
 			<c:otherwise>
 				<c:forEach items="${spseqAm}" var="spseqAm">
