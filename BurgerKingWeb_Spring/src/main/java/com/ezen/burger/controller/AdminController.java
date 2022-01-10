@@ -825,4 +825,22 @@ public class AdminController {
 		}
 		return mav;
 	}
+	
+	@RequestMapping(value="/adminOrderSave")
+	public ModelAndView adminOrderSave(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		if (session.getAttribute("loginAdmin") == null) {
+			mav.setViewName("redirect:/admin");
+		}else {
+			String[] result = request.getParameterValues("result");
+			for(int i = 0; i < result.length; i++) {
+				String step = as.getResult(result[i]);
+				as.updateOrderResult(result[i], step); 
+			}
+			
+			mav.setViewName("redirect:/adminOrderList");
+		}
+		return mav;
+	}
 }

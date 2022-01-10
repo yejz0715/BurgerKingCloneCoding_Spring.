@@ -21,10 +21,9 @@
 				<th>주문자</th>
 				<th>상품명</th>
 				<th>수량</th>
-				<th>우편번호</th>
-				<th>배송지</th>
 				<th>전화</th>
 				<th>주문일</th>
+				<th>주문자 구분</th>
 				<th>삭제</th>
 			</tr>
 			<c:forEach items="${orderList}" var="orderVO">
@@ -35,19 +34,33 @@
 								<span style="font-weight: bold; color: blue">${orderVO.oseq}</span>
 								(<input type="checkbox" name="result" value="${orderVO.odseq}">미처리)
 							</c:when>
+							<c:when test='${orderVO.result=="2"}'>
+								<span style="font-weight: bold; color: blue">${orderVO.oseq}</span>
+								(<input type="checkbox" name="result" value="${orderVO.odseq}">처리중)
+							</c:when>
+							<c:when test='${orderVO.result=="3"}'>
+								<span style="font-weight: bold; color: blue">${orderVO.oseq}</span>
+								(<input type="checkbox" name="result" value="${orderVO.odseq}">배달중)
+							</c:when>
 							<c:otherwise>
 								<span style="font-weight: bold; color: red">${orderVO.oseq}</span>
-								(<input type="checkbox" checked="checked" disabled="disabled">처리완료)
+								(<input type="checkbox" checked="checked" disabled="disabled">완료)
 							</c:otherwise>
 						</c:choose>
 					</td>
 					<td>${orderVO.mname}</td>
 					<td>${orderVO.pname}</td>
 					<td>${orderVO.quantity}</td>
-					<td>${orderVO.zip_num}</td>
-					<td>${orderVO.address}</td>
 					<td>${orderVO.phone}</td>
 					<td><fmt:formatDate value="${orderVO.indate}"/></td>
+					<td>
+						<c:if test="${orderVO.memberkind == 1}">
+							회원
+						</c:if>
+						<c:if test="${orderVO.memberkind == 2}">
+							비회원
+						</c:if>
+					</td>
 					<td>
 						<input type="checkbox" name="delete" value="${orderVO.odseq}">
 					</td>
@@ -55,7 +68,7 @@
 			</c:forEach>
 		</table>
 		<div class="clear"></div>
-		<input type="button" class="btn" style="width: 200px" value="주문처리(입금확인)" onclick="go_order_save()">
+		<input type="button" class="btn" style="width: 200px" value="다음단계 진행" onclick="go_order_save()">
 		<input type="button" class="btn" style="float: right;" value="삭제" onclick="del_order();">
 	</form>
 	

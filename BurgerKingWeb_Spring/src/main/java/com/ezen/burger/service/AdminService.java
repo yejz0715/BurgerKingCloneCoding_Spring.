@@ -128,5 +128,15 @@ public class AdminService {
 		return ovo;
 	}
 
+	public void updateOrderResult(String odseq, String step) {
+		adao.updateOrderResult(Integer.parseInt(odseq), step);
+	}
+
+	public String getResult(String odseq) {
+		String result = adao.getResult(odseq);
+		result = String.valueOf(Integer.parseInt(result) + 1);
+		return result;
+	}
+
 
 }

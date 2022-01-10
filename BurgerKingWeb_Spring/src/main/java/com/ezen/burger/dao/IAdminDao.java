@@ -58,4 +58,8 @@ public interface IAdminDao {
 
 	public ArrayList<orderVO> listOrder2(Paging paging, String key);
 
+	public void updateOrderResult(int odseq, String step);
+
+	public String getResult(String odseq);
+
 }

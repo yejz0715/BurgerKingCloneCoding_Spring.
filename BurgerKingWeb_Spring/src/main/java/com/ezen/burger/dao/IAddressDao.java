@@ -19,6 +19,6 @@ public interface IAddressDao {
 
 	public void updateUserAddress(MyAddressVO mavo);
 
-	public void setGuestAddress(String address, int gseq);
+	public void setGuestAddress(String address, int gseq, String zip_num);
 	
 }
