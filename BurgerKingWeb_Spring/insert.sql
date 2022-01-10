@@ -2570,7 +2570,7 @@ values(qseq.nextVal, '앵그리너겟킹', '1. 행사명 : 앵그리너겟킹 8�
 
 insert into MYADDRESS(mseq, address, zip_num) values(8, '경기도 파주시 야당동44', '12345');
 insert into member(mseq, id, pwd, phone, name)
-values(mseq.nextVal, 'scott@naver.com', '1234', '010-2431-6247', '김우진')
+values(mseq.nextVal, 'scott@naver.com', '1234', '010-2431-6247', '김우진');
 insert into admin values('scott@naver.com', '1234', '유창대', '010-9799-0349');
 
 delete from MYADDRESS where mseq=8

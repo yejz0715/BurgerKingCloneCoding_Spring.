@@ -299,7 +299,7 @@ select * from address
 
 delete from SUBPRODUCT_ORDER
 
-delete form guest;
+delete from guest;
 create table guest(
 	gseq number(10) not null,
 	id varchar2(50) NOT NULL UNIQUE,
