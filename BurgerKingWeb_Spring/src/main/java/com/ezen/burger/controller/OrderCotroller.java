@@ -86,7 +86,10 @@ public class OrderCotroller {
 				
 				// 추가 재료의 가격까지 총 가격으로 계산
 				for(int i = 0; i < spovo.size(); i++) {
+					int result = ps.getResult(spovo.get(i).getOdseq());
+					if(result == 1 || result == 2 || result == 3) {
 						totalPrice += spovo.get(i).getAddprice();
+					}
 				}
 				
 				MyAddressVO mavo = new MyAddressVO();
