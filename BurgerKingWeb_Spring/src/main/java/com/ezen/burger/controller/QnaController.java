@@ -42,7 +42,8 @@ public class QnaController {
 						mav.setViewName("redirect:/loginForm");
 					}
 				}else if(memberKind == 2 ) {
-					mav.setViewName("redirect:/loginForm");	
+					mav.addObject("message", "Qna문의를 하려면 로그인을 하셔야합니다.");
+					mav.setViewName("member/loginForm");	
 				}else {
 					mav.setViewName("redirect:/loginForm");	
 				}
