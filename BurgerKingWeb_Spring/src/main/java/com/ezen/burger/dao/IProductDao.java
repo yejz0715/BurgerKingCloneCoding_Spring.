@@ -45,4 +45,6 @@ public interface IProductDao {
 
 	public void deleteSpo(String sposeq);
 
+	public int getResult(int odseq);
+
 }

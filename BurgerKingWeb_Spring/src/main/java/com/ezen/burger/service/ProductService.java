@@ -82,4 +82,8 @@ public class ProductService {
 	public void deleteSpo(String sposeq) {
 		pdao.deleteSpo(sposeq);
 	}
+
+	public int getResult(int odseq) {
+		return pdao.getResult(odseq);
+	}
 }
