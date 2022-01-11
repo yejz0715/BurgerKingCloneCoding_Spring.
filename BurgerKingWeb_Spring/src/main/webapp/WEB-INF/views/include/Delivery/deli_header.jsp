@@ -49,7 +49,6 @@
 						</div>
 						<div class="WEB user">
 							<p><span>${loginUser.name}</span>님 안녕하세요</p>
-							<a href=""><strong>주소 설정하기</strong></a>
 						</div>
 					</c:when>
 					<c:otherwise>
