@@ -132,8 +132,12 @@ function go_add_Meterial(pseq){
 			cb[j++] = checkboxes[i].value;
 		}
 	}
-	opener.location.href="insertAddMeterial?addM=" + cb;
-	self.close();
+	if(cb.length == 1){
+		alert("추가 메뉴를 선택해주세요.");
+	}else{
+		opener.location.href="insertAddMeterial?addM=" + cb;
+		self.close();
+	}
 }
 
 function go_cart02(){
