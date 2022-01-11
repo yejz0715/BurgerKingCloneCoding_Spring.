@@ -97,7 +97,6 @@ function popup3() {
 		</div>
 	</div>
 </div>
-	
 </article>
 
 <%@ include file="../include/footer.jsp" %>
