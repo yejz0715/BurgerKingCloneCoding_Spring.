@@ -40,7 +40,7 @@
 		<ul>
 			<c:forEach var="productVO" items="${productList}">
 				<c:choose>
-					<c:when test="${productVO.kind3==4 }">
+					<c:when test="${productVO.kind3==4 && productVO.useyn==1}">
 					<li><a href="menudetailForm?pseq=${productVO.pseq}">
 						<div class="menuImgdiv">
 							<img class="menuImg" src="image/menu/${productVO.kind1}/${productVO.image}">					
