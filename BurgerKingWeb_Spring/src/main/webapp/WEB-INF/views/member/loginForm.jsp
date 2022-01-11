@@ -65,7 +65,7 @@
 				<!-- non_Btn2 showing view -->
 				<div class="nonmember_Textarea" id="nonArea2">
 					<div id="nonmember_Text2">
-						<form action="nonOrderList" method="post" name="frm" style="padding-top: 20px;">
+						<form action="nonOrderList" method="post" name="frm2" style="padding-top: 20px;">
 							<div class="inpbox">
 								<label> 
 									<span>주문번호</span>
@@ -75,11 +75,11 @@
 							<div class="inpbox">
 								<label> 
 									<span>비밀번호</span> 
-									<input placeholder="비밀번호" type="password" name="pwd" style="width: 200px;">
+									<input placeholder="비밀번호" type="password" name="pwd2" style="width: 200px;">
 								</label>
 							</div>
 							<br><br><br>
-							<input type="submit" class="btn01 m" value="주문 조회">
+							<input type="submit" class="btn01 m" value="주문 조회" onclick="return nonOrderChk();">
 						</form>
 					</div>
 				</div>

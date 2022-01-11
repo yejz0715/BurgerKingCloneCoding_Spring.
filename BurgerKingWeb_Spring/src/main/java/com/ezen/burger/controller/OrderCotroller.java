@@ -163,7 +163,7 @@ public class OrderCotroller {
 	public ModelAndView nonOrderList(HttpServletRequest request){
 		ModelAndView mav = new ModelAndView();
 		int oseq = Integer.parseInt(request.getParameter("oseq"));
-		int pwd = Integer.parseInt(request.getParameter("pwd"));
+		int pwd = Integer.parseInt(request.getParameter("pwd2"));
 		
 		ArrayList<orderVO> ovo = os.getOrderByOseq(oseq);
 		

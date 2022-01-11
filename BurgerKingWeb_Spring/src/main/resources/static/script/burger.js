@@ -313,3 +313,15 @@ function go_order_delete(odseq){
 	var url="orderDelete?odseq="+odseq;
 	window.location.replace(url);
 }
+
+function nonOrderChk(){
+	if(document.frm2.oseq.value==""){
+		alert("주문번호를 입력해주세요.");
+		return false;
+	}else if(document.frm2.pwd2.value==""){
+		alert("비밀번호를 입력해주세요.");
+		return false;
+	}else{
+		return true;
+	}
+}
