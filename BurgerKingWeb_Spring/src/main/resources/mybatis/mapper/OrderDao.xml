@@ -5,11 +5,11 @@
 	
 <mapper namespace="com.ezen.burger.dao.IOrderDao">
 	<select id="getOrderList" resultType="com.ezen.burger.dto.orderVO">
-		select * from order_view where id=#{param1} and result ='1'
+		select * from order_view where id=#{param1} and result in ('1', '2', '3')
 	</select>
 	
 	<select id="getOrderListByGuest" resultType="com.ezen.burger.dto.orderVO">
-		select * from order_view2 where id=#{param1} and result ='1'
+		select * from order_view2 where id=#{param1} and result in ('1', '2', '3')
 	</select>
 	
 	<insert id="insertOrder">
