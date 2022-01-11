@@ -742,7 +742,12 @@ public class AdminController {
 			pvo.setPrice2(0);
 			pvo.setPrice3(0);
 			pvo.setContent("");
-			pvo.setUseyn(multi.getParameter("useyn"));
+			if(multi.getParameter("useyn") == null) {
+				pvo.setUseyn("2");
+			}else {
+				pvo.setUseyn("1");
+			}
+				
 			if(multi.getFilesystemName("image") == null)
 				pvo.setImage(multi.getParameter("oldImage"));
 			else
@@ -772,7 +777,11 @@ public class AdminController {
 			pvo.setPrice2(Integer.parseInt(multi.getParameter("price2")));
 			pvo.setPrice3(Integer.parseInt(multi.getParameter("price3")));
 			pvo.setContent(multi.getParameter("content"));
-			pvo.setUseyn(multi.getParameter("useyn"));
+			if(multi.getParameter("useyn") == null) {
+				pvo.setUseyn("2");
+			}else {
+				pvo.setUseyn("1");
+			}
 			if(multi.getFilesystemName("image") == null)
 				pvo.setImage(multi.getParameter("oldImage"));
 			else
