@@ -78,7 +78,9 @@ public class MemberController {
 			return "member/loginForm";
 		}else if(mvo.getPwd().equals(membervo.getPwd())) { // 정상 로그인
 			HttpSession session = request.getSession();
-			session.invalidate();
+			if(session.getAttribute("guestCartList") == null) {
+				session.removeAttribute("guestCartList");
+			}
 			session.setAttribute("loginUser", mvo);
 			session.setAttribute("memberkind", mvo.getMemberkind());
 			return "redirect:/";
