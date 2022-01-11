@@ -122,7 +122,7 @@ CREATE TABLE member
 CREATE TABLE Myaddress
 (
    mseq number(10) NOT NULL,
-   address varchar2(100) NOT NULL,
+   address varchar2(300) NOT NULL,
    zip_num varchar2(7),
    PRIMARY KEY (mseq)
 );
