@@ -18,15 +18,15 @@
 	   <div class="banner">
 	      <div class="slide" id="slide">
 	         <ul class="cnt" id="cnt">
-	            <li><a href="eventDetailForm?eseq=88"><img
+	            <li><a href="eventDetailForm?eseq=4"><img
 	                  src="image/main/banner/banner_3.png"></a></li>
-	            <li><a href="eventDetailForm?eseq=86"><img
+	            <li><a href="eventDetailForm?eseq=2"><img
 	                  src="image/main/banner/banner_1.png"></a></li>
-	            <li><a href="eventDetailForm?eseq=87"><img
+	            <li><a href="eventDetailForm?eseq=3"><img
 	                  src="image/main/banner/banner_2.png"></a></li>
-	            <li><a href="eventDetailForm?eseq=101"><img
+	            <li><a href="deliveryUseForm"><img
 	                  src="image/main/banner/banner_4.png"></a></li>
-	            <li><a href="eventDetailForm?eseq=102"><img
+	            <li><a href="menudetailForm?pseq=155"><img
 	                  src="image/main/banner/banner_5.png"></a></li>
 	         </ul>
 	   
