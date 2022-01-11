@@ -34,7 +34,7 @@
 	</update>
 	
 	<select id="getOrderByOseq" resultType="com.ezen.burger.dto.orderVO">
-		select * from order_view2 where oseq = #{param1}
+		select * from order_view2 where oseq = #{param1} and result in ('1', '2', '3')
 	</select>
 	
 	<select id="getOseq" resultType="int">

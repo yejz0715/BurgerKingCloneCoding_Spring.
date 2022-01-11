@@ -68,6 +68,19 @@
 					<div class="menu_titWrap">
 						<div class="menu_name">
 							<p class="tit"><strong><span>${orderList.oseq}-${orderList.odseq} : ${orderList.pname}</span></strong></p>
+							<p class="price">
+								<strong><span>
+									<c:if test="${orderList.result == 1}">
+										주문 처리 전
+									</c:if>
+									<c:if test="${orderList.result == 2}">
+										주문 처리 중
+									</c:if>
+									<c:if test="${orderList.result == 3}">
+										배달 중
+									</c:if>
+								</span></strong>
+							</p>
 						</div>
 					</div>
 					<div class="quantity"><strong class="tit">수량</strong>

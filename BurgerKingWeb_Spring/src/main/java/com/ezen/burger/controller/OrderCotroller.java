@@ -186,9 +186,11 @@ public class OrderCotroller {
 			// 해당 접속 회원의 추가 재료의 목록을 가져오기
 			ArrayList<subproductOrderVO> spovo = ps.selectSubProductOrder5(oseq);
 			
-			// 추가 재료의 가격까지 총 가격으로 계산
 			for(int i = 0; i < spovo.size(); i++) {
+				int result = ps.getResult(spovo.get(i).getOdseq());
+				if(result == 1 || result == 2 || result == 3) {
 					totalPrice += spovo.get(i).getAddprice();
+				}
 			}
 			
 			mav.addObject("totalPrice", totalPrice);
