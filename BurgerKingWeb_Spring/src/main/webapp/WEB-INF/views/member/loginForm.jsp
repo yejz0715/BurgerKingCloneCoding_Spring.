@@ -60,7 +60,9 @@
 				<div class="nonmember_Textarea" id="nonArea1">
 					<div id="nonmember_Text">회원가입 없이 비회원으로 주문이 가능합니다.</div>
 					<br><br><br><br>
-					<input type="button" class="btn01 m" value="비회원 주문" onclick="location.href='guestLoginForm'">
+					<c:if test="${empty memberkind}">
+						<input type="button" class="btn01 m" value="비회원 주문" onclick="location.href='guestLoginForm'">
+					</c:if>
 				</div>
 				<!-- non_Btn2 showing view -->
 				<div class="nonmember_Textarea" id="nonArea2">
