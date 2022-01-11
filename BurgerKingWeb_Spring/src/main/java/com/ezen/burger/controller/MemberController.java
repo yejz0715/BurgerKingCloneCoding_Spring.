@@ -78,7 +78,7 @@ public class MemberController {
 			return "member/loginForm";
 		}else if(mvo.getPwd().equals(membervo.getPwd())) { // 정상 로그인
 			HttpSession session = request.getSession();
-			if(session.getAttribute("guestCartList") == null) {
+			if(session.getAttribute("guestCartList") != null) {
 				session.removeAttribute("guestCartList");
 			}
 			session.setAttribute("loginUser", mvo);
