@@ -37,7 +37,7 @@
 							placeholder="비밀번호" type="password" name="pwd">
 						</label>
 					</div><br>
-					${message}
+					<lable style="color: red;">${message}</lable>
 					<div class="c_btn item2">
 						<input type="submit" class="btn01 m red" value="로그인"/> 
 						<input type="button" class="btn01 m" onclick="location.href='joinForm'" value="회원가입" />
