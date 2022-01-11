@@ -39,7 +39,7 @@
 					<td><fmt:formatDate value="${productVO.indate}"/></td>
 					<td>
 						<c:choose>
-							<c:when test='${productVO.useyn=="n" }'></c:when>
+							<c:when test='${productVO.useyn==2}'>미사용</c:when>
 							<c:otherwise>사용</c:otherwise>
 						</c:choose>
 					</td>

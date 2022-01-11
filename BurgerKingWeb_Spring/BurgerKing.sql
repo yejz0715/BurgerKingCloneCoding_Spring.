@@ -289,7 +289,7 @@ ALTER TABLE order_detail
    REFERENCES product (pseq)
 
 
-select * from member;
+select * from product
 
 select * from order_view;
 select * from orders;
