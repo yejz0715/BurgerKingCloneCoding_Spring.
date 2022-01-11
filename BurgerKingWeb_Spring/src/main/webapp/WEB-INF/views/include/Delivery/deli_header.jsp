@@ -20,13 +20,13 @@
 			
 				<c:choose>
 					<c:when test="${empty loginUser}">
-						<h1 class="WEB_logo">
-							<a href="loginForm"><span>버거킹</span></a>
+						<h1 class="WEB_logo" onclick="location.href='loginForm'">
+							<span>버거킹</span>
 						</h1>
 					</c:when>
 					<c:otherwise>
-						<h1 class="WEB_logo">
-							<a href="deliveryForm?kind1=1"><span>버거킹</span></a>
+						<h1 class="WEB_logo" onclick="location.href='deliveryForm?kind1=1'">
+							<span>버거킹</span>
 						</h1>
 					</c:otherwise>
 				</c:choose>
