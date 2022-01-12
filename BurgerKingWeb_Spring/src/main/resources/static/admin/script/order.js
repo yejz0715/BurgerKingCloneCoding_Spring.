@@ -75,3 +75,10 @@ function deleteSpo(sposeq, result, kind, odseq){
 function go_order_mov(){
 	document.location.href = "adminOrderList?kind="+1;
 }
+
+function resultAllCheck(resultAllCheck){
+	const checkboxes = document.getElementsByName('result');
+  	checkboxes.forEach((checkbox) => {
+    	checkbox.checked = resultAllCheck.checked;
+	})
+}

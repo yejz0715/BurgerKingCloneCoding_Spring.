@@ -17,7 +17,7 @@
 		</table>
 		<table id="orderList">
 			<tr>
-				<th>주문번호(처리여부)</th>
+				<th>주문번호(<input type="checkbox" name="resultAll" onclick="resultAllCheck(this);">처리여부)</th>
 				<th>주문자</th>
 				<th>상품명</th>
 				<th>수량</th>
