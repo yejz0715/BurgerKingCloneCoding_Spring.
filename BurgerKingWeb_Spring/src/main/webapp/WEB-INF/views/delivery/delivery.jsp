@@ -25,7 +25,7 @@ function popup3() {
 		<div class="web_container1">
 			<div class="web_container1">
 				<ul>
-					<li><a href="deliveryForm&kind1=1">딜리버리</a>&nbsp;>&nbsp;</li>
+					<li><a href="deliveryForm?kind1=1">딜리버리</a>&nbsp;>&nbsp;</li>
 					<li>카트</li>
 				</ul>
 			</div>

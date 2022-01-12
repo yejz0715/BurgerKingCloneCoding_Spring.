@@ -5,7 +5,7 @@
 	<div class="location">
 	<div class="web_container1">
 		<ul>
-			<li><a href="mian">HOME</a>&nbsp;>&nbsp;</li>
+			<li><a href="main">HOME</a>&nbsp;>&nbsp;</li>
 			<li>고객센터 &nbsp;>&nbsp;</li>
 			<li>버거킹앱 이용안내</li>
 		</ul>
