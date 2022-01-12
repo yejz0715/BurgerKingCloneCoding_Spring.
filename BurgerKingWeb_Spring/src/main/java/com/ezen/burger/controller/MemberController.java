@@ -350,29 +350,31 @@ public class MemberController {
 		return mav;
 	}
 	
-	
+	// 회원가입 페이지
 	@RequestMapping(value="/joinForm")
 	public String join_form(Model model, HttpServletRequest request) {
 		return "member/join";
 	}
 	
-	
+	// 약관동의 페이지
 	@RequestMapping(value="/contract")
 	public String contractform(Model model, HttpServletRequest request) {
 		return "member/contract";
 	}
 	
+	// 약관동의 페이지 팝업1
 	@RequestMapping(value="/popup1")
 	public String popup1(Model model, HttpServletRequest request) {
 		return "member/popup1";
 	}
 	
+	// 약관동의 페이지 팝업2
 	@RequestMapping(value="/popup2")
 	public String popup2(Model model, HttpServletRequest request) {
 		return "member/popup2";
 	}
 	
-	
+	// joinpage로 이동
 	@RequestMapping(value="/joinpageForm")
 	public ModelAndView firstjoinpage(Model model, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
@@ -382,7 +384,7 @@ public class MemberController {
 	
 	
 	
-	
+	// 회웝가입 정보저장
 	@RequestMapping(value="/joinpage", method=RequestMethod.POST)
 	public ModelAndView joinpage( @ModelAttribute("dto") @Valid MemberVO membervo,
 			BindingResult result, @RequestParam(value="reid" , required = false) String reid, 
@@ -390,28 +392,28 @@ public class MemberController {
 		ModelAndView mav = new ModelAndView();
 		
 		
-		if( result.getFieldError("id") != null ) { 
+		if( result.getFieldError("id") != null ) { 	// 아이디 미입력
 				mav.addObject("message", result.getFieldError("id").getDefaultMessage() ); 
 				mav.addObject("reid",reid); 
 				mav.setViewName("member/joinpage"); 
-		 } else if( !membervo.getId().equals(reid)){
+		 } else if( !membervo.getId().equals(reid)){	// 중복체크 미완료
 				mav.addObject("message","아이디 중복체크가 되지 않았습니다");
 				mav.setViewName("member/joinpage");
 		
-		 } else if( result.getFieldError("name") != null ) {
+		 } else if( result.getFieldError("name") != null ) {	// 이름 미입력
 				mav.addObject("message", result.getFieldError("name").getDefaultMessage() );
 				mav.addObject("reid", reid);
 				mav.setViewName("member/joinpage");		
-		 } else if( result.getFieldError("phone") != null ) {
+		 } else if( result.getFieldError("phone") != null ) {	// 휴대폰번호 미입력
 				mav.addObject("message", result.getFieldError("phone").getDefaultMessage() );
 				mav.addObject("reid", reid);
 				mav.setViewName("member/joinpage");
-		 } else	if( result.getFieldError("pwd") != null ) {
+		 } else	if( result.getFieldError("pwd") != null ) {	// 비밀번호 미입력
 			mav.addObject("message", result.getFieldError("pwd").getDefaultMessage() );
 			mav.addObject("reid", reid);
 			mav.setViewName("member/joinpage");
 		
-		} else if( !membervo.getPwd().equals(pwdCheck)) {
+		} else if( !membervo.getPwd().equals(pwdCheck)) {	// 비밀번호 불일치
 			mav.addObject("message","비밀번호 확인이 일치하지 않습니다.");
 			mav.addObject("reid", reid);
 			mav.setViewName("member/joinpage");
@@ -423,20 +425,21 @@ public class MemberController {
 		return mav;
 	}
 	
-	
+	// 중복확인
 	@RequestMapping("/idcheck")
 	public ModelAndView idcheck( @RequestParam("id") String id ) {
 		ModelAndView mav = new ModelAndView();
 		
 		MemberVO mvo = ms.getMember(id);
-		if( mvo==null ) mav.addObject("result" , -1);
-		else mav.addObject("result" , 1);
+		if( mvo==null ) mav.addObject("result" , -1);	// 사용가능
+		else mav.addObject("result" , 1);	// 이미 사용중(사용불가)
 		
 		mav.addObject("id" , id);
 		mav.setViewName("member/idcheck");		
 		return mav;
 	}
 	
+	// 회원가입완료 페이지
 	@RequestMapping(value="/complet")
 	public String complet(Model model, HttpServletRequest request) {
 		return "member/complet";
