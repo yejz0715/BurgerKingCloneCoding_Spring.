@@ -1,5 +1,7 @@
 package com.ezen.burger.service;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,11 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.ezen.burger.dao.IAdminDao;
 import com.ezen.burger.dto.AdminVO;
-
 import com.ezen.burger.dto.EventVO;
-
 import com.ezen.burger.dto.MemberVO;
-
 import com.ezen.burger.dto.Paging;
 import com.ezen.burger.dto.ProductVO;
 import com.ezen.burger.dto.QnaVO;
@@ -49,6 +48,7 @@ public class AdminService {
 
 	public ArrayList<EventVO> listEvent(Paging paging, String key) {
 		return adao.listEvent(paging, key);
+		
 	}
 
 	public void deleteEvent(int eseq) {
@@ -76,12 +76,28 @@ public class AdminService {
 
 	public void insertEvent(EventVO evo) {
 		adao.insertEvent(evo);
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        SimpleDateFormat sdf = new SimpleDateFormat ("yyyy-MM-dd hh:mm:ss"); 
+        int state = 1;
+        if(sdf.format(timestamp).compareTo(evo.getEnddate()) > 0) {
+        	state = 2;
+        }else if(sdf.format(timestamp).compareTo(evo.getEnddate()) < 0) {
+        	state = 1;
+        }
 		
 	}
 
 	public void updateEvent(EventVO evo) {
-	adao.updateEvent(evo);
-		
+		adao.updateEvent(evo);
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        SimpleDateFormat sdf = new SimpleDateFormat ("yyyy-MM-dd hh:mm:ss"); 
+        int state = 1;
+        if(sdf.format(timestamp).compareTo(evo.getEnddate()) > 0) {
+        	state = 2;
+        }else if(sdf.format(timestamp).compareTo(evo.getEnddate()) < 0) {
+        	state = 1;
+        }
+        
 	}
 
 	public int checkShortProductYN(String k1, String k2, String k3) {
