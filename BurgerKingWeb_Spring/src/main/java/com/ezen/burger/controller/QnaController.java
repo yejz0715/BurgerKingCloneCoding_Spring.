@@ -94,6 +94,7 @@ public class QnaController {
 		// 고객센터 qna passform
 		@RequestMapping(value="/passCheckForm")
 		 public ModelAndView passCheckForm(@RequestParam("qseq")int qseq,
+				 @RequestParam(value="message", required = false)String message,
 				 HttpServletRequest request) {
 			ModelAndView mav=new ModelAndView();
 			HttpSession session = request.getSession();
@@ -101,8 +102,8 @@ public class QnaController {
 			if(session.getAttribute("loginUser") == null) {
 				mav.setViewName("redirect:/loginForm");
 			}else {
-				if(request.getAttribute("message") != null) {
-					mav.addObject("message", request.getAttribute("message"));
+				if(message != null) {
+					mav.addObject("message", message);
 				}
 				mav.addObject("qseq", qseq);
 			    mav.setViewName("ServiceCenter/passChk");
@@ -122,9 +123,9 @@ public class QnaController {
 					String pass = request.getParameter("pass");
 					int qseq = Integer.parseInt(request.getParameter("qseq"));
 					QnaVO qvo = qs.getpassChk(qseq); 
-					if(!qvo.getPass().equals(pass)) { 
+					if(!qvo.getPass().equals(pass)) {
 						mav.addObject("message", "비밀번호가 일치하지 않습니다"); 
-						mav.setViewName("redirect:/passCheckForm");
+						mav.setViewName("redirect:/passCheckForm?qseq=" + qseq);
 					}else {
 						mav.addObject("qseq", qseq);
 						mav.setViewName("redirect:/qnaView");
