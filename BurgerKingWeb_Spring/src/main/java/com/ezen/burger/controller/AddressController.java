@@ -96,6 +96,7 @@ public class AddressController {
 		return mav;
 	}
 	
+	// 회원 주소지 페이지로 이동
 	@RequestMapping(value="/myAddressForm")
 	public ModelAndView myAddressForm(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
@@ -131,6 +132,7 @@ public class AddressController {
 		return mav;
 	}
 	
+	// 회원 주소지  변경
 	@RequestMapping(value="/updateAddress")
 	public ModelAndView updateAddress(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
