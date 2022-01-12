@@ -34,6 +34,7 @@ public class CartController {
 	@Autowired
 	ProductService ps;
 	
+	// 카트 리스트 페이지로 이동
 	@RequestMapping(value="/deliveryCartForm")
 	public ModelAndView deliveryCartForm(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
@@ -101,6 +102,7 @@ public class CartController {
 		return mav;
 	}
 	
+	// 재료 추가 없이 카트 저장
 	@RequestMapping(value="noMeterialCart")
 	public String noMeterialCart(@RequestParam("pseq") int pseq, HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -140,6 +142,7 @@ public class CartController {
 		return "redirect:/deliveryCartForm";
 	}
 	
+	// 카트 삭제
 	@RequestMapping(value="/cartDelete")
 	public ModelAndView cartDelete(HttpServletRequest request,
 			@RequestParam("cseq") int cseq) {
@@ -149,8 +152,10 @@ public class CartController {
 			cs.deleteCart(cseq);
 			mav.setViewName("redirect:/deliveryCartForm");
 		}else if((int)session.getAttribute("memberkind") == 2) {
+			// 비회원 카트 삭제시 세션에서 카트 정보를 불러온 뒤
 			ArrayList<CartVO> guestCartList = (ArrayList<CartVO>)session.getAttribute("guestCartList");
 			int index = 0;
+			// 해당 cseq 값을 가진 CartVO를 삭제한다.
 			for(CartVO cvo : guestCartList) {
 				if(cvo.getCseq() == cseq) {
 					guestCartList.remove(index++);
@@ -163,6 +168,7 @@ public class CartController {
 		return mav;
 	}
 	
+	// 카트 여러개 삭제, 전체 삭제
 	@RequestMapping(value="/deliveryCartDelete")
 	public ModelAndView deliveryCartDelete(HttpServletRequest request,
 			@RequestParam("menu") int[] cseq) {
@@ -191,6 +197,7 @@ public class CartController {
 		return mav;
 	}
 	
+	// 카트 상품 수량 감소
 	@RequestMapping(value="/minusQuantity")
 	public ModelAndView minusQuantity(HttpServletRequest request,
 			@RequestParam("cseq") int cseq) {
@@ -229,6 +236,7 @@ public class CartController {
 		return mav;
 	}
 	
+	// 카트 상품 수량 증가
 	@RequestMapping(value="/plusQuantity")
 	public ModelAndView plusQuantity(HttpServletRequest request,
 			@RequestParam("cseq") int cseq) {
@@ -267,9 +275,10 @@ public class CartController {
 		return mav;
 	}
 	
+	// 재료 추가 카트 저장
 	@RequestMapping(value="/insertAddMeterial")
 	public ModelAndView insertAddMeterial(HttpServletRequest request,
-			@RequestParam("addM") int[] m) {
+			@RequestParam("addM") int[] m) { // m의 0번째 인덱스에는 상품의 pseq값, 1부터는 추가 재료의spseq값이 들어있다.
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		if(session.getAttribute("memberkind")!=null && session.getAttribute("loginUser")!=null) {

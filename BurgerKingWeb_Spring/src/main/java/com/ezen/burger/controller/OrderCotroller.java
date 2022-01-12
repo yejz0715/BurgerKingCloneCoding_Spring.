@@ -36,6 +36,7 @@ public class OrderCotroller {
 	@Autowired
 	AddressService as;
 	
+	// 주문 페이지로 이동
 	@RequestMapping(value="/deliveryOrderList")
 	public ModelAndView deliveryOrderList(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
@@ -92,6 +93,7 @@ public class OrderCotroller {
 					}
 				}
 				
+				// 주문 페이지에 띄울 로그인한 유저의 주소지 
 				MyAddressVO mavo = new MyAddressVO();
 				mavo.setAddress(gvo.getAddress());
 				
@@ -112,6 +114,7 @@ public class OrderCotroller {
 		return mav;
 	}
 	
+	// 카트 목록 주문하기
 	@RequestMapping(value="/deliveryCartOrder")
 	public ModelAndView deliveryCartOrder(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
@@ -165,14 +168,17 @@ public class OrderCotroller {
 		return mav;
 	}
 	
+	// 비회원 주문 내역창 불러오기
 	@RequestMapping(value="/nonOrderList")
 	public ModelAndView nonOrderList(HttpServletRequest request){
 		ModelAndView mav = new ModelAndView();
 		int oseq = Integer.parseInt(request.getParameter("oseq"));
 		int pwd = Integer.parseInt(request.getParameter("pwd2"));
 		
+		// 입력받은 주문번호의 내역을 가져오기
 		ArrayList<orderVO> ovo = os.getOrderByOseq(oseq);
 		
+		// 해당 주문이 없거나, 비번이 없을 때,
 		if(ovo.size() == 0) {
 			mav.addObject("message2", "해당 주문이 없습니다.");
 			mav.setViewName("member/loginForm");
@@ -207,6 +213,7 @@ public class OrderCotroller {
 		return mav;
 	}
 	
+	// 주문 삭제
 	@RequestMapping(value="/orderDelete")
 	public ModelAndView orderDelete(HttpServletRequest request,
 			@RequestParam("odseq") String odseq) {

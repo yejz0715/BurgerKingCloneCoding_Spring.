@@ -41,6 +41,7 @@ public class OtherController {
 	
 	@RequestMapping(value="/")
 
+	// 페이지 시작 리턴 값에 main, admin을 입력하여 사용자, 관리자 페이지로 이동한다.
 	public String index() {
 		return "redirect:/main";
 	}  
@@ -109,6 +110,7 @@ public class OtherController {
 		return "ServiceCenter/deliveryuse";
 	}
 	
+	// 회원 마이페이지로 이동
 	@RequestMapping(value="/deliveryMypageForm")
 	public ModelAndView deliveryMypageForm(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
@@ -125,6 +127,7 @@ public class OtherController {
 				mav.addObject("MemberVO", mvo);
 				mav.setViewName("delivery/myPage");
 			}else if(memberKind == 2){
+				// 비회원일 경우에는 마이 페이지로 이동하지 않는다.
 				mav.addObject("kind1", 1);
 				mav.setViewName("redirect:/deliveryForm");
 			}else {

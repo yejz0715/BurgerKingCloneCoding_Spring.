@@ -792,6 +792,7 @@ public class AdminController {
 		return "redirect:/adminProductDetail?pseq="+pseq;
 	}
 	
+	// 관리자 주문 리스트
 	@RequestMapping(value="/adminOrderList")
 	public ModelAndView adminOrderList(HttpServletRequest request,
 			@RequestParam("kind")String kind) {
@@ -850,6 +851,7 @@ public class AdminController {
 		return mav;
 	}
 	
+	// 주문 상태 처리 (1, 2, 3)
 	@RequestMapping(value="/adminOrderSave")
 	public ModelAndView adminOrderSave(HttpServletRequest request,
 			@RequestParam("kind")String kind) {
@@ -871,6 +873,7 @@ public class AdminController {
 		return mav;
 	}
 	
+	// 관리자 주문 리스트 삭제
 	@RequestMapping(value="/adminOrderDelete")
 	public ModelAndView adminOrderDelete(HttpServletRequest request,
 			@RequestParam("kind")String kind) {
@@ -895,6 +898,7 @@ public class AdminController {
 		return mav;
 	}
 	
+	// 관리자 주문 상세페이지
 	@RequestMapping(value="/adminOrderDetailForm")
 	public ModelAndView adminOrderDetailForm(HttpServletRequest request,
 			@RequestParam("kind")String kind, @RequestParam("seq")String odseq) {
@@ -942,6 +946,7 @@ public class AdminController {
 		return mav;
 	}
 	
+	// 관리자 페이지에서 주문의 추가 쟤료 삭제
 	@RequestMapping(value="/adminOrderMDelete")
 	public ModelAndView adminOrderMDelete(HttpServletRequest request,
 			@RequestParam("kind")String kind, @RequestParam("sposeq")String sposeq,
