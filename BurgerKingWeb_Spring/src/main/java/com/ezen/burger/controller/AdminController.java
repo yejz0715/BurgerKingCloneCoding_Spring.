@@ -62,7 +62,7 @@ public class AdminController {
 	@Autowired
 	ServletContext context;
 
-	@RequestMapping(value = "/adminLogin", method = RequestMethod.POST)
+	@RequestMapping(value = "/adminLogin")
 	public String adminLogin(@ModelAttribute("dto") @Valid AdminVO adminvo, BindingResult result,
 			HttpServletRequest request, Model model) {
 		if (result.getFieldError("id") != null) {
