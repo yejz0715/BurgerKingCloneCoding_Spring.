@@ -33,14 +33,12 @@
 			<th>썸네일</th>
 			<td colspan="9">
 				<img src="image/main/event/${eventVO.thumbnail}" width="200px"><br>
-				<input type="file" name="thumbnail">
 			</td>
 		</tr>
 		<tr>
 			<th>상세이미지</th>
 			<td colspan="9">
 				<img src="image/main/event/${eventVO.image}" width="200px"><br>
-				<input type="file" name="image">
 			</td>
 		</tr>
 	</table>
