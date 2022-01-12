@@ -224,24 +224,16 @@ public class AdminController {
 		String savePath = context.getRealPath("upload/main/event");
 		System.out.println(savePath);
 
-		
 		try {
 			MultipartRequest multi = new MultipartRequest(request, savePath, 5 * 1024 * 1024, "UTF-8",
 					new DefaultFileRenamePolicy());
 			EventVO evo = new EventVO();
-			Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-	        SimpleDateFormat sdf = new SimpleDateFormat ("yyyy-MM-dd hh:mm:ss");
+
 			evo.setSubject(multi.getParameter("subject"));
 			evo.setContent(multi.getParameter("content"));
 			evo.setEnddate(multi.getParameter("enddate"));
 			evo.setImage(multi.getFilesystemName("image"));
-			Timestamp t = Timestamp.valueOf(evo.getEnddate());
-	        int state = 1;
-	        if(sdf.format(timestamp).compareTo(sdf.format(t)) > 0) {
-	        	state = 2; evo.setState(state);
-	        }else {
-	        	evo.setState(state);
-	        }
+			evo.setState(1);
 			if (multi.getParameter("subject") == null) {
 				System.out.println("이벤트명을 입력하세요");
 				model.addAttribute("evo", evo);
@@ -288,22 +280,20 @@ public class AdminController {
 					5*1024*1024, "UTF-8", new DefaultFileRenamePolicy());
 			EventVO evo=new EventVO();
 			Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-	        SimpleDateFormat sdf = new SimpleDateFormat ("yyyyMMdd");
-	        
+	        SimpleDateFormat sdf = new SimpleDateFormat ("yyyy-MM-dd hh:mm:ss");
+
 			String enddate = multi.getParameter("enddate");
-			enddate = enddate.substring(0, 10);
 			int state = 1;
 	        if(sdf.format(timestamp).compareTo(enddate) > 0) {
 	        	state = 0;
 	        }
 	        evo.setState(state);
+			enddate = enddate.substring(0, 10);
 			evo.setEseq(Integer.parseInt(multi.getParameter("eseq")));
 			evo.setSubject(multi.getParameter("subject"));
 			evo.setContent(multi.getParameter("content"));
 		    evo.setEnddate(enddate);
-		    
-		    
-		    
+		    evo.setState(1);
 			evo.setImage(multi.getFilesystemName("image"));
 		
 			if(multi.getFilesystemName("image") == null)
