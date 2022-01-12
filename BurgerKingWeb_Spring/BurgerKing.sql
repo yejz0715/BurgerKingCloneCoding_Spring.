@@ -105,6 +105,7 @@ CREATE TABLE event
    PRIMARY KEY (eseq)
 );
 
+alter table event add(thumbnail varchar2(50))
 
 
 CREATE TABLE member

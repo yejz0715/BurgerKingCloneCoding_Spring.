@@ -7,7 +7,7 @@
 	<div class="location">
 	<div class="web_container1">
 		<ul>
-			<li><a href="index">HOME</a>&nbsp;>&nbsp;</li>
+			<li><a href="main">HOME</a>&nbsp;>&nbsp;</li>
 			<li><a href="eventListForm">이벤트</a>&nbsp;>&nbsp;</li>
 			<li>진행중</li>
 		</ul>

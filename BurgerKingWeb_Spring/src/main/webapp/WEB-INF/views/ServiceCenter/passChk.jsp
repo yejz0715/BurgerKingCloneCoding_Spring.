@@ -5,7 +5,7 @@
 				<input type="hidden" name="qseq" value="${qseq}">
 				<span>
 					<h2>작성 시 입력했던 비밀번호 4자리를 입력해주세요.</h2><br>
-					<label>${message}</label><br>
+					<label style="color: red;">${message}</label><br><br>
 					<input type="password" name="pass" size="4" style="height: 30px;">
 					<input type="submit" class="qna_btn01" value="확인">
 					<input type="button" class="qna_btn01" value="뒤로가기" onclick="location.href='qnaForm'">

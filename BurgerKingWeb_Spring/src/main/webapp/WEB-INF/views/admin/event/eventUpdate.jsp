@@ -7,6 +7,7 @@
 	<form name="frm" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="eseq" value="${eventVO.eseq}">
 		<input type="hidden" name="oldImage" value="${eventVO.image}">
+		<input type="hidden" name="oldthumbnail" value="${eventVO.thumbnail}">
 		<table id="list" width="500" border="1">
 			<tr>
 				<th>이벤트명</th>

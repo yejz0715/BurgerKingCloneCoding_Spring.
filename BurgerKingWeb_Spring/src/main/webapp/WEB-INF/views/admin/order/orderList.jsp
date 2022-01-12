@@ -17,7 +17,7 @@
 		</table>
 		<table id="orderList">
 			<tr>
-				<th>주문번호(처리여부)</th>
+				<th>주문번호(<input type="checkbox" name="resultAll" onclick="resultAllCheck(this);">처리여부)</th>
 				<th>주문자</th>
 				<th>상품명</th>
 				<th>수량</th>
@@ -74,12 +74,13 @@
 	
 	<br><br>
 	
-	<jsp:include page="../../admin/paging/paging.jsp">
+	<jsp:include page="../../admin/paging/paging2.jsp">
 		<jsp:param name="page" value="${paging.page}"/>
 		<jsp:param name="beginPage" value="${paging.beginPage}"/>
 		<jsp:param name="endPage" value="${paging.endPage}"/>
 		<jsp:param name="prev" value="${paging.prev}"/>
 		<jsp:param name="next" value="${paging.next}"/>
+		<jsp:param name="kind" value="${kind}"/>
 		<jsp:param name="command" value="adminOrderList"/>
 	</jsp:include>
 </article>

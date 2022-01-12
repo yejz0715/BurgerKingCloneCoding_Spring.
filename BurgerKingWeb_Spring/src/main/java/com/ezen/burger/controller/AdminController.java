@@ -224,7 +224,6 @@ public class AdminController {
 		String savePath = context.getRealPath("image/main/event");
 		System.out.println(savePath);
 
-		
 		try {
 			MultipartRequest multi = new MultipartRequest(request, savePath, 5 * 1024 * 1024, "UTF-8",
 					new DefaultFileRenamePolicy());
@@ -281,9 +280,9 @@ public class AdminController {
 			EventVO evo=new EventVO();
 			
 			Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-	        SimpleDateFormat sdf = new SimpleDateFormat ("yyyyMMdd");
-	        String enddate = multi.getParameter("enddate");
-			enddate = enddate.substring(0, 10);
+	        SimpleDateFormat sdf = new SimpleDateFormat ("yyyy-MM-dd hh:mm:ss");
+
+			String enddate = multi.getParameter("enddate");
 			int state = 1;
 			// 현재시간과 이벤트 종료 시간을 비교하여 현재시간이 이벤트 종료시간보다 커지면
 			// state를 0으로 변경하여 종료된 이벤트로 이동
@@ -291,18 +290,21 @@ public class AdminController {
 	        	state = 0;
 	        }
 	        evo.setState(state);
+			enddate = enddate.substring(0, 10);
 			evo.setEseq(Integer.parseInt(multi.getParameter("eseq")));
 			evo.setSubject(multi.getParameter("subject"));
 			evo.setContent(multi.getParameter("content"));
 		    evo.setEnddate(enddate);
-			evo.setImage(multi.getFilesystemName("image"));		
+			
+		    evo.setImage(multi.getFilesystemName("image"));		
 			if(multi.getFilesystemName("image") == null)
 				evo.setImage(multi.getParameter("oldImage"));
 			else
 				evo.setImage(multi.getFilesystemName("image"));
+			
 			evo.setThumbnail(multi.getFilesystemName("thumbnail"));
-			if(multi.getFilesystemName("image") == null)
-				evo.setThumbnail(multi.getParameter("thumbnail"));
+			if(multi.getFilesystemName("thumbnail") == null)
+				evo.setThumbnail(multi.getParameter("oldthumbnail"));
 			else
 				evo.setThumbnail(multi.getFilesystemName("thumbnail"));
 			as.updateEvent(evo);
@@ -454,7 +456,7 @@ public class AdminController {
 			Paging paging = new Paging();
 			paging.setPage(page);
 
-			int count = as.getAllCount("product", "pname", key);
+			int count = as.getShortProductAllCount(key);
 			paging.setTotalCount(count);
 			paging.paging();
 
@@ -498,7 +500,7 @@ public class AdminController {
 			Paging paging = new Paging();
 			paging.setPage(page);
 
-			int count = as.getAllCount("product", "pname", key);
+			int count = as.getProductAllCount(key);
 			paging.setTotalCount(count);
 			paging.paging();
 
