@@ -221,7 +221,7 @@ public class AdminController {
 //이벤트등록
 	@RequestMapping(value = "/adminEventWrite", method = RequestMethod.POST) 
 	public String adminEventWrite(Model model, HttpServletRequest request) {
-		String savePath = context.getRealPath("upload/main/event");
+		String savePath = context.getRealPath("image/main/event");
 		System.out.println(savePath);
 
 		
@@ -229,19 +229,11 @@ public class AdminController {
 			MultipartRequest multi = new MultipartRequest(request, savePath, 5 * 1024 * 1024, "UTF-8",
 					new DefaultFileRenamePolicy());
 			EventVO evo = new EventVO();
-			Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-	        SimpleDateFormat sdf = new SimpleDateFormat ("yyyy-MM-dd hh:mm:ss");
 			evo.setSubject(multi.getParameter("subject"));
 			evo.setContent(multi.getParameter("content"));
 			evo.setEnddate(multi.getParameter("enddate"));
 			evo.setImage(multi.getFilesystemName("image"));
-			Timestamp t = Timestamp.valueOf(evo.getEnddate());
-	        int state = 1;
-	        if(sdf.format(timestamp).compareTo(sdf.format(t)) > 0) {
-	        	state = 2; evo.setState(state);
-	        }else {
-	        	evo.setState(state);
-	        }
+			evo.setThumbnail(multi.getFilesystemName("thumbnail"));
 			if (multi.getParameter("subject") == null) {
 				System.out.println("이벤트명을 입력하세요");
 				model.addAttribute("evo", evo);
@@ -281,18 +273,20 @@ public class AdminController {
 	//이벤트수정
 	@RequestMapping(value="/adminEventUpdate" , method=RequestMethod.POST) 
 	  public String adminEventUpdate( Model model, HttpServletRequest request) { 
-	  String savePath=context.getRealPath("upload/main/event");
+	  String savePath=context.getRealPath("image/main/event");
 		System.out.println(savePath);
 		try {
 			MultipartRequest multi=new MultipartRequest(request, savePath,
 					5*1024*1024, "UTF-8", new DefaultFileRenamePolicy());
 			EventVO evo=new EventVO();
+			
 			Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 	        SimpleDateFormat sdf = new SimpleDateFormat ("yyyyMMdd");
-	        
-			String enddate = multi.getParameter("enddate");
+	        String enddate = multi.getParameter("enddate");
 			enddate = enddate.substring(0, 10);
 			int state = 1;
+			// 현재시간과 이벤트 종료 시간을 비교하여 현재시간이 이벤트 종료시간보다 커지면
+			// state를 0으로 변경하여 종료된 이벤트로 이동
 	        if(sdf.format(timestamp).compareTo(enddate) > 0) {
 	        	state = 0;
 	        }
@@ -301,16 +295,16 @@ public class AdminController {
 			evo.setSubject(multi.getParameter("subject"));
 			evo.setContent(multi.getParameter("content"));
 		    evo.setEnddate(enddate);
-		    
-		    
-		    
-			evo.setImage(multi.getFilesystemName("image"));
-		
+			evo.setImage(multi.getFilesystemName("image"));		
 			if(multi.getFilesystemName("image") == null)
 				evo.setImage(multi.getParameter("oldImage"));
 			else
 				evo.setImage(multi.getFilesystemName("image"));
-			
+			evo.setThumbnail(multi.getFilesystemName("thumbnail"));
+			if(multi.getFilesystemName("image") == null)
+				evo.setThumbnail(multi.getParameter("thumbnail"));
+			else
+				evo.setThumbnail(multi.getFilesystemName("thumbnail"));
 			as.updateEvent(evo);
 		} catch (IOException e) {		e.printStackTrace();	}
 		return "redirect:/adminEventList";
@@ -415,7 +409,7 @@ public class AdminController {
 		}
 
 	}
-
+// QnA 답글달기
 	@RequestMapping("/adminQnaRepsave")
 	public String adminQnaRepsave(HttpServletRequest request, Model model, @RequestParam("qseq") int qseq,
 			@RequestParam("reply") String reply) {
@@ -428,7 +422,7 @@ public class AdminController {
 		}
 
 	}
-
+// shortproduct는 썸네일을 위한 작업
 	@RequestMapping("adminShortProductList")
 	public String adminShortProductList(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
@@ -551,7 +545,7 @@ public class AdminController {
 	@RequestMapping(value = "adminProductWrite", method = RequestMethod.POST)
 	public String adminProductWrite(Model model, HttpServletRequest request,
 			HttpServletResponse response) {
-		String savePath = context.getRealPath("/upload/main/product");
+		String savePath = context.getRealPath("/image/menu/product");
 		System.out.println(savePath);
 
 		try {
@@ -603,7 +597,7 @@ public class AdminController {
 	@RequestMapping(value = "adminShortProductWrite", method = RequestMethod.POST)
 	public String adminShortProductWrite(Model model, HttpServletRequest request,
 			HttpServletResponse response) {
-		String savePath = context.getRealPath("/upload/main/product");
+		String savePath = context.getRealPath("/image/menu/product");
 		System.out.println(savePath);
 
 		try {
@@ -726,7 +720,7 @@ public class AdminController {
 	@RequestMapping(value="/fileupload", method = RequestMethod.POST)
 	public String fileupload(Model model, HttpServletRequest request, @ModelAttribute("ProductVO")
 		ProductVO p ,@RequestParam("k1") String k1) {
-		String path = context.getRealPath("/image/menu/"+k1);
+		String path = context.getRealPath("/image/menu/product");
 		
 		try {
 			MultipartRequest multi = new MultipartRequest(
@@ -747,7 +741,7 @@ public class AdminController {
 			ProductVO p, Model model, @RequestParam("k1") String k1) {				
 		ProductVO pvo = new ProductVO();
 		int pseq=0;
-		String savePath = context.getRealPath("/image/menu/"+k1);
+		String savePath = context.getRealPath("/image/menu/product");
 		MultipartRequest multi;
 		try {
 			multi = new MultipartRequest(
@@ -782,7 +776,7 @@ public class AdminController {
 			ProductVO p, Model model) {				
 		ProductVO pvo = new ProductVO();
 		int pseq=0;
-		String savePath = context.getRealPath("/upload/main/product");
+		String savePath = context.getRealPath("/image/menu/product");
 		MultipartRequest multi;
 		try {
 			multi = new MultipartRequest(

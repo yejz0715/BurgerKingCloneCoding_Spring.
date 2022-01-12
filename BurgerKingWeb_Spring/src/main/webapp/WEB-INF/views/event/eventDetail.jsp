@@ -27,7 +27,7 @@
 	</p>
 	</div>
 	<div class="dt_ImgCon">
-	<img class="detailImg" src="upload/main/event/eventDetail/${EventVO.image} "  />
+	<img class="detailImg" src="image/main/event/${EventVO.image} "  />
 	<p>${EventVO.content}</p></div>
 	</li>
 	</ul>

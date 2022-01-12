@@ -78,7 +78,7 @@
 			<tr>
 				<th>상품이미지</th>
 				<td colspan="9">
-					<img src="image/menu/${productVO.kind1}/${productVO.image}" width="200px"><br>
+					<img src="image/menu/product/${productVO.image}" width="200px"><br>
 					<div id="imageName" style="float:left; font-size:120%;margin-right:20px;font-weight:bold"></div>
 					<input type="button" class="btn" value="이미지선택" onClick="selectFile();"
 					style="width:30%">

@@ -43,7 +43,7 @@
 					<c:when test="${productVO.kind3==4 && productVO.useyn==1}">
 					<li><a href="menudetailForm?pseq=${productVO.pseq}">
 						<div class="menuImgdiv">
-							<img class="menuImg" src="image/menu/${productVO.kind1}/${productVO.image}">					
+							<img class="menuImg" src="image/menu/product/${productVO.image}">					
 						</div>
 						<div class="menuContdiv">
 							<p>${productVO.pname}</p>

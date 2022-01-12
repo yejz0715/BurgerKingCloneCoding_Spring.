@@ -45,7 +45,7 @@
 							<strong><span>${cartList.price1}</span><span class="unit">원</span></strong>
 						</span>
 					</label>
-					<div class="prd_img"><img src="image/menu/${cartList.kind1}/${cartList.image}"></div>
+					<div class="prd_img"><img src="image/menu/product/${cartList.image}"></div>
 				</div>
 				<div class="quantity"><strong class="tit">수량</strong>
 					<div class="num_set">

@@ -64,7 +64,7 @@ function popup3() {
 						<li>
 							<a onclick="deliveryDetail('${productVO.pseq}')">
 							<div class="menuImgdiv">
-								<img class="menuImg" src="image/menu/${productVO.kind1}/${productVO.image}">					
+								<img class="menuImg" src="image/menu/product/${productVO.image}">					
 							</div>
 							<div class="menuContdiv">
 								<p>${productVO.pname}</p>

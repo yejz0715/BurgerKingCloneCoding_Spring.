@@ -76,28 +76,10 @@ public class AdminService {
 
 	public void insertEvent(EventVO evo) {
 		adao.insertEvent(evo);
-		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        SimpleDateFormat sdf = new SimpleDateFormat ("yyyy-MM-dd hh:mm:ss"); 
-        int state = 1;
-        if(sdf.format(timestamp).compareTo(evo.getEnddate()) > 0) {
-        	state = 2;
-        }else if(sdf.format(timestamp).compareTo(evo.getEnddate()) < 0) {
-        	state = 1;
-        }
-		
 	}
 
 	public void updateEvent(EventVO evo) {
-		adao.updateEvent(evo);
-		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        SimpleDateFormat sdf = new SimpleDateFormat ("yyyy-MM-dd hh:mm:ss"); 
-        int state = 1;
-        if(sdf.format(timestamp).compareTo(evo.getEnddate()) > 0) {
-        	state = 2;
-        }else if(sdf.format(timestamp).compareTo(evo.getEnddate()) < 0) {
-        	state = 1;
-        }
-        
+		adao.updateEvent(evo);        
 	}
 
 	public int checkShortProductYN(String k1, String k2, String k3) {

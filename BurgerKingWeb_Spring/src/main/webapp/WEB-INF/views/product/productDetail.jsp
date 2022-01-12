@@ -26,7 +26,7 @@ function popup3() {
 		<div class="web_container4">
 			<div class="intro_txt"><strong class="tit"><span>${pvo.pname}</span></strong>
 			<p class="subtxt"><span></span></p></div>
-			<div class="prd_img"><img src="image/menu/${pvo.kind1}/${pvo.image}" /></div>
+			<div class="prd_img"><img src="image/menu/product/${pvo.image}" /></div>
 		</div>
 	</div>
 	<div class="menu_subinfoWrap">
@@ -41,7 +41,7 @@ function popup3() {
 			<ul class="prdmenu_list prd_submenu"> 
 			<c:forEach var="list2" items="${list2}">
 				<li>
-				<div class="prd_img"><img src="image/menu/${list2.kind1}/${list2.image}" width="296" height="193"/></div>
+				<div class="prd_img"><img src="image/menu/product/${list2.image}" width="296" height="193"/></div>
 				<div class="cont">
 					<div class="tit"><strong>${list2.pname}</strong></div>
 					<div class="set"><strong>${list2.content}</strong></div>

@@ -22,8 +22,14 @@
 				</td>
 			</tr>
 			<tr>
-				<th>이벤트이미지</th>
-				<td colspan="3" width="343">
+				<th>썸네일</th>
+				<td colspan="3">
+					<input type="file" name="thumbnail">
+				</td>
+			</tr>
+			<tr>
+				<th>상세이미지</th>
+				<td colspan="3">
 					<input type="file" name="image">
 				</td>
 			</tr>

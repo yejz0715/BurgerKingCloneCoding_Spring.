@@ -98,11 +98,13 @@ CREATE TABLE event
    subject varchar2(100) NOT NULL,
    content varchar2(3000) NOT NULL,
    image varchar2(50),
+   thumbnail varchar2(50),
    startdate date DEFAULT sysdate,
    enddate date,
    state number(1) DEFAULT 1,
    PRIMARY KEY (eseq)
 );
+
 
 
 CREATE TABLE member
@@ -287,3 +289,24 @@ ALTER TABLE order_detail
 delete from SUBPRODUCT_order;
 delete from orders;
 delete from order_detail;
+
+
+update EVENT set thumbnail = 't_event_01.png' where image = 'event_01.png';
+update EVENT set thumbnail = 't_event_03.png' where image = 'event_03.png';
+update EVENT set thumbnail = 't_event_04.png' where image = 'event_04.png';
+update EVENT set thumbnail = 't_event_05.png' where image = 'event_05.png';
+update EVENT set thumbnail = 't_event_06.png' where image = 'event_06.png';
+update EVENT set thumbnail = 't_event_07.png' where image = 'event_07.png';
+update EVENT set thumbnail = 't_event_08.png' where image = 'event_08.png';
+update EVENT set thumbnail = 't_event_09.png' where image = 'event_09.png';
+update EVENT set thumbnail = 't_event_10.png' where image = 'event_10.png';
+update EVENT set thumbnail = 't_event_11.png' where image = 'event_11.png';
+update EVENT set thumbnail = 't_event_12.png' where image = 'event_12.png';
+update EVENT set thumbnail = 't_event_13.png' where image = 'event_13.png';
+update EVENT set thumbnail = 't_event_14.png' where image = 'event_14.png';
+update EVENT set thumbnail = 't_event_15.png' where image = 'event_15.png';
+update EVENT set thumbnail = 't_event_16.png' where image = 'event_16.png';
+update EVENT set thumbnail = 't_event_17.png' where image = 'event_17.png';
+update EVENT set thumbnail = 't_event_18.png' where image = 'event_18.png';
+
+select * from event

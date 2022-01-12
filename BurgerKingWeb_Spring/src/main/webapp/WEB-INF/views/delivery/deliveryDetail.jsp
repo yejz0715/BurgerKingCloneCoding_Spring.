@@ -26,7 +26,7 @@
 		<div class="popcont nopadding">
 			<div class="prd_intro">
 				<div class="prd_img">
-					<span><img src="image/menu/${pvo.kind1}/${pvo.image}" style="display: inline; opacity: 1;"></span>
+					<span><img src="image/menu/product/${pvo.image}" style="display: inline; opacity: 1;"></span>
 				</div>
 				<div class="intro_txt">
 					<h3 class="tit"><span>${pvo.pname }</span></h3>

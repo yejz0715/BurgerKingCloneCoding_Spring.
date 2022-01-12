@@ -23,7 +23,7 @@
 		<tr>
 			<th>상품이미지</th>
 			<td colspan="7" align="center">
-				<img src="image/menu/${productVO.kind1}/${productVO.image}" width="200px">
+				<img src="image/menu/product/${productVO.image}" width="200px">
 			</td>
 		</tr>
 	</table>

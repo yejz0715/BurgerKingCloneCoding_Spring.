@@ -53,12 +53,12 @@
 	</delete>
 	
 	<insert id="insertEvent" parameterType="com.ezen.burger.dto.EventVO">
-		insert into event(eseq, subject, content, startdate, enddate, image, state)
-		values(eseq.nextVal, #{subject}, #{content}, sysdate, to_Date(#{enddate},'yyyy-MM-dd'), #{image}, #{state} )
+		insert into event(eseq, subject, content, startdate, enddate, image, state, thumbnail)
+		values(eseq.nextVal, #{subject}, #{content}, sysdate, to_Date(#{enddate},'yyyy-MM-dd'), #{image}, #{state} , #{thumbnail})
 	</insert>
 	
 	<update id="updateEvent" parameterType="com.ezen.burger.dto.EventVO">
-	update event set subject=#{subject}, content=#{content}, image=#{image}, enddate=to_Date(#{enddate},'yyyy-MM-dd'), state=#{state} where eseq=#{eseq} 
+	update event set subject=#{subject}, content=#{content}, image=#{image}, enddate=to_Date(#{enddate},'yyyy-MM-dd'), state=#{state}, thumbnail=#{thumbnail} where eseq=#{eseq} 
 	</update>
 	
 	<select id="listShortProduct" resultType="com.ezen.burger.dto.ProductVO">
