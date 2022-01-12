@@ -7,7 +7,16 @@
 	<table id="list" border="1">
 		<tr>
 			<th>상품분류</th>
-			<td colspan="7">${kind1}</td>
+			<td colspan="5">${kind1}</td>
+			<th>사용유무</th>
+			<td colspan="5">
+				<c:if test="${productVO.useyn == 1}">
+					사용
+				</c:if>
+				<c:if test="${productVO.useyn == 2}">
+					미사용
+				</c:if>
+			</td>
 		</tr>
 		<tr>
 			<th align="center">상품명</th>
