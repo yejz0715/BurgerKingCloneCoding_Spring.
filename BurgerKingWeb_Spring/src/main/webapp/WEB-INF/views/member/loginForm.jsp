@@ -6,7 +6,7 @@
 	<div class="location">
 	<div class="web_container1">
 		<ul>
-			<li><a href="/">HOME</a>&nbsp;>&nbsp;</li>
+			<li><a href="main">HOME</a>&nbsp;>&nbsp;</li>
 			<li><a href="loginForm">로그인</a></li>
 		</ul>
 	</div>

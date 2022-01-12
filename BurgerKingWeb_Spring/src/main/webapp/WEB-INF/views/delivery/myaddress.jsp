@@ -9,7 +9,7 @@
 	<div class="location">
 	<div class="web_container1">
 		<ul>
-			<li><a href="deliveryForm">딜리버리</a>&nbsp;>&nbsp;</li>
+			<li><a href="deliveryForm?kind1=1">딜리버리</a>&nbsp;>&nbsp;</li>
 			<li><a href="deliveryMypageForm">MY킹</a>&nbsp;>&nbsp;</li>
 			<li>MY배달지</li>
 		</ul>

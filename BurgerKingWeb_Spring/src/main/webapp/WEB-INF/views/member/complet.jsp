@@ -7,7 +7,7 @@
 	<div class="web_container1">
 		<ul>
 			<li><a href="main">HOME</a>&nbsp;>&nbsp;</li>
-			<li><a href="loginForm&non=1">로그인</a>&nbsp;>&nbsp;</li>
+			<li><a href="loginForm">로그인</a>&nbsp;>&nbsp;</li>
 			<li><a href="join">회원가입</a></li>
 		</ul>
 	</div>

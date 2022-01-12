@@ -10,7 +10,7 @@
 	<div class="web_container1">
 		<ul>
 			<li><a href="main">HOME</a>&nbsp;>&nbsp;</li>
-			<li><a href="loginForm&non=1">로그인</a>&nbsp;>&nbsp;</li>
+			<li><a href="loginForm">로그인</a>&nbsp;>&nbsp;</li>
 			<li><a href="joinForm">회원가입</a>&nbsp;>&nbsp;</li>
 			<li><a href="contract">약관동의 및 본인인증</a>&nbsp;>&nbsp;</li>
 		</ul>

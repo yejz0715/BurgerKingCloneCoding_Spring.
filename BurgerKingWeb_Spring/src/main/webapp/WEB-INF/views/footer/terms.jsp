@@ -5,7 +5,7 @@
 	<div class="location">
 	<div class="web_container1">
 		<ul>
-			<li><a href="index">HOME</a>&nbsp;>&nbsp;</li>
+			<li><a href="main">HOME</a>&nbsp;>&nbsp;</li>
 			<li>이용약관 및 정책</li>
 		</ul>
 	</div>
