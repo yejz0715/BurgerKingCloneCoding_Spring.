@@ -271,7 +271,7 @@ public class AdminController {
 	//이벤트수정
 	@RequestMapping(value="/adminEventUpdate" , method=RequestMethod.POST) 
 	  public String adminEventUpdate( Model model, HttpServletRequest request) { 
-	  String savePath=context.getRealPath("upload/main/event");
+	  String savePath=context.getRealPath("../resources/static/image/main/event");
 		System.out.println(savePath);
 		try {
 			MultipartRequest multi=new MultipartRequest(request, savePath,
