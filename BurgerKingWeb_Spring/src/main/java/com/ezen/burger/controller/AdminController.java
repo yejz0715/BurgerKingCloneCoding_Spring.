@@ -195,7 +195,7 @@ public class AdminController {
 			return "admin/event/eventList";
 		}
 	}
-
+//이벤트상세보기
 	@RequestMapping("/adminEventDetail")
 	public String adminEventDetail(HttpServletRequest request, Model model, @RequestParam("eseq") int eseq) {
 		HttpSession session = request.getSession();
@@ -216,7 +216,7 @@ public class AdminController {
 
 		return "admin/event/eventWrite";
 	}
-
+//이벤트등록
 	@RequestMapping(value = "/adminEventWrite", method = RequestMethod.POST) 
 	public String adminEventWrite(Model model, HttpServletRequest request) {
 		String savePath = context.getRealPath("upload/main/event");
@@ -243,7 +243,7 @@ public class AdminController {
 		}
 		return "redirect:/adminEventList";
 	}
-
+//이벤트삭제
 	@RequestMapping(value = "/adminEventDelete")
 	public String adminEventDelete(@RequestParam("delete") int[] eseqArr, HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -268,7 +268,7 @@ public class AdminController {
 			return "admin/event/eventUpdate";
 		}
 	}
-	
+	//이벤트수정
 	@RequestMapping(value="/adminEventUpdate" , method=RequestMethod.POST) 
 	  public String adminEventUpdate( Model model, HttpServletRequest request) { 
 	  String savePath=context.getRealPath("upload/main/event");

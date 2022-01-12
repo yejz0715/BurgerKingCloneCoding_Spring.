@@ -22,7 +22,7 @@
 	<div class="detailTit">
 	<input type="hidden" name="eseq" value="${EventVO.eseq}" />
 	<h2>${EventVO.subject}</h2>
-	<p>${EventVO.startdate.substring(0,10)} ~
+	<p>${EventVO.startdate.substring(0,10)} ~ <!--substring:문자열 자르기(0부터 10까지)  -->
 	${EventVO.enddate.substring(0,10)}
 	</p>
 	</div>
@@ -54,24 +54,6 @@
 		<input type="button" class="btn01 m" onclick="location.href='eventListForm'" value="목록으로"/>
 	</div>
 	</article>
-	<!--  
-	  <div class="qr">
-	<p><strong>버거킹 APP </strong>다운받고
-	<br>
-	<strong>더 많은 할인 혜택</strong>을
-	<br>
-	만나보세요!
-	</p>
-	<div class="qrCode">
-	<img src="image/main/appQR.png">
-	</div>
-	</div>
-	<a href="https://play.google.com/store/apps/details?id=kr.co.burgerkinghybrid&hl=ko">
-	<img src="image/main/event/list_button" />
-	</a>
-	
-	-->
-	
 	
 	<%@ include file="../include/undermenu.jsp" %>
 <%@ include file="../include/footer.jsp"%>

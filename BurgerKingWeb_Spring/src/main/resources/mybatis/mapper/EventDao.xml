@@ -23,6 +23,8 @@
 		resultType="com.ezen.burger.dto.EventVO">
 		select * from event where eseq = #{param1}
 	</select>
+	
+<!--admin event  -->
 
 	<select id="getEvent" resultType="com.ezen.burger.dto.EventVO">
 		select * from event where

@@ -17,6 +17,7 @@ public class EventController {
 	@Autowired
 	EventService es;
 	
+	//전체 이벤트목록
 	@RequestMapping(value="/eventListForm")
 	   public ModelAndView eventListForm(Model model) {
 		ModelAndView mav=new ModelAndView();
@@ -26,6 +27,7 @@ public class EventController {
 	      return mav;
 	   }
 	
+	//진행중인 이벤트목록
 	@RequestMapping(value="/eventTab2")
 	 public ModelAndView eventTab2(Model model) {
 		ModelAndView mav=new ModelAndView();
@@ -35,16 +37,18 @@ public class EventController {
 	      return mav;
 	   }
 	
+	//종료된 이벤트목록
 	@RequestMapping(value="/eventTab3")
 	 public ModelAndView eventTab3(Model model) {
 		ModelAndView mav=new ModelAndView();
 		ArrayList<EventVO> list=es.getPastEvents();
 		mav.addObject("eventList", list);
 	    mav.setViewName("event/eventTab3"); 
-	    System.out.printf("mav2", mav);
+	    //System.out.printf("mav2", mav);
 	      return mav;
 	   }
 	
+	//이벤트 상세보기
 	@RequestMapping(value="/eventDetailForm")
 	 public ModelAndView eventDetailForm(@RequestParam("eseq")int eseq) {
 		ModelAndView mav=new ModelAndView();

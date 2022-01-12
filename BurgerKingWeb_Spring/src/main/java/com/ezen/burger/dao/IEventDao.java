@@ -15,7 +15,8 @@ public interface IEventDao {
 	ArrayList<EventVO> getPastEvents();
 
 	EventVO getDetailEvent(int eseq);
-
+	
+//admin event
 	EventVO getEvent(int eseq);
 
 	void deleteEvent(int eseq);
