@@ -293,6 +293,7 @@ delete from order_detail;
 
 
 update EVENT set thumbnail = 't_event_01.png' where image = 'event_01.png';
+update EVENT set thumbnail = 't_event_02.png' where image = 'event_02.png';
 update EVENT set thumbnail = 't_event_03.png' where image = 'event_03.png';
 update EVENT set thumbnail = 't_event_04.png' where image = 'event_04.png';
 update EVENT set thumbnail = 't_event_05.png' where image = 'event_05.png';
