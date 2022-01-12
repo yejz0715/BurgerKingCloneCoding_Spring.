@@ -7,7 +7,7 @@
 	<form name="frm" method="post">
 		<table style="margin: 0 auto;">
 			<tr>
-				<td width="800">상품명<input type="text" name="key" value="${key}">
+				<td width="800">이벤트명<input type="text" name="key" value="${key}">
 				<input class="btn" type="button" name="btn_search" value="검색" onclick="go_event_search();">
 				<input class="btn" type="button" name="btn_total" value="전체보기" onclick="go_event_total();">
 				<input class="btn" type="button" name="btn_wrt" value="이벤트등록" onclick="go_event_wrt();">
