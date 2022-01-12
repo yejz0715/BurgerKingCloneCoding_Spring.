@@ -450,7 +450,7 @@ public class AdminController {
 			Paging paging = new Paging();
 			paging.setPage(page);
 
-			int count = as.getAllCount("product", "pname", key);
+			int count = as.getShortProductAllCount(key);
 			paging.setTotalCount(count);
 			paging.paging();
 
@@ -494,7 +494,7 @@ public class AdminController {
 			Paging paging = new Paging();
 			paging.setPage(page);
 
-			int count = as.getAllCount("product", "pname", key);
+			int count = as.getProductAllCount(key);
 			paging.setTotalCount(count);
 			paging.paging();
 

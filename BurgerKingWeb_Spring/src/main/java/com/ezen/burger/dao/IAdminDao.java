@@ -62,4 +62,8 @@ public interface IAdminDao {
 
 	public String getResult(String odseq);
 
+	public int getShortProductAllCount(String key);
+	
+	public int getProductAllCount(String key);
+
 }

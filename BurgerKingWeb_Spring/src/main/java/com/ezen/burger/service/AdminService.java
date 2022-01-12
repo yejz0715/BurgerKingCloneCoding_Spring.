@@ -155,5 +155,11 @@ public class AdminService {
 		return result;
 	}
 
-
+	public int getShortProductAllCount(String key) {
+		return adao.getShortProductAllCount(key);
+	}
+	
+	public int getProductAllCount(String key) {
+		return adao.getProductAllCount(key);
+	}
 }

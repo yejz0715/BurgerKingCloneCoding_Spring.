@@ -13,6 +13,16 @@
 		select count(*) as count
 		from ${param1} where ${param2} like '%'||#{param3}||'%'
 	</select>
+	
+	<select id="getShortProductAllCount" resultType="_int">
+		select count(*) as count
+		from product where pname like '%'||#{param1}||'%' and kind3 = 4
+	</select>
+	
+	<select id="getProductAllCount" resultType="_int">
+		select count(*) as count
+		from product where pname like '%'||#{param1}||'%' and kind3 in ('1','2','3')
+	</select>
 
 	<select id="listMember"
 		resultType="com.ezen.burger.dto.MemberVO">
