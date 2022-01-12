@@ -2,6 +2,8 @@ package com.ezen.burger.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.ServletContext;
@@ -277,7 +279,15 @@ public class AdminController {
 			MultipartRequest multi=new MultipartRequest(request, savePath,
 					5*1024*1024, "UTF-8", new DefaultFileRenamePolicy());
 			EventVO evo=new EventVO();
+			Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+	        SimpleDateFormat sdf = new SimpleDateFormat ("yyyy-MM-dd hh:mm:ss");
+
 			String enddate = multi.getParameter("enddate");
+			int state = 1;
+	        if(sdf.format(timestamp).compareTo(enddate) > 0) {
+	        	state = 0;
+	        }
+	        evo.setState(state);
 			enddate = enddate.substring(0, 10);
 			evo.setEseq(Integer.parseInt(multi.getParameter("eseq")));
 			evo.setSubject(multi.getParameter("subject"));
