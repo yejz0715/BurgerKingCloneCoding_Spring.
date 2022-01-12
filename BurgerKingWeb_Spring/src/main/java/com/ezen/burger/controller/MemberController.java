@@ -78,6 +78,7 @@ public class MemberController {
 			return "member/loginForm";
 		}else if(mvo.getPwd().equals(membervo.getPwd())) { // 정상 로그인
 			HttpSession session = request.getSession();
+			// 회원 로그인시 세션에 비회원카트정보가 있다면 제거
 			if(session.getAttribute("guestCartList") != null) {
 				session.removeAttribute("guestCartList");
 			}
@@ -110,6 +111,7 @@ public class MemberController {
 			BindingResult result, Model model, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		
+		// 입력받은 이름과 핸드폰정보에 대한 에러 체크
 		if(result.hasErrors()) { 
 			if(result.getFieldError("name") != null) {
 				mav.addObject("message", result.getFieldError("name").getDefaultMessage());
@@ -168,6 +170,7 @@ public class MemberController {
 		return mav;
 	}
 	
+	// 비밀번호 찾기, 정보 일치 후 비밀번호 재설정
 	@RequestMapping(value="updatePwd")
 	public ModelAndView updatePwd(@RequestParam("pwd") String pwd,
 			@RequestParam("mseq") String mseq) {
@@ -177,20 +180,27 @@ public class MemberController {
 		return mav;
 	}
 	
+	// 비회원 로그인 정보 입력화면 이동
 	@RequestMapping(value="/guestLoginForm")
 	public String guestLoginForm() {
 		return "member/guestLoginForm";
 	}
 	
+	// 비회원 로그인
 	@RequestMapping(value="/guestLogin")
 	public ModelAndView guestLogin(HttpServletRequest request,
 			@RequestParam("name") String name, @RequestParam("phone") String phone,
 			@RequestParam("pwd") String pwd) {
 		ModelAndView mav = new ModelAndView(); 
 		GuestVO gvo = ms.guestSessionLogin(name, phone, pwd);
+		
+		// 이후 게스트 주문내역을 위한 게스트 정보 저장
 		ms.insertGuest(gvo);
+		
+		// 세션에 담아둘 게스트 카트정보 생성
 		ArrayList<CartVO> guestCartList = new ArrayList<CartVO>();
 		HttpSession session = request.getSession();
+		
 		session.setAttribute("loginUser", gvo);
 		session.setAttribute("memberkind", gvo.getMemberkind());
 		session.setAttribute("guestCartList", guestCartList);
@@ -198,11 +208,13 @@ public class MemberController {
 		return mav;
 	}
 	
+	// 로그인 이후 딜리버리 페이지로 이동
 	@RequestMapping(value="/deliveryForm")
 	public ModelAndView deliveryForm(HttpServletRequest request,
 			@RequestParam("kind1") String kind1) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
+		
 		if(session.getAttribute("memberkind") != null) {
 			int memberKind = (int)session.getAttribute("memberkind");
 			// 회원 종류 검사 (1:회원, 2:비회원)
@@ -211,6 +223,7 @@ public class MemberController {
 				if(mvo == null) {
 					mav.setViewName("redirect:/loginForm");
 				}else {
+					// 로그인한 회원의 주소지를 확인 후 없으면 주소 초기설정 페이지로 이동
 					MyAddressVO avo = as.getMyAddress(mvo.getMseq());
 					if(avo == null) {
 						ArrayList<orderVO> list1 = os.getOrderList(mvo.getId());
@@ -220,6 +233,7 @@ public class MemberController {
 						mav.addObject("cvo", list2);
 						mav.setViewName("delivery/addressSet");
 					}else {
+						// 주소지가 있다면 주문 상품목록과 회원의 카트, 주문의 리스트를 가지고 딜리버리페이지로 이동
 						ArrayList<ProductVO> list = ps.getProductList(kind1);
 						ArrayList<orderVO> list1 = os.getOrderList(mvo.getId());
 						ArrayList<CartVO> list2 = cs.selectCart( mvo.getId() );	
@@ -254,6 +268,7 @@ public class MemberController {
 		return mav;
 	}
 	
+	// 회원 정보 변경 페이지로 이동
 	@RequestMapping(value="/memberUpdateForm")
 	public ModelAndView memberUpdateForm(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
@@ -281,6 +296,7 @@ public class MemberController {
 		return mav;
 	}
 	
+	// 회원정보 수정
 	@RequestMapping(value="/updateMember")
 	public ModelAndView updateMember(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
@@ -310,6 +326,7 @@ public class MemberController {
 		return mav;
 	}
 	
+	// 회원정보 삭제
 	@RequestMapping(value="/memberDelete")
 	public ModelAndView memberDelete(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
@@ -332,7 +349,6 @@ public class MemberController {
 		}
 		return mav;
 	}
-	
 	
 	
 	@RequestMapping(value="/joinForm")
