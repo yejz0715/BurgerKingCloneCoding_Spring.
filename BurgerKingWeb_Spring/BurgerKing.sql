@@ -1,20 +1,22 @@
-select * from member
-/* Drop Triggers */
-
-DROP TRIGGER TRI_cart_cseq;
-DROP TRIGGER TRI_event_eseq;
-DROP TRIGGER TRI_Member_membernum;
-DROP TRIGGER TRI_member_mseq;
-DROP TRIGGER TRI_order_detail_odseq;
-DROP TRIGGER TRI_product_productnum;
-DROP TRIGGER TRI_product_pseq;
-DROP TRIGGER TRI_qna_qseq;
-DROP TRIGGER TRI_sub_product_spseq;
-
-select * from EVENT;
+/* Select Tables, Views */
+select * from admin;
+select * from member;
+select * from myaddress;
+select * from address;
+select * from guest;
+select * from product;
+select * from sub_product;
+select * from subproduct_order;
+select * from event;
+select * from qna;
+select * from cart;
+select * from orders;
+select * from order_detail;
+select * from cart_view;
+select * from order_view;
+select * from order_view2;
 
 /* Drop Tables */
-
 DROP TABLE address CASCADE CONSTRAINTS;
 DROP TABLE admin CASCADE CONSTRAINTS;
 DROP TABLE cart CASCADE CONSTRAINTS;
@@ -22,15 +24,12 @@ DROP TABLE event CASCADE CONSTRAINTS;
 DROP TABLE Myaddress CASCADE CONSTRAINTS;
 DROP TABLE qna CASCADE CONSTRAINTS;
 DROP TABLE member CASCADE CONSTRAINTS;
-DROP TABLE non_member CASCADE CONSTRAINTS;
 DROP TABLE order_detail CASCADE CONSTRAINTS;
 DROP TABLE orders CASCADE CONSTRAINTS;
 DROP TABLE product CASCADE CONSTRAINTS;
-DROP TABLE shortproduct CASCADE CONSTRAINTS;
+DROP TABLE subproduct_order CASCADE CONSTRAINTS;
 DROP TABLE sub_product CASCADE CONSTRAINTS;
 DROP TABLE guest CASCADE CONSTRAINTS;
-
-select * from cart_view;
 
 /* Drop Sequences */
 
@@ -192,7 +191,6 @@ CREATE TABLE sub_product
    PRIMARY KEY (spseq)
 );
 
-DROP TABLE subproduct_order CASCADE CONSTRAINTS;
 create table subproduct_order(
 	sposeq number(10) not null,
 	cseq number(10) not null,
@@ -207,9 +205,24 @@ create table subproduct_order(
 	primary key(sposeq)
 );
 
-select * from SUB_PRODUCT;
+create table guest(
+	gseq number(10) not null,
+	id varchar2(50) NOT NULL UNIQUE,
+	pwd varchar2(20) not null,
+	phone varchar2(13) NOT NULL,
+	name varchar2(15) NOT NULL,
+	memberkind number(1) DEFAULT 2,
+	zip_num varchar2(7),
+	address varchar2(100),
+	PRIMARY KEY (gseq)
+);
 
+-- Drop View
 drop view cart_view
+drop view order_view
+drop view order_view2;
+
+-- Create View
 create or replace view cart_view
 as
 select  c.cseq, c.id, m.name as mname, c.pseq, p.pname as pname, p.image, p.kind1, p.kind3,
@@ -217,7 +230,6 @@ select  c.cseq, c.id, m.name as mname, c.pseq, p.pname as pname, p.image, p.kind
 from cart c, product p, member m
 where  c.pseq = p.pseq and m.id = c.id;
 
-drop view order_view
 create or replace view order_view
 as
 select d.odseq, o.oseq, o.id, o.indate, d.pseq, d.quantity,  d.result, 
@@ -226,7 +238,6 @@ p.pname as pname, p.price1, a.zip_num, a.address
 from orders o, order_detail d, member m, product p, myaddress a
 where o.oseq = d.oseq and o.id = m.id and d.pseq = p.pseq and m.mseq = a.mseq;
 
-drop view order_view2;
 create or replace view order_view2
 as
 select d.odseq, o.oseq, o.id, o.indate, d.pseq, d.quantity,  d.result, 
@@ -234,23 +245,6 @@ g.name as mname, g.phone, g.zip_num, g.address, g.pwd, g.memberkind,
 p.pname as pname, p.price1
 from orders o, order_detail d, guest g, product p
 where o.oseq = d.oseq and o.id = g.id and d.pseq = p.pseq;
-
-select * from subproduct_order;
-
-select*from sub_product
-drop table sub_product
-delete from SUBPRODUCT_order;
-delete from orders;
-delete from order_detail;
-select*from cart
-select*from sub_product
-select*from orders
-select*from order_detail
-select * from cart_view;
-select * from order_view;
-select * from order_view2;
-select * from member
-select * from myaddress
 
 /* Create Foreign Keys */
 
@@ -287,27 +281,9 @@ ALTER TABLE cart
 ALTER TABLE order_detail
    ADD FOREIGN KEY (pseq)
    REFERENCES product (pseq)
-
-
-select * from product
-
-select * from order_view;
-select * from orders;
-select * from guest;
-select * from cart_view;
-select * from address
-
-delete from SUBPRODUCT_ORDER
-
-delete from guest;
-create table guest(
-	gseq number(10) not null,
-	id varchar2(50) NOT NULL UNIQUE,
-	pwd varchar2(20) not null,
-	phone varchar2(13) NOT NULL,
-	name varchar2(15) NOT NULL,
-	memberkind number(1) DEFAULT 2,
-	zip_num varchar2(7),
-	address varchar2(100),
-	PRIMARY KEY (gseq)
-);
+   
+   
+-- Delete subProductOrder, order
+delete from SUBPRODUCT_order;
+delete from orders;
+delete from order_detail;
