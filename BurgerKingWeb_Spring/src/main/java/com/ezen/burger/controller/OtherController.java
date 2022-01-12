@@ -46,16 +46,19 @@ public class OtherController {
 		return "redirect:/main";
 	}  
 	
+	// 메인페이지로 이동
 	@RequestMapping(value="/main")
 	public String main() { 
 		return "main/main";
 	}
 	
+	// 관리자페이지로 이동
 	@RequestMapping(value="/admin")
 	public String admin() { 
 		return "admin/adminLogin";
 	}
 	
+	// faq 페이지로 이동
 	@RequestMapping(value="/faqList1")
 	public String faqList1() {
 		return "ServiceCenter/faqList1";
@@ -66,7 +69,7 @@ public class OtherController {
 	@RequestMapping(value="faqListForm")
 	public ModelAndView  faqListForm(Model model, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView ();
-		String fnum = request.getParameter("fnum");
+		String fnum = request.getParameter("fnum");	// faq페이지의 fnum을 이용하여 해당 페이지로 이동
 		mav.setViewName("ServiceCenter/faqList" + fnum);
 		return mav;
 	}
@@ -139,7 +142,7 @@ public class OtherController {
 		return mav;
 	}
 	
-	
+	// 원산지표시 팝업
 	@RequestMapping(value="/popup3")
 	public String popup3() {
 		return "product/popup3";
