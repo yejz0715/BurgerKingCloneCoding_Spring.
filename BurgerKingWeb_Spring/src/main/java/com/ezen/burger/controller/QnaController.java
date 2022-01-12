@@ -97,6 +97,7 @@ public class QnaController {
 				 HttpServletRequest request) {
 			ModelAndView mav=new ModelAndView();
 			HttpSession session = request.getSession();
+			
 			if(session.getAttribute("loginUser") == null) {
 				mav.setViewName("redirect:/loginForm");
 			}else {
