@@ -92,7 +92,7 @@ public class QnaController {
 		
 		
 		// 고객센터 qna passform
-		@RequestMapping(value="/passCheckForm" , method=RequestMethod.POST)
+		@RequestMapping(value="/passCheckForm")
 		 public ModelAndView passCheckForm(@RequestParam("qseq")int qseq) {
 			ModelAndView mav=new ModelAndView();
 			
@@ -105,21 +105,24 @@ public class QnaController {
 		
 
 		// 고객센터 qna pass검사
-			@RequestMapping(value="/passChk" , method=RequestMethod.POST)
+			@RequestMapping(value="/passChk", method=RequestMethod.POST)
 			public ModelAndView passChk (HttpServletRequest request , Model model) {
 				ModelAndView mav = new ModelAndView();
 				HttpSession session = request.getSession();
-				String pass = request.getParameter("pass");
-				int qseq = Integer.parseInt(request.getParameter("qseq"));
-				QnaVO qvo = qs.getpassChk(qseq); 
-				if(!qvo.getPass().equals(pass)) { 
-					mav.addObject("message", "비밀번호가 일치하지 않습니다"); 
-					mav.setViewName("redirect:/passCheckForm?qseq=" + qseq);
+				if(session.getAttribute("loginUser") == null) {
+					mav.setViewName("redirect:/loginForm");
 				}else {
-					mav.addObject("qseq", qseq);
-					mav.setViewName("redirect:/qnaView");
+					String pass = request.getParameter("pass");
+					int qseq = Integer.parseInt(request.getParameter("qseq"));
+					QnaVO qvo = qs.getpassChk(qseq); 
+					if(!qvo.getPass().equals(pass)) { 
+						mav.addObject("message", "비밀번호가 일치하지 않습니다"); 
+						mav.setViewName("ServiceCenter/passCheckForm");
+					}else {
+						mav.addObject("qseq", qseq);
+						mav.setViewName("redirect:/qnaView");
+					}
 				}
-				
 				return mav;
 			}
 			
