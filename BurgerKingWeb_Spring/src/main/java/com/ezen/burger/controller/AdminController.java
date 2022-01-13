@@ -959,6 +959,7 @@ public class AdminController {
 				
 				// 조회한 값들을 전송한다.
 				mav.addObject("totalPrice", totalPrice);
+				mav.addObject("kind", kind);
 				mav.addObject("ovo", ovo);
 				mav.addObject("spseqAm", list);
 			}else if(kind.equals("2")) {
