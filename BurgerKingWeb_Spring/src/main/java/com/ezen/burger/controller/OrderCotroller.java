@@ -136,7 +136,31 @@ public class OrderCotroller {
 				}else {
 					// 주문자 아이디로 검색한 카트 목록(지금 주문 처리할) 목록을 먼저 조회합니다
 					ArrayList<CartVO> list = cs.selectCart(mvo.getId());
-								
+					
+					// 카트 목록의 총가격을 계산하여 12000원 미만이면 주문을 실행하지 않는다.
+					int totalPrice = 0;
+					for(CartVO cvo : list) {
+						totalPrice += cvo.getPrice1() * cvo.getQuantity();
+					}
+					
+					// 해당 접속 회원의 추가 재료의 목록을 가져오기
+					ArrayList<subproductOrderVO> spovo = ps.selectSubProductOrder(mvo.getMseq());
+					
+					// 추가 재료의 가격까지 총 가격으로 계산
+					for(int j = 0; j < list.size(); j++) {
+						for(int i = 0; i < spovo.size(); i++) {
+							if(list.get(j).getCseq() == spovo.get(i).getCseq()) {
+								totalPrice += spovo.get(i).getAddprice();
+							}
+						}
+					}
+					
+					if(totalPrice < 12000) {
+						mav.addObject("message", "가격이 12000원 이상이어야 주문 가능합니다.");
+						mav.setViewName("redirect:/deliveryCartForm");
+						return mav;
+					}
+					
 					// 추출한 list 와 주문자의 아디를 갖고 OrderDao 에 가서 오더 와 오더 디테일에 데이터를 추가합니다.
 					os.insertOrder(list, mvo.getId());
 					
@@ -150,6 +174,31 @@ public class OrderCotroller {
 				}else {
 					// 주문자 아이디로 검색한 카트 목록(지금 주문 처리할) 목록을 먼저 조회합니다
 					ArrayList<CartVO> list = (ArrayList<CartVO>)session.getAttribute("guestCartList");
+					
+					// 카트 목록의 총가격을 계산하여 12000원 미만이면 주문을 실행하지 않는다.
+					int totalPrice = 0;
+					for(CartVO cvo : list) {
+						totalPrice += cvo.getPrice1() * cvo.getQuantity();
+					}
+					
+					// 해당 접속 회원의 추가 재료의 목록을 가져오기
+					ArrayList<subproductOrderVO> spovo = ps.selectSubProductOrder2(gvo.getGseq());
+					
+					// 추가 재료의 가격까지 총 가격으로 계산
+					for(int j = 0; j < list.size(); j++) {
+						for(int i = 0; i < spovo.size(); i++) {
+							if(list.get(j).getCseq() == spovo.get(i).getCseq()) {
+								totalPrice += spovo.get(i).getAddprice();
+							}
+						}
+					}
+					
+					if(totalPrice < 12000) {
+						mav.addObject("message", "가격이 12000원 이상이어야 주문 가능합니다.");
+						mav.setViewName("redirect:/deliveryCartForm");
+						return mav;
+					}
+					
 					
 					// 추출한 list 와 주문자의 아디를 갖고 OrderDao 에 가서 오더 와 오더 디테일에 데이터를 추가합니다.
 					os.insertOrderByGuest(list, gvo.getId());

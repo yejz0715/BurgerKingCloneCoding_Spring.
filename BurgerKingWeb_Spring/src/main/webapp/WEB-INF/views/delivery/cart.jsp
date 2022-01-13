@@ -16,7 +16,8 @@
 <div class="contentsBox01">
 <div class="web_container1">
 	<div class="subtitWrap">
-		<h2 class="page_tit">딜리버리 카트</h2>			
+		<h2 class="page_tit">딜리버리 카트</h2>		
+		<h2 style="color:red; font-weight: bold;">${message}</h2>	
 	</div>
 	<div class="container01 cartWrap">
 		<c:choose>
