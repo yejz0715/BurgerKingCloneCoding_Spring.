@@ -36,7 +36,8 @@ public class CartController {
 	
 	// 카트 리스트 페이지로 이동
 	@RequestMapping(value="/deliveryCartForm")
-	public ModelAndView deliveryCartForm(HttpServletRequest request) {
+	public ModelAndView deliveryCartForm(HttpServletRequest request,
+			@RequestParam(value="message", required = false) String message) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		
@@ -62,6 +63,9 @@ public class CartController {
 				}
 		
 				// 해당 값을 전송
+				if(message !=null) {
+					mav.addObject("message", message);
+				}
 				mav.addObject("totalPrice", totalPrice);
 				mav.addObject("spseqAm", spovo);
 				mav.addObject("ovo", list1);
@@ -86,6 +90,9 @@ public class CartController {
 				}
 		
 				// 해당 값을 전송
+				if(message !=null) {
+					mav.addObject("message", message);
+				}
 				mav.addObject("totalPrice", totalPrice);
 				mav.addObject("spseqAm", spovo);
 				mav.addObject("ovo", list1);
