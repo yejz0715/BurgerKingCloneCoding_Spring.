@@ -20,7 +20,7 @@
 				</span>
 			</li>
 			<li><span><a href="qnaForm">문의</a></span></li>
-			<li><span><a href="appGuideForm">버거킹앱 이용안내</a></span></li>
+			<li><span><a href="appGuideForm">App이용안내</a></span></li>
 		</ul>
 	</div>
 

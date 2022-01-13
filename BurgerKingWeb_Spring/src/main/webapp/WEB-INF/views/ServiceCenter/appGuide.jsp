@@ -7,7 +7,7 @@
 		<ul>
 			<li><a href="main">HOME</a>&nbsp;>&nbsp;</li>
 			<li>고객센터 &nbsp;>&nbsp;</li>
-			<li>버거킹앱 이용안내</li>
+			<li>App이용안내</li>
 		</ul>
 	</div>
 	</div>
@@ -21,7 +21,7 @@
 				</span>
 			</li>
 			<li><span><a href="qnaForm">문의</a></span></li>
-			<li><span><a href="appGuideForm" style="color: red; text-decoration: underline;">버거킹앱 이용안내</a></span></li>
+			<li><span><a href="appGuideForm" style="color: red; text-decoration: underline;">App이용안내</a></span></li>
 		</ul>
 		
 		<h4 class="subtit"><span>버거킹 APP(앱) 다운로드</span></h4>
