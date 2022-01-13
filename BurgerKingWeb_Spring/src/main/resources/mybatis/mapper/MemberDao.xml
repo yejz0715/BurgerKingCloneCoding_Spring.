@@ -59,4 +59,20 @@
 	<update id="lastDateUpdate">
 		update member set lastdate = sysdate
 	</update>
+	
+	<delete id="deleteCart">
+		delete from cart where id = #{param1}
+	</delete>
+	
+	<delete id="deleteOrders">
+		delete from orders where id = #{param1}
+	</delete>
+	
+	<delete id="deleteQna">
+		delete from qna where id = #{param1}
+	</delete>
+	
+	<delete id="deleteOrderDetail">
+		delete from order_detail where oseq = #{param1}
+	</delete>
 </mapper>

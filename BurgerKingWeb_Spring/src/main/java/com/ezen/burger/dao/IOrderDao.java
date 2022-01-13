@@ -40,4 +40,6 @@ public interface IOrderDao {
 	public void deleteSpo(String odseq);
 
 	public String getOrderDetail(String odseq);
+
+	public int[] getOseqs(String id);
 }

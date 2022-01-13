@@ -22,4 +22,8 @@ public interface IMemberDao {
 	public MemberVO joinMember(String id, String name, String phone, String pwd);
 	public void insertGuest(GuestVO gvo);
 	public void lastDateUpdate(int mseq);
+	public void deleteOrders(String id);
+	public void deleteCart(String id);
+	public void deleteQna(String id);
+	public void deleteOrderDetail(int i);
 }

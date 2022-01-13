@@ -68,4 +68,8 @@
 	<select id="getOrderDetail" resultType="string">
 		select result from order_detail where odseq = #{param1}
 	</select>
+	
+	<select id="getOseqs" resultType="int">
+		select oseq from orders where id = #{param1}
+	</select>
 </mapper>

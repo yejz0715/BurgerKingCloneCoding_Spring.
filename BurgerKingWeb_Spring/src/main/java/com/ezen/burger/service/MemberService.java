@@ -1,11 +1,10 @@
 package com.ezen.burger.service;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ezen.burger.dao.IMemberDao;
+import com.ezen.burger.dao.IOrderDao;
 import com.ezen.burger.dto.GuestVO;
 import com.ezen.burger.dto.MemberVO;
 
@@ -13,6 +12,9 @@ import com.ezen.burger.dto.MemberVO;
 public class MemberService {
 	@Autowired
 	IMemberDao mdao;
+	
+	@Autowired
+	IOrderDao odao;
 
 	public MemberVO getMember(String id) {
 		return mdao.getMember(id);
@@ -53,8 +55,16 @@ public class MemberService {
 	}
 
 	public void deleteMember(int mseq) {
-		mdao.deleteMyaddress(mseq);
-		mdao.deleteMember(mseq);
+		MemberVO mvo = mdao.getMember_mseq(mseq);
+		mdao.deleteOrders(mvo.getId());
+		int[] oseq = odao.getOseqs(mvo.getId());
+		for(int i = 0; i < oseq.length; i++) {
+			mdao.deleteOrderDetail(oseq[i]);
+		}
+		mdao.deleteCart(mvo.getId());
+		mdao.deleteQna(mvo.getId());
+		mdao.deleteMyaddress(mvo.getMseq());
+		mdao.deleteMember(mvo.getMseq());
 	}
 
 	public void insertMember( MemberVO membervo) {
