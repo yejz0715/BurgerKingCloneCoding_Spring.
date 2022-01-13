@@ -290,6 +290,7 @@ ALTER TABLE order_detail
 delete from SUBPRODUCT_order;
 delete from orders;
 delete from order_detail;
+delete from cart;
 
 
 update EVENT set thumbnail = 't_event_01.png' where image = 'event_01.png';
