@@ -126,7 +126,7 @@
 								<dd>
 									<div class="inpbox">
 										<label><span class="hide">비밀번호</span><input
-											placeholder="비밀번호는 최소 10글자입니다"
+											placeholder="비밀번호를 입력해주세요"
 											type="password" class="st02" name="pwd" size="10" > </label>
 										<p class="txt77">
 											<span>사용할 비밀번호를 입력해 주세요 </span>
