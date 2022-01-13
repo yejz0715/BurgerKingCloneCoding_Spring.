@@ -64,4 +64,8 @@
 	<delete id="deleteSpo">
 		delete from subproduct_order where odseq = #{param1}
 	</delete>
+	
+	<select id="getOrderDetail" resultType="string">
+		select result from order_detail where odseq = #{param1}
+	</select>
 </mapper>

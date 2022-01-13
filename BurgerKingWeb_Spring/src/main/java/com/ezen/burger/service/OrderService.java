@@ -111,4 +111,8 @@ public class OrderService {
 	public orderVO getOrder_view2(String odseq) {
 		return odao.getOrder_view2(odseq);
 	}
+
+	public String getOrderDetail(String odseq) {
+		return odao.getOrderDetail(odseq);
+	}
 }

@@ -38,4 +38,6 @@ public interface IOrderDao {
 	public orderVO getOrder_view2(String odseq);
 
 	public void deleteSpo(String odseq);
+
+	public String getOrderDetail(String odseq);
 }

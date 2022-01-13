@@ -20,6 +20,7 @@
 	<div class="web_container1">
 		<div class="subtitWrap m_bg_basic">
 			<h2 class="page_tit">주문내역</h2>
+			<h2 style="color:red; font-weight: bold;">${message}</h2>	
 		</div>
 		<c:choose>
 		<c:when test="${empty ovo}">

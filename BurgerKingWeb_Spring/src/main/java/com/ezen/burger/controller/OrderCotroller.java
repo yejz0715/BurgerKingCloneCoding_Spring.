@@ -38,7 +38,8 @@ public class OrderCotroller {
 	
 	// 주문 페이지로 이동
 	@RequestMapping(value="/deliveryOrderList")
-	public ModelAndView deliveryOrderList(HttpServletRequest request) {
+	public ModelAndView deliveryOrderList(HttpServletRequest request,
+			@RequestParam(value="message", required = false) String message) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		if(session.getAttribute("memberkind") != null && session.getAttribute("loginUser") != null) {
@@ -68,6 +69,9 @@ public class OrderCotroller {
 				MyAddressVO mavo = as.getMyAddress(mvo.getMseq());
 		
 				// 해당 값을 전송
+				if(message !=null) {
+					mav.addObject("message", message);
+				}
 				mav.addObject("totalPrice", totalPrice);
 				mav.addObject("spseqAm", spovo);
 				mav.addObject("userPhone", mvo.getPhone());
@@ -98,6 +102,9 @@ public class OrderCotroller {
 				mavo.setAddress(gvo.getAddress());
 				
 				// 해당 값을 전송
+				if(message !=null) {
+					mav.addObject("message", message);
+				}
 				mav.addObject("totalPrice", totalPrice);
 				mav.addObject("spseqAm", spovo);
 				mav.addObject("userPhone", gvo.getPhone());
@@ -272,6 +279,12 @@ public class OrderCotroller {
 			@RequestParam("odseq") String odseq) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
+		String result = os.getOrderDetail(odseq);
+		if(result.equals("3")) {
+			mav.addObject("message", "배달이 진행중이라 취소가 불가능합니다.");
+			mav.setViewName("redirect:/deliveryOrderList");
+			return mav;
+		}
 		if(session.getAttribute("memberkind") != null && session.getAttribute("loginUser") != null) {
 			os.deleteOrder2(odseq);
 			mav.setViewName("redirect:/deliveryOrderList");
