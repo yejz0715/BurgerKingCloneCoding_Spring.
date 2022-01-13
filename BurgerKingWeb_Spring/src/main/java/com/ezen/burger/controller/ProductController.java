@@ -31,6 +31,7 @@ public class ProductController {
 	@RequestMapping(value="menuListForm")
 	public String menuListForm(Model model, @RequestParam("kind1") String kind1) {
 		ArrayList<ProductVO> list = ps.getProduct(kind1);
+		model.addAttribute("kind1", kind1);
 		model.addAttribute("productList",list);
 		return "product/menuList";
 	}
