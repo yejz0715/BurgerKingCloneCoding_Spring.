@@ -24,7 +24,7 @@
 				<th>전화</th>
 				<th>주문일</th>
 				<th>주문자 구분</th>
-				<th>삭제</th>
+				<th>삭제<input type="checkbox" name="deleteAll" onclick="deleteAllCheck(this);"></th>
 			</tr>
 			<c:forEach items="${orderList}" var="orderVO">
 				<tr>

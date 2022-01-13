@@ -82,3 +82,10 @@ function resultAllCheck(resultAllCheck){
     	checkbox.checked = resultAllCheck.checked;
 	})
 }
+
+function deleteAllCheck(deleteAllCheck){
+	const checkboxes = document.getElementsByName('delete');
+  	checkboxes.forEach((checkbox) => {
+    	checkbox.checked = deleteAllCheck.checked;
+	})
+}

@@ -24,7 +24,7 @@
 				<th>세부</th>
 				<th>등록일</th>
 				<th>사용유무</th>
-				<th>삭제</th>
+				<th>삭제<input type="checkbox" name="deleteAll" onclick="deleteAllCheck(this);"></th>
 			</tr>
 			<c:forEach items="${productList}" var="productVO">
 				<tr>

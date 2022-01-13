@@ -21,7 +21,7 @@
 				<th>가입일</th>
 				<th>마지막 로그인</th>
 				<th>회원분류</th>
-				<th>삭제</th>
+				<th>삭제<input type="checkbox" name="deleteAll" onclick="deleteAllCheck(this);"></th>
 			</tr>
 			<c:forEach items="${memberList}" var="memberVO">
 				<tr>
@@ -35,7 +35,7 @@
 					<td><fmt:formatDate value="${memberVO.lastdate}"/></td>
 					<td>${memberVO.memberkind}</td>
 					<td>
-						<input type="checkbox" name="mseq" value="${memberVO.mseq}">
+						<input type="checkbox" name="delete" value="${memberVO.mseq}">
 					</td>
 				</tr>
 			</c:forEach>
