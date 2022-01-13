@@ -60,13 +60,14 @@ public class CartController {
 				for(int i = 0; i < spovo.size(); i++) {
 					totalPrice += spovo.get(i).getAddprice();
 				}
-		
+				if(totalPrice>=12000) {
 				// 해당 값을 전송
 				mav.addObject("totalPrice", totalPrice);
 				mav.addObject("spseqAm", spovo);
 				mav.addObject("ovo", list1);
 				mav.addObject("cvo", list2);
 				mav.setViewName("delivery/cart");
+				}
 			}else if(memberKind == 2) {
 				GuestVO gvo = (GuestVO)session.getAttribute("loginUser");
 				//해당 접속 회원의 주문 목록과 카트 목록 가져오기
