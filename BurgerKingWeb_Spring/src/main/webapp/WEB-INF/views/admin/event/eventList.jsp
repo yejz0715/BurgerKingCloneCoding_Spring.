@@ -20,7 +20,7 @@
 				<th>시작일</th>
 				<th>종료일</th>
 				<th>상태</th>
-				<th>삭제</th>
+				<th>삭제<input type="checkbox" name="deleteAll" onclick="deleteAllCheck(this);"></th>
 			</tr>
 			<c:forEach items="${eventList}" var="eventVO">
 				<tr>

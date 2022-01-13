@@ -148,7 +148,7 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/adminMemberDelete", method = RequestMethod.POST)
-	public String adminMemberDelete(@RequestParam("mseq") int[] mseqArr) {
+	public String adminMemberDelete(@RequestParam("delete") int[] mseqArr) {
 		for (int mseq : mseqArr)
 			as.deleteMember(mseq);
 		return "redirect:/adminMemberList";

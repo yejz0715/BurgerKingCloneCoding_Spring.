@@ -21,7 +21,7 @@
 			<th>제목</th>
 			<th>작성자</th>
 			<th>작성일</th>
-			<th>삭제</th>
+			<th>삭제<input type="checkbox" name="deleteAll" onclick="deleteAllCheck(this);"></th>
 		</tr>
 		<form name="frm2" method="post" action="burger.do">
 			<c:forEach items="${qnaList}" var="qnaVO">

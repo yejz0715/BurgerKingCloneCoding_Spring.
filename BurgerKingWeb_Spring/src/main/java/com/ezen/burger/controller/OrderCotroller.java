@@ -175,6 +175,10 @@ public class OrderCotroller {
 		int oseq = Integer.parseInt(request.getParameter("oseq"));
 		int pwd = Integer.parseInt(request.getParameter("pwd2"));
 		
+		if(request.getParameter("oseq")==null || request.getParameter("pwd2")==null) {
+			mav.setViewName("redirect:/loginForm");
+			return mav;
+		}		
 		// 입력받은 주문번호의 내역을 가져오기
 		ArrayList<orderVO> ovo = os.getOrderByOseq(oseq);
 		
