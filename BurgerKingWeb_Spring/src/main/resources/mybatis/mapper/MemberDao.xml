@@ -55,4 +55,8 @@
 		insert into guest(gseq, id, pwd, name, phone)
 		values(#{gseq}, #{id}, #{pwd}, #{name}, #{phone}) 
 	</insert>
+	
+	<update id="lastDateUpdate">
+		update member set lastdate = sysdate
+	</update>
 </mapper>

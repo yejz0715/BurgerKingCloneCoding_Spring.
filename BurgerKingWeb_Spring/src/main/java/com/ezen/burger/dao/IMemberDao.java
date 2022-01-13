@@ -21,4 +21,5 @@ public interface IMemberDao {
 	public void insertMember(MemberVO membervo);
 	public MemberVO joinMember(String id, String name, String phone, String pwd);
 	public void insertGuest(GuestVO gvo);
+	public void lastDateUpdate(int mseq);
 }

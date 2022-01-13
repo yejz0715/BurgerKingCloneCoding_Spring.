@@ -82,6 +82,7 @@ public class MemberController {
 			if(session.getAttribute("guestCartList") != null) {
 				session.removeAttribute("guestCartList");
 			}
+			ms.lastDateUpdate(mvo.getMseq());
 			session.setAttribute("loginUser", mvo);
 			session.setAttribute("memberkind", mvo.getMemberkind());
 			return "redirect:/";

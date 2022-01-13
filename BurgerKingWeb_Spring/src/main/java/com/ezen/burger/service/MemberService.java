@@ -68,4 +68,8 @@ public class MemberService {
 	public void insertGuest(GuestVO gvo) {
 		mdao.insertGuest(gvo);
 	}
+
+	public void lastDateUpdate(int mseq) {
+		mdao.lastDateUpdate(mseq);
+	}
 }
