@@ -124,7 +124,7 @@ public class AddressController {
 				request.setAttribute("cvo", list2);
 				mav.setViewName("delivery/myaddress");
 			}else if((int)session.getAttribute("memberkind") == 2) {
-				GuestVO gvo = (GuestVO)session.getAttribute("loginUser");
+				mav.setViewName("redirect:/loginForm");
 			}
 		}else {
 			mav.setViewName("redirect:/loginForm");
