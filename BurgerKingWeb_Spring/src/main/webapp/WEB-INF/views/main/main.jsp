@@ -29,8 +29,6 @@
 	            <li><a href="menudetailForm?pseq=155"><img
 	                  src="image/main/banner/banner_5.png"></a></li>
 	         </ul>
-	   
-	
 	         <div class="btn">
 	            <button type="button" class="prev" id="prev_btn">
 	               <img src="image/main/banner/banner_prev.png">
@@ -47,8 +45,6 @@
 	         </div>
 	      </div>
 	      </div>
-	
-	
 	      <div class="test" id="test">
 	         <div id="utube">
 	            <iframe width="1440" height="580"

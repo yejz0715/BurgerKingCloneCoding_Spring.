@@ -30,7 +30,7 @@
 					<c:forEach var="EventVO" items="${eventList}">
 						<li><a href="eventDetailForm?eseq=${EventVO.eseq}"> <input
 								type="hidden" name="eseq" value="${EventVO.eseq}" /> <img
-								class="eventImg" src="image/main/event/${EventVO.image}" />
+								class="eventImg" src="image/main/event/${EventVO.thumbnail}" />
 						</a>
 							<p>
 								${EventVO.startdate.substring(0,10)}
