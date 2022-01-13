@@ -4,6 +4,7 @@
 
 <article>
 	<h1>회원리스트</h1>
+	<h2 style="color: red; font-weight: bold;">${message}</h2>
 	<form name="frm" method="post">
 		<table style="margin: 0 auto;">
 			<tr>

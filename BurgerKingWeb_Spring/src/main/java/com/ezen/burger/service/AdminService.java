@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ezen.burger.dao.IAdminDao;
+import com.ezen.burger.dao.IMemberDao;
+import com.ezen.burger.dao.IOrderDao;
 import com.ezen.burger.dto.AdminVO;
 import com.ezen.burger.dto.EventVO;
 import com.ezen.burger.dto.MemberVO;
@@ -20,6 +22,12 @@ import com.ezen.burger.dto.orderVO;
 public class AdminService {
 	@Autowired
 	IAdminDao adao;
+	
+	@Autowired
+	IMemberDao mdao;
+	
+	@Autowired
+	IOrderDao odao;
 
 	public AdminVO adminCheck(String id) {
 		return adao.adminCheck(id);
@@ -34,7 +42,23 @@ public class AdminService {
 	}
 
 	public void deleteMember(int mseq) {
-		adao.deleteMember(mseq);
+		// 해당 mseq의 회원 정보를 불러온다.
+		MemberVO mvo = mdao.getMember_mseq(mseq);
+		
+		// 이후 해당 아이디의 oseq 값들을 조회하여
+		// 해당 oseq 값을 가진 order_detail을 삭제한다.
+		int[] oseq = odao.getOseqs(mvo.getId());
+		for(int i = 0; i < oseq.length; i++) {
+			mdao.deleteOrderDetail(oseq[i]);
+		}
+		// 이후 해당 아이디의 orders, cart, qna를 삭제한다.
+		mdao.deleteOrders(mvo.getId());
+		mdao.deleteCart(mvo.getId());
+		mdao.deleteQna(mvo.getId());
+		
+		// 그 뒤 해당 mseq값을 가진 주소를 삭제하고 최종적으로 회원을 삭제한다.
+		mdao.deleteMyaddress(mvo.getMseq());
+		mdao.deleteMember(mvo.getMseq());
 	}
 
 	public ArrayList<QnaVO> listQna(Paging paging, String key) {

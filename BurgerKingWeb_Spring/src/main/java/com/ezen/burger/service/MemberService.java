@@ -56,11 +56,11 @@ public class MemberService {
 
 	public void deleteMember(int mseq) {
 		MemberVO mvo = mdao.getMember_mseq(mseq);
-		mdao.deleteOrders(mvo.getId());
 		int[] oseq = odao.getOseqs(mvo.getId());
 		for(int i = 0; i < oseq.length; i++) {
 			mdao.deleteOrderDetail(oseq[i]);
 		}
+		mdao.deleteOrders(mvo.getId());
 		mdao.deleteCart(mvo.getId());
 		mdao.deleteQna(mvo.getId());
 		mdao.deleteMyaddress(mvo.getMseq());

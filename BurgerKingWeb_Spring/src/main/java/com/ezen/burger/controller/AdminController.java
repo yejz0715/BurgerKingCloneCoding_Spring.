@@ -104,7 +104,8 @@ public class AdminController {
 	}
 
 	@RequestMapping("adminMemberList")
-	public String adminMemberList(HttpServletRequest request, Model model) {
+	public String adminMemberList(HttpServletRequest request, Model model,
+			@RequestParam(value="message", required = false) String message) {
 		HttpSession session = request.getSession();
 		if (session.getAttribute("loginAdmin") == null) {
 			return "admin/adminLogin";
@@ -140,6 +141,9 @@ public class AdminController {
 
 			ArrayList<MemberVO> memberList = as.listMember(paging, key);
 
+			if(message !=null) {
+				model.addAttribute("message", message);
+			}
 			model.addAttribute("memberList", memberList);
 			model.addAttribute("paging", paging);
 			model.addAttribute("key", key);
@@ -148,10 +152,28 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/adminMemberDelete", method = RequestMethod.POST)
-	public String adminMemberDelete(@RequestParam("delete") int[] mseqArr) {
+	public ModelAndView adminMemberDelete(HttpServletRequest request,
+			@RequestParam("delete") int[] mseqArr) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
+		
+		// 해당 아이디의 result가 2,3인 주문을 가지고 온
+		ArrayList<orderVO> list = os.getOrderListResult2(mvo.getId());
+		
+		// 해당 리스트가 1개라도 있으면 주문 처리중인 주문이 하나 이상 있는 것이므로
+		// 삭제를 하지 않고 메시지만 보내고 중지한다.
+		if(list.size() > 0) {
+			mav.addObject("message", "진행중인 주문이 있어서 회원탈퇴가 불가능합니다.");
+			mav.setViewName("redirect:/adminMemberList?page=1&key=");
+			return mav;
+		}
+		
 		for (int mseq : mseqArr)
 			as.deleteMember(mseq);
-		return "redirect:/adminMemberList";
+		
+		mav.setViewName("redirect:/adminMemberList");
+		return mav;
 	}
 
 //event
