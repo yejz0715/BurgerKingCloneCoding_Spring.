@@ -271,7 +271,8 @@ public class MemberController {
 	
 	// 회원 정보 변경 페이지로 이동
 	@RequestMapping(value="/memberUpdateForm")
-	public ModelAndView memberUpdateForm(HttpServletRequest request) {
+	public ModelAndView memberUpdateForm(HttpServletRequest request,
+			@RequestParam(value="message", required = false) String message) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		if(session.getAttribute("memberkind") != null) {
@@ -281,6 +282,9 @@ public class MemberController {
 				ArrayList<orderVO> list1 = os.getOrderList(mvo.getId());
 				ArrayList<CartVO> list2 = cs.selectCart( mvo.getId() );	
 				
+				if(message !=null) {
+					mav.addObject("message", message);
+				}
 				mav.addObject("ovo", list1);
 				mav.addObject("cvo", list2);
 				mav.addObject("MemberVO", mvo);
@@ -335,6 +339,13 @@ public class MemberController {
 		if(session.getAttribute("memberkind") != null) {
 			int memberKind = (int)session.getAttribute("memberkind");
 			if(memberKind == 1) {
+				MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
+				ArrayList<orderVO> list = os.getOrderListResult2(mvo.getId());
+				if(list.size() > 0) {
+					mav.addObject("message", "진행중인 주문이 있어서 회원탈퇴가 불가능합니다.");
+					mav.setViewName("redirect:/memberUpdateForm");
+					return mav;
+				}
 				int mseq = Integer.parseInt(request.getParameter("mseq"));
 				ms.deleteMember(mseq);
 				session.invalidate();

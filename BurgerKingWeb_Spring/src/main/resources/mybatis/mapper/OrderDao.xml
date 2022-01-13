@@ -72,4 +72,8 @@
 	<select id="getOseqs" resultType="int">
 		select oseq from orders where id = #{param1}
 	</select>
+	
+	<select id="getOrderListResult2" resultType="com.ezen.burger.dto.orderVO">
+		select * from order_view where id=#{param1} and result in ('2', '3')
+	</select>
 </mapper>

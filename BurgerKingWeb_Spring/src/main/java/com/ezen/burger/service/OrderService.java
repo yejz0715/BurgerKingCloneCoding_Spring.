@@ -115,4 +115,8 @@ public class OrderService {
 	public String getOrderDetail(String odseq) {
 		return odao.getOrderDetail(odseq);
 	}
+
+	public ArrayList<orderVO> getOrderListResult2(String id) {
+		return odao.getOrderListResult2(id);
+	}
 }

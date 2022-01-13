@@ -42,4 +42,6 @@ public interface IOrderDao {
 	public String getOrderDetail(String odseq);
 
 	public int[] getOseqs(String id);
+
+	public ArrayList<orderVO> getOrderListResult2(String id);
 }

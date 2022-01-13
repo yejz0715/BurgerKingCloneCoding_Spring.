@@ -18,6 +18,7 @@
 	</div>
 	<div class="web_profileUpdate">
 		<h1 class="subTit">회원정보변경</h1>
+		<h2 style="color: red; font-weight: bold;">${message}</h2>
 		<form name="frm" method="post" action="updateMember">
 			<fieldset>
 				<legend>기본정보</legend>
