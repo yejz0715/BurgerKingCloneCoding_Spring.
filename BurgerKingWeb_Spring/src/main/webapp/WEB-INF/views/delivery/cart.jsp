@@ -28,7 +28,6 @@
 		</c:when>
 		<c:otherwise>
 		<div class="allchk01">
-		${message}
 			<label><input type="checkbox" class="check02" onclick="selectAllDelete(this)" name="all">
 			<span>전체선택</span></label>
 			<div class="rcen_btn"></div>
